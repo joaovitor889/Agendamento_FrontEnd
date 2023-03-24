@@ -14,40 +14,46 @@
 	background-repeat: no-repeat;
 	background-attachment: fixed;
     font-family: 'Euphoria Script', cursive;
+	display: flex;
+	flex-direction: column;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
 
+.container {
+	display: flex; 
+	flex-direction: column;
+}
+
 .fLogin .logo {
-	position: relative;
-	margin-top: 25%;
 	margin-left: 5%;
+	margin-top: 10%;
 	width: 90%;
-	height: 8%;
+	height: auto;
+	min-height: 30px;
 	background-color: #fff;
 	border-radius: 25px;
 }
 
-.fLogin .logo h1 {
-	color: #000000;
-	font-family: 'Merienda', cursive;
-	font-size: 1.45em;
-	position: relative;
-	top: 1%;
-}
-
 .fundo {
+	position: relative;
+	margin-top: 5%;
+	margin-left: 5%;
     background-color: rgba(0, 0, 0, 0.8);
 	width: 90%;
-	height: 90%;
+	height: auto;
+	min-height: 25rem;
 	border-radius: 25px;
-	/*Centralizar div*/
+}
+
+.fLogin .logo h1 {
 	position: relative;
-	margin-top: 25%;
-	top: 35%;
-	left: 50%;
-	margin-right: -50%;
-	transform: translate(-50%, -50%);	
+	color: #000000;
+	font-family: 'Merienda', cursive;
+	margin: 0%;
+	padding: 0%;
+	font-size: 1em;
+	margin: 1 auto;
 }
 
 .fundo h1 {
@@ -101,6 +107,7 @@
 	cursor:pointer;
 	-webkit-border-radius: 5px;
 	border-radius: 25px;
+	margin: 1%;
 }
 
 .botoes input[type=submit]:hover{
@@ -108,30 +115,31 @@
 }
 
 @media only screen and (min-width: 1024px) {
+	.fLogin {
+		overflow-y: hidden;
+	}
 	.fLogin .logo h1 {
-		top: 10%;
+		position: relative;
 		font-size: 1.2em;
+		margin: -1%;
 	}
 	.fLogin .logo {
 		background-color: #fff;
 		border-radius: 25px;
 		position: relative;
-		margin-left: 35%;
+		margin: 0 auto;
 		margin-top: 5%;
 		width: 30%;
-		height: 8%;
+		height: auto;
+		min-height: 35px;
 	}
     .fundo {
-        background-color: rgba(0, 0, 0, 0.8);
-        width: 40%;
-        height: 65%;
-        border-radius: 25px;
-        /*Centralizar div*/
-        position: absolute;
-		margin-top: 0%;
-        top: 61%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-    }
+		position: relative;
+		background-color: rgba(0, 0, 0, 0.8);
+		width: 50%;
+		height: auto;
+		min-height: 70%;
+		border-radius: 25px;
+		margin-left: 25%;			
+	}	
 }
