@@ -43,7 +43,8 @@
 	border-radius: 25px;
 	/*Centralizar div*/
 	position: relative;
-	margin-top: 35%;
+	margin-top: 25%;
+	top: 35%;
 	left: 50%;
 	margin-right: -50%;
 	transform: translate(-50%, -50%);	
@@ -127,6 +128,7 @@
         border-radius: 25px;
         /*Centralizar div*/
         position: absolute;
+		margin-top: 0%;
         top: 61%;
         left: 50%;
         margin-right: -50%;
