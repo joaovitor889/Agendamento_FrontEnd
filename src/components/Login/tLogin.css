@@ -39,11 +39,11 @@
 .fundo {
     background-color: rgba(0, 0, 0, 0.8);
 	width: 90%;
-	height: 60%;
+	height: 90%;
 	border-radius: 25px;
 	/*Centralizar div*/
 	position: relative;
-	top: 35%;
+	margin-top: 35%;
 	left: 50%;
 	margin-right: -50%;
 	transform: translate(-50%, -50%);	
