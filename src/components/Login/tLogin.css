@@ -14,6 +14,7 @@
 	background-repeat: no-repeat;
 	background-attachment: fixed;
     font-family: 'Euphoria Script', cursive;
+	overflow-y: auto;
 }
 
 .fLogin .logo {
@@ -44,8 +45,7 @@
 	top: 35%;
 	left: 50%;
 	margin-right: -50%;
-	transform: translate(-50%, -50%);
-	overflow-y: auto;
+	transform: translate(-50%, -50%);	
 }
 
 .fundo h1 {
