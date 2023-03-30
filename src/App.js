@@ -1,5 +1,8 @@
+//tela Land Page
+import LandPage from './components/Login_E_Cadastro/tLandPage.js'
+
 //tela de Login
-import Login from './components/Login/tLogin.js'
+//import Login from './components/Login/tLogin.js'
 
 //Telas do Cliente
 //import CadastroUsuario from './components/Cliente/tCadastroUsuario.js'
@@ -27,7 +30,10 @@ function App() {
     <div className="App">
       <header className="App-header">        
 
-        <Login />
+        <LandPage />
+        
+        
+        { /*<Login /> */}
 
 
         {/* <CadastroUsuario /> */}       
