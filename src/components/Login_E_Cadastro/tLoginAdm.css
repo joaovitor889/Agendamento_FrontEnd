@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap'); 
+
+.fAgendamento {
+    position: fixed;
+	width: 100%;
+	height: 100%;
+	/*background-image: url("../../img/fundo.png");*/
+    background: rgb(72,178,247);
+	background: linear-gradient(180deg, rgba(72,178,247,0.9108018207282913) 35%, rgba(0,18,255,0.9864320728291317) 100%);
+    color: #000;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+    font-family: 'Euphoria Script', cursive;
+}
