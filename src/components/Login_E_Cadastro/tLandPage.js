@@ -45,7 +45,7 @@ const telaLandPage = () => {
 
             <div className='contato'>
                 <img src={Contato} alt='Contato' />
-                <p>Entre em contato com a nossa equipe</p>
+                <a href = "/">Entre em contato com <br></br>a nossa equipe</a>
             </div>        
             
             <div className='moca'>
