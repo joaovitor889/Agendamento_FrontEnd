@@ -1,5 +1,6 @@
 import './tLoginAdm.css';
 
+<<<<<<< HEAD
 import  Logo from '../../img/logo-site.png'
 import Senha  from '../../img/Lock.png'
 import Email from '../../img/Mail.png'
@@ -45,3 +46,17 @@ const telaLoginAdm = () => {
 }
 
 export default telaLoginAdm
+=======
+const telaLoginAdministrador = () => {
+
+    document.title = "Agendamento";
+     
+    return (
+         <div className = "fAgendamento">
+             <p>Tela de Login do Administrador</p>
+         </div>
+     )
+ }
+ 
+ export default telaLoginAdministrador
+>>>>>>> 2f8636631ae049373d56461a2244e6b5879a34b6
