@@ -1,6 +1,5 @@
 import './tLoginAdm.css';
 
-<<<<<<< HEAD
 import  Logo from '../../img/logo-site.png'
 import Senha  from '../../img/Lock.png'
 import Email from '../../img/Mail.png'
@@ -20,8 +19,8 @@ const telaLoginAdm = () => {
                 </div>
                 <div className='campo-de-login'>
                     <div className='butoes'>
-                    <a href="#" className='Login'>Login</a>
-                    <a href="#" className='Cadastro'>Cadastro</a>
+                    <a href="/" className='Login'>Login</a>
+                    <a href="/" className='Cadastro'>Cadastro</a>
                     </div>
                     <div className='formulario'>
                         <form  id ="formLoginAdm">
@@ -46,17 +45,3 @@ const telaLoginAdm = () => {
 }
 
 export default telaLoginAdm
-=======
-const telaLoginAdministrador = () => {
-
-    document.title = "Agendamento";
-     
-    return (
-         <div className = "fAgendamento">
-             <p>Tela de Login do Administrador</p>
-         </div>
-     )
- }
- 
- export default telaLoginAdministrador
->>>>>>> 2f8636631ae049373d56461a2244e6b5879a34b6

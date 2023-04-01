@@ -1,11 +1,6 @@
 //tela Land Page
-<<<<<<< HEAD
 //import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 
-import LoginAdm from './components/Login_E_Cadastro/tLoginAdm.js'
-=======
-//import LandPage from './components/Login_E_Cadastro/tLandPage.js';
->>>>>>> 2f8636631ae049373d56461a2244e6b5879a34b6
 
 //telas de Login
 //import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
@@ -40,12 +35,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">        
-
-<<<<<<< HEAD
-        <LoginAdm />
-=======
         {/*<LandPage />*/}
->>>>>>> 2f8636631ae049373d56461a2244e6b5879a34b6
         
         
         {/*<LoginCliente />*/}
