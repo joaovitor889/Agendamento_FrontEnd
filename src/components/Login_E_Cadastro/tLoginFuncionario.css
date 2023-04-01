@@ -12,8 +12,7 @@
 	/*Depois vc substitui o comando abaixo pelo comando
 	background-color: #000;  e colocar a cor que quiser :)*/
 	/*background-image: url("../../img/FundoLogin.jpeg");*/
-	background: rgb(72,178,247);
-	background: linear-gradient(180deg, rgba(72,178,247,0.9108018207282913) 35%, rgba(2, 9, 95, 0.986) 100%);
+	background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;

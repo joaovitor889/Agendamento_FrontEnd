@@ -4,12 +4,12 @@
 
 //telas de Login
 //import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
-import LoginAdm from './components/Login_E_Cadastro/tLoginAdm.js';
+//import LoginAdm from './components/Login_E_Cadastro/tLoginAdm.js';
 //import LoginFuncionario from './components/Login_E_Cadastro/tLoginFuncionario.js';
 
 
 //Telas de Cadastro
-//import CadastroCliente from './components/Login_E_Cadastro/tCadastroCliente.js';
+import CadastroCliente from './components/Login_E_Cadastro/tCadastroCliente.js';
 
 //Telas do Cliente
 //import MenuCliente from './components/Cliente/tMenuCliente.js';
@@ -39,10 +39,10 @@ function App() {
         
         
         {/*<LoginCliente />*/}
-        <LoginAdm />
+        {/*<LoginAdm />*/}
         {/*<LoginFuncionario />*/}
 
-        {/* <CadastroCliente /> */}       
+        <CadastroCliente /> 
         {/* <MenuCliente /> */}  
         {/* <Agendamento /> */}   
         {/* <CalendarioCliente /> */}    
