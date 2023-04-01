@@ -101,16 +101,17 @@
 
 .cadCliLogo {
 	position: absolute;
-	width: 40%;
+	width: 90%;
 	height: auto;
 	min-height: 30px;
 	background-color: #1B1B1B;
 	border-radius: 25px;
 	margin-top: 2%;
-	left: 30%;
+	left: 5%;
 	z-index: 2;
 	font-family: 'Times New Roman', Times, serif;
 	color: #8AFFEA;
+	font-size: 7vw;
 }
 
 .condicoes {
@@ -167,7 +168,7 @@
 
 	#cabecalho p {
 		position: absolute;
-		margin-top: 8%;
+		margin-top: 3%;
 		left: 35%;
 		font-size: 100%;
 	}
@@ -238,9 +239,16 @@
 	}
 }
 
-@media only screen and (min-width: 1200px) and (max-height: 800px){
+@media only screen and (min-width: 1000px) and (max-height: 600px){
 	#cabecalho p{
-		top: -14%;
+		top: -1%;
+		background-color: #000;
+	}
+}
+
+@media only screen and (min-width: 1200px) and (min-height: 800px){
+	#cabecalho p{
+		top: -2%;
 		background-color: #000;
 	}
 	
