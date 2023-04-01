@@ -21,7 +21,7 @@ const telaCadastroUsuario = () => {
                                     {/*<input type="email" placeholder="E-mail" title="Digite seu E-mail" required /><br></br><br></br>*/}
                                     <input type = "text" placeholder = "*Nome:" title = "Digite o seu nome" name = "nome" id = "nome" required />
                                     <input type = "text" placeholder = "*Sobrenome:" title = "Digite o seu sobrenome" name = "sobrenome" id = "sobrenome" required />
-                                    <input type = "text" placeholder = "*CPF:" title = "Digite o seu CPF" name = "cpf" id = "cpf"  maxlength = "11" required />
+                                    <input type = "text" placeholder = "*CPF:" title = "Digite o seu CPF" name = "cpf" id = "cpf"  maxLength = "11" required />
                                     <input type = "phone" placeholder = "Telefone:" title = "Digite o seu Telefone" name = "tel" id = "tel" />
                                     <input type = "email" placeholder = "E-mail:" title = "Digite o seu E-mail" name = "email" id = "email" />
 

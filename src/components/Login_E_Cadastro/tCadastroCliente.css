@@ -110,7 +110,7 @@
 	left: 30%;
 	z-index: 2;
 	font-family: 'Times New Roman', Times, serif;
-	color: #fff;
+	color: #8AFFEA;
 }
 
 .condicoes {
@@ -157,7 +157,7 @@
 		left: 40%;
 		width: 20%;
 		font-size: 2vw;
-		
+		color: #fff
 	}
 	#cabecalho {
 		margin-top: -2%;
