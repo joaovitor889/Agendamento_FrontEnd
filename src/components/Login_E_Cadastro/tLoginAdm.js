@@ -26,7 +26,7 @@ const telaLoginAdm = () => {
                         <form  id ="formLoginAdm">
                             <div className='E-mail'>
                                 <img src={Email} alt="" />
-                                <input type="email" placeholder='E-mail' title='Digite  seu E-mail'/>
+                                <input type="email" placeholder='E-mail' title='Digite seu E-mail'/>
                             </div>
                             <div className='Senha'>
                                 <img src={Senha} alt="" />
