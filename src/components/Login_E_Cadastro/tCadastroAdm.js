@@ -27,15 +27,15 @@ const telaCadastroAdm = () => {
                         <form  id ="formCadastroAdm">
                             <div className='User'>
                                 <img src={User} alt="" />
-                                <input type="User" placeholder='Usuário' title='Digite  seu Usuário'/>
+                                <input type="User" placeholder='Usuário' title='Digite seu Usuário'/>
                             </div>
                             <div className='Documento'>
                                 <img src={Doc} alt="" />
-                                <input type="Document" placeholder='CPF' maxLength = "11" title='Digite  seu CPF'/>
+                                <input type="Document" placeholder='CPF' maxLength = "11" title='Digite seu CPF'/>
                             </div>
                             <div className='E-mail'>
                                 <img src={Email} alt="" />
-                                <input type="email" placeholder='E-mail' title='Digite  seu E-mail'/>
+                                <input type="email" placeholder='E-mail' title='Digite seu E-mail'/>
                             </div>
                             <div className='Senha'>
                                 <img src={Senha} alt="" />
