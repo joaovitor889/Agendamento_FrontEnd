@@ -31,7 +31,7 @@ const telaCadastroAdm = () => {
                             </div>
                             <div className='Documento'>
                                 <img src={Doc} alt="" />
-                                <input type="Document" placeholder='CPF' title='Digite  seu CPF'/>
+                                <input type="Document" placeholder='CPF' maxLength = "11" title='Digite  seu CPF'/>
                             </div>
                             <div className='E-mail'>
                                 <img src={Email} alt="" />
