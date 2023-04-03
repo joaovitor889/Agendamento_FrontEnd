@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital@1&display=swap');
 
-.fLoginAdm{
+.fCadastroAdm{
     position: fixed;
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     width: 100%;
@@ -12,11 +12,11 @@ a{
     font-size: 36px;
 }
 
-.Login{
+.Cadastro{
     color: white;
 }
 
-.Cadastro{
+.Login{
     color: rgba(255, 255, 255, 0.5);
 }
 
@@ -28,7 +28,7 @@ a{
 .formulario{
 
     width: 500px;
-    height: 300px;
+ 
 
     background: #F7F7F7;
     border-radius: 15px;
@@ -39,7 +39,7 @@ a{
     justify-content: center;
 }
 
-.campo-de-login{
+.campo-de-Cadastro{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,18 +49,12 @@ img{
     height: 100px;
 }
 
-.E-mail{
+#formCadastroAdm div{
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: center;
     margin: 10px;
-}
-.Senha{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: center;
 }
 
 .formulario img{
@@ -68,7 +62,7 @@ img{
     margin-right: 20px;
 }
 
-#formLoginAdm div input {
+#formCadastroAdm div input {
 	text-align:left;
     background: #F7F7F7;
     border-style: none;
@@ -76,8 +70,7 @@ img{
     width: 300px;
 }
 
-
-#btnLogin{
+#btnCadastro{
 
     border-style: none;
     background-color: #3293CA;
@@ -106,9 +99,9 @@ img{
 @media only screen  and (max-width: 500px) {
     .formulario{
         width: 360px;
-        height: 189px;
     }
-    #formLoginAdm div input {
-        width: 250px;
-    }
+    
+#formCadastroAdm div input {
+    width: 250px;
+}
 }
