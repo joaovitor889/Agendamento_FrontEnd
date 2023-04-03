@@ -3,7 +3,7 @@
 
 //telas de Login
 //import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
-import LoginAdm from './components/Login_E_Cadastro/tLoginAdm.js';
+//import LoginAdm from './components/Login_E_Cadastro/tLoginAdm.js';
 //import LoginFuncionario from './components/Login_E_Cadastro/tLoginFuncionario.js';
 
 
@@ -39,11 +39,11 @@ function App() {
         <CadastroAdm />
         
         
-        {/*<LoginCliente />*/}
-        <LoginAdm />
-        {/*<LoginFuncionario />*/}
+        {/* <LoginCliente /> */}
+        {/* <LoginAdm /> */}
+        {/* <LoginFuncionario /> */}
 
-        {/* <CadastroCliente /> */}       
+        {/*<CadastroCliente /> */}
         {/* <MenuCliente /> */}  
         {/* <Agendamento /> */}   
         {/* <CalendarioCliente /> */}    
