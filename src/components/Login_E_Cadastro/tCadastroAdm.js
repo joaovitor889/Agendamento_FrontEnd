@@ -43,7 +43,7 @@ const telaCadastroAdm = () => {
                             </div>
                             <div className='Senha'>
                                 <img src={Senha} alt="" />
-                                <input type="password" placeholder='Senha' title='Digite sua senha'/>
+                                <input type="password" placeholder='Confirmar Senha' title='Confirme sua senha'/>
                             </div>
                                 <input type = "submit" id = "btnCadastro" name = "btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value = "Cadastrar" />                        
                         </form>
