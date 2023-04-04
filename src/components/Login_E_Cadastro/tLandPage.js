@@ -45,7 +45,7 @@ const telaLandPage = () => {
 
             <div className='contato'>
                 <img src={Contato} alt='Contato' />
-                <a href = "/">Entre em contato com <br></br>a nossa equipe</a>
+                <a href = "/" target="_blank" rel="noreferrer">Entre em contato com <br></br>a nossa equipe</a>
             </div>        
             
             <div className='moca'>
@@ -55,7 +55,7 @@ const telaLandPage = () => {
             <div className='segFundo'></div>
             
             <div className='botaoPlay'>
-                <a href='./Landpage.js'><img src={Botao} alt='Botao'/></a><br></br>
+                <a href='./Landpage.js' target="_blank" rel="noreferrer"><img src={Botao} alt='Botao'/></a><br></br>
                 <center>Venha conhcer a nossa plataforma</center>
             </div>
             
