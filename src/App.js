@@ -1,5 +1,5 @@
 //tela Land Page
-//import LandPage from './components/Login_E_Cadastro/tLandPage.js'
+import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 
 //telas de Login
 //import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
@@ -9,7 +9,7 @@
 
 //Telas de Cadastro
 //import CadastroCliente from './components/Login_E_Cadastro/tCadastroCliente.js';
-import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
+//import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
 
 //Telas do Cliente
 //import MenuCliente from './components/Cliente/tMenuCliente.js';
@@ -34,14 +34,13 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">        
-
-        <CadastroAdm />
-        
+      <header className="App-header">                
+        <LandPage />
         
         {/* <LoginCliente /> */}
         {/* <LoginAdm /> */}
         {/* <LoginFuncionario /> */}
+        {/* <CadastroAdm /> */}
 
         {/*<CadastroCliente /> */}
         {/* <MenuCliente /> */}  
