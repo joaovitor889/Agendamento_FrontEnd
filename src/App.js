@@ -1,5 +1,5 @@
 //tela Land Page
-import LandPage from './components/Login_E_Cadastro/tLandPage.js'
+//import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 
 //telas de Login
 //import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
@@ -24,7 +24,7 @@ import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 //Telas do Administrador
 //import MenuADM from './components/Administrador/tMenuADM.js';
 //import PesquisaFuncionario from './components/Administrador/tPesqFunc.js';
-//import CadastroFuncionario from './components/Administrador/tCadFunc.js';
+import CadastroFuncionario from './components/Administrador/tCadFunc.js';
 //import Agendamentos from './components/Administrador/tAgendamentos.js';
 
 
@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">                
-        <LandPage />
+        {/* <LandPage /> */}
         
         {/* <LoginCliente /> */}
         {/* <LoginAdm /> */}
@@ -55,7 +55,7 @@ function App() {
 
         {/* <MenuADM /> */}        
         {/* <PesquisaFuncionario /> */}        
-        {/* <CadastroFuncionario /> */}        
+        <CadastroFuncionario />       
         {/* <Agendamentos /> */}
       </header>
     </div>
