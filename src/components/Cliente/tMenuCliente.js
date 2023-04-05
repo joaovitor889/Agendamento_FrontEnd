@@ -11,7 +11,7 @@ const telaMenuCliente = () => {
    return (
         <div className = "fMenuCliente">
             <div className = "fPreto"></div>
-            <div className = "voltar"><p>{Voltar}</p></div>
+            <div className = "voltar"><img src = {Voltar} alt = "voltar" /></div>
             <div className = "texto"></div>
         </div>
     )
