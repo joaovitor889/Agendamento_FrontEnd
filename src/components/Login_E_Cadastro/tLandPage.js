@@ -24,8 +24,8 @@ const telaLandPage = () => {
                 <span className='btnCadastro'>
                     <button  type="button"
                         onClick={(e) => {
-                            e.preventDefault();
-                                window.location.href='./Landpage.js';
+                            e.preventDefault();                                
+                                window.location.href = './tCadastroAdm'
                             }}>Comece grátis
                     </button>
                 </span>
@@ -42,7 +42,7 @@ const telaLandPage = () => {
             <button  type="button" className='btnCdtr'
                         onClick={(e) => {
                             e.preventDefault();
-                                window.location.href='./Landpage.js';
+                                window.location.href = './tCadastroAdm'
                             }}>Comece grátis
                     </button>
 

@@ -29,13 +29,10 @@ a{
     justify-content: space-between;
 }
 .formulario{
-
     width: 500px;
- 
-
+    height: 100%;
     background: #F7F7F7;
     border-radius: 15px;
-
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -99,12 +96,16 @@ img{
     font-family: 'Euphoria Script', cursive;
 }
 
-@media only screen  and (max-width: 500px) {
-    .formulario{
-        width: 360px;
+@media only screen  and (max-width: 600px) {
+    .butoes {
+        width: 90%;
     }
     
-#formCadastroAdm div input {
-    width: 250px;
-}
+    .formulario{
+        width: 90%;
+    }
+    
+    #formCadastroAdm div input {
+        width: 90%;
+    }
 }
