@@ -14,12 +14,13 @@ a{
     font-size: 36px;
 }
 
-.Cadastro{
-    color: white;
+.butoes .Cadastro{    
+    color: #fff;
 }
 
-.Login{
+.butoes .Login{    
     color: rgba(255, 255, 255, 0.5);
+    
 }
 
 .butoes{

@@ -1,15 +1,19 @@
+//import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import { Routes, Route } from "react-router-dom";
+
 //tela Land Page
 import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 
 //telas de Login
 //import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
-//import LoginAdm from './components/Login_E_Cadastro/tLoginAdm.js';
+import LoginAdm from './components/Login_E_Cadastro/tLoginAdm';
 //import LoginFuncionario from './components/Login_E_Cadastro/tLoginFuncionario.js';
 
 
 //Telas de Cadastro
 //import CadastroCliente from './components/Login_E_Cadastro/tCadastroCliente.js';
-//import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
+import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
 
 //Telas do Cliente
 //import MenuCliente from './components/Cliente/tMenuCliente.js';
@@ -34,29 +38,33 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">                
-        <LandPage />
-        
-        {/* <LoginCliente /> */}
-        {/* <LoginAdm /> */}
-        {/* <LoginFuncionario /> */}
-        {/* <CadastroAdm /> */}
+      <header className="App-header">
+          {/* <LandPage /> */}         
+          <Routes>
+            <Route index element={<LandPage />} />
+            <Route  path = "/tLoginAdm" element={<LoginAdm />} />
+            <Route  path = "/tCadastroAdm" element={<CadastroAdm />} />
+          </Routes>
+          {/* <LoginCliente /> */}
+          {/* <LoginAdm /> */}
+          {/* <LoginFuncionario /> */}
+          {/* <CadastroAdm /> */}
 
-        {/*<CadastroCliente /> */}
-        {/* <MenuCliente /> */}
-        {/* <Agendamento /> */}   
-        {/* <CalendarioCliente /> */}    
+          {/*<CadastroCliente /> */}
+          {/* <MenuCliente /> */}
+          {/* <Agendamento /> */}
+          {/* <CalendarioCliente /> */}
 
 
-        {/* <CadastroServico /> */}
-        {/* <MenuProfissional /> */}                                              
-        {/* <CalendarioProfissional /> */}  
+          {/* <CadastroServico /> */}
+          {/* <MenuProfissional /> */}
+          {/* <CalendarioProfissional /> */}
 
 
-        {/* <MenuADM /> */}        
-        {/* <PesquisaFuncionario /> */}        
-        {/* <CadastroFuncionario /> */}       
-        {/* <Agendamentos /> */}
+          {/* <MenuADM /> */}
+          {/* <PesquisaFuncionario /> */}
+          {/* <CadastroFuncionario /> */}
+          {/* <Agendamentos /> */}
       </header>
     </div>
   );

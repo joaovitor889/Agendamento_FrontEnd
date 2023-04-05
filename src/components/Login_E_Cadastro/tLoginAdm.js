@@ -19,8 +19,8 @@ const telaLoginAdm = () => {
                 </div>
                 <div className='campo-de-login'>
                     <div className='butoes'>
-                    <a href="/" className='Login'>Login</a>
-                    <a href="/" className='Cadastro'>Cadastro</a>
+                    <a href="./tLoginAdm" className='Login'>Login</a>
+                    <a href="./tCadastroAdm" className='Cadastro'>Cadastro</a>
                     </div>
                     <div className='formulario'>
                         <form  id ="formLoginAdm">

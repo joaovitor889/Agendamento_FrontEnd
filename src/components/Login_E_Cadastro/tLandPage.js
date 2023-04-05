@@ -6,6 +6,7 @@ import Botao from '../../img/Component85.png';
 import Contato from '../../img/Headset.png';
 //import logo from '../../img/logo.PNG';
 
+import { Link } from "react-router-dom";
 
 const telaLandPage = () => {
 
@@ -17,7 +18,9 @@ const telaLandPage = () => {
                 <span className='logo'>
                     <img src={Logo} alt = "Logo da Empresa" />
                 </span>
-                <span className='linkLogin'><a href='./Landpage.js'>Acessar minha conta</a></span>
+                <span className='linkLogin'>
+                        <Link to = "./tLoginAdm">Acessar minha conta</Link>
+                </span>
                 <span className='btnCadastro'>
                     <button  type="button"
                         onClick={(e) => {
