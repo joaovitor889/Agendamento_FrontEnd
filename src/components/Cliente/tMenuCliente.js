@@ -1,7 +1,7 @@
 import './tMenuCliente.css';
 //import logo from '../../img/logo.PNG';
 
-import Voltar from '../../icones/chevron-left.PNG'
+import Voltar from '../../icones/chevron-left.png';
 
 
 const telaMenuCliente = () => {
