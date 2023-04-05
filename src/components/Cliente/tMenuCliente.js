@@ -1,6 +1,8 @@
 import './tMenuCliente.css';
 //import logo from '../../img/logo.PNG';
 
+import Voltar from '../../icones/chevron-left.PNG'
+
 
 const telaMenuCliente = () => {
 
@@ -8,7 +10,9 @@ const telaMenuCliente = () => {
 
    return (
         <div className = "fMenuCliente">
-            <p>Menu do Cliente</p>
+            <div className = "fPreto"></div>
+            <div className = "voltar"><p>{Voltar}</p></div>
+            <div className = "texto"></div>
         </div>
     )
 }

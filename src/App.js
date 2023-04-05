@@ -1,24 +1,24 @@
 //import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { Routes, Route } from "react-router-dom";
+//import { Routes, Route } from "react-router-dom";
 
 //tela Land Page
-import LandPage from './components/Login_E_Cadastro/tLandPage.js'
+//import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 
 //telas de Login
 //import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
-import LoginAdm from './components/Login_E_Cadastro/tLoginAdm';
+//import LoginAdm from './components/Login_E_Cadastro/tLoginAdm';
 //import LoginFuncionario from './components/Login_E_Cadastro/tLoginFuncionario.js';
 
 
 //Telas de Cadastro
-//import CadastroCliente from './components/Login_E_Cadastro/tCadastroCliente.js';
-import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
+//import CadastroCli from './components/Login_E_Cadastro/tCadastroCliente.js';
+//import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
 
 //Telas do Cliente
-//import MenuCliente from './components/Cliente/tMenuCliente.js';
-//import Agendamento from './components/Cliente/tAgendamento.js';
-//import CalendarioCliente from './components/Cliente/tCalendarioCliente.js';
+import MenuCli from './components/Cliente/tMenuCliente.js';
+//import AgendamentoCli from './components/Cliente/tAgendamentoCli.js';
+//import CalendarioCli from './components/Cliente/tCalendarioCliente.js';
 
 //Telas do Profissional
 //import CadastroServico from './components/Profissional/tCadastroServico.js';
@@ -40,20 +40,20 @@ function App() {
     <div className="App">
       <header className="App-header">
           {/* <LandPage /> */}         
-          <Routes>
+          {/* <Routes>
             <Route index element={<LandPage />} />
             <Route  path = "/tLoginAdm" element={<LoginAdm />} />
             <Route  path = "/tCadastroAdm" element={<CadastroAdm />} />
-          </Routes>
+          </Routes> */}   
           {/* <LoginCliente /> */}
           {/* <LoginAdm /> */}
           {/* <LoginFuncionario /> */}
           {/* <CadastroAdm /> */}
 
-          {/*<CadastroCliente /> */}
-          {/* <MenuCliente /> */}
-          {/* <Agendamento /> */}
-          {/* <CalendarioCliente /> */}
+          {/*<CadastroCli /> */}
+          <MenuCli />
+          {/* <AgendamentoCli /> */}
+          {/* <CalendarioCli /> */}
 
 
           {/* <CadastroServico /> */}
