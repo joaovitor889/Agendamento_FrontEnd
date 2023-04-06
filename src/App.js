@@ -10,7 +10,7 @@
 
 
 //Telas de Cadastro
-//import CadastroCli from './components/Login_E_Cadastro/tCadastroCliente.js';
+//import CadastroCli from './components/Login_E_Cadastro/tCadastroCli.js';
 //import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
 
 //Telas do Cliente
