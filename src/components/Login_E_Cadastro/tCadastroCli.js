@@ -1,4 +1,4 @@
-import './tCadastroCliente.css';
+import './tCadastroCli.css';
 //import logo from '../../img/logo.PNG';
 
 

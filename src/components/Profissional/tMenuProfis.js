@@ -1,4 +1,4 @@
-import './tMenuProfissional.css';
+import './tMenuProfis.css';
 //import logo from '../../img/logo.PNG';
 
 

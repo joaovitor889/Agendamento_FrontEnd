@@ -28,7 +28,7 @@
 	flex-direction: column;
 }
 
-.fLogin .logo {
+.fLogin .logoLoginCli {
 	margin-left: 5%;
 	margin-top: 10%;
 	width: 90%;
@@ -49,7 +49,7 @@
 	border-radius: 50px;
 }
 
-.fLogin .logo h1 {
+.fLogin .logoLoginCli h1 {
 	position: relative;
 	color: #fff;
 	font-family: 'Merienda', cursive;
@@ -97,7 +97,7 @@
 	color: #fff;
 }
 
-.botoes input[type=submit]{
+.botoesLoginCli input[type=submit]{
 	font-family: "Times New Roman", Times, serif;
 	font-weight: bold;
 	font-size: 35px;
@@ -113,7 +113,7 @@
 	margin: 1%;
 }
 
-.botoes input[type=submit]:hover{
+#btnLogin:hover{
 	background-color: #273791;
 }
 
@@ -128,16 +128,21 @@
 	margin-top: 5%;
 }
 
+.fundo a {
+	text-decoration: underline;
+	font-size: 80%;
+}
+
 @media only screen and (min-width: 1024px) {
 	.fLogin {
 		overflow-y: hidden;
 	}
-	.fLogin .logo h1 {
+	.fLogin .logoLoginCli h1 {
 		position: relative;
 		font-size: 1.2em;
-		margin: -1%;
+		margin: 1%;
 	}
-	.fLogin .logo {
+	.fLogin .logoLoginCli {
 		border-radius: 25px;
 		position: absolute;
 		right: 68%;
@@ -157,7 +162,7 @@
 		margin-left: 35%;			
 	}	
 	#imagem {
-		margin-top: 3%;
+		margin-top: 1%;
 		margin-left: 42%;
 		height: 28%;
 		width: 15%;

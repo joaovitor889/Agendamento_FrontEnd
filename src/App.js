@@ -1,14 +1,12 @@
-//import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 //import { Routes, Route } from "react-router-dom";
 
 //tela Land Page
 //import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 
 //telas de Login
-//import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
+import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
 //import LoginAdm from './components/Login_E_Cadastro/tLoginAdm';
-//import LoginFuncionario from './components/Login_E_Cadastro/tLoginFuncionario.js';
+//import LoginFunc from './components/Login_E_Cadastro/tLoginFunc.js';
 
 
 //Telas de Cadastro
@@ -16,19 +14,19 @@
 //import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
 
 //Telas do Cliente
-import MenuCli from './components/Cliente/tMenuCliente.js';
+import MenuCli from './components/Cliente/tMenuCli.js';
 //import AgendamentoCli from './components/Cliente/tAgendamentoCli.js';
 //import CalendarioCli from './components/Cliente/tCalendarioCliente.js';
 
 //Telas do Profissional
 //import CadastroServico from './components/Profissional/tCadastroServico.js';
 //import MenuProfissional from './components/Profissional/tMenuProfissional.js';
-//import CalendarioProfissional from './components/Profissional/tCalendarioProfissional.js';
+//import CalendarioProfis from './components/Profissional/tCalendarioProfis.js';
 
 //Telas do Administrador
 //import MenuADM from './components/Administrador/tMenuADM.js';
-//import PesquisaFuncionario from './components/Administrador/tPesqFunc.js';
-//import CadastroFuncionario from './components/Administrador/tCadFunc.js';
+//import PesquisaFunc from './components/Administrador/tPesqFunc.js';
+//import CadastroFunc from './components/Administrador/tCadFunc.js';
 //import Agendamentos from './components/Administrador/tAgendamentos.js';
 
 
@@ -39,19 +37,24 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          {/* <LandPage /> */}         
+          {/* <LandPage /> */} 
           {/* <Routes>
             <Route index element={<LandPage />} />
             <Route  path = "/tLoginAdm" element={<LoginAdm />} />
             <Route  path = "/tCadastroAdm" element={<CadastroAdm />} />
-          </Routes> */}   
+            <Route path = "/tLoginCli" element = {<LoginCli />} />
+            <Route  path = "/tMenuCli" element={<MenuCli />} />
+            <Route  path = "/tLoginAdm" element={<LoginAdm />} />
+            </Routes> */}     
+          <MenuCli />   
+          
           {/* <LoginCliente /> */}
           {/* <LoginAdm /> */}
           {/* <LoginFuncionario /> */}
           {/* <CadastroAdm /> */}
 
           {/*<CadastroCli /> */}
-          <MenuCli />
+          
           {/* <AgendamentoCli /> */}
           {/* <CalendarioCli /> */}
 

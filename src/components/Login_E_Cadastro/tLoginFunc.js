@@ -1,10 +1,10 @@
-import './tLoginCliente.css';
+import './tLoginFunc.css';
 import Logo from '../../img/Logo.png';
 
 
 const telaLogin = () => {
 
-   document.title = "Login Cliente";
+   document.title = "Login Funcionario";
 
    return (        
         <div className = "fLogin">
@@ -18,7 +18,7 @@ const telaLogin = () => {
                 <div className="row">
                     <div className = "fundo">            
                         <form id = "formLogin">    
-                            <h1 title = "Bem-Vindo!">Login</h1>
+                            <h1 title = "Bem-Vindo!">Login de Funcionário</h1>
                             <div className = "entrada">
                                 <input type="email" placeholder="E-mail" title = "Digite seu E-mail" required/><br></br><br></br>
                                 <input type="password" placeholder="Senha" title = "Digite sua Senha" required/>
