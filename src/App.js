@@ -4,7 +4,7 @@
 //import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 
 //telas de Login
-import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
+//import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
 //import LoginAdm from './components/Login_E_Cadastro/tLoginAdm';
 //import LoginFunc from './components/Login_E_Cadastro/tLoginFunc.js';
 
