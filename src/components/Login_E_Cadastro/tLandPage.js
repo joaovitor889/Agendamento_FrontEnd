@@ -31,7 +31,7 @@ const telaLandPage = () => {
                 </span>
             </nav>
 
-            <div className="txtLatLand">
+            <div className="txtLatLand">                
                 <h2>MAIS ORGANIZAÇÃO PARA SEUS NEGÓCIOS</h2>
                 <h3>Feito para: </h3>
                 <ul type="disc">
