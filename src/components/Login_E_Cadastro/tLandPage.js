@@ -10,58 +10,74 @@ import { Link } from "react-router-dom";
 
 const telaLandPage = () => {
 
-   document.title = "Bem-Vindo!";
+    document.title = "Bem-Vindo!";
 
-   return (
-        <div className = "fLandPage">
+    return (
+        <div className="fLandPage">
             <nav id='cabecalho'>
                 <span className='logo'>
-                    <img src={Logo} alt = "Logo da Empresa" />
+                    <img src={Logo} alt="Logo da Empresa" />
                 </span>
                 <span className='linkLogin'>
-                        <Link to = "./tLoginAdm">Acessar minha conta</Link>
+                    <Link to="./tLoginAdm">Acessar minha conta</Link>
                 </span>
                 <span className='btnCadastro'>
-                    <button  type="button"
+                    <button type="button"
                         onClick={(e) => {
-                            e.preventDefault();                                
-                                window.location.href = './tCadastroAdm'
-                            }}>Comece grátis
+                            e.preventDefault();
+                            window.location.href = './tCadastroAdm'
+                        }}>Comece grátis
                     </button>
                 </span>
             </nav>
 
-            <h1>MAIS ORGANIZAÇÃO PARA SEUS NEGÓCIOS</h1> 
-            <h2>Feito para: </h2>
-            <ul type = "disc">
-                <li><span>Microempreendedores</span></li>
-                <li><span>Profissionais</span></li>
-                <li><span>Clientes</span></li>
-            </ul>
+            <div className="txtLatLand">
+                <h2>MAIS ORGANIZAÇÃO PARA SEUS NEGÓCIOS</h2>
+                <h3>Feito para: </h3>
+                <ul type="disc">
+                    <li><span>Microempreendedores</span></li>
+                    <li><span>Profissionais</span></li>
+                    <li><span>Clientes</span></li>
+                </ul>
 
-            <button  type="button" className='btnCdtr'
-                        onClick={(e) => {
-                            e.preventDefault();
-                                window.location.href = './tCadastroAdm'
-                            }}>Comece grátis
-                    </button>
+                <button type="button" className='btnCdtr'
+                    onClick={(e) => {
+                        e.preventDefault();
+                        window.location.href = './tCadastroAdm'
+                    }}>Comece grátis
+                </button>
 
-            <div className='contato'>
-                <img src={Contato} alt='Contato' />
-                <a href = "/" target="_blank" rel="noreferrer">Entre em contato com <br></br>a nossa equipe</a>
-            </div>        
-            
-            <div className='moca'>
-                <img src={Mulher} alt = "Mulher" />
+                <div className='contato'>
+                    <img src={Contato} alt='Contato' />
+                    <a href="/" target="_blank" rel="noreferrer">Entre em contato com <br></br>a nossa equipe</a>
+                </div>
             </div>
 
+            <div className='moca'>
+                <img src={Mulher} alt="Mulher" />
+            </div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <div className='segFundo'></div>
-            
+
             <div className='botaoPlay'>
-                <a href='./Landpage.js' target="_blank" rel="noreferrer"><img src={Botao} alt='Botao'/></a><br></br>
+                <a href='./Landpage.js' target="_blank" rel="noreferrer"><img src={Botao} alt='Botao' /></a><br></br>
                 <center>Venha conhcer a nossa plataforma</center>
             </div>
-            
+
             <div className='rodape'>
                 <center>
                     Agradecemos o seu acesso
