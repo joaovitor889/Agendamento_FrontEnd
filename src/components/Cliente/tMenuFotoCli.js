@@ -1,4 +1,4 @@
-import './tFotoCli.css';
+import './tMenuFotoCli.css';
 //import logo from '../../img/logo.PNG';
 
 

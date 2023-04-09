@@ -19,9 +19,9 @@ import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 //import AgendarCli from './components/Cliente/tAgendarCli.js';
 
 //Perfil do Cliente
-//import DadosBasico from './components/Cliente/tDBCli.js';
-//import EnderecoCli from './components/Cliente/tEnderecoCli.js';
-//import FotoCli from './components/Cliente/tFotoCli.js';
+//import DadosBasico from './components/Cliente/tMenuDBCli.js';
+//import EnderecoCli from './components/Cliente/tMenuEnderecoCli.js';
+//import FotoCli from './components/Cliente/tMenuFotoCli.js';
 
 //Telas do Profissional
 //import CadastroServico from './components/Profissional/tCadastroServico.js';
