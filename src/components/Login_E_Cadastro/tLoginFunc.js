@@ -1,10 +1,5 @@
-<<<<<<< HEAD:src/components/Login_E_Cadastro/tLoginCliente.js
-import './tLoginCliente.css';
-import Logo from '../../img/logo.png';
-=======
 import './tLoginFunc.css';
 import Logo from '../../img/Logo.png';
->>>>>>> b6c250b2c5d1b29501e8ac78255fc7fea16ea715:src/components/Login_E_Cadastro/tLoginFunc.js
 
 
 const telaLogin = () => {
