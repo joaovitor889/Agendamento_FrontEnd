@@ -19,7 +19,7 @@ import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 //import AgendarCli from './components/Cliente/tAgendarCli.js';
 
 //Perfil do Cliente
-//import DadosBasico from './components/Cliente/tMenuDBCli.js';
+//import DadosBasicoCli from './components/Cliente/tMenuDBCli.js';
 //import EnderecoCli from './components/Cliente/tMenuEnderecoCli.js';
 //import FotoCli from './components/Cliente/tMenuFotoCli.js';
 
