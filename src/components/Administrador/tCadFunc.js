@@ -1,5 +1,7 @@
 import './tCadFunc.css';
-//import logo from '../../img/logo.PNG';
+import voltar from '../../icones/Return.png';
+import perfil from  '../../img/perfil.png'
+import notificar from '../../img/notificar.png'
 
 
 const telaCadFunc = () => {
@@ -84,6 +86,8 @@ const telaCadFunc = () => {
             <div className="rodFundo"></div>
         </div>
     )
+        
+        
 }
 
 export default telaCadFunc
