@@ -8,31 +8,6 @@ const telaCadFunc = () => {
 
     document.title = "Cadastrar Funcionário";
 
-<<<<<<< HEAD
-   return (
-        <div className = "fCadFunc">
-            {/* header  começo */}
-            <header>
-                <div className="esquerda">
-                    <a href="/">
-                    <img src = {voltar} alt = "retunr" />
-                    </a>
-                </div>
-                <div className="Centro">
-                    <h3>Shostners & Shostners</h3>
-                </div>
-                <div className="direita">
-                    <a href="" className="btn_perfil">
-                        <img src= {perfil} alt="notificar" />
-                    </a>
-                    <a href="" className="btn_noticia">
-                        <img src= {notificar} alt="notificar" />
-                    </a>
-                </div>
-            </header>
-            {/* final do header */}
-            <div></div>
-=======
     return (
         <div className="fCadFunc">
             <div className="fCadastro">
@@ -109,7 +84,6 @@ const telaCadFunc = () => {
                 </div>
             </div>
             <div className="rodFundo"></div>
->>>>>>> b6c250b2c5d1b29501e8ac78255fc7fea16ea715
         </div>
     )
         

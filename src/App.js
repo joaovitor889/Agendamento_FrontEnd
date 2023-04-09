@@ -4,15 +4,6 @@
 import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 
 //telas de Login
-<<<<<<< HEAD
-import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
-//import LoginAdm from './components/Login_E_Cadastro/tLoginAdm.js';
-//import LoginFuncionario from './components/Login_E_Cadastro/tLoginFuncionario.js';
-
-
-//Telas de Cadastro
-//import CadastroCliente from './components/Login_E_Cadastro/tCadastroCliente.js';
-=======
 //import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
 //import LoginAdm from './components/Login_E_Cadastro/tLoginAdm';
 //import LoginFunc from './components/Login_E_Cadastro/tLoginFunc.js';
@@ -20,7 +11,6 @@ import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
 
 //Telas de Cadastro
 //import CadastroCli from './components/Login_E_Cadastro/tCadastroCli.js';
->>>>>>> b6c250b2c5d1b29501e8ac78255fc7fea16ea715
 //import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
 
 //Telas do Cliente
@@ -35,13 +25,8 @@ import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
 
 //Telas do Administrador
 //import MenuADM from './components/Administrador/tMenuADM.js';
-<<<<<<< HEAD
-//import PesquisaFuncionario from './components/Administrador/tPesqFunc.js';
-import CadastroFuncionario from './components/Administrador/tCadFunc.js';
-=======
 //import PesquisaFunc from './components/Administrador/tPesqFunc.js';
 //import CadastroFunc from './components/Administrador/tCadFunc.js';
->>>>>>> b6c250b2c5d1b29501e8ac78255fc7fea16ea715
 //import Agendamentos from './components/Administrador/tAgendamentos.js';
 
 
@@ -68,26 +53,10 @@ function App() {
           {/* <LoginFuncionario /> */}
           {/* <CadastroAdm /> */}
 
-<<<<<<< HEAD
-
-        {/* <LandPage /> */}
-        {/* <CadastroAdm /> */}
-        
-        
-        {/* <LoginCliente />  */}
-        {/* <LoginAdm /> */}
-        {/* <LoginFuncionario /> */}
-
-        {/*<CadastroCliente /> */}
-        {/* <MenuCliente /> */}  
-        {/* <Agendamento /> */}   
-        {/* <CalendarioCliente /> */}    
-=======
           {/*<CadastroCli /> */}
           
           {/* <AgendamentoCli /> */}
           {/* <CalendarioCli /> */}
->>>>>>> b6c250b2c5d1b29501e8ac78255fc7fea16ea715
 
 
           {/* <CadastroServico /> */}
@@ -95,17 +64,10 @@ function App() {
           {/* <CalendarioProfissional /> */}
 
 
-<<<<<<< HEAD
-        {/* <MenuADM /> */}        
-        {/* <PesquisaFuncionario /> */}        
-         <CadastroFuncionario />         
-        {/* <Agendamentos /> */}
-=======
           {/* <MenuADM /> */}
           {/* <PesquisaFuncionario /> */}
           {/* <CadastroFuncionario /> */}
           {/* <Agendamentos /> */}
->>>>>>> b6c250b2c5d1b29501e8ac78255fc7fea16ea715
       </header>
     </div>
   );
