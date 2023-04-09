@@ -1,6 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital@1&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 .fCadFunc {
+<<<<<<< HEAD
 	position: fixed;
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     width: 100%;
@@ -35,4 +40,280 @@ header{
 	width: 110px;
 	display: flex;
 	justify-content: space-between;
+=======
+    position: fixed;
+	width: 100%;
+	height: 100%;
+	/*background-image: url("../../img/fundo.png");*/
+    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
+    color: #000;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+    font-family: 'Euphoria Script', cursive;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.container {
+	z-index: 1;
+}
+
+.fundo {
+	position: relative;
+	margin-top: 5%;
+    background-color: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	height: auto;
+	min-height: 25rem;
+}
+
+#formCadFunc {
+	position: absolute;
+	margin-top: 15%;
+}
+
+#formCadFunc {
+	width: 90%;
+	margin-left: 5%;
+}
+
+#formCadFunc input {
+	width: 100%;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	font-size: 25px;
+	background-color: #d9d9d9;
+	border-style: none;
+	text-indent: 10px;
+	border-radius: 25px;
+	position: relative;
+	width: 90%;
+	height: 40px;
+	margin-top: 5%;
+	margin-left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#formCadFunc input:focus {
+	background-color: #fff;
+}
+
+#formCadFunc #btnCadastro {
+	margin: 2% 5% 5% 45%;
+	width: 35%;
+	font-size: 90%;
+	background-color: #6375D6;
+	color: #fff;
+}
+
+#formCadFunc #btnCadastro:hover {
+	background-color: #0a1868;
+	color: #fff;
+}
+
+#formCadFunc .senha input {
+	background-color: #9EECE7;
+}
+
+#formCadFunc .senha input:focus {
+	background-color: #fff;
+}
+
+#cabecalho {
+	margin-top: -10%;
+	width: 190%;
+	height: 30%;
+	margin-left: 15%;
+}
+
+#cabecalho p {
+	margin: 10% 5% 5% 5%;
+	font-size: 5vw;
+	font-family: 'Merienda', cursive;
+	font-weight: bold;
+	margin-top: 10%;
+	width: 30%;
+	height: auto;
+	min-height: 30px;
+	background-color: #fff;
+	color: #000;
+	border-radius: 25px;
+}
+
+.cadCliLogo {
+	position: absolute;
+	width: 90%;
+	height: auto;
+	min-height: 30px;
+	background-color: #1B1B1B;
+	border-radius: 25px;
+	margin-top: 2%;
+	left: 5%;
+	z-index: 2;
+	font-family: 'Times New Roman', Times, serif;
+	color: #6375D6;
+	font-size: 7vw;
+}
+#formCadFunc .condicoes input {
+	margin-top: 3%;
+	margin-left: 30%;
+	width: 5%;
+}
+.rodFundo {
+	z-index: 1;
+	background-color: #000;
+	width: 100%;
+	height: 100%;
+	margin-left: 0%;
+	margin-top: 0.01%;
+}
+.rodape {
+	z-index: 2;
+}
+
+@media only screen and (min-width: 400px) {
+	.rodFundo {
+		height: 100%;
+	}
+}
+
+@media only screen and (min-width: 900px) {
+	.rodFundo {
+		height: 60%;
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	.cadCliLogo {
+		top: 15%;
+		left: 37%;
+		width: 25%;
+		font-size: 2vw;
+		color: #6375D6;
+	}
+	#cabecalho {
+		margin-top: -2%;
+		margin-left: 25%;
+		width: 100%;
+		height: 100px;
+	}
+
+	#cabecalho p {
+		position: absolute;
+		margin-top: 3%;
+		left: 35%;
+		width: 20%;
+		font-size: 100%;
+	}
+	.container {
+		position: relative;
+	}
+	#formCadFunc {
+		position: absolute;
+		top: 20%;
+		left: 43%;
+	}	
+	#formCadFunc {
+		width: 90%;
+		margin-left: -5%;
+		margin-top: -1%;
+		width: 25%;
+	}
+
+	#formCadFunc #btnCadastro {
+		width: 50%;
+		margin-top: 5%;
+		margin-left: 45%;
+	}
+	.condicoes {
+		margin-top: 20%;
+	}
+	.condicoes a {
+		position: absolute;
+		margin-top: -2%;
+		margin-left: 35%;
+	}
+	.rodFundo {
+		z-index: 1;
+		width: 100%;
+		height: 30%;
+		margin-left: 0%;
+		margin-top: 0.001%;
+	}
+
+	#formCadFunc .senha {
+		position: absolute;
+	}
+
+	#formCadFunc #senha{		
+		margin-top: -25%;
+	}
+
+	#formCadFunc .senha input {		
+		top: 65%;
+		left:140%;
+		width: 100%;
+	}
+
+	.entrada {
+		margin-left: -150%;
+		width: 100%;
+	}
+
+	.linha {
+		width: 1300px;
+		display: table;
+	}	
+
+	.linha div {
+		display: table-cell;
+	}
+	  
+	input {
+		width: 100%;
+		display: block;
+	}
+	.senha {
+		margin-left: 172%;
+	}
+}
+
+@media only screen and (min-width: 1024px) and (max-height: 600px){
+	#cabecalho p{
+		top: -14%;
+		background-color: #000;
+	}
+	
+	.rodFundo {
+		height: 40%;
+	}
+}
+
+@media only screen and (min-width: 1000px) and (max-height: 600px){
+	.linha {
+		width: 1000px;
+		display: table;
+	}
+	
+	#cabecalho p{
+		top: -1%;
+		background-color: #fff;
+	}
+}
+
+@media only screen and (min-width: 1200px) and (min-height: 800px){
+	#cabecalho p{
+		top: -2%;
+		background-color: #fff;
+	}
+	
+	.rodFundo {
+		height: 40%;
+	}
+	.linha {
+		width: 1250px;
+		display: table;
+	}
+>>>>>>> b6c250b2c5d1b29501e8ac78255fc7fea16ea715
 }

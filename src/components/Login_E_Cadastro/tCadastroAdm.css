@@ -6,18 +6,21 @@
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     width: 100%;
     height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 a{
     text-decoration: none;
     font-size: 36px;
 }
 
-.Cadastro{
-    color: white;
+.butoes .Cadastro{    
+    color: #fff;
 }
 
-.Login{
+.butoes .Login{    
     color: rgba(255, 255, 255, 0.5);
+    
 }
 
 .butoes{
@@ -26,13 +29,10 @@ a{
     justify-content: space-between;
 }
 .formulario{
-
     width: 500px;
- 
-
+    height: 100%;
     background: #F7F7F7;
     border-radius: 15px;
-
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -96,12 +96,16 @@ img{
     font-family: 'Euphoria Script', cursive;
 }
 
-@media only screen  and (max-width: 500px) {
-    .formulario{
-        width: 360px;
+@media only screen  and (max-width: 600px) {
+    .butoes {
+        width: 90%;
     }
     
-#formCadastroAdm div input {
-    width: 250px;
-}
+    .formulario{
+        width: 90%;
+    }
+    
+    #formCadastroAdm div input {
+        width: 90%;
+    }
 }

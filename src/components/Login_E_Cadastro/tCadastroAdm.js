@@ -20,22 +20,22 @@ const telaCadastroAdm = () => {
                 </div>
                 <div className='campo-de-Cadastro'>
                     <div className='butoes'>
-                    <a href="/" className='Login'>Login</a>
-                    <a href="/" className='Cadastro'>Cadastro</a>
+                    <a href="./tLoginAdm" className='Login'>Login</a>
+                    <a href="./tCadastroAdm" className='Cadastro'>Cadastro</a>
                     </div>
                     <div className='formulario'>
                         <form  id ="formCadastroAdm">
                             <div className='User'>
                                 <img src={User} alt="" />
-                                <input type="User" placeholder='Usuário' title='Digite  seu Usuário'/>
+                                <input type="User" placeholder='Usuário' title='Digite seu Usuário'/>
                             </div>
                             <div className='Documento'>
                                 <img src={Doc} alt="" />
-                                <input type="Document" placeholder='CPF' title='Digite  seu CPF'/>
+                                <input type="Document" placeholder='CPF' maxLength = "11" title='Digite seu CPF'/>
                             </div>
                             <div className='E-mail'>
                                 <img src={Email} alt="" />
-                                <input type="email" placeholder='E-mail' title='Digite  seu E-mail'/>
+                                <input type="email" placeholder='E-mail' title='Digite seu E-mail'/>
                             </div>
                             <div className='Senha'>
                                 <img src={Senha} alt="" />
@@ -43,7 +43,7 @@ const telaCadastroAdm = () => {
                             </div>
                             <div className='Senha'>
                                 <img src={Senha} alt="" />
-                                <input type="password" placeholder='Senha' title='Digite sua senha'/>
+                                <input type="password" placeholder='Confirmar Senha' title='Confirme sua senha'/>
                             </div>
                                 <input type = "submit" id = "btnCadastro" name = "btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value = "Cadastrar" />                        
                         </form>

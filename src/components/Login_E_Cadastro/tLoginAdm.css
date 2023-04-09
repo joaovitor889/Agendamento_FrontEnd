@@ -6,19 +6,22 @@
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     width: 100%;
     height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 a{
     text-decoration: none;
     font-size: 36px;
 }
 
-.Login{
-    color: white;
+.campo-de-login .butoes .Login{    
+    color: #fff;
 }
 
-.Cadastro{
+.campo-de-login .butoes .Cadastro{
     color: rgba(255, 255, 255, 0.5);
 }
+
 
 .butoes{
     width: 300px;
@@ -110,5 +113,11 @@ img{
     }
     #formLoginAdm div input {
         width: 250px;
+    }
+}
+
+@media only screen  and (max-width: 300px) {
+    #formLoginAdm div input {
+        width: 150px;
     }
 }
