@@ -2,14 +2,14 @@
 //import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 
 //telas de Login
-//import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
+import LoginCliente from './components/Login_E_Cadastro/tLoginCliente.js';
 //import LoginAdm from './components/Login_E_Cadastro/tLoginAdm.js';
 //import LoginFuncionario from './components/Login_E_Cadastro/tLoginFuncionario.js';
 
 
 //Telas de Cadastro
 //import CadastroCliente from './components/Login_E_Cadastro/tCadastroCliente.js';
-import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
+//import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
 
 //Telas do Cliente
 //import MenuCliente from './components/Cliente/tMenuCliente.js';
@@ -24,7 +24,7 @@ import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
 //Telas do Administrador
 //import MenuADM from './components/Administrador/tMenuADM.js';
 //import PesquisaFuncionario from './components/Administrador/tPesqFunc.js';
-//import CadastroFuncionario from './components/Administrador/tCadFunc.js';
+import CadastroFuncionario from './components/Administrador/tCadFunc.js';
 //import Agendamentos from './components/Administrador/tAgendamentos.js';
 
 
@@ -36,10 +36,12 @@ function App() {
     <div className="App">
       <header className="App-header">        
 
-        <CadastroAdm />
+
+        {/* <LandPage /> */}
+        {/* <CadastroAdm /> */}
         
         
-        {/* <LoginCliente /> */}
+        {/* <LoginCliente />  */}
         {/* <LoginAdm /> */}
         {/* <LoginFuncionario /> */}
 
@@ -56,7 +58,7 @@ function App() {
 
         {/* <MenuADM /> */}        
         {/* <PesquisaFuncionario /> */}        
-        {/* <CadastroFuncionario /> */}        
+         <CadastroFuncionario />         
         {/* <Agendamentos /> */}
       </header>
     </div>
