@@ -91,22 +91,14 @@
 	margin-left: auto;
 }
 
-.perfil a {
-	text-decoration: none;
-	color: #fff;
-	line-height: 100%;
+.perfil:hover {
+	background-color: #0000ff;
 }
 
-.perfil a:hover {
-	text-decoration: none;
-	color: #0000ff;
-}
-
-
-.perfil p {
-	margin-top: 25%;
-	font-size: 4.5vw;
-	margin-top: 35%;
+.perfil  img{
+	margin: 10%;
+	width: 80%;
+	height: 80%;
 }
 
 .texto {

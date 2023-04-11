@@ -4,33 +4,33 @@
 
 .fDBCliente {
     position: fixed;
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     color: #000;
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: 'Roboto', sans-serif;
-	overflow-y: hidden;
-	overflow-x: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 #menuHorCli {
-	position: absolute;
-	width: 100%;
-	height: 10%;
-	background-color: #3293CA;
-	border-bottom: 3px solid #fff;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    background-color: #3293CA;
+    border-bottom: 3px solid #fff;
 }
 
 #conteudoCli {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
-	top: 10.4%;
-	left: 0%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
+    top: 10.4%;
+    left: 0%;
 }
 
 
@@ -65,7 +65,7 @@
     transform: translateX(0);
     transform: rotate(90deg);
     color: #fff;
-	font-weight: bold;
+    font-weight: bold;
     border-radius: 3px;
     user-select: none;
 }
@@ -120,7 +120,7 @@
     height: 100vh;
 }
 
-#ch:checked~#menu #u li {   
+#ch:checked~#menu #u li {
     transition: 1.1s ease-out;
     padding: 0 5px;
     opacity: 1;
@@ -133,7 +133,7 @@
     margin-left: -4%;
 }
 
-#ch:checked~#menu #u p{
+#ch:checked~#menu #u p {
     margin-left: 4%;
 }
 
@@ -186,7 +186,7 @@
     margin-left: 5%;
 }
 
-#ch:not(:checked)~#menu #u a{
+#ch:not(:checked)~#menu #u a {
     pointer-events: none;
 }
 
@@ -203,17 +203,19 @@
     width: 20%;
     height: 7vh;
     top: 12%;
-    left: 43%;	
+    left: 43%;
     font-family: 'Merienda', cursive;
     font-weight: bold;
     background-color: #fff;
     border-radius: 25px;
 }
+
 .logoMenuCli p {
     margin-top: 1%;
     line-height: -100%;
     font-size: 7vw;
 }
+
 .logoMenuCli p::before {
     margin-top: 2%;
     content: 'S&S';
@@ -229,14 +231,17 @@
     width: 8%;
     height: 65%;
 }
+
 .notificacao:hover {
     background-color: #0000ff;
 }
+
 .notificacao img {
     margin-top: 5%;
     width: 80%;
     height: 80%;
 }
+
 .perfil {
     position: absolute;
     left: 90%;
@@ -246,15 +251,15 @@
     width: 8%;
     height: 65%;
 }
+
 .perfil:hover {
     background-color: #0000ff;
 }
-.perfil p {
-    margin-top: 30%;
-    margin-left: 10%;
-    width: 80%;
-    height: 80%;
-    font-size: 2.5vw;
+
+.perfil img {
+    margin: 10%;
+    width: 75%;
+    height: 75%;
 }
 
 h2 {
@@ -269,18 +274,18 @@ h2 {
 
 #formDB input {
     width: 80%;
-	font-family: "Times New Roman", Times, serif;
-	font-weight: bold;
-	font-size: 25px;
-	background-color: #d9d9d9;
-	border-style: none;
-	text-indent: 10px;
-	border-radius: 25px;
-	position: relative;
-	height: 40px;
-	margin-top: 2%;
-	margin-left: 50%;
-	transform: translate(-50%, -50%);
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    font-size: 25px;
+    background-color: #d9d9d9;
+    border-style: none;
+    text-indent: 10px;
+    border-radius: 25px;
+    position: relative;
+    height: 40px;
+    margin-top: 2%;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #formDB input:focus {
@@ -288,20 +293,43 @@ h2 {
 }
 
 #formDB #btnSalvarDDBSalvar {
-	margin-left: 77%;
-	width: 25%;
-	font-size: 90%;
-	background-color: #6375D6;
+    margin-left: 77%;
+    width: 25%;
+    font-size: 90%;
+    background-color: #6375D6;
     text-align: center;
 }
 
 #formDB #btnSalvarDDBSalvar:hover {
-	background-color: #0a1868;
-	color: #fff;
+    background-color: #0a1868;
+    color: #fff;
+}
+
+#menuDesk {
+    display: none;
+}
+
+#perfilLateral {
+    display: none;
+}
+
+#perfilHamburger {
+    background-color: #000;
+    border-radius: 50%;
+    width: 20%;
+    height: 23%;
+    margin-top: -10%;
+    margin-left: 30%;
+}
+
+#perfilHamburger img{
+    margin: 10%;
+    width: 80%;
+    height: 75%;
 }
 
 @media only screen and (max-width: 300px) {
-    #ch:checked~#menu #u{
+    #ch:checked~#menu #u {
         margin-left: -6%;
     }
 }
@@ -313,7 +341,7 @@ h2 {
 }
 
 @media only screen and (min-width: 700px) {
-    #ch:checked~#menu #u p{
+    #ch:checked~#menu #u p {
         margin-left: 7%;
     }
 }
@@ -322,40 +350,47 @@ h2 {
     .fDBCliente {
         overflow-y: auto;
     }
-	#menuLatCli {	
-		position: fixed;
-		height: 100%;
-		width: 15%;
-		background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
-		top: 0%;
-		border-right: 3px solid #fff;
-	}
 
-	#menuHorCli {
-		position: fixed;
-		width: 100%;
-		height: 10%;
-		background-color: #3293CA;
-		border-bottom: 3px solid #fff;
-	}
+    #menuLatCli {
+        position: fixed;
+        height: 100%;
+        width: 15%;
+        background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
+        top: 0%;
+        border-right: 3px solid #fff;
+    }
 
-	#conteudoCli {
-		position: fixed;
-		width: 85%;
-		height: 90%;
-		background-color:blue;
-		top: 10.5%;
-		left: 15.2%;
-	}
-	#bt, #bt2 {
-		display: none;
+    #menuHorCli {
+        position: fixed;
+        width: 100%;
+        height: 10%;
+        background-color: #3293CA;
+        border-bottom: 3px solid #fff;
+    }
+
+    #conteudoCli {
+        position: fixed;
+        width: 85%;
+        height: 90%;
+        background-color: blue;
+        top: 10.5%;
+        left: 15.2%;
+    }
+
+    #bt,
+    #bt2 {
+        display: none;
         pointer-events: none;
-	}
+    }
+
     #ch {
         display: none;
         pointer-events: none;
     }
-    #mslin, #menu, #menu #u a{
+
+    #mslin,
+    #menu,
+    #menu #u a {
         display: none;
         pointer-events: none;
     }
@@ -367,59 +402,107 @@ h2 {
 
     .logoMenuCli {
         position: absolute;
-		width: 20%;
-		height: 70%;
+        width: 20%;
+        height: 70%;
         top: 10%;
-		left: 43%;	
+        left: 43%;
         font-family: 'Merienda', cursive;
         font-weight: bold;
         background-color: #fff;
         border-radius: 25px;
-	}
+    }
+
     .logoMenuCli p {
         margin-top: -26%;
         font-weight: bold;
         color: #000;
     }
-	.logoMenuCli p::before {
-		font-size: 1.6vw;
-		content: 'Shostners & shostners';
 
-	}
+    .logoMenuCli p::before {
+        font-size: 1.6vw;
+        content: 'Shostners & shostners';
+
+    }
+
     .notificacao {
         position: absolute;
-        left: 90%;
+        left: 91%;
         top: 20%;
         background-color: #000;
         border-radius: 50%;
-        width: 4%;
-        height: 70%;
+        width: 3vw;
+        height: 3vw;
     }
+
     .notificacao:hover {
         background-color: #0000ff;
     }
+
     .notificacao img {
         margin-top: 5%;
         width: 80%;
         height: 80%;
     }
+
     .perfil {
-        position: absolute;
-        left: 95%;
-        top: 20%;
         background-color: #000;
+        color: #fff;
+        width: 3vw;
+        height: 3vw;
         border-radius: 50%;
-        width: 4%;
-        height: 70%;
+        margin-left: 5%;
     }
+
     .perfil:hover {
         background-color: #0000ff;
     }
-    .perfil p {
-        margin-top: 10%;
-        margin-left: 10%;
-        width: 80%;
-        height: 80%;
+
+    .perfil img {
+        margin: 10%;
+        width: 70%;
+        height: 70%;
+    }
+    #menuDesk {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+    #ulDesk {
+        list-style-type: none;
+        width: 100%;
+    }
+    #ulDesk li{
+        width: 100.5%;
+        position: relative;
+        margin-left: -20%;
+    }
+    #ulDesk li:hover{
+        background-color: #505050;
+    }
+    #ulDesk p{
+        text-align: left;
+        font-family: 'Times New Roman', Times, serif;
         font-size: 1.5vw;
+        margin-left: 2%;
+        margin-bottom: -10px;
+    }
+    #ulDesk a {
+        text-decoration: none;
+        color: #fff;
+    }
+    #perfilLateral {
+        display: flex;
+        width: 50%;
+        height: 65%;
+        background-color: #000;
+        margin-left: -5%;
+        border-radius: 50%;
+    }
+    #perfilLateral img{
+        position: absolute;
+        top: 11.5%;
+        width: 50%;
+        height: 15%;
     }
 }

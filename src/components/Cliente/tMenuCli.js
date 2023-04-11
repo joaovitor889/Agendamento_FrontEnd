@@ -5,7 +5,7 @@ import Voltar from '../../icones/chevron-left.png';
 import Notificacao from '../../icones/Doorbell.png';
 import AddAgenda from '../../icones/CalendarPlus.png';
 import Agenda from '../../icones/Tear-Off Calendar.png';
-import Perfil from '../../icones/AdministratorMale.png';
+import Perfil from '../../icones/perfilCliente.png';
 
 import { Link } from "react-router-dom";
 
@@ -19,7 +19,7 @@ const telaMenuCliente = () => {
                 <div className = "voltar"><Link to = "../../tLoginCli"><img src = {Voltar} alt = "voltar" title = "Voltar"/></Link></div>                
                 <div className = "logoMenuCli"><p></p></div>                
                 <div className = "notificacao"><a href = "/"><img src = {Notificacao} alt = "notificacao" /></a></div>
-                <div className = "perfil"><a href = "/"><p>NS</p></a></div>                
+                <div className = "perfil"><a href = "/"><img src = {Perfil} alt = "perfil" /></a></div>                
             </nav>              
             <div className = "fPreto"></div>
             <div className = "texto">Bem-Vindo(a)<br></br>Profissional<br></br><div className = "nome">Nome</div></div>
