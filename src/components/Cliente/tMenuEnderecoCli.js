@@ -53,6 +53,9 @@ const telaEnderecoCliente = () => {
                     <ul id="u">
                         <br></br>
                         <br></br>
+                        <div id = "perfilHamburger">
+                            <img src={Perfil} alt="perfil" />
+                        </div>
                         <a href='/'>
                             <li><div className="txtHambMenu"><p>Dados Básicos</p></div></li>
                         </a>
