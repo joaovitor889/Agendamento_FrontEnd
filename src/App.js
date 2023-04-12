@@ -1,7 +1,7 @@
 //import { Routes, Route } from "react-router-dom";
 
 //tela Land Page
-import LandPage from './components/Login_E_Cadastro/tLandPage.js'
+import LandPage from './components/Login_E_Cadastro/tLandPage.js';
 
 //telas de Login
 //import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
