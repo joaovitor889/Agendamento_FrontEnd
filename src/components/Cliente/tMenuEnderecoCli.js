@@ -12,16 +12,22 @@ import Perfil from '../../icones/perfilCliente.png';
 
 const telaEnderecoCliente = () => {
 
-   document.title = "Endereço do Cliente";
+    document.title = "Endereço do Cliente";
 
-   return (
-        <div className = "fEnderecoCliente">
+    const handleChange = (object) => {
+        if (object.target.value.length > object.target.maxLength) {
+            object.target.value = object.target.value.slice(0, object.target.maxLength);
+        }
+    }
+
+    return (
+        <div className="fEnderecoCliente">
             <div id="menuLatCli">
                 <div id="menuDesk">
                     <ul id="ulDesk">
                         <br></br>
                         <br></br>
-                        <div id = "perfilLateral">
+                        <div id="perfilLateral">
                             <img src={Perfil} alt="perfil" />
                         </div>
                         <a href='/'>
@@ -29,12 +35,12 @@ const telaEnderecoCliente = () => {
                         </a>
 
                         <a href='/'>
-                            <li style={{ backgroundColor: '#505050'}}><p>Endereço</p></li>
+                            <li style={{ backgroundColor: '#505050' }}><p>Endereço</p></li>
                         </a>
 
                         <a href='/'>
                             <li><p>Foto</p></li>
-                        </a>                      
+                        </a>
                     </ul>
                 </div>
             </div>
@@ -53,7 +59,7 @@ const telaEnderecoCliente = () => {
                     <ul id="u">
                         <br></br>
                         <br></br>
-                        <div id = "perfilHamburger">
+                        <div id="perfilHamburger">
                             <img src={Perfil} alt="perfil" />
                         </div>
                         <a href='/'>
@@ -83,24 +89,24 @@ const telaEnderecoCliente = () => {
             <div id="conteudoCli">
                 <h2><center>Endereço</center></h2>
                 <form id="formEN">
-                    <div className = "linha">
+                    <div className="linha">
                         <div>
-                            <input type="text" placeholder="CEP:" title="Digite o seu CEP" name="cep" id="cep" maxLength = "8"/>
+                            <input type="number" placeholder="CEP:" title="Digite o seu CEP" name="cep" id="cep" maxLength="8" onChange = {handleChange} />
                         </div>
                         <div>
-                            <input type="text" placeholder="Rua:" title="Digite a sua Rua" name="rua" id="rua" className = "segColuna" /> 
+                            <input type="text" placeholder="Rua:" title="Digite a sua Rua" name="rua" id="rua" className="segColuna" />
                         </div>
                     </div>
-                    <div className = "linha">
+                    <div className="linha">
                         <div>
                             <input type="number" placeholder="Número:" title="Digite o seu Número" name="numero" id="numero" /> <br></br>
-                        </div>        
+                        </div>
                         <div>
-                            <input type="text" placeholder="Complemento:" title="Digite o seu Complemento" name="comple" id="comple" className = "segColuna" /> <br></br>
-                        </div>        
+                            <input type="text" placeholder="Complemento:" title="Digite o seu Complemento" name="comple" id="comple" className="segColuna" /> <br></br>
+                        </div>
                     </div>
-                    <div className = "linhaUnica">
-                        <input type="text" placeholder="Bairro:" title="Digite o seu Bairro" name="bairro" id="bairro" /> <br></br>                    
+                    <div className="linhaUnica">
+                        <input type="text" placeholder="Bairro:" title="Digite o seu Bairro" name="bairro" id="bairro" /> <br></br>
                         <input type="text" placeholder="Cidade:" title="Digite a sua Cidade" name="cidade" id="cidade" /> <br></br>
                         <input type="text" placeholder="Estado:" title="Digite o seu Estado" name="estado" id="estado" /> <br></br>
                     </div>
