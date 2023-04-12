@@ -107,6 +107,9 @@ img{
 }
 
 @media only screen  and (max-width: 500px) {
+    .butoes{ 
+        width: 85%;
+    }
     .formulario{
         width: 360px;
         height: 189px;

@@ -16,7 +16,12 @@
 //Telas do Cliente
 //import MenuCli from './components/Cliente/tMenuCli.js';
 //import AgendamentoCli from './components/Cliente/tAgendamentoCli.js';
-//import CalendarioCli from './components/Cliente/tCalendarioCliente.js';
+//import AgendarCli from './components/Cliente/tAgendarCli.js';
+
+//Perfil do Cliente
+//import DadosBasicoCli from './components/Cliente/tMenuDBCli.js';
+//import EnderecoCli from './components/Cliente/tMenuEnderecoCli.js';
+//import FotoCli from './components/Cliente/tMenuFotoCli.js';
 
 //Telas do Profissional
 //import CadastroServico from './components/Profissional/tCadastroServico.js';

@@ -10,7 +10,7 @@ const telaLogin = () => {
         <div className = "fLogin">
             <div className="container">
                 <div className="row">
-                    <div className="logo"><h1 title ="Bem-Vindo!">Shostners & shostners</h1></div>           
+                    <div className="logo"><h1 title ="Bem-Vindo!"><center>Shostners & shostners</center></h1></div>           
                 </div>
                 <dv className="row" id = "imagem">
                     <img src = {Logo} alt = "Logo" />
@@ -18,7 +18,7 @@ const telaLogin = () => {
                 <div className="row">
                     <div className = "fundo">            
                         <form id = "formLogin">    
-                            <h1 title = "Bem-Vindo!">Login de Funcionário</h1>
+                            <h1 title = "Bem-Vindo!"><center>Login de Funcionário</center></h1>
                             <div className = "entrada">
                                 <input type="email" placeholder="E-mail" title = "Digite seu E-mail" required/><br></br><br></br>
                                 <input type="password" placeholder="Senha" title = "Digite sua Senha" required/>
