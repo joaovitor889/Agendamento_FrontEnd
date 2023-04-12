@@ -1,7 +1,7 @@
 //import { Routes, Route } from "react-router-dom";
 
 //tela Land Page
-import LandPage from './components/Login_E_Cadastro/tLandPage.js'
+//import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 
 //telas de Login
 //import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
@@ -28,6 +28,7 @@ import LandPage from './components/Login_E_Cadastro/tLandPage.js'
 //import PesquisaFunc from './components/Administrador/tPesqFunc.js';
 //import CadastroFunc from './components/Administrador/tCadFunc.js';
 //import Agendamentos from './components/Administrador/tAgendamentos.js';
+import CadastroServicos from   './components/Administrador/tCadServico';
 
 
 
@@ -46,7 +47,7 @@ function App() {
             <Route  path = "/tMenuCli" element={<MenuCli />} />
             <Route  path = "/tLoginAdm" element={<LoginAdm />} />
             </Routes> */}     
-          <LandPage />   
+          {/* <LandPage />    */}
           
           {/* <LoginCliente /> */}
           {/* <LoginAdm /> */}
@@ -59,7 +60,7 @@ function App() {
           {/* <CalendarioCli /> */}
 
 
-          {/* <CadastroServico /> */}
+           <CadastroServicos />
           {/* <MenuProfissional /> */}
           {/* <CalendarioProfissional /> */}
 
