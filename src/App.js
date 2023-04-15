@@ -1,27 +1,28 @@
-//import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 //tela Land Page
 import LandPage from './components/Login_E_Cadastro/tLandPage.js';
 
 //telas de Login
-//import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
-//import LoginAdm from './components/Login_E_Cadastro/tLoginAdm';
+import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
+import LoginAdm from './components/Login_E_Cadastro/tLoginAdm';
 //import LoginFunc from './components/Login_E_Cadastro/tLoginFunc.js';
 
 
 //Telas de Cadastro
-//import CadastroCli from './components/Login_E_Cadastro/tCadastroCli.js';
-//import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
+import CadastroCli from './components/Login_E_Cadastro/tCadastroCli.js';
+import CadastroAdm from  './components/Login_E_Cadastro/tCadastroAdm.js';
 
 //Telas do Cliente
-//import MenuCli from './components/Cliente/tMenuCli.js';
-//import AgendamentoCli from './components/Cliente/tAgendamentoCli.js';
-//import AgendarCli from './components/Cliente/tAgendarCli.js';
+import MenuCli from './components/Cliente/tMenuCli.js';
+import AgendarCli from './components/Cliente/tAgendarCli.js';
+import AgendamentoCli from './components/Cliente/tAgendamentoCli.js';
+
 
 //Perfil do Cliente
-//import DadosBasicoCli from './components/Cliente/tMenuDBCli.js';
-//import EnderecoCli from './components/Cliente/tMenuEnderecoCli.js';
-//import FotoCli from './components/Cliente/tMenuFotoCli.js';
+import DadosBasicoCli from './components/Cliente/tMenuDBCli.js';
+import EnderecoCli from './components/Cliente/tMenuEnderecoCli.js';
+import FotoCli from './components/Cliente/tMenuFotoCli.js';
 
 //Telas do Profissional
 //import CadastroServico from './components/Profissional/tCadastroServico.js';
@@ -42,37 +43,23 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          {/* <LandPage /> */} 
-          {/* <Routes>
+          <Routes>
             <Route index element={<LandPage />} />
             <Route  path = "/tLoginAdm" element={<LoginAdm />} />
             <Route  path = "/tCadastroAdm" element={<CadastroAdm />} />
-            <Route path = "/tLoginCli" element = {<LoginCli />} />
+            <Route  path = "/tLoginCli" element = {<LoginCli />} />
+            <Route  path = "/tCadastroCli" element = {<CadastroCli />} />
+            
+            {/*Telas do Cliente*/}
             <Route  path = "/tMenuCli" element={<MenuCli />} />
-            <Route  path = "/tLoginAdm" element={<LoginAdm />} />
-            </Routes> */}     
-          <LandPage />   
-          
-          {/* <LoginCliente /> */}
-          {/* <LoginAdm /> */}
-          {/* <LoginFuncionario /> */}
-          {/* <CadastroAdm /> */}
-
-          {/*<CadastroCli /> */}
-          
-          {/* <AgendamentoCli /> */}
-          {/* <CalendarioCli /> */}
-
-
-          {/* <CadastroServico /> */}
-          {/* <MenuProfissional /> */}
-          {/* <CalendarioProfissional /> */}
-
-
-          {/* <MenuADM /> */}
-          {/* <PesquisaFuncionario /> */}
-          {/* <CadastroFuncionario /> */}
-          {/* <Agendamentos /> */}
+            <Route  path = "/tAgendarCli" element={<AgendarCli />} />
+            <Route  path = "/tAgendamentoCli" element={<AgendamentoCli />} />
+            <Route  path = "/tMenuDBCli" element={<DadosBasicoCli />} />
+            
+            <Route  path = "/tLoginAdm" element={<LoginAdm />} />            
+            <Route  path = "/tMenuEnderecoCli" element={<EnderecoCli />} />
+            <Route  path = "/tMenuFotoCli" element={<FotoCli />} />
+          </Routes>                
       </header>
     </div>
   );
