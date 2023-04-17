@@ -1,16 +1,20 @@
-.fFotoCliente {
-    position: fixed;
-	width: 100%;
-	height: 100%;
-	/*background-image: url("../../img/fundo.png");*/
-    background-color: red;
-    color: #000;
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-    font-family: 'Euphoria Script', cursive;
-}
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
+.fDBCliente {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
+    color: #000;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
 
 #menuHorCli {
     position: absolute;
@@ -29,163 +33,6 @@
     left: 0%;
 }
 
-
-/*menu mobile*/
-#ch {
-    display: none;
-    width: 10%;
-    height: 40%;
-    left: 90%;
-    margin-top: 4%;
-}
-
-#ch input {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-#bt {
-    padding: 0 1vw 0 15px;
-    top: 0;
-    height: 40px;
-    width: 20px;
-    font-size: 10vw;
-    margin-left: -10%;
-    position: absolute;
-    top: -85%;
-    z-index: 2;
-    cursor: pointer;
-    display: inline-block;
-    transition: 1.7s ease-in;
-    transform: translateX(0);
-    transform: rotate(90deg);
-    color: #fff;
-    font-weight: bold;
-    border-radius: 3px;
-    user-select: none;
-}
-
-
-
-#menu {
-    position: absolute;
-    top: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    transition: 0.5s ease-in;
-    opacity: 0;
-    transform: translateX(-50vw);
-}
-
-#menu #u {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 70px;
-    left: -9%;
-    text-align: left;
-}
-
-#menu #u li {
-    position: relative;
-    width: 100%;
-    list-style-type: none;
-    transition: 0.3s ease-in;
-    opacity: 0;
-    transform: translateX(-260vw);
-}
-
-#menu #u a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 8vw;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-#ch:checked~#menu {
-    position: absolute;
-    z-index: 3;
-    transition: 0.3s ease-in;
-    opacity: 1;
-    transform: translateX(0);
-    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
-    width: 150%;
-    height: 100vh;
-}
-
-#ch:checked~#menu #u li {
-    transition: 1.1s ease-out;
-    padding: 0 5px;
-    opacity: 1;
-    width: 100%;
-    transform: translateX(0);
-    margin-left: -1.1%;
-}
-
-#ch:checked~#menu #u {
-    margin-left: -4%;
-}
-
-#ch:checked~#menu #u p {
-    margin-left: 4%;
-}
-
-
-#ch:checked~#menu #u li:hover {
-    background-color: #505050;
-}
-
-#menu #bt2 {
-    position: absolute;
-    left: 55%;
-    top: 1%;
-    font-size: 19vw;
-    color: aliceblue;
-    z-index: 3;
-    cursor: pointer;
-    transform: translateX(0);
-    transition: 0.9s ease-in-out;
-    transform: rotate(0deg);
-    display: inline-block;
-    user-select: none;
-}
-
-#ch:checked~#menu #bt2 {
-    transform: translateX(0);
-    transform: 1.2s ease-in-out;
-    transform: rotate(-45deg);
-}
-
-#mslin {
-    top: 5%;
-    padding: 5px 0;
-    width: 10%;
-    height: 20%;
-    text-align: center;
-    transition: 0.7s ease-in-out;
-    margin-left: 6%;
-    margin-top: 3%;
-    position: absolute;
-}
-
-#mslin li {
-    position: relative;
-    list-style-type: none;
-    transition: 1.2s ease-out;
-    transform: translateX(0);
-}
-
-.txtHambMenu {
-    margin-left: 5%;
-}
-
-#ch:not(:checked)~#menu #u a {
-    pointer-events: none;
-}
-
 #voltar {
     display: none;
 }
@@ -198,22 +45,25 @@
     position: absolute;
     width: 20%;
     height: 7vh;
-    top: 12%;
+    top: 8%;
     left: 43%;
     font-family: 'Merienda', cursive;
     font-weight: bold;
     background-color: #fff;
     border-radius: 25px;
+    display: table; 
 }
 
 .logoMenuCli p {
-    margin-top: 1%;
-    line-height: -100%;
-    font-size: 7vw;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    margin-top: -15%;
+    font-size: 8vw;
 }
 
 .logoMenuCli p::before {
-    margin-top: 2%;
+    margin-top: -1%;
     content: 'S&S';
     font-weight: bold;
 }
@@ -233,9 +83,11 @@
 }
 
 .notificacao img {
-    margin-top: 5%;
-    width: 80%;
-    height: 80%;
+    position: absolute;
+    top: 1%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
 }
 
 .perfil {
@@ -248,14 +100,12 @@
     height: 65%;
 }
 
-.perfil:hover {
-    background-color: #0000ff;
-}
-
 .perfil img {
-    margin: 10%;
-    width: 75%;
-    height: 75%;
+    position: absolute;
+    top: 1%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
 }
 
 h2 {
@@ -288,7 +138,7 @@ h2 {
     background-color: #fff;
 }
 
-#formDB #btnSalvarDDBSalvar {
+#formDB #btnSalvarDDB {
     margin-left: 77%;
     width: 25%;
     font-size: 90%;
@@ -296,7 +146,7 @@ h2 {
     text-align: center;
 }
 
-#formDB #btnSalvarDDBSalvar:hover {
+#formDB #btnSalvarDDB:hover {
     background-color: #0a1868;
     color: #fff;
 }
@@ -307,24 +157,6 @@ h2 {
 
 #perfilLateral {
     display: none;
-}
-
-@media only screen and (max-width: 300px) {
-    #ch:checked~#menu #u {
-        margin-left: -6%;
-    }
-}
-
-@media only screen and (max-width: 400px) {
-    #bt {
-        margin-left: -80%;
-    }
-}
-
-@media only screen and (min-width: 700px) {
-    #ch:checked~#menu #u p {
-        margin-left: 7%;
-    }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -358,27 +190,18 @@ h2 {
         left: 15.2%;
     }
 
-    #bt,
-    #bt2 {
+    .menuHamb {
         display: none;
-        pointer-events: none;
-    }
-
-    #ch {
-        display: none;
-        pointer-events: none;
-    }
-
-    #mslin,
-    #menu,
-    #menu #u a {
-        display: none;
-        pointer-events: none;
     }
 
     #voltar {
         display: flex;
         margin-top: 1%;
+    }
+
+    #voltar img{
+        width: 80%;
+        height: 80%;
     }
 
     .logoMenuCli {
@@ -391,18 +214,19 @@ h2 {
         font-weight: bold;
         background-color: #fff;
         border-radius: 25px;
+        display:block;
     }
 
     .logoMenuCli p {
-        margin-top: -26%;
+        margin-top: -32%;
         font-weight: bold;
         color: #000;
+        display:block;
     }
 
     .logoMenuCli p::before {
         font-size: 1.6vw;
         content: 'Shostners & shostners';
-
     }
 
     .notificacao {
@@ -421,6 +245,7 @@ h2 {
 
     .notificacao img {
         margin-top: 5%;
+        margin-left: 5%;
         width: 80%;
         height: 80%;
     }
@@ -432,10 +257,6 @@ h2 {
         height: 3vw;
         border-radius: 50%;
         margin-left: 5%;
-    }
-
-    .perfil:hover {
-        background-color: #0000ff;
     }
 
     .perfil img {
@@ -452,14 +273,24 @@ h2 {
     #ulDesk {
         list-style-type: none;
         width: 100%;
+        margin-top: 5%;
     }
+
+    #textoLL {
+        margin-top: 15%;
+    }
+    
+    #textoLL li {
+        margin-top: -10%; 
+    }
+
     #ulDesk li{
         width: 100.5%;
         position: relative;
-        margin-left: -20%;
+        margin-left: -22%;
     }
     #ulDesk li:hover{
-        background-color: #505050;
+        background-color: rgba(80, 80, 80, 0.5);
     }
     #ulDesk p{
         text-align: left;
@@ -479,10 +310,11 @@ h2 {
         background-color: #000;
         margin-left: -5%;
         border-radius: 50%;
+        margin-top: 14%;
     }
     #perfilLateral img{
         position: absolute;
-        top: 11.5%;
+        top: 12%;
         width: 50%;
         height: 15%;
     }

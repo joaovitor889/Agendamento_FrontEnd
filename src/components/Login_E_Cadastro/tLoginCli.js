@@ -12,20 +12,20 @@ const telaLogin = () => {
                 <div className="row">
                     <div className="logoLoginCli"><h1 title ="Bem-Vindo!"><center>Shostners & shostners</center></h1></div>           
                 </div>
-                <dv className="row" id = "imagem">
+                <div className="row" id = "imagem">
                     <img src = {Logo} alt = "Logo" />
-                </dv>
+                </div>
                 <div className="row">
                     <div className = "fundo">            
                         <form id = "formLogin">    
                             <h1 title = "Bem-Vindo!"><center>Login</center></h1>
                             <div className = "entrada">
-                                <input type="email" placeholder="E-mail" title = "Digite seu E-mail" required/><br></br><br></br>
-                                <input type="password" placeholder="Senha" title = "Digite sua Senha" required/>
+                                <input type="email" placeholder="E-mail" title = "Digite seu E-mail" id = "email" name = "email" required/><br></br><br></br>
+                                <input type="password" placeholder="Senha" title = "Digite sua Senha" id = "senha" name = "senha" required/>
                             </div>
                             <div className = "links">
-                                <a href = "./tLogin.js">Criar uma conta</a><br></br>
-                                <a href = "./tLogin.js">Esqueceu a senha?</a>
+                                <a href = "./tCadastroCli">Criar uma conta</a><br></br>
+                                <a href = "./tEsqueceuSenhaCli">Esqueceu a senha?</a>
                             </div><br></br>
                             <div className = "botoesLoginCli">
                                 <input type = "submit" id = "btnLogin" name = "btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value = "Login" />                        

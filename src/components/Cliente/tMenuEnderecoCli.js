@@ -1,7 +1,5 @@
-import './tMenuEnderecoCli.css';
+import styles from './tMenuEnderecoCli.module.css';
 //import logo from '../../img/logo.PNG';
-
-import { Link } from "react-router-dom";
 
 import Voltar from '../../icones/chevron-left.png';
 
@@ -9,108 +7,177 @@ import Notificacao from '../../icones/Doorbell.png';
 
 import Perfil from '../../icones/perfilCliente.png';
 
+import './menHamburger.css';
 
-const telaEnderecoCliente = () => {
+import React, { useState } from "react";
 
-   document.title = "Endereço do Cliente";
 
-   return (
-        <div className = "fEnderecoCliente">
-            <div id="menuLatCli">
-                <div id="menuDesk">
-                    <ul id="ulDesk">
+const TelaEnderecoCliente = () => {
+
+    document.title = "Endereço do Cliente";
+
+    //Limite de Caracteres
+    const handleChange = (object) => {
+        if (object.target.value.length > object.target.maxLength) {
+            object.target.value = object.target.value.slice(0, object.target.maxLength);
+        }
+    }
+
+    //Programação do Menu de Hamburger
+    // to change burger classes
+    const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
+    const [menu_class, setMenuClass] = useState("menu hidden")
+    const [isMenuClicked, setIsMenuClicked] = useState(false)
+
+    // toggle burger menu change
+    const updateMenu = () => {
+        if (!isMenuClicked) {
+            setBurgerClass("burger-bar clicked")
+            setMenuClass("menu visible")
+        }
+        else {
+            setBurgerClass("burger-bar unclicked")
+            setMenuClass("menu hidden")
+        }
+        setIsMenuClicked(!isMenuClicked)
+    }
+
+    return (
+        <div className={styles.fDBCliente}>
+            <div id={styles["menuLatCli"]}>
+                <div id={styles["menuDesk"]}>
+                    <ul id={styles["ulDesk"]}>
                         <br></br>
                         <br></br>
-                        <div id = "perfilLateral">
+                        <div id={styles["perfilLateral"]}>
                             <img src={Perfil} alt="perfil" />
                         </div>
-                        <a href='/'>
-                            <li><p>Dados Básicos</p></li>
-                        </a>
+                        <div id={styles["textoLL"]}>
+                            <a href="./tMenuDBCli" rel="noreferrer">
+                                <li><p>Dados Básicos</p></li>
+                            </a>
 
-                        <a href='/'>
-                            <li style={{ backgroundColor: '#505050'}}><p>Endereço</p></li>
-                        </a>
+                            <a href="./tMenuEnderecoCli" rel="noreferrer">
+                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Endereço</p></li>
+                            </a>
 
-                        <a href='/'>
-                            <li><p>Foto</p></li>
-                        </a>                      
+                            <a href="./tMenuFotoCli" rel="noreferrer">
+                                <li><p>Foto</p></li>
+                            </a>
+                        </div>
                     </ul>
                 </div>
             </div>
-            <div id="menuHorCli">
 
-                {/* Menu Mobile */}
-                <input type="checkbox" id="ch" name="ch" />
-                <div id="mslin">
-                    <label htmlFor="ch">
-                        <span id="bt">|||</span>
-                    </label>
-                </div>
-
-                <div id="menu">
-                    <label htmlFor="ch"><span id='bt2'>+</span></label>
-                    <ul id="u">
-                        <br></br>
-                        <br></br>
-                        <div id = "perfilHamburger">
-                            <img src={Perfil} alt="perfil" />
-                        </div>
-                        <a href='/'>
-                            <li><div className="txtHambMenu"><p>Dados Básicos</p></div></li>
-                        </a>
-
-                        <a href='/'>
-                            <li><div style={{ backgroundColor: '#505050' }} className="txtHambMenu"><p>Endereço</p></div></li>
-                        </a>
-
-                        <a href='/'>
-                            <li><div className="txtHambMenu"><p>Foto</p></div></li>
-                        </a>
-
-                        <a href='/'>
-                            <li><div className="txtHambMenu"><p>Voltar ao Menu</p></div></li>
-                        </a>
-                    </ul>
-                </div>
-
-                <div className="perfil"><a href="/"><img src={Perfil} alt="perfil" /></a></div>
-                <div className="notificacao"><a href="/"><img src={Notificacao} alt="notificacao" /></a></div>
-                <div className="logoMenuCli"><p></p></div>
-                <div id="voltar"><Link to="../../tLoginCli"><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
-            </div>
-
-            <div id="conteudoCli">
+            <div id={styles["conteudoCli"]}>
                 <h2><center>Endereço</center></h2>
-                <form id="formEN">
-                    <div className = "linha">
+                <form id={styles["formEN"]}>
+                    <div className={styles.linha}>
                         <div>
-                            <input type="text" placeholder="CEP:" title="Digite o seu CEP" name="cep" id="cep" maxLength = "8"/>
+                            <input type="number" 
+                                placeholder="CEP:" 
+                                title="Digite o seu CEP" 
+                                name="cep" 
+                                id={styles["cep"]} 
+                                maxLength="8" 
+                                onKeyPress={(event) => {
+                                    if (!/[0-9]/.test(event.key)) {
+                                        event.preventDefault();
+                                }}}
+                                onChange={handleChange} />
                         </div>
                         <div>
-                            <input type="text" placeholder="Rua:" title="Digite a sua Rua" name="rua" id="rua" className = "segColuna" /> 
+                            <input type="text" placeholder="Rua:" title="Digite a sua Rua" name="rua" id={styles["rua"]} className={styles.segColuna} />
                         </div>
                     </div>
-                    <div className = "linha">
+                    <div className={styles.linha}>
                         <div>
-                            <input type="number" placeholder="Número:" title="Digite o seu Número" name="numero" id="numero" /> <br></br>
-                        </div>        
+                            <input type="number" 
+                                placeholder="Número:" 
+                                title="Digite o seu Número" 
+                                name="numero" 
+                                onKeyPress={(event) => {
+                                    if (!/[0-9]/.test(event.key)) {
+                                        event.preventDefault();
+                                }}}
+                                id={styles["numero"]} /> <br></br>
+                        </div>
                         <div>
-                            <input type="text" placeholder="Complemento:" title="Digite o seu Complemento" name="comple" id="comple" className = "segColuna" /> <br></br>
-                        </div>        
+                            <input type="text" placeholder="Complemento:" title="Digite o seu Complemento" name="comple" id={styles["comple"]} className={styles.segColuna} /> <br></br>
+                        </div>
                     </div>
-                    <div className = "linhaUnica">
-                        <input type="text" placeholder="Bairro:" title="Digite o seu Bairro" name="bairro" id="bairro" /> <br></br>                    
-                        <input type="text" placeholder="Cidade:" title="Digite a sua Cidade" name="cidade" id="cidade" /> <br></br>
-                        <input type="text" placeholder="Estado:" title="Digite o seu Estado" name="estado" id="estado" /> <br></br>
+                    <div className={styles.linhaUnica}>
+                        <input type="text" placeholder="Bairro:" title="Digite o seu Bairro" name="bairro" id={styles["bairro"]} /> <br></br>
+                        <input type="text" placeholder="Cidade:" title="Digite a sua Cidade" name="cidade" id={styles["cidade"]} /> <br></br>
+                        <input type="text" placeholder="Estado:" title="Digite o seu Estado" name="estado" id={styles["estado"]} /> <br></br>
                     </div>
                     <div id="btnDBSalvar">
-                        <input type="submit" id="btnSalvarDDBSalvar" name="btnSalvarDDBSalvar" onClick={() => alert('Dados Salvos!')} value="Salvar" />
+                        <input type="submit" id={styles["btnSalvarDDB"]} name="btnSalvarDDB" onClick={() => alert('Dados Salvos!')} value="Salvar" />
                     </div>
                 </form>
+            </div>
+
+            <div id={styles["menuHorCli"]}>
+                {/*Menu Mobile*/}
+                <div className="menHamburger">
+                    <div className="burger-menu" onClick={updateMenu}>
+                        <div className={burger_class} ></div>
+                        <div className={burger_class} ></div>
+                        <div className={burger_class} ></div>
+                    </div>
+                    <div className={menu_class}>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
+
+                        <div id="perfilHamburger">
+                            <img src={Perfil} alt="perfil" />
+                        </div>
+
+                        <ul id="uMenHamburger">
+                            <li>
+                                <p>
+                                <a href="./tMenuDBCli" rel="noreferrer">
+                                        Dados Básicos
+                                    </a>
+                                </p>
+                            </li>
+                            <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
+                                <p>
+                                    <a href="./tMenuEnderecoCli" rel="noreferrer">
+                                        Endereço
+                                    </a>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <a href="./tMenuFotoCli" rel="noreferrer">
+                                        Foto
+                                    </a>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <a href="./tMenuCli" rel="noreferrer">
+                                        Voltar ao Menu
+                                    </a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className={styles.perfil}><img src={Perfil} alt="perfil" /></div>
+                <div className={styles.notificacao}><a href="/"><img src={Notificacao} alt="notificacao" /></a></div>
+                <div className={styles.logoMenuCli}><p></p></div>
+                <div id={styles["voltar"]}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>
         </div>
     )
 }
 
-export default telaEnderecoCliente
+export default TelaEnderecoCliente

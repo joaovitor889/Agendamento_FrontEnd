@@ -12,9 +12,9 @@ const telaLogin = () => {
                 <div className="row">
                     <div className="logo"><h1 title ="Bem-Vindo!"><center>Shostners & shostners</center></h1></div>           
                 </div>
-                <dv className="row" id = "imagem">
+                <div className="row" id = "imagem">
                     <img src = {Logo} alt = "Logo" />
-                </dv>
+                </div>
                 <div className="row">
                     <div className = "fundo">            
                         <form id = "formLogin">    
@@ -24,8 +24,8 @@ const telaLogin = () => {
                                 <input type="password" placeholder="Senha" title = "Digite sua Senha" required/>
                             </div>
                             <div className = "links">
-                                <a href = "./tLogin.js">Criar uma conta</a><br></br>
-                                <a href = "./tLogin.js">Esqueceu a senha?</a>
+                                {/*<a href = "./tLogin.js">Criar uma conta</a><br></br>*/}
+                                <a href = "./tEsqueceuSenhaFunc" rel="noreferrer">Esqueceu a senha?</a>
                             </div><br></br>
                             <div className = "botoes">
                                 <input type = "submit" id = "btnLogin" name = "btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value = "Login" />                        

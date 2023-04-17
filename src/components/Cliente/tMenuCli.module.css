@@ -91,10 +91,6 @@
 	margin-left: auto;
 }
 
-.perfil:hover {
-	background-color: #0000ff;
-}
-
 .perfil  img{
 	margin: 10%;
 	width: 80%;
@@ -217,7 +213,7 @@
 	}
 	.botoes {
 		left: 10%;
-		margin-top: 10%;
+		margin-top: 5%;
 		width: 100%;
 	}
 	.botoes .linha {
