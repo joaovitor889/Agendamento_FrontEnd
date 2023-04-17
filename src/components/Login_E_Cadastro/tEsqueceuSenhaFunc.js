@@ -1,4 +1,4 @@
-import styles from './tEsqueceuSenhaCli.module.css';
+import styles from './tEsqueceuSenhaFunc.module.css';
 
 const telaEsqueceuSenhaCli = () => {
 
@@ -6,7 +6,7 @@ const telaEsqueceuSenhaCli = () => {
 
     return (
         <div className={styles.fEsqueceuSenhaCli}>
-            <form id={styles["formSenhaCli"]}>
+            <form id={styles["formSenhaFunc"]}>
                 <br></br>
                 <br></br>
                 <br></br>

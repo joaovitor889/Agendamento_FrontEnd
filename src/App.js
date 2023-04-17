@@ -7,7 +7,8 @@ import OpcCadastro from './components/Login_E_Cadastro/tMenuOpcCadastro.js';
 
 //telas de Login
 import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
-import EsqSenha from './components/Login_E_Cadastro/tEsqueceuSenhaCli.js';
+import EsqSenhaCli from './components/Login_E_Cadastro/tEsqueceuSenhaCli.js';
+import EsqSenhaFunc from './components/Login_E_Cadastro/tEsqueceuSenhaFunc.js';
 import LoginAdm from './components/Login_E_Cadastro/tLoginAdm';
 import LoginFunc from './components/Login_E_Cadastro/tLoginFunc.js';
 
@@ -54,7 +55,8 @@ function App() {
             <Route  path = "/tLoginAdm" element = {<LoginAdm />} />
             <Route  path = "/tCadastroAdm" element = {<CadastroAdm />} />
             <Route  path = "/tLoginCli" element = {<LoginCli />} />
-            <Route  path = "/tEsqueceuSenhaCli" element = {<EsqSenha />} />
+            <Route  path = "/tEsqueceuSenhaCli" element = {<EsqSenhaCli />} />
+            <Route  path = "/tEsqueceuSenhaFunc" element = {<EsqSenhaFunc />} />
             <Route  path = "/tCadastroCli" element = {<CadastroCli />} />
             <Route  path = "/tLoginFunc" element = {<LoginFunc />} />
             
