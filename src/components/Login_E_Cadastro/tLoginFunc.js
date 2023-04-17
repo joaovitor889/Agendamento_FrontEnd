@@ -12,9 +12,9 @@ const telaLogin = () => {
                 <div className="row">
                     <div className="logo"><h1 title ="Bem-Vindo!"><center>Shostners & shostners</center></h1></div>           
                 </div>
-                <dv className="row" id = "imagem">
+                <div className="row" id = "imagem">
                     <img src = {Logo} alt = "Logo" />
-                </dv>
+                </div>
                 <div className="row">
                     <div className = "fundo">            
                         <form id = "formLogin">    

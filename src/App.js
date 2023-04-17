@@ -5,8 +5,9 @@ import LandPage from './components/Login_E_Cadastro/tLandPage.js';
 
 //telas de Login
 import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
+import EsqSenha from './components/Login_E_Cadastro/tEsqueceuSenhaCli.js';
 import LoginAdm from './components/Login_E_Cadastro/tLoginAdm';
-//import LoginFunc from './components/Login_E_Cadastro/tLoginFunc.js';
+import LoginFunc from './components/Login_E_Cadastro/tLoginFunc.js';
 
 
 //Telas de Cadastro
@@ -48,7 +49,9 @@ function App() {
             <Route  path = "/tLoginAdm" element={<LoginAdm />} />
             <Route  path = "/tCadastroAdm" element={<CadastroAdm />} />
             <Route  path = "/tLoginCli" element = {<LoginCli />} />
+            <Route  path = "/tEsqueceuSenhaCli" element = {<EsqSenha />} />
             <Route  path = "/tCadastroCli" element = {<CadastroCli />} />
+            <Route path = "/tLoginFunc" element = {<LoginFunc />} />
             
             {/*Telas do Cliente*/}
             <Route  path = "/tMenuCli" element={<MenuCli />} />
