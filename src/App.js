@@ -2,6 +2,8 @@ import { Routes, Route } from "react-router-dom";
 
 //tela Land Page
 import LandPage from './components/Login_E_Cadastro/tLandPage.js';
+import OpcLogin from './components/Login_E_Cadastro/tMenuOpcLogin.js';
+import OpcCadastro from './components/Login_E_Cadastro/tMenuOpcCadastro.js';
 
 //telas de Login
 import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
@@ -46,22 +48,25 @@ function App() {
       <header className="App-header">
           <Routes>
             <Route index element={<LandPage />} />
-            <Route  path = "/tLoginAdm" element={<LoginAdm />} />
-            <Route  path = "/tCadastroAdm" element={<CadastroAdm />} />
+            <Route path = "/tMenuOpcLogin" element = {<OpcLogin />} />
+            <Route path = "/tMenuOpcCadastro" element = {<OpcCadastro />} />
+
+            <Route  path = "/tLoginAdm" element = {<LoginAdm />} />
+            <Route  path = "/tCadastroAdm" element = {<CadastroAdm />} />
             <Route  path = "/tLoginCli" element = {<LoginCli />} />
             <Route  path = "/tEsqueceuSenhaCli" element = {<EsqSenha />} />
             <Route  path = "/tCadastroCli" element = {<CadastroCli />} />
-            <Route path = "/tLoginFunc" element = {<LoginFunc />} />
+            <Route  path = "/tLoginFunc" element = {<LoginFunc />} />
             
             {/*Telas do Cliente*/}
-            <Route  path = "/tMenuCli" element={<MenuCli />} />
-            <Route  path = "/tAgendarCli" element={<AgendarCli />} />
-            <Route  path = "/tAgendamentoCli" element={<AgendamentoCli />} />
-            <Route  path = "/tMenuDBCli" element={<DadosBasicoCli />} />
+            <Route  path = "/tMenuCli" element = {<MenuCli />} />
+            <Route  path = "/tAgendarCli" element = {<AgendarCli />} />
+            <Route  path = "/tAgendamentoCli" element = {<AgendamentoCli />} />
+            <Route  path = "/tMenuDBCli" element = {<DadosBasicoCli />} />
             
-            <Route  path = "/tLoginAdm" element={<LoginAdm />} />            
-            <Route  path = "/tMenuEnderecoCli" element={<EnderecoCli />} />
-            <Route  path = "/tMenuFotoCli" element={<FotoCli />} />
+            <Route  path = "/tLoginAdm" element = {<LoginAdm />} />            
+            <Route  path = "/tMenuEnderecoCli" element = {<EnderecoCli />} />
+            <Route  path = "/tMenuFotoCli" element = {<FotoCli />} />
           </Routes>                
       </header>
     </div>
