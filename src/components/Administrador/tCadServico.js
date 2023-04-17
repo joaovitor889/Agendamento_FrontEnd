@@ -40,3 +40,5 @@ const telaCadServico = () => {
         </div>
     )
 }
+
+export default telaCadServico
