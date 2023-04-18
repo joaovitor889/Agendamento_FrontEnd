@@ -28,7 +28,7 @@ const telaLogin = () => {
                                 <a href = "./tEsqueceuSenhaCli">Esqueceu a senha?</a>
                             </div><br></br>
                             <div className = "botoesLoginCli">
-                                <input type = "submit" id = "btnLogin" name = "btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value = "Login" />                        
+                                <input type = "submit" id = "btnLoginCli" name = "btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value = "Login" />                        
                             </div>                             
                         </form>                        
                     </div>                    

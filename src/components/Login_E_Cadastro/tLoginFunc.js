@@ -28,7 +28,7 @@ const telaLogin = () => {
                                 <a href = "./tEsqueceuSenhaFunc" rel="noreferrer">Esqueceu a senha?</a>
                             </div><br></br>
                             <div className = "botoes">
-                                <input type = "submit" id = "btnLogin" name = "btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value = "Login" />                        
+                                <input type = "submit" id = "btnLoginFunc" name = "btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value = "Login" />                        
                             </div>                             
                         </form>                        
                     </div>                    
