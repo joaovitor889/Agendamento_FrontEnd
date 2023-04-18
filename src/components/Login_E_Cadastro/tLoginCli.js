@@ -29,7 +29,12 @@ const telaLogin = () => {
                             </div><br></br>
                             <div className = "botoesLoginCli">
                                 <input type = "submit" id = "btnLoginCli" name = "btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value = "Login" />                        
-                                <center><div id = "voltCli"><a href = '/' rel="noreferrer">Voltar</a></div></center><br></br>
+                                <center><div id = "voltCli"><button type="button"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        window.location.href = '/'
+                                    }}>Voltar
+                                </button></div></center><br></br>
                             </div>                             
                         </form>                        
                     </div>                    

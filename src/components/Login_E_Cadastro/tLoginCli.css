@@ -132,7 +132,7 @@
 	font-size: 80%;
 }
 
-#voltCli {
+#voltCli button{
 	font-family: "Times New Roman", Times, serif;
 	font-weight: bold;
 	font-size: 100%;
@@ -140,20 +140,15 @@
 	background-color: #6375D6;
 	border-style: none;
 	color:#000000; 	
-	width: 35%;
-	height: 25px;
+	width: 45%;
+	height: 35px;
 	cursor:pointer;
 	-webkit-border-radius: 5px;
 	border-radius: 25px;
 	margin-top: 5%;
 }
 
-#voltCli a {
-	text-decoration: none;
-	color: #000;
-}
-
-#voltCli:hover {
+#voltCli button:hover {
 	background-color: #273791;
 }
 
