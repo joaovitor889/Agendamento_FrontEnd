@@ -63,7 +63,7 @@ const TelaFotoCliente = () => {
             </div>
 
             <div id={styles["conteudoCli"]}>
-                <h2><center>Foto</center></h2>
+                <h2><center>Foto (Cliente)</center></h2>
                 <form id={styles["formFoto"]}>
                     <center><img src={FotoPerfil} alt="Foto Perfil" /></center>
                     <center><input type="file" id={styles["fotoCli"]} name="fotoCli" /></center>

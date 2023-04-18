@@ -29,9 +29,9 @@ import EnderecoCli from './components/Cliente/tMenuEnderecoCli.js';
 import FotoCli from './components/Cliente/tMenuFotoCli.js';
 
 //Telas do Profissional
-//import CadastroServico from './components/Profissional/tCadastroServico.js';
-//import MenuProfissional from './components/Profissional/tMenuProfissional.js';
-//import CalendarioProfis from './components/Profissional/tCalendarioProfis.js';
+import MenuProfissional from './components/Profissional/tMenuProfis.js';
+import AgendamentoProfis from './components/Profissional/tAgendamentoProfis.js';
+import FotoProfis from './components/Profissional/tMenuFotoProf.js';
 
 //Telas do Administrador
 //import MenuADM from './components/Administrador/tMenuADM.js';
@@ -60,15 +60,24 @@ function App() {
             <Route  path = "/tCadastroCli" element = {<CadastroCli />} />
             <Route  path = "/tLoginFunc" element = {<LoginFunc />} />
             
-            {/*Telas do Cliente*/}
+            {/* Telas do Cliente */}
             <Route  path = "/tMenuCli" element = {<MenuCli />} />
             <Route  path = "/tAgendarCli" element = {<AgendarCli />} />
             <Route  path = "/tAgendamentoCli" element = {<AgendamentoCli />} />
+            {/* Perfil do Cliente */}
             <Route  path = "/tMenuDBCli" element = {<DadosBasicoCli />} />
-            
-            <Route  path = "/tLoginAdm" element = {<LoginAdm />} />            
             <Route  path = "/tMenuEnderecoCli" element = {<EnderecoCli />} />
             <Route  path = "/tMenuFotoCli" element = {<FotoCli />} />
+
+
+            {/* Telas do Funcionario */}
+            <Route  path = "/tMenuProfis" element = {<MenuProfissional />} />
+            <Route  path = "/tAgendamentoProfis" element = {<AgendamentoProfis />} />
+            {/* Perfil do Funcionario */}
+            <Route  path = "/tMenuFotoProf" element = {<FotoProfis />} />
+          
+
+            <Route  path = "/tLoginAdm" element = {<LoginAdm />} />            
           </Routes>                
       </header>
     </div>

@@ -70,7 +70,7 @@ const TelaEnderecoCliente = () => {
             </div>
 
             <div id={styles["conteudoCli"]}>
-                <h2><center>Endereço</center></h2>
+                <h2><center>Endereço (Cliente)</center></h2>
                 <form id={styles["formEN"]}>
                     <div className={styles.linha}>
                         <div>

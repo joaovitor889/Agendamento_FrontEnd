@@ -69,7 +69,7 @@ const TelaDadosBasicosCliente = () => {
             </div>
 
             <div id={styles["conteudoCli"]}>
-                <h2><center>Dados Básicos</center></h2>
+                <h2><center>Dados Básicos (Cliente)</center></h2>
                 <form id={styles["formDB"]}>
                     <input type="text" placeholder="*Nome:" title="Digite o seu nome" name="nome" id={styles["nome"]} required /> <br></br>
                     <input type="text" placeholder="*Sobrenome:" title="Digite o seu sobrenome" name="sobrenome" id={styles["sobrenome"]} required /> <br></br>
