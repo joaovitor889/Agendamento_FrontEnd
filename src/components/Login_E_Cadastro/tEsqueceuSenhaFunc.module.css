@@ -65,7 +65,7 @@
 	-webkit-border-radius: 5px;
 	border-radius: 25px;
 	margin-top: 10%;
-	margin-left: 55%;
+	margin-left: 35%;
 }
 
 #btnEnviar:hover {
@@ -116,8 +116,8 @@
 		cursor: pointer;
 		-webkit-border-radius: 5px;
 		border-radius: 25px;
-		margin-top: 5%;
-		margin-left: -10%;
+		margin-top: 3%;
+		margin-left: -25%;
 	}
 
 	#btnEnviar:hover {
