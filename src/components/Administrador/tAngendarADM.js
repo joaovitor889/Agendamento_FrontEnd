@@ -1,4 +1,4 @@
-import './tCadServico.css';
+import './tAgendarADM.css';
 import menu from '../../img/Menu Rounded.png';
 import perfil from  '../../img/perfil.png'
 import notificar from '../../img/notificar.png'
@@ -9,11 +9,11 @@ import catergory4 from  '../../img/Component 54.png'
 import catergory5 from  '../../img/Component 55.png'
 
 
-const telaCadServico = () => {
+const telaAgendarADM = () => {
     document.title ="Cadastrar Serviço";
 
     return (
-        <div className='fCadServico'>
+        <div className='fAgendar'>
              {/* header  começo */}
              <header>
                 <div className="esquerda">
@@ -48,7 +48,7 @@ const telaCadServico = () => {
             {/* sidebar  final */}
             <main>
                 <div className='container'>
-                  <h1>Cadastro de Serviços</h1>
+                  <h1>Agendar</h1>
                   <div className='categories'>
                     <img src= {catergory1} alt="" className='category'/>
                     <img src= {catergory2} alt="" className='category'/>
@@ -57,6 +57,16 @@ const telaCadServico = () => {
                     <img src= {catergory5} alt="" className='category'/>
                   </div>
                   <div className='dados'>
+                    <input type="text" className='texto' />
+                    <input type="text" className='texto' />
+                    <div className='dois_campos'>
+                        <input type="text" className='texto' />
+                        <input type="text" className='texto' />
+                    </div>
+                    <input type="text" className='texto' />
+                  </div>
+                  <div className='client'>
+                    <input type="text" className='texto' />
                     <input type="text" className='texto' />
                     <input type="text" className='texto' />
                   </div>
@@ -70,4 +80,4 @@ const telaCadServico = () => {
     )
 }
 
-export default telaCadServico
+export default telaAgendarADM
