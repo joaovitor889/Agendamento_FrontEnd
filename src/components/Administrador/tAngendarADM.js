@@ -14,12 +14,13 @@ const telaAgendarADM = () => {
 
     return (
         <div className='fAgendar'>
+            <input type='checkbox' id='check'/>
              {/* header  começo */}
              <header>
                 <div className="esquerda">
-                    <a href="/">
-                    <img src = {menu} alt = "retunr"  className='sidebar_btn'/>
-                    </a>
+                    <label  for = 'check'>
+                        <img src = {menu} alt = "retunr"  className='sidebar_btn'/>
+                    </label>
                 </div>
                 <div className="Centro">
                     <h3>Shostners & Shostners</h3>
@@ -71,7 +72,7 @@ const telaAgendarADM = () => {
                     <input type="text" className='texto' />
                   </div>
                   <div className='finsh'>
-                    <input type="text" className='texto' />
+                    <input type="text" className='texto texto-demonstrativo' />
                     <a href="/">Cadastrar</a>
                   </div>
                 </div>

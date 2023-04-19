@@ -60,6 +60,10 @@ a{
 	justify-content: space-between;
 }
 
+.direita  img{
+    height: 3rem;
+}
+
 .sidebar{
     z-index: 1;
     position: fixed;
@@ -74,10 +78,11 @@ a{
     color: white;
     display: block;
     width: 100%;
-    line-height: 30px;
+    line-height: 2.5rem;
     text-decoration: none;
-    padding-left: 40px;
+    padding-left: 0;
     box-sizing: border-box;
+    font-size: 1.5rem;
 }
 
 .interprise{
@@ -87,6 +92,9 @@ a{
     position: fixed;
     bottom:0;
     width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #check:checked ~ .sidebar {
@@ -98,7 +106,8 @@ a{
 }
 
 .container{
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
 .container h1{
     background-color: #000000;
@@ -111,11 +120,13 @@ a{
 }
 
 .categories{
+    width: 360px;
     display: flex;
     align-items: end;
 }
 .category{
     width: 2rem;
+    height: 2rem;
     margin-right: 0.3rem;
 }
 
@@ -142,13 +153,13 @@ a{
     margin-top: 1rem;
 }
 .finsh .texto{
-    width: 200px;
+    width: 150px;
 }
 .finsh a{
     background-color: #6375D6;
     padding: 0.5rem  1rem;
     border-radius: 15px;
-    margin-left: 50px;
+    margin-left: 20px;
 }
 .client{
     margin-top: 1rem;
@@ -158,4 +169,8 @@ a{
 
 .texto-demonstrativo{
     background-color: aquamarine;
+}
+
+#check{
+    display: none;
 }

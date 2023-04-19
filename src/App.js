@@ -34,6 +34,7 @@ import AgendamentoProfis from './components/Profissional/tAgendamentoProfis.js';
 import FotoProfis from './components/Profissional/tMenuFotoProf.js';
 
 //Telas do Administrador
+import AgendarADM from './components/Administrador/tAngendarADM.js'
 //import MenuADM from './components/Administrador/tMenuADM.js';
 //import PesquisaFunc from './components/Administrador/tPesqFunc.js';
 //import CadastroFunc from './components/Administrador/tCadFunc.js';
@@ -60,6 +61,9 @@ function App() {
             <Route  path = "/tCadastroCli" element = {<CadastroCli />} />
             <Route  path = "/tLoginFunc" element = {<LoginFunc />} />
             
+            {/* Telas do Administrador */}
+            <Route path="/tAgendarADM" element = {<AgendarADM />} />
+
             {/* Telas do Cliente */}
             <Route  path = "/tMenuCli" element = {<MenuCli />} />
             <Route  path = "/tAgendarCli" element = {<AgendarCli />} />
