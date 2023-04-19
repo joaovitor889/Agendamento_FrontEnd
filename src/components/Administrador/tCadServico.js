@@ -35,8 +35,27 @@ const telaCadServico = () => {
                 <a href="/">Agendar</a>
                 <a href="/">Serviços</a>
                 <a href="/">Perfil</a>
+                <div className='interprise'>
+                    <h3>Qual empresa?</h3>
+                </div>
             </div>
             {/* sidebar  final */}
+            <main>
+                <div className='container'>
+                  <h1>Cadastro de Serviços</h1>
+                  <div className='categories'>
+
+                  </div>
+                  <div className='dados'>
+                    <input type="text" className='texto' />
+                    <input type="text" className='texto' />
+                  </div>
+                  <div className='finsh'>
+                    <input type="text" className='texto' />
+                    <a href="/">Cadastrar</a>
+                  </div>
+                </div>
+            </main>
         </div>
     )
 }
