@@ -15,13 +15,6 @@ const TelaDadosBasicosCliente = () => {
 
     document.title = "Dados Básicos";
 
-    //Limite de Caracteres
-    const handleChange = (object) => {
-        if (object.target.value.length > object.target.maxLength) {
-            object.target.value = object.target.value.slice(0, object.target.maxLength);
-        }
-    }
-
     //Programação do Menu de Hamburger
     // to change burger classes
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
@@ -79,10 +72,11 @@ const TelaDadosBasicosCliente = () => {
                         name="cpf" id={styles["cpf"]} 
                         maxLength="11" 
                         onKeyPress={(event) => {
-                            if (!/[0-9]/.test(event.key)) {
+                            if (!/[0-9]/.test(event.key)
+                                || event.target.value.length > event.target.maxLength -1) {
                                 event.preventDefault();
-                        }}}
-                        onChange={handleChange} required />
+                            }                                            
+                        }} required />
                     
                     <input type="number" 
                         placeholder="Telefone:" 
@@ -90,10 +84,11 @@ const TelaDadosBasicosCliente = () => {
                         name="tel" id={styles["tel"]} 
                         maxLength="11" 
                         onKeyPress={(event) => {
-                            if (!/[0-9]/.test(event.key)) {
+                            if (!/[0-9]/.test(event.key)
+                                || event.target.value.length > event.target.maxLength -1) {
                                 event.preventDefault();
-                        }}}
-                        onChange={handleChange} />
+                            }                                            
+                        }} />
                     
                     <input type="email" placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id={styles["email"]} required /> <br></br>
                     <div id="btnDBSalvar">

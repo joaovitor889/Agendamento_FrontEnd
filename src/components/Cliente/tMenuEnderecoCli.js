@@ -16,13 +16,6 @@ const TelaEnderecoCliente = () => {
 
     document.title = "Endereço do Cliente";
 
-    //Limite de Caracteres
-    const handleChange = (object) => {
-        if (object.target.value.length > object.target.maxLength) {
-            object.target.value = object.target.value.slice(0, object.target.maxLength);
-        }
-    }
-
     //Programação do Menu de Hamburger
     // to change burger classes
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
@@ -81,10 +74,11 @@ const TelaEnderecoCliente = () => {
                                 id={styles["cep"]} 
                                 maxLength="8" 
                                 onKeyPress={(event) => {
-                                    if (!/[0-9]/.test(event.key)) {
+                                    if (!/[0-9]/.test(event.key)
+                                        || event.target.value.length > event.target.maxLength -1) {
                                         event.preventDefault();
-                                }}}
-                                onChange={handleChange} />
+                                    }                                            
+                                }} />
                         </div>
                         <div>
                             <input type="text" placeholder="Rua:" title="Digite a sua Rua" name="rua" id={styles["rua"]} className={styles.segColuna} />
