@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap'); 
 
-.fCadServico{
+.fAgendar{
 	position: fixed;
     width: 100%;
     height: 100%;
@@ -102,10 +102,10 @@ a{
 }
 
 
+
 .container{
     display: flex;
     align-items: center;
-    
 }
 .container h1{
     background-color: #000000;
@@ -114,7 +114,6 @@ a{
     font-size: 3rem;
     color: #6375D6;
     margin-top: 10%;
-    text-align: center;
 
 }
 
