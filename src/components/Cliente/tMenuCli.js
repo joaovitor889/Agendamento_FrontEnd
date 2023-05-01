@@ -9,9 +9,63 @@ import Perfil from '../../icones/perfilCliente.png';
 
 import { Link } from "react-router-dom";
 
-const telaMenuCliente = () => {
+import agFetch from '../../axios/config.js';
+
+import { useState, useEffect } from "react";
+
+import { useParams } from "react-router-dom";
+
+const TelaMenuCliente = () => {
 
     document.title = "Menu do Cliente";
+
+    //Requisicoes com a API
+    const { id } = useParams();
+    const [post, setPost] = useState([]);
+
+    const getPost = async () => {
+        try {
+            const response = await agFetch.get(`/posts/${id}`);
+
+            const data = response.data;
+
+            setPost(post, data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getPost();
+    });
+
+    //const nome = "José";
+
+    const valores = localStorage.getItem('users_bd');
+    const valToken = localStorage.getItem('user_token');
+
+    const JSONObject = JSON.parse(valores);
+    const JSToken = JSON.parse(valToken);
+
+    var nome;
+
+    if(JSONObject.length === 1)
+    {
+        nome = JSONObject.map((JSONObject) => {        
+            return JSONObject['nome'] ;
+        })
+
+    }
+    else {
+        try {
+            for (let i = 0; i <= localStorage.length; i++) {
+                if (JSONObject[i]['email'] === JSToken['email'])
+                    nome = JSONObject[i]['nome'];
+            }
+        } catch (error) {
+            //coloquei este try catch para parar de reclamar de erro
+        }
+    }
 
     return (
         <div className={styles.fMenuCliente}>
@@ -22,7 +76,7 @@ const telaMenuCliente = () => {
                 <div className={styles.perfil}><img src={Perfil} alt="perfil" /></div>
             </nav>
             <div className={styles.fPreto}></div>
-            <div className={styles.texto}>Bem-Vindo(a)<br></br>Profissional<br></br><div className={styles.nome}>Nome</div></div>
+            <div className={styles.texto}>Bem-Vindo(a)<br></br>Cliente<br></br><div className={styles.nome}>{nome}</div></div>
             <div className={styles.botoes}>
                 <div className={styles.linha}>
                     <img src={AddAgenda} alt="addAgenda" />
@@ -50,4 +104,4 @@ const telaMenuCliente = () => {
     )
 }
 
-export default telaMenuCliente
+export default TelaMenuCliente

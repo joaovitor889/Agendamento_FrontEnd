@@ -120,7 +120,8 @@ a{
 .categories{
     width: 360px;
     display: flex;
-    align-items: end;
+    /*Fica dando aviso*/
+    /*align-items: end;*/
 }
 .category{
     width: 2rem;

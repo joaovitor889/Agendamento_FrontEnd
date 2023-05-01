@@ -1,12 +1,13 @@
 import styles from './tCadastroCli.module.css';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import agFetch from '../../axios/config.js';
 
 import { useNavigate } from 'react-router-dom';
 
-let id = 0;
+
+const REGISTER_URL = "/posts";
 
 const TelaCadastroUsuario = () => {
 
@@ -22,36 +23,56 @@ const TelaCadastroUsuario = () => {
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
     const [confSenha, setConfSenha] = useState();
-    const [termos, setTermos] = useState();
+    const [termos, setTermos] = useState(); 
 
-    const addID = () => {
-        id++;
-    }
+    const signup = async (nome, sobrenome, cpf, telefone, email, senha, confSenha, termos) => {
+        const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
+
+        const hasEmail = usersStorage?.filter((user) => user.email === email);
+
+        const hasCPF = usersStorage?.filter((user) => user.cpf === cpf);
+
+        const hasTelefone = usersStorage?.filter((user) => user.telefone === telefone);
+
+        if (hasEmail?.length || hasCPF?.length || hasTelefone?.length) {
+            alert("Dados já cadastrados!");
+        }
+        else {
+            let newUser;
+            const post = { nome, sobrenome, cpf, telefone, email, senha, confSenha, termos };
+
+            if (usersStorage) {
+                newUser = [...usersStorage, { nome, sobrenome, cpf, telefone, email, senha, confSenha, termos }];
+
+            } else {
+                newUser = [{ nome, sobrenome, cpf, telefone, email, senha, confSenha, termos }];          
+            }
+
+            localStorage.setItem("users_bd", JSON.stringify(newUser));
+            
+            await agFetch.post(
+                REGISTER_URL,
+                JSON.stringify(post)
+            )
+
+            alert("Dados Cadastrados com Sucesso!");
+
+            navigate("/tLoginCli");
+        }
+
+        //deleta todos os dados cadastrados localmente
+        //localStorage.removeItem("users_bd");
+        return;
+    };
 
     const cadCli = async (e) => {
         e.preventDefault();
 
-        //console.log(nome, sobrenome, cpf, telefone, email, senha, confSenha, termos);
-
-        let check = 1;
-
         if (senha !== confSenha) {
             alert('O campo senha e confirmar senha devem ser iguais!');
-            if (check === 1) {
-                id--;
-                check++;
-            }
         }
         else {
-            //email repetido
-            const post = { nome, sobrenome, cpf, telefone, email, senha, confSenha, termos };
-
-            await agFetch.post("/posts", {
-                body: post,
-                userId: id
-            });
-
-            alert('Dados Cadastrados com Sucesso!')
+            signup(nome, sobrenome, cpf, telefone, email, senha, confSenha, termos);
         }
     };
 
@@ -108,7 +129,7 @@ const TelaCadastroUsuario = () => {
                                         <a href="/" target={'_blank'}>Aceitar termos</a>
                                     </span>
                                     <div className={styles.botoes}>
-                                        <input type="submit" id={styles["btnCadastro"]} name="btnCadastro" onClick={addID} value="Cadastrar" />
+                                        <input type="submit" id={styles["btnCadastro"]} name="btnCadastro" value="Cadastrar" />
                                     </div>
                                 </div>
                             </form>

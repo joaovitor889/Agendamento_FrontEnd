@@ -7,8 +7,8 @@ const telaLogin = () => {
     document.title = "Login Funcionario";
 
     return (
-        <div className="fLogin">
-            <div className="container">
+        <div className="fLoginFunc">
+            <div className="containerFunc">
                 <div className="row">
                     <div className="logo"><h1 title="Bem-Vindo!"><center>Shostners & shostners</center></h1></div>
                 </div>
@@ -16,7 +16,7 @@ const telaLogin = () => {
                     <img src={Logo} alt="Logo" />
                 </div>
                 <div className="row">
-                    <div className="fundo">
+                    <div className="fundoFunc">
                         <form id="formLogin">
                             <h1 title="Bem-Vindo!"><center>Login de Funcionário</center></h1>
                             <div className="entrada">

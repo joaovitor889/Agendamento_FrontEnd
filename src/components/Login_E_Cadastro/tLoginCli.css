@@ -153,9 +153,6 @@
 }
 
 @media only screen and (min-width: 1024px) {
-	.fLogin {
-		overflow-y: hidden;
-	}
 	.fLogin .logoLoginCli h1 {
 		position: relative;
 		font-size: 1.2em;
