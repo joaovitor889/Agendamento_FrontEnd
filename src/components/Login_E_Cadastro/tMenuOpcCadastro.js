@@ -1,6 +1,8 @@
 import styles from './tMenuOpcCadastro.module.css';
 
 const telaMenuOpcaoCadastro = () => {
+    document.title = "Opção de Cadastro";
+
     return (
         <div className={styles.fOpcCad}>
             <br></br>
