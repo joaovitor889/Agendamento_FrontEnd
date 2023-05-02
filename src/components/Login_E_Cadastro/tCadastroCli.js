@@ -62,6 +62,7 @@ const TelaCadastroUsuario = () => {
 
         //deleta todos os dados cadastrados localmente
         //localStorage.removeItem("users_bd");
+        //localStorage.clear()
         return;
     };
 

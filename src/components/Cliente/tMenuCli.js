@@ -96,6 +96,7 @@ const TelaMenuCliente = () => {
                     <img src={Perfil} alt="perfil" />
                     <button type="button" className={styles.btn} onClick={(e) => {
                         e.preventDefault();
+                        //localStorage.removeItem("user_token");
                         window.location.href = './tMenuDBCli'
                     }}><p>Perfil</p></button>
                 </div>

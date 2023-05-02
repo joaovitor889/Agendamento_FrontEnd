@@ -245,4 +245,15 @@
 		font-size: 2vw;
 		line-height: 50%;
 	}
+
+	#voltarDesk {
+		position: absolute;
+		right: 50%;
+	}
+
+	#voltarDesk img{
+		right: 25%;
+		width: 20px;
+		height: 20px;
+	}
 }
