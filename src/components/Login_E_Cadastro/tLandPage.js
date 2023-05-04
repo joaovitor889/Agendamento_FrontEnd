@@ -19,13 +19,14 @@ const telaLandPage = () => {
                     <img src={Logo} alt="Logo da Empresa" />
                 </span>
                 <span className='linkLogin'>
-                    <Link to="./tMenuOpcLogin">Acessar minha conta</Link>
+                    <Link to="./tLoginADM">Acessar minha conta</Link>
                 </span>
                 <span className='btnCadastro'>
                     <button type="button"
                         onClick={(e) => {
                             e.preventDefault();
-                            window.location.href = './tMenuOpcCadastro'
+                            //window.location.href = './tMenuOpcCadastro'
+                            window.location.href = './tCadastroADM'
                         }}>Comece grátis
                     </button>
                 </span>
@@ -43,7 +44,8 @@ const telaLandPage = () => {
                 <button type="button" className='btnCdtr'
                     onClick={(e) => {
                         e.preventDefault();
-                        window.location.href = './tMenuOpcCadastro'
+                        //window.location.href = './tMenuOpcCadastro'
+                        window.location.href = './tCadastroADM'
                     }}>Comece grátis
                 </button>
 
