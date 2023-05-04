@@ -80,12 +80,12 @@ const TelaLogin = () => {
                             </div><br></br>
                             <div className="botoesLoginCli">
                                 <input type="submit" id="btnLoginCli" name="btnLogin" value="Login" />
-                                <center><div id="voltCli"><button type="button"
+                                {/*<center><div id="voltCli"><button type="button"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         window.location.href = '/'
                                     }}>Voltar
-                                </button></div></center><br></br>
+                                </button></div></center>*/}<br></br><br></br>
                             </div>
                         </form>
                     </div>

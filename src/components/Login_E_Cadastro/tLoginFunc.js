@@ -29,12 +29,12 @@ const telaLogin = () => {
                             </div><br></br>
                             <div className="botoes">
                                 <input type="submit" id="btnLoginFunc" name="btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value="Login" /><br></br>
-                                <center><div id="voltFunc"><button type="button"
+                                {/*<center><div id="voltFunc"><button type="button"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         window.location.href = '/'
                                     }}>Voltar
-                                </button></div></center><br></br>
+                                </button></div></center>*/}<br></br><br></br>
                             </div>
                         </form>
                     </div>

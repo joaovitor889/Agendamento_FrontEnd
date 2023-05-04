@@ -89,8 +89,10 @@
     background-color: #fff;
 }
 
-.links a{
+.fundoFunc .links a{
 	font-family: "Times New Roman", Times, serif;
+	font-size: 85%;
+	text-decoration: underline;
 	position: relative;
 	margin-top: 30%;
 	transform: translate(-50%, -50%);
