@@ -37,7 +37,6 @@ const TelaDadosBasicosCliente = () => {
     }
 
     //Requisicoes com a API
-    //const navigate = useNavigate();
     const dados = localStorage.getItem("users_bd");
     const valToken = localStorage.getItem('user_token');
 
@@ -45,13 +44,13 @@ const TelaDadosBasicosCliente = () => {
     const JSToken = JSON.parse(valToken);
 
     var nome, sobrenome, cpf, telefone, email;
-    //var emailToken;
+    var emailToken;
 
     //Mapeamento do objeto local
     try {
         for (let i = 0; i <= localStorage.length; i++) {
             if (JSONObject[i]['email'] === JSToken['email']) {
-                //emailToken = JSToken['email'];
+                emailToken = JSToken['email'];
                 nome = JSONObject[i]['nome'];
                 sobrenome = JSONObject[i]['sobrenome'];
                 cpf = JSONObject[i]['cpf'];
@@ -63,48 +62,39 @@ const TelaDadosBasicosCliente = () => {
         //coloquei este try catch para parar de reclamar de erro
     }
 
-    //alert(nome);
+    const [altnome, setNome] = useState(nome);
+    const [altsobrenome, setSobrenome] = useState(sobrenome);
+    const [altcpf, setCPF] = useState(cpf);
+    const [alttelefone, setTelefone] = useState(telefone);
+    const [altemail, setEmail] = useState(email);
 
     //Atualizacao dos dados
-    /*const [altnome, setNome] = useState();
-    const [altsobrenome, setSobrenome] = useState();
-    const [altcpf, setCPF] = useState();
-    const [alttelefone, setTelefone] = useState();
-    const [altemail, setEmail] = useState();*/
-
     const updateCli = async (e) => {
         e.preventDefault();
 
-        /*try {
+        try {
             for (let i = 0; i <= localStorage.length; i++) {
                 if (JSONObject[i]['email'] === emailToken) {
-                    if (JSONObject[i]['nome'] !== altnome) {
-                        JSONObject[i]['nome'] = altnome;                       
-                        localStorage.setItem("users_bd", JSON.stringify(JSONObject));
-                    }
-                    else if (JSONObject[i]['sobrenome'] !== altsobrenome) {
+                    if (JSONObject[i]['nome'] !== altnome ||
+                        JSONObject[i]['sobrenomenome'] !== altsobrenome ||
+                        JSONObject[i]['cpf'] !== altcpf ||
+                        JSONObject[i]['telefone'] !== alttelefone ||
+                        JSONObject[i]['email'] !== altemail) {
+                        JSONObject[i]['nome'] = altnome;
                         JSONObject[i]['sobrenome'] = altsobrenome;
-                        localStorage.setItem("users_bd", JSON.stringify(JSONObject));
-                    }
-                    else if (JSONObject[i]['cpf'] !== altcpf.toString()) {
-                        JSONObject[i]['cpf'] = altcpf.toString();
-                        localStorage.setItem("users_bd", JSON.stringify(JSONObject));
-                    }
-                    else if (JSONObject[i]['telefone'] !== alttelefone.toString()) {
-                        JSONObject[i]['telefone'] = alttelefone.toString();
-                        localStorage.setItem("users_bd", JSON.stringify(JSONObject));
-                    }
-                    else if (JSONObject[i]['email'] !== altemail) {
+                        JSONObject[i]['cpf'] = altcpf;
+                        JSONObject[i]['telefone'] = alttelefone;
                         JSONObject[i]['email'] = altemail;
+
                         localStorage.setItem("users_bd", JSON.stringify(JSONObject));
+                        alert("Dados Atualizados com Sucesso!");
+                        break;
                     }
                 }
             }
         } catch (error) {
             //coloquei este try catch para parar de reclamar de erro
-        }*/
-
-        alert("Atualiza Dados!");
+        }
     };
 
     return (
@@ -137,8 +127,8 @@ const TelaDadosBasicosCliente = () => {
             <div id={styles["conteudoCli"]}>
                 <h2><center>Dados Básicos (Cliente)</center></h2>
                 <form id={styles["formDB"]} onSubmit={(e) => updateCli(e)}>
-                    <input type="text" placeholder="*Nome:" title="Digite o seu nome" name="nome" id={styles["nome"]} defaultValue={nome} /*onChange={(e) => setNome(e.target.value)}*/ required /> <br></br>
-                    <input type="text" placeholder="*Sobrenome:" title="Digite o seu sobrenome" name="sobrenome" id={styles["sobrenome"]} defaultValue={sobrenome} /*onChange={(e) => setSobrenome(e.target.value)}*/ required /> <br></br>
+                    <input type="text" placeholder="*Nome:" title="Digite o seu nome" name="nome" id={styles["nome"]} defaultValue={nome} value={altnome} onChange={(e) => setNome(e.target.value)} required /> <br></br>
+                    <input type="text" placeholder="*Sobrenome:" title="Digite o seu sobrenome" name="sobrenome" id={styles["sobrenome"]} defaultValue={sobrenome} value={altsobrenome} onChange={(e) => setSobrenome(e.target.value)} required /> <br></br>
                     <input type="number"
                         placeholder="*CPF:"
                         title="Digite o seu CPF"
@@ -151,7 +141,8 @@ const TelaDadosBasicosCliente = () => {
                             }
                         }}
                         defaultValue={cpf}
-                        /*onChange={(e) => setCPF(e.target.value)}*/
+                        value={altcpf}
+                        onChange={(e) => setCPF(e.target.value)}
                         required />
 
                     <input type="number"
@@ -165,11 +156,12 @@ const TelaDadosBasicosCliente = () => {
                                 event.preventDefault();
                             }
                         }}
-                        /*onChange={(e) => setTelefone(e.target.value)}*/
+                        value={alttelefone}
+                        onChange={(e) => setTelefone(e.target.value)}
                         defaultValue={telefone}
                     />
 
-                    <input type="email" placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id={styles["email"]} defaultValue={email} /*onChange={(e) => setEmail(e.target.value)}*/ required disabled /> <br></br>
+                    <input type="email" placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id={styles["email"]} defaultValue={email} value={altemail} onChange={(e) => setEmail(e.target.value)} required /*disabled*/ /> <br></br>
                     <div id="btnDBSalvar">
                         <input type="submit" id={styles["btnSalvarDDB"]} name="btnSalvarDDB" value="Salvar" />
                     </div>
