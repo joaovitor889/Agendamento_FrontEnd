@@ -1,15 +1,13 @@
 import styles from './tMenuDBCli.module.css';
 //import logo from '../../img/logo.PNG';
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import Voltar from '../../icones/chevron-left.png';
 
 import Notificacao from '../../icones/Doorbell.png';
 
 import Perfil from '../../icones/perfilCliente.png';
-
-//import { useNavigate } from 'react-router-dom';
 
 import './menHamburger.css';
 
@@ -35,6 +33,10 @@ const TelaDadosBasicosCliente = () => {
         }
         setIsMenuClicked(!isMenuClicked)
     }
+
+    const fCPF = useRef(null);
+    const fTelefone = useRef(null);
+    const fEmail = useRef(null);
 
     //Requisicoes com a API
     const dados = localStorage.getItem("users_bd");
@@ -72,6 +74,35 @@ const TelaDadosBasicosCliente = () => {
     const updateCli = async (e) => {
         e.preventDefault();
 
+        if (JSONObject.length === 1) {
+            upCli();
+        } else {
+            for (let a = 0; a <= localStorage.length; a++) {
+                if (JSONObject[a]['email'] !== emailToken) {
+                    if (JSONObject[a]['cpf'] === altcpf) {
+                        alert("CPF já cadastrado!");
+                        fCPF.current.focus();
+                        return;
+                    }
+                    else if (JSONObject[a]['telefone'] === alttelefone) {
+                        alert("Telefone já cadastrado!");
+                        fTelefone.current.focus();
+                        return;
+                    }
+                    if (JSONObject[a]['email'] === altemail) {
+                        alert("Email já cadastrado!");
+                        fEmail.current.focus();
+                        return;
+                    }
+                    else {
+                        upCli();
+                    }
+                }
+            }
+        }
+    };
+
+    function upCli() {
         try {
             for (let i = 0; i <= localStorage.length; i++) {
                 if (JSONObject[i]['email'] === emailToken) {
@@ -85,17 +116,19 @@ const TelaDadosBasicosCliente = () => {
                         JSONObject[i]['cpf'] = altcpf;
                         JSONObject[i]['telefone'] = alttelefone;
                         JSONObject[i]['email'] = altemail;
+                        JSToken['email'] = altemail;
 
                         localStorage.setItem("users_bd", JSON.stringify(JSONObject));
+                        localStorage.setItem("user_token", JSON.stringify(JSToken));
                         alert("Dados Atualizados com Sucesso!");
-                        break;
+                        return;
                     }
                 }
             }
         } catch (error) {
             //coloquei este try catch para parar de reclamar de erro
         }
-    };
+    }
 
     return (
         <div className={styles.fDBCliente}>
@@ -130,6 +163,7 @@ const TelaDadosBasicosCliente = () => {
                     <input type="text" placeholder="*Nome:" title="Digite o seu nome" name="nome" id={styles["nome"]} defaultValue={nome} value={altnome} onChange={(e) => setNome(e.target.value)} required /> <br></br>
                     <input type="text" placeholder="*Sobrenome:" title="Digite o seu sobrenome" name="sobrenome" id={styles["sobrenome"]} defaultValue={sobrenome} value={altsobrenome} onChange={(e) => setSobrenome(e.target.value)} required /> <br></br>
                     <input type="number"
+                        ref={fCPF}
                         placeholder="*CPF:"
                         title="Digite o seu CPF"
                         name="cpf" id={styles["cpf"]}
@@ -146,6 +180,7 @@ const TelaDadosBasicosCliente = () => {
                         required />
 
                     <input type="number"
+                        ref={fTelefone}
                         placeholder="Telefone:"
                         title="Digite o seu Telefone"
                         name="tel" id={styles["tel"]}
@@ -161,7 +196,7 @@ const TelaDadosBasicosCliente = () => {
                         defaultValue={telefone}
                     />
 
-                    <input type="email" placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id={styles["email"]} defaultValue={email} value={altemail} onChange={(e) => setEmail(e.target.value)} required /*disabled*/ /> <br></br>
+                    <input type="email" ref={fEmail} placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id={styles["email"]} defaultValue={email} value={altemail} onChange={(e) => setEmail(e.target.value)} required /*disabled*/ /> <br></br>
                     <div id="btnDBSalvar">
                         <input type="submit" id={styles["btnSalvarDDB"]} name="btnSalvarDDB" value="Salvar" />
                     </div>

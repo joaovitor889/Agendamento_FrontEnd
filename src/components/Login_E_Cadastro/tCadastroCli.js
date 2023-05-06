@@ -1,6 +1,6 @@
 import styles from './tCadastroCli.module.css';
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 //import agFetch from '../../axios/config.js';
 
@@ -25,6 +25,10 @@ const TelaCadastroUsuario = () => {
     const [confSenha, setConfSenha] = useState("");
     const [termos, setTermos] = useState(""); 
 
+    const fCPF = useRef(null);
+    const fTelefone = useRef(null);
+    const fEmail = useRef(null);
+
     const signup = async (nome, sobrenome, cpf, telefone, email, senha, confSenha, termos) => {
         const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
@@ -34,8 +38,17 @@ const TelaCadastroUsuario = () => {
 
         const hasTelefone = usersStorage?.filter((user) => user.telefone === telefone);
 
-        if (hasEmail?.length || hasCPF?.length || hasTelefone?.length) {
-            alert("Dados já cadastrados!");
+        if (hasEmail?.length) {
+            alert("Email já cadastrados");
+            fEmail.current.focus();
+        }
+        else if (hasCPF?.length) {
+            alert("CPF já cadastrados");
+            fCPF.current.focus();
+        }
+        else if (hasTelefone?.length) {
+            alert("Telefone já cadastrados");
+            fTelefone.current.focus();
         }
         else {
             let newUser;
@@ -94,6 +107,7 @@ const TelaCadastroUsuario = () => {
                                     <input type="text" placeholder="*Nome:" title="Digite o seu nome" name="nome" id="nome" required value = {nome} onChange={(e) => setNome(e.target.value)} />
                                     <input type="text" placeholder="*Sobrenome:" title="Digite o seu sobrenome" name="sobrenome" id="sobrenome" value = {sobrenome} required onChange={(e) => setSobrenome(e.target.value)} />
                                     <input type="number"
+                                        ref={fCPF}
                                         placeholder="*CPF:"
                                         title="Digite o seu CPF"
                                         name="cpf" id="cpf"
@@ -109,6 +123,7 @@ const TelaCadastroUsuario = () => {
                                         onChange={(e) => setCPF(e.target.value)} />
 
                                     <input type="number"
+                                        ref={fTelefone}
                                         placeholder="Telefone:"
                                         title="Digite o seu Telefone"
                                         name="tel"
@@ -122,7 +137,7 @@ const TelaCadastroUsuario = () => {
                                         }}
                                         value = {telefone}
                                         onChange={(e) => setTelefone(e.target.value)} />
-                                    <input type="email" placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id="email" required value = {email} onChange={(e) => setEmail(e.target.value)} />
+                                    <input type="email" ref={fEmail} placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id="email" required value = {email} onChange={(e) => setEmail(e.target.value)} />
                                     <div className="senha">
                                         <input type="password" placeholder="*Senha:" title="Crie uma Senha" name="senha" id="senha" required value = {senha} onChange={(e) => setSenha(e.target.value)} />
                                         <input type="password" placeholder="*Confirmar Senha:" title="Confirme sua Senha" name="confSenha" id="confSenha" required value = {confSenha} onChange={(e) => setConfSenha(e.target.value)} />
