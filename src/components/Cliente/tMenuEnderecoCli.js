@@ -11,6 +11,8 @@ import './menHamburger.css';
 
 import React, { useState } from "react";
 
+import { useForm } from "react-hook-form";
+
 
 const TelaEnderecoCliente = () => {
 
@@ -33,6 +35,110 @@ const TelaEnderecoCliente = () => {
             setMenuClass("menu hidden")
         }
         setIsMenuClicked(!isMenuClicked)
+    }
+
+    const [altcep, setCEP] = useState();
+    const [altnum, setNum] = useState();
+    const [altcomp, setComp] = useState();
+
+    var jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jsuf;
+
+    const altCep = (e) => {
+        setCEP(e.target.value);
+    }
+
+    const altNum = (e) => {
+        setNum(e.target.value);
+    }
+
+    const altComp = (e) => {
+        setComp(e.target.value);
+    }
+
+    const dados = localStorage.getItem("users_bd");
+    const valToken = localStorage.getItem('user_token');
+
+    const JSONObject = JSON.parse(dados);
+    const JSToken = JSON.parse(valToken);
+
+
+
+    //Mapeamento do objeto local
+    try {
+        for (let i = 0; i <= localStorage.length; i++) {
+            if (JSONObject[i]['email'] === JSToken['email']) {
+                jscep = JSONObject[i]['cep'];
+                jsrua = JSONObject[i]['rua'];
+                jsnum = JSONObject[i]['num'];
+                jscomp = JSONObject[i]['comp'];
+                jsbairro = JSONObject[i]['bairro'];
+                jscidade = JSONObject[i]['cidade'];
+                jsuf = JSONObject[i]['uf'];
+            }
+        }
+    } catch (error) {
+        //coloquei este try catch para parar de reclamar de erro
+    }
+
+    //API do CEP
+    const { register, setValue } = useForm();
+
+    const checkCEP = (e) => {
+        const cep = e.target.value.replace(/\D/g, '');
+        //console.log(cep);
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(res => res.json()).then(data => {
+                //console.log(JSON.stringify(data));                       
+                setValue("rua", data.logradouro);
+                setValue("bairro", data.bairro);
+                setValue("cidade", data.localidade);
+                setValue("uf", data.uf);
+
+                jscep = altcep;
+
+                jsrua = data.logradouro;
+                jsbairro = data.bairro;
+                jscidade = data.localidade;
+                jsuf = data.uf;
+            });
+
+    }
+
+    const updateEndereco = (e) => {
+        e.preventDefault();
+        try {
+            for (let i = 0; i <= localStorage.length; i++) {
+                if (JSONObject[i]['email'] === JSToken['email']) {
+                    jsnum = JSONObject[i]['num'];
+                    jscomp = JSONObject[i]['comp'];
+                    if(jsnum !== null && altnum != null)
+                        jsnum = altnum;
+                    if(jscomp !== null && altcomp != null)
+                        jscomp = altcomp;
+                    else
+                        jscomp = "";
+
+                    JSONObject[i]['cep'] = jscep;
+                    JSONObject[i]['rua'] = jsrua;
+                    JSONObject[i]['num'] = jsnum;
+                    JSONObject[i]['comp'] = jscomp;
+                    JSONObject[i]['bairro'] = jsbairro;
+                    JSONObject[i]['cidade'] = jscidade;
+                    JSONObject[i]['uf'] = jsuf;
+
+                    localStorage.setItem("users_bd", JSON.stringify(JSONObject));
+                    alert("Dados Atualizados com Sucesso!");
+                    return;
+                }
+            }
+        } catch (error) {
+            //coloquei este try catch para parar de reclamar de erro
+        }
+
+        alert("Dados Atualizados!");
+
+        //alert(data.cep, data.rua, data.num, data.comp, data.bairro, data.cidade, data.uf);
     }
 
     return (
@@ -64,49 +170,101 @@ const TelaEnderecoCliente = () => {
 
             <div id={styles["conteudoCli"]}>
                 <h2><center>Endereço (Cliente)</center></h2>
-                <form id={styles["formEN"]}>
+                <form id={styles["formEN"]} onSubmit={(e) => updateEndereco(e)}>
                     <div className={styles.linha}>
                         <div>
-                            <input type="number" 
-                                placeholder="CEP:" 
-                                title="Digite o seu CEP" 
-                                name="cep" 
-                                id={styles["cep"]} 
-                                maxLength="8" 
+                            <input type="number"
+                                placeholder="CEP:"
+                                title="Digite o seu CEP"
+                                name="cep"
+                                id={styles["cep"]}
+                                maxLength="8"
                                 onKeyPress={(event) => {
                                     if (!/[0-9]/.test(event.key)
-                                        || event.target.value.length > event.target.maxLength -1) {
+                                        || event.target.value.length > event.target.maxLength - 1) {
                                         event.preventDefault();
-                                    }                                            
-                                }} />
+                                    }
+                                }}
+                                defaultValue={jscep}
+                                value={altcep}
+                                {...register("cep")}
+                                onBlur={checkCEP}
+                                onChange={altCep} 
+                                required/>
                         </div>
                         <div>
-                            <input type="text" placeholder="Rua:" title="Digite a sua Rua" name="rua" id={styles["rua"]} className={styles.segColuna} />
+                            <input type="text"
+                                placeholder="Rua:"
+                                title="Digite a sua Rua"
+                                name="rua" id={styles["rua"]}
+                                className={styles.segColuna}
+                                {...register("rua")}
+                                defaultValue={jsrua}
+                                value={jsrua} 
+                                disabled />
                         </div>
                     </div>
                     <div className={styles.linha}>
                         <div>
-                            <input type="number" 
-                                placeholder="Número:" 
-                                title="Digite o seu Número" 
-                                name="numero" 
+                            <input type="number"
+                                placeholder="Número:"
+                                title="Digite o seu Número"
+                                name="num"
                                 onKeyPress={(event) => {
                                     if (!/[0-9]/.test(event.key)) {
                                         event.preventDefault();
-                                }}}
-                                id={styles["numero"]} /> <br></br>
+                                    }
+                                }}
+                                id={styles["numero"]}
+                                {...register("num")}
+                                defaultValue={jsnum}
+                                value={altnum}
+                                onChange={altNum}
+                                required /> <br></br>
                         </div>
                         <div>
-                            <input type="text" placeholder="Complemento:" title="Digite o seu Complemento" name="comple" id={styles["comple"]} className={styles.segColuna} /> <br></br>
+                            <input type="text"
+                                placeholder="Complemento:"
+                                title="Digite o seu Complemento"
+                                name="comp" id={styles["comple"]}
+                                className={styles.segColuna}
+                                {...register("comp")}
+                                defaultValue={jscomp}
+                                value={altcomp}
+                                onChange={altComp} /> <br></br>
                         </div>
                     </div>
                     <div className={styles.linhaUnica}>
-                        <input type="text" placeholder="Bairro:" title="Digite o seu Bairro" name="bairro" id={styles["bairro"]} /> <br></br>
-                        <input type="text" placeholder="Cidade:" title="Digite a sua Cidade" name="cidade" id={styles["cidade"]} /> <br></br>
-                        <input type="text" placeholder="Estado:" title="Digite o seu Estado" name="estado" id={styles["estado"]} /> <br></br>
+                        <input type="text"
+                            placeholder="Bairro:"
+                            title="Digite o seu bairro"
+                            name="bairro"
+                            id={styles["bairro"]}
+                            {...register("bairro")}
+                            defaultValue={jsbairro}
+                            value={jsbairro} 
+                            disabled /> <br></br>
+                        <input type="text"
+                            placeholder="Cidade:"
+                            title="Digite a sua Cidade"
+                            name="cidade"
+                            id={styles["cidade"]}
+                            {...register("cidade")}
+                            defaultValue={jscidade}
+                            value={jscidade} 
+                            disabled /> <br></br>
+                        <input type="text"
+                            placeholder="Estado:"
+                            title="Digite o seu Estado"
+                            name="estado"
+                            id={styles["estado"]}
+                            {...register("uf")}
+                            defaultValue={jsuf}
+                            value={jsuf}
+                            disabled /> <br></br>
                     </div>
                     <div id="btnDBSalvar">
-                        <input type="submit" id={styles["btnSalvarDDB"]} name="btnSalvarDDB" onClick={() => alert('Dados Salvos!')} value="Salvar" />
+                        <input type="submit" id={styles["btnSalvarDDB"]} name="btnSalvarDDB" value="Salvar" />
                     </div>
                 </form>
             </div>
@@ -135,7 +293,7 @@ const TelaEnderecoCliente = () => {
                         <ul id="uMenHamburger">
                             <li>
                                 <p>
-                                <a href="./tMenuDBCli" rel="noreferrer">
+                                    <a href="./tMenuDBCli" rel="noreferrer">
                                         Dados Básicos
                                     </a>
                                 </p>
