@@ -203,6 +203,11 @@ h2 {
     display: table-cell;
 }
 
+.desImgDef 
+{
+   display:none;
+}
+
 
 @media only screen and (min-width: 1024px) {
     .fFotoCliente {
@@ -232,10 +237,12 @@ h2 {
     #conteudoCli {
         position: fixed;
         width: 85%;
-        height: 90%;
+        height: 100%;
         background-color: blue;
         top: 10.5%;
         left: 15.2%;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     #voltar {
@@ -358,7 +365,7 @@ h2 {
         width: 50%;
         height: 15%;
     }
-
+    
     #formFoto img {
         width: 80%;
         height: 60%;

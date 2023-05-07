@@ -9,7 +9,7 @@ import Perfil from '../../icones/perfilCliente.png';
 
 import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
 const TelaFotoCliente = () => {
@@ -33,6 +33,43 @@ const TelaFotoCliente = () => {
             setMenuClass("menu hidden")
         }
         setIsMenuClicked(!isMenuClicked)
+    }
+
+    //logica do upload da foto
+    const [selectedFile, setSelectedFile] = useState();
+    const [preview, setPreview] = useState();
+
+
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview(undefined);
+            return;
+        }
+
+        const objUrl = URL.createObjectURL(selectedFile);
+        setPreview(objUrl);
+
+        //libera memoria quando o componente nao e criado
+        return () => URL.revokeObjectURL(objUrl);
+    }, [selectedFile])
+
+    const onSelectFile = (e) => {
+        if (!e.target.files || e.target.files.lenght === 0) {
+            setSelectedFile(undefined);
+            return;
+        }
+        
+        var myPicture = document.getElementById('fotoDef');
+        myPicture.className = styles.desImgDef;
+        
+        setSelectedFile(e.target.files[0]);
+    }
+
+    //atualiza foto de perfil
+    const updateFoto = (e) => {
+        e.preventDefault();
+
+        alert('Dados Salvos!');
     }
 
     return (
@@ -64,11 +101,12 @@ const TelaFotoCliente = () => {
 
             <div id={styles["conteudoCli"]}>
                 <h2><center>Foto (Cliente)</center></h2>
-                <form id={styles["formFoto"]}>
-                    <center><img src={FotoPerfil} alt="Foto Perfil" /></center>
-                    <center><input type="file" id={styles["fotoCli"]} name="fotoCli" /></center>
+                <form id={styles["formFoto"]} onSubmit={updateFoto}>
+                    <center><img id="fotoDef" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
+                    <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
+                    <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} /></center>
                     <div id={styles["fbtnSalvarotoCli"]}>
-                        <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" onClick={() => alert('Dados Salvos!')} value="Salvar" />
+                        <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" value="Salvar" />
                     </div>
                 </form>
             </div>
