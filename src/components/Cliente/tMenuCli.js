@@ -47,25 +47,40 @@ const TelaMenuCliente = () => {
     const JSONObject = JSON.parse(valores);
     const JSToken = JSON.parse(valToken);
 
-    var nome;
+    var nome, sobrenome, pnome, psobrenome;
 
     if(JSONObject.length === 1)
     {
         nome = JSONObject.map((JSONObject) => {        
             return JSONObject['nome'] ;
         })
-
+        sobrenome= JSONObject.map((JSONObject) => {        
+            return JSONObject['sobrenome'] ;
+        })
     }
     else {
         try {
             for (let i = 0; i <= localStorage.length; i++) {
-                if (JSONObject[i]['email'] === JSToken['email'])
+                if (JSONObject[i]['email'] === JSToken['email']){
                     nome = JSONObject[i]['nome'];
+                    sobrenome = JSONObject[i]['sobrenome'];
+                }
             }
         } catch (error) {
             //coloquei este try catch para parar de reclamar de erro
         }
     }
+
+    //Primeira letra de cada nome
+    const cNome = nome.toString();
+
+    pnome = cNome[0];
+
+    const cSobrenome = sobrenome.toString();
+
+    psobrenome = cSobrenome[0];
+
+    const iniciais = pnome + psobrenome;
 
     return (
         <div className={styles.fMenuCliente}>
@@ -73,7 +88,11 @@ const TelaMenuCliente = () => {
                 <div className={styles.voltar}><Link to="../../tLoginCli"><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
                 <div className={styles.logoMenuCli}><p></p></div>
                 <div className={styles.notificacao}><a href="/"><img src={Notificacao} alt="notificacao" /></a></div>
-                <div className={styles.perfil}><img src={Perfil} alt="perfil" /></div>
+                <div className={styles.perfil}>
+                    {/*<img src={Perfil} alt="perfil" />*/}
+
+                    <p>{iniciais}</p>
+                </div>
             </nav>
             <div className={styles.fPreto}></div>
             <div className={styles.texto}>Bem-Vindo(a)<br></br>Cliente<br></br><div className={styles.nome}>{nome}</div></div>

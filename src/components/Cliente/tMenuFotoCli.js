@@ -5,7 +5,7 @@ import Voltar from '../../icones/chevron-left.png';
 
 import Notificacao from '../../icones/Doorbell.png';
 
-import Perfil from '../../icones/perfilCliente.png';
+//import Perfil from '../../icones/perfilCliente.png';
 
 import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
@@ -72,6 +72,60 @@ const TelaFotoCliente = () => {
         alert('Dados Salvos!');
     }
 
+    const dados = localStorage.getItem("users_bd");
+    const valToken = localStorage.getItem('user_token');
+
+    const JSONObject = JSON.parse(dados);
+    const JSToken = JSON.parse(valToken);
+
+
+    var nome, sobrenome, pnome, psobrenome;
+
+    //Mapeamento do objeto local
+    try {
+        for (let i = 0; i <= localStorage.length; i++) {
+            if (JSONObject[i]['email'] === JSToken['email']) {
+                nome = JSONObject[i]['nome'];
+                sobrenome = JSONObject[i]['sobrenome'];
+            }
+        }
+    } catch (error) {
+        //coloquei este try catch para parar de reclamar de erro
+    }
+
+    if(JSONObject.length === 1)
+    {
+        nome = JSONObject.map((JSONObject) => {        
+            return JSONObject['nome'] ;
+        })
+        sobrenome= JSONObject.map((JSONObject) => {        
+            return JSONObject['sobrenome'] ;
+        })
+    }
+    else {
+        try {
+            for (let i = 0; i <= localStorage.length; i++) {
+                if (JSONObject[i]['email'] === JSToken['email']){
+                    nome = JSONObject[i]['nome'];
+                    sobrenome = JSONObject[i]['sobrenome'];
+                }
+            }
+        } catch (error) {
+            //coloquei este try catch para parar de reclamar de erro
+        }
+    }
+
+    //Primeira letra de cada nome
+    const cNome = nome.toString();
+
+    pnome = cNome[0];
+
+    const cSobrenome = sobrenome.toString();
+
+    psobrenome = cSobrenome[0];
+
+    const iniciais = pnome + psobrenome;
+
     return (
         <div className={styles.fFotoCliente}>
             <div id={styles["menuLatCli"]}>
@@ -80,7 +134,8 @@ const TelaFotoCliente = () => {
                         <br></br>
                         <br></br>
                         <div id={styles["perfilLateral"]}>
-                            <img src={Perfil} alt="perfil" />
+                            {/*<img src={Perfil} alt="perfil" />*/}
+                            <p>{iniciais}</p>
                         </div>
                         <div id={styles["textoLL"]}>
                             <a href="./tMenuDBCli" rel="noreferrer">
@@ -129,7 +184,8 @@ const TelaFotoCliente = () => {
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
                         <div id="perfilHamburger">
-                            <img src={Perfil} alt="perfil" />
+                            {/*<img src={Perfil} alt="perfil" />*/}
+                            <p>{iniciais}</p>
                         </div>
 
                         <ul id="uMenHamburger">
@@ -165,7 +221,10 @@ const TelaFotoCliente = () => {
                     </div>
                 </div>
 
-                <div className={styles.perfil}><img src={Perfil} alt="perfil" /></div>
+                <div className={styles.perfil}>
+                    {/*<img src={Perfil} alt="perfil" />*/}
+                    <p>{iniciais}</p>
+                </div>
                 <div className={styles.notificacao}><a href="/"><img src={Notificacao} alt="notificacao" /></a></div>
                 <div className={styles.logoMenuCli}><p></p></div>
                 <div id={styles["voltar"]}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>

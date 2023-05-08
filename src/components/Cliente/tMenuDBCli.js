@@ -7,7 +7,7 @@ import Voltar from '../../icones/chevron-left.png';
 
 import Notificacao from '../../icones/Doorbell.png';
 
-import Perfil from '../../icones/perfilCliente.png';
+//import Perfil from '../../icones/perfilCliente.png';
 
 import './menHamburger.css';
 
@@ -130,6 +130,19 @@ const TelaDadosBasicosCliente = () => {
         }
     }
 
+    var pnome, psobrenome;
+
+    //Primeira letra de cada nome
+    const cNome = nome.toString();
+
+    pnome = cNome[0];
+
+    const cSobrenome = sobrenome.toString();
+
+    psobrenome = cSobrenome[0];
+
+    const iniciais = pnome + psobrenome;
+
     return (
         <div className={styles.fDBCliente}>
             <div id={styles["menuLatCli"]}>
@@ -138,7 +151,8 @@ const TelaDadosBasicosCliente = () => {
                         <br></br>
                         <br></br>
                         <div id={styles["perfilLateral"]}>
-                            <img src={Perfil} alt="perfil" />
+                            {/*<img src={Perfil} alt="perfil" />*/}
+                            <p>{iniciais}</p>
                         </div>
                         <div id={styles["textoLL"]}>
                             <a href='./tMenuDBCli' rel="noreferrer">
@@ -222,7 +236,8 @@ const TelaDadosBasicosCliente = () => {
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
                         <div id="perfilHamburger">
-                            <img src={Perfil} alt="perfil" />
+                            {/*<img src={Perfil} alt="perfil" />*/}
+                            <p>{iniciais}</p>
                         </div>
 
                         <ul id="uMenHamburger">
@@ -258,7 +273,10 @@ const TelaDadosBasicosCliente = () => {
                     </div>
                 </div>
 
-                <div className={styles.perfil}><img src={Perfil} alt="perfil" /></div>
+                <div className={styles.perfil}>
+                    {/*<img src={Perfil} alt="perfil" />*/}
+                    <p>{iniciais}</p>
+                </div>
                 <div className={styles.notificacao}><a href="/"><img src={Notificacao} alt="notificacao" /></a></div>
                 <div className={styles.logoMenuCli}><p></p></div>
                 <div id={styles["voltar"]}><a href="/tMenuCli"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>

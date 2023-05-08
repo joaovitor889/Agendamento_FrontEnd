@@ -113,6 +113,13 @@
     height: 90%;
 }
 
+.perfil p {
+	font-size: 6vw;
+	line-height: 70%;
+    margin-top: 25%;
+    color: #fff;
+}
+
 h2 {
     color: #fff;
     font-family: 'Times New Roman', Times, serif;
@@ -190,6 +197,12 @@ h2 {
     margin: 10%;
     width: 80%;
     height: 75%;
+}
+
+.perfil p {
+    font-size: 6vw;
+    margin-top: 20%;
+    line-height: 75%;
 }
 
 .linha { 
@@ -323,6 +336,11 @@ h2 {
         width: 70%;
         height: 70%;
     }
+    .perfil p {
+        font-size: 2vw;
+        margin-top: 20%;
+        line-height: 75%;
+    }
     #menuDesk {
         display: flex;
         flex-direction: column;
@@ -365,11 +383,17 @@ h2 {
     #perfilLateral {
         display: flex;
         width: 50%;
-        height: 65%;
+        height: 55%;
         background-color: #000;
         margin-left: -5%;
         border-radius: 50%;
         margin-top: 12%;
+    }
+    #perfilLateral p {
+        margin-left: 25%;
+        line-height: 45%;
+        margin-top: 35%;
+        font-size: 3em;
     }
     #perfilLateral img{
         position: absolute;

@@ -91,6 +91,11 @@
 	margin-left: auto;
 }
 
+.perfil p {
+	font-size: 6vw;
+	line-height: 10%;
+}
+
 .perfil  img{
 	margin: 10%;
 	width: 80%;
@@ -243,7 +248,7 @@
 	}
 	.perfil p {
 		font-size: 2vw;
-		line-height: 50%;
+		line-height: 10%;
 	}
 
 	#voltarDesk {
