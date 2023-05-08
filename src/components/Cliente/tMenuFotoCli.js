@@ -59,7 +59,7 @@ const TelaFotoCliente = () => {
             return;
         }
         
-        var myPicture = document.getElementById('fotoDef');
+        var myPicture = document.getElementById('fotoDefCli');
         myPicture.className = styles.desImgDef;
         
         setSelectedFile(e.target.files[0]);
@@ -102,9 +102,9 @@ const TelaFotoCliente = () => {
             <div id={styles["conteudoCli"]}>
                 <h2><center>Foto (Cliente)</center></h2>
                 <form id={styles["formFoto"]} onSubmit={updateFoto}>
-                    <center><img id="fotoDef" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
+                    <center><img id="fotoDefCli" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
                     <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
-                    <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} /></center>
+                    <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" required /></center>
                     <div id={styles["fbtnSalvarotoCli"]}>
                         <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" value="Salvar" />
                     </div>

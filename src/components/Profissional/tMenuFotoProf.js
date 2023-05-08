@@ -37,7 +37,7 @@ const TelaFotoProfissional = () => {
                 <h2><center>Foto (Funcionário)</center></h2>
                 <form id={styles["formFoto"]}>
                     <center><img src={FotoPerfil} alt="Foto Perfil" /></center>
-                    <center><input type="file" id={styles["fotoCli"]} name="fotoCli" /></center>
+                    <center><input type="file" id={styles["fotoCli"]} name="fotoCli" accept="image/jpeg, image/jpg, image/png" required /></center>
                     <div id={styles["fbtnSalvarotoCli"]}>
                         <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" onClick={() => alert('Dados Salvos!')} value="Salvar" />
                     </div>

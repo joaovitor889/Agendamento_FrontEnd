@@ -9,7 +9,7 @@ import Perfil from '../../icones/perfilCliente.png';
 
 import './menHamburger.css';
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { useForm } from "react-hook-form";
 
@@ -61,7 +61,7 @@ const TelaEnderecoCliente = () => {
     const JSONObject = JSON.parse(dados);
     const JSToken = JSON.parse(valToken);
 
-
+    const inputCep = useRef();
 
     //Mapeamento do objeto local
     try {
@@ -102,43 +102,50 @@ const TelaEnderecoCliente = () => {
                 jscidade = data.localidade;
                 jsuf = data.uf;
             });
-
     }
 
     const updateEndereco = (e) => {
         e.preventDefault();
-        try {
-            for (let i = 0; i <= localStorage.length; i++) {
-                if (JSONObject[i]['email'] === JSToken['email']) {
-                    jsnum = JSONObject[i]['num'];
-                    jscomp = JSONObject[i]['comp'];
-                    if(jsnum !== null && altnum != null)
-                        jsnum = altnum;
-                    if(jscomp !== null && altcomp != null)
-                        jscomp = altcomp;
-                    else
-                        jscomp = "";
 
-                    JSONObject[i]['cep'] = jscep;
-                    JSONObject[i]['rua'] = jsrua;
-                    JSONObject[i]['num'] = jsnum;
-                    JSONObject[i]['comp'] = jscomp;
-                    JSONObject[i]['bairro'] = jsbairro;
-                    JSONObject[i]['cidade'] = jscidade;
-                    JSONObject[i]['uf'] = jsuf;
+        const valCep = inputCep.current.value;
+        let qtdCep = valCep.length;
+        if (qtdCep < 8) {
+            alert("CEP Inválido!");
+            //inputCep.current.focus();
+        } else {
+            try {
+                for (let i = 0; i <= localStorage.length; i++) {
+                    if (JSONObject[i]['email'] === JSToken['email']) {
+                        jsnum = JSONObject[i]['num'];
+                        jscomp = JSONObject[i]['comp'];
+                        if (jsnum !== null && altnum != null)
+                            jsnum = altnum;
+                        if (jscomp !== null && altcomp != null)
+                            jscomp = altcomp;
+                        else
+                            jscomp = "";
 
-                    localStorage.setItem("users_bd", JSON.stringify(JSONObject));
-                    alert("Dados Atualizados com Sucesso!");
-                    return;
+                        JSONObject[i]['cep'] = jscep;
+                        JSONObject[i]['rua'] = jsrua;
+                        JSONObject[i]['num'] = jsnum;
+                        JSONObject[i]['comp'] = jscomp;
+                        JSONObject[i]['bairro'] = jsbairro;
+                        JSONObject[i]['cidade'] = jscidade;
+                        JSONObject[i]['uf'] = jsuf;
+
+                        localStorage.setItem("users_bd", JSON.stringify(JSONObject));
+                        alert("Dados Atualizados com Sucesso!");
+                        return;
+                    }
                 }
+            } catch (error) {
+                //coloquei este try catch para parar de reclamar de erro
             }
-        } catch (error) {
-            //coloquei este try catch para parar de reclamar de erro
+
+            alert("Dados Atualizados!");
+
+            //alert(data.cep, data.rua, data.num, data.comp, data.bairro, data.cidade, data.uf);
         }
-
-        alert("Dados Atualizados!");
-
-        //alert(data.cep, data.rua, data.num, data.comp, data.bairro, data.cidade, data.uf);
     }
 
     return (
@@ -188,9 +195,10 @@ const TelaEnderecoCliente = () => {
                                 defaultValue={jscep}
                                 value={altcep}
                                 {...register("cep")}
+                                ref={inputCep}
                                 onBlur={checkCEP}
-                                onChange={altCep} 
-                                required/>
+                                onChange={altCep}
+                                required />
                         </div>
                         <div>
                             <input type="text"
@@ -200,7 +208,7 @@ const TelaEnderecoCliente = () => {
                                 className={styles.segColuna}
                                 {...register("rua")}
                                 defaultValue={jsrua}
-                                value={jsrua} 
+                                value={jsrua}
                                 disabled />
                         </div>
                     </div>
@@ -242,7 +250,7 @@ const TelaEnderecoCliente = () => {
                             id={styles["bairro"]}
                             {...register("bairro")}
                             defaultValue={jsbairro}
-                            value={jsbairro} 
+                            value={jsbairro}
                             disabled /> <br></br>
                         <input type="text"
                             placeholder="Cidade:"
@@ -251,7 +259,7 @@ const TelaEnderecoCliente = () => {
                             id={styles["cidade"]}
                             {...register("cidade")}
                             defaultValue={jscidade}
-                            value={jscidade} 
+                            value={jscidade}
                             disabled /> <br></br>
                         <input type="text"
                             placeholder="Estado:"
