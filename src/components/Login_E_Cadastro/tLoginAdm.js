@@ -8,6 +8,11 @@ const telaLoginAdm = () => {
     
     document.title = "LoginAdm";
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        alert('Entra na sua conta se os dados estiverem corretos!');
+    }
+
     return(
         <div className="fLoginAdm">
             <div className='container'>
@@ -23,7 +28,7 @@ const telaLoginAdm = () => {
                     <a href="./tCadastroAdm" className='Cadastro'>Cadastro</a>
                     </div>
                     <div className='formulario'>
-                        <form  id ="formLoginAdm">
+                        <form  id ="formLoginAdm" onSubmit={handleSubmit}>
                             <div className='E-mail'>
                                 <img src={Email} alt="" />
                                 <input type="email" placeholder='E-mail' title='Digite seu E-mail'/>
@@ -33,7 +38,7 @@ const telaLoginAdm = () => {
                                 <input type="password" placeholder='Senha' title='Digite sua senha'/>
                             </div>
                             
-                                <input type = "submit" id = "btnLogin" name = "btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value = "Login" />                        
+                                <input type = "submit" id = "btnLoginADM" name = "btnLoginADM" value = "Login" />                        
                             
                         </form>
                     </div>

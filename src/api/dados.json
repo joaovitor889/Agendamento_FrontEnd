@@ -1,0 +1,102 @@
+{
+    "clientes": [
+        {
+            "nome": "",
+            "sobrenome": "",
+            "cpf": "",
+            "telefone": "",
+            "email": "",
+            "senha": "",
+            "confSenha": "",
+            "termos": "",
+            "cep": "",
+            "rua": "",
+            "num": "",
+            "comp": "",
+            "bairro": "",
+            "cidade": "",
+            "estado": "",
+            "foto": ""
+        }
+    ],
+    "funcionarios": [
+        {
+            "nome": "",
+            "sobrenome": "",
+            "email": "",
+            "telefone": "",
+            "cep": "",
+            "rua": "",
+            "bairro": "",
+            "num": "",
+            "cidade": "",
+            "estado": "",
+            "rg": "",
+            "cpf": "",
+            "foto": "",
+            "horFunc": [
+                {
+                    "dia": "",
+                    "horIni": "",
+                    "horFim": ""
+                }
+            ],
+            "funFunc": [
+                {
+                    "funcao": ""
+                }
+            ],
+            "local": "",
+            "senha": "",
+            "confSenha": "",
+            "statusFunc": ""
+        }
+    ],
+    "administradores": [
+        {
+            "usuario": "",
+            "sobrenome": "",
+            "cpf": "",
+            "email": "",
+            "senha": "",
+            "confSenha": "",
+            "cep": "",
+            "rua": "",
+            "num": "",
+            "comp": "",
+            "bairro": "",
+            "cidade": "",
+            "estado": "",
+            "foto": "",
+            "empreendimento": [
+                {
+                    "imlogo": "",
+                    "nome": "",
+                    "horFunc": [
+                        {
+                            "dia": "",
+                            "horIni": "",
+                            "horFim": ""
+                        }
+                    ],
+                    "tema": "",
+                    "cep": "",
+                    "rua": "",
+                    "num": "",
+                    "comp": "",
+                    "bairro": "",
+                    "cidade": "",
+                    "estado": ""
+                }
+            ],
+            "servicos": [
+                {
+                    "nome": "",
+                    "descricao": "",
+                    "duracao": "",
+                    "preco": ""
+                }
+            ]
+        }
+    ]
+}

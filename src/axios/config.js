@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const agFetch = axios.create({
-    baseURL: "https://jsonplaceholder.typicode.com",
+    baseURL: "http://localhost:5000/api",
     headers: {
         "Content-Type": "application/json"
     },

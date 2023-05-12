@@ -57,13 +57,14 @@ img{
     align-items: center;
     flex-direction: row;
     justify-content: center;
-    margin: 10px;
+    margin: 1%;
 }
 .Senha{
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: center;
+    margin: 1%;
 }
 
 .formulario img{
@@ -80,7 +81,7 @@ img{
 }
 
 
-#btnLogin{
+#btnLoginADM{
 
     border-style: none;
     background-color: #3293CA;
@@ -89,6 +90,10 @@ img{
     border-radius: 20px;
     padding: 5px 20px;
     margin: 20px;
+}
+
+#btnLoginADM:hover {
+    background-color: #273791;
 }
 
 
@@ -106,21 +111,18 @@ img{
     font-family: 'Euphoria Script', cursive;
 }
 
-@media only screen  and (max-width: 500px) {
+@media only screen  and (max-width: 600px) {
     .butoes{ 
         width: 85%;
     }
+    .fLoginAdm .campo-de-login{
+        width: 95%;
+    }
     .formulario{
-        width: 360px;
+        width: 90%;
         height: 189px;
     }
     #formLoginAdm div input {
-        width: 250px;
-    }
-}
-
-@media only screen  and (max-width: 300px) {
-    #formLoginAdm div input {
-        width: 150px;
+        width: 90%;
     }
 }

@@ -1,0 +1,277 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2023-05-11T20:45:36.543Z",
+    "__export_source": "insomnia.desktop.app:v2023.2.0",
+    "resources": [
+        {
+            "_id": "req_af5c665100ed4de28d736a9428583213",
+            "parentId": "fld_218256bfb316403f8d3ef478cf5b7bff",
+            "modified": 1683504369304,
+            "created": 1683496449919,
+            "url": "{{ _.baseUrl }}\\auth\\proprietario",
+            "name": "Login Proprietario",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"email\":\"jean@example.com\",\n\t\"senha\":\"abc123\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1683496449919,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_218256bfb316403f8d3ef478cf5b7bff",
+            "parentId": "wrk_5c8b6ca0ea3141b9a34230823f2469f9",
+            "modified": 1683496447720,
+            "created": 1683496447720,
+            "name": "Auth",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1683496447720,
+            "_type": "request_group"
+        },
+        {
+            "_id": "wrk_5c8b6ca0ea3141b9a34230823f2469f9",
+            "parentId": null,
+            "modified": 1683427626719,
+            "created": 1683427626719,
+            "name": "TG-AGENDAMENTO",
+            "description": "",
+            "scope": "collection",
+            "_type": "workspace"
+        },
+        {
+            "_id": "req_722bdb23d5f24922a06f579762cdfbe8",
+            "parentId": "fld_218256bfb316403f8d3ef478cf5b7bff",
+            "modified": 1683504986215,
+            "created": 1683504776058,
+            "url": "{{ _.baseUrl }}\\auth\\",
+            "name": "Teste token prop",
+            "description": "",
+            "method": "GET",
+            "body": {
+                "mimeType": "application/json",
+                "text": ""
+            },
+            "parameters": [
+                {
+                    "id": "pair_79f2a4e9953f4e39a7808127aabcf561",
+                    "name": "",
+                    "value": "",
+                    "description": ""
+                }
+            ],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "authentication": {
+                "type": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6MiwiaWF0IjoxNjgzNTA0NTgxLCJleHAiOjkzMzEyMDAwMDAxNjgzNTAwMDAwfQ.PJZEAiuCzFUsrM8R3ETEov7dk6RIsT1rbJnqPBxSBM0"
+            },
+            "metaSortKey": -1683462045180,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_98a47c3d5edf4f09b788854a913dfee9",
+            "parentId": "fld_ccfc5f04f8844132a41987b623461222",
+            "modified": 1683498273075,
+            "created": 1683427640441,
+            "url": "{{ _.baseUrl }}\\proprietarios\\criar",
+            "name": "Criar",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\"nome\": \"Alice\",\n\"email\": \"jean@example.com\",\n\"senha\": \"abc123\",\n\"cpf\": \"121\",\n\"telefone\": \"15 996633174\",\n\"uf\": \"SP\",\n\"cidade\": \"São Paulo\",\n\"bairro\": \"Vila Mariana\",\n\"logradouro\": \"Rua Vergueiro\",\n\"numero\": \"1000\",\n\"complemento\": \"Apartamento 123\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1683427640441,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_ccfc5f04f8844132a41987b623461222",
+            "parentId": "wrk_5c8b6ca0ea3141b9a34230823f2469f9",
+            "modified": 1683427639502,
+            "created": 1683427639502,
+            "name": "Proprietário",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1683427639502,
+            "_type": "request_group"
+        },
+        {
+            "_id": "req_b441b274aeba4a18bdec0de80aa8211e",
+            "parentId": "fld_ccfc5f04f8844132a41987b623461222",
+            "modified": 1683499469147,
+            "created": 1683499460274,
+            "url": "{{ _.baseUrl }}\\proprietarios",
+            "name": "todos",
+            "description": "",
+            "method": "GET",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\"nome\": \"Alice\",\n\"email\": \"jean@example.com\",\n\"senha\": \"abc123\",\n\"cpf\": \"121\",\n\"telefone\": \"15 996633174\",\n\"uf\": \"SP\",\n\"cidade\": \"São Paulo\",\n\"bairro\": \"Vila Mariana\",\n\"logradouro\": \"Rua Vergueiro\",\n\"numero\": \"1000\",\n\"complemento\": \"Apartamento 123\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1682626809733.25,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_aa5be7cdab7648b496ffe54c5a4844f7",
+            "parentId": "fld_ccfc5f04f8844132a41987b623461222",
+            "modified": 1683490736829,
+            "created": 1683490724001,
+            "url": "{{ _.baseUrl }}\\proprietarios\\login",
+            "name": "Login",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\"email\": \"ali@example.com\",\n\"senha\": \"abc123\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1681825979025.5,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "env_d742b0d612f2319d4c3d80e46f4974134be98916",
+            "parentId": "wrk_5c8b6ca0ea3141b9a34230823f2469f9",
+            "modified": 1683427626721,
+            "created": 1683427626721,
+            "name": "Base Environment",
+            "data": {},
+            "dataPropertyOrder": null,
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1683427626721,
+            "_type": "environment"
+        },
+        {
+            "_id": "jar_d742b0d612f2319d4c3d80e46f4974134be98916",
+            "parentId": "wrk_5c8b6ca0ea3141b9a34230823f2469f9",
+            "modified": 1683427626722,
+            "created": 1683427626722,
+            "name": "Default Jar",
+            "cookies": [],
+            "_type": "cookie_jar"
+        },
+        {
+            "_id": "spc_7f1056dda9c847d1a2fb49589a6aac2d",
+            "parentId": "wrk_5c8b6ca0ea3141b9a34230823f2469f9",
+            "modified": 1683427626719,
+            "created": 1683427626719,
+            "fileName": "TG-AGENDAMENTO",
+            "contents": "",
+            "contentType": "yaml",
+            "_type": "api_spec"
+        },
+        {
+            "_id": "env_2949ef47ab26472fad6d977a817cf867",
+            "parentId": "env_d742b0d612f2319d4c3d80e46f4974134be98916",
+            "modified": 1683428074585,
+            "created": 1683427735440,
+            "name": "LOCAL",
+            "data": {
+                "baseUrl": "http://localhost:4000"
+            },
+            "dataPropertyOrder": {
+                "&": [
+                    "baseUrl"
+                ]
+            },
+            "color": "#c22424",
+            "isPrivate": false,
+            "metaSortKey": 1683427735440,
+            "_type": "environment"
+        },
+        {
+            "_id": "env_effe41ff99cc465e95960f8d504cf3d1",
+            "parentId": "env_d742b0d612f2319d4c3d80e46f4974134be98916",
+            "modified": 1683837899652,
+            "created": 1683427899345,
+            "name": "Online",
+            "data": {
+                "baseUrl": "http://ec2-34-234-67-50.compute-1.amazonaws.com:4000"
+            },
+            "dataPropertyOrder": {
+                "&": [
+                    "baseUrl"
+                ]
+            },
+            "color": "#c22424",
+            "isPrivate": false,
+            "metaSortKey": 1683427735490,
+            "_type": "environment"
+        }
+    ]
+}
