@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap'); 
 
-.fPesqFunc {
+.fMenuADM {
 	position: fixed;
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     width: 100%;
@@ -11,9 +11,20 @@ header{
 	display: flex;
 	justify-content: space-between;
 	padding: 0 3rem;
-	border-bottom: white 3px solid;
+	border-bottom: white 2px solid;
 	align-items: center;
 	height: 4rem;
+    background: #3293CA;
+}
+main{
+    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
+    position: fixed;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 a{
@@ -38,6 +49,16 @@ a{
 
 }
 
+.esquerda img{ 
+	height: 2.5rem;
+}
+
+.direita {
+	width: 110px;
+	display: flex;
+	justify-content: space-between;
+}
+
 .direita  img{
     height: 3rem;
 }
@@ -51,21 +72,7 @@ a{
     left: 0;
     background: #252525;
     border-right: white 3px solid;
-    display: none;
 }
-
-.sidebar-rigth{
-    z-index: 1;
-    position: fixed;
-    width: 15%;
-    height: 100%;
-    padding-top: 30px;
-    right: 0;
-    background: #252525;
-    border-right: white 3px solid;
-    display: none;
-}
-
 .sidebar a{
     color: white;
     display: block;
@@ -90,79 +97,53 @@ a{
 }
 
 #check:checked ~ .sidebar {
-    display: flex;
-    flex-direction: column;
+    display: none;
 }
 
 #check {
 	display: none;
 }
-
-#check-rigth:checked ~ .sidebar-rigth {
-    display: flex;
-}
-
-#check-rigth {
-	display: none;
-}
-
 .container{
 	display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 90%;
-    margin: 0 5% 0 5%;
+	align-items: center;
+	justify-content: center;
+	width: 80%;
+	position: fixed;
+	right: 0;
+}
+
+.header-container{
+	display: flex;
+	justify-content: space-between;
+	width: 60rem;
+	margin: 1rem 0;
 
 }
-.header-main{
-    width: 100%;
+
+.categories{
+    width: 360px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: end;
 }
-
-.header-main  img{
+.category{
+    width: 2rem;
     height: 2rem;
-    
+    margin-right: 0.3rem;
 }
 
-.filter{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-left: 1rem;
-}
-
-.filter input{
-    border: none;
-    margin-left: 1rem;
-    height: 30px;
-    border-radius: 15px;
-    width: 250px;
-}
-
-.funcionarios{
-    margin-right: 1rem;
-}
-.funcionarios img{
- margin: 0.5rem;
-}
-.cards{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-around;
+.newServ{
+	width: 2.5rem;
+	height: 2.5rem;
 }
 .card{
 	background-color: #48A695;
-	border: 0;
-    border-radius: 15px;
+	border-left: #034522 solid 10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	padding: 0.5rem 1rem;
 	align-items: start;
-	width: 360px ;
+	width: 60rem ;
 	height: 7rem;
 	margin-bottom: 0.5rem;
 }
@@ -173,9 +154,4 @@ a{
 .card  p{
 	flex-wrap: wrap;
 	margin: 10px 0;
-}
-.card-footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }

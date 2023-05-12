@@ -17,7 +17,7 @@ header{
 	height: 4rem;
     background: #3293CA;
 }
-main{
+.main{
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     position: fixed;
     right: 0;
@@ -102,16 +102,17 @@ a{
 }
 
 
-.container{
+.Container {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     
 }
-.container h1{
+
+.Container h1{
     background-color: #000000;
     border-radius: 15px;
     padding: 0 1rem;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #6375D6;
     margin-top: 10%;
     text-align: center;

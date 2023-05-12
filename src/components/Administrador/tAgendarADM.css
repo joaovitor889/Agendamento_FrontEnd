@@ -103,11 +103,11 @@ a{
 
 
 
-.container{
+.Container{
     display: flex;
-    align-items: center;
+    
 }
-.container h1{
+.Container h1{
     background-color: #000000;
     border-radius: 15px;
     padding: 0 1rem;

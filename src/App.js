@@ -36,10 +36,10 @@ import FotoProfis from './components/Profissional/tMenuFotoProf.js';
 //Telas do Administrador
 import AgendarADM from './components/Administrador/tAngendarADM.js'
 import CadServicos from './components/Administrador/tCadServico.js'
-//import MenuADM from './components/Administrador/tMenuADM.js';
-//import PesquisaFunc from './components/Administrador/tPesqFunc.js';
-//import CadastroFunc from './components/Administrador/tCadFunc.js';
-//import Agendamentos from './components/Administrador/tAgendamentos.js';
+import ServADM from './components/Administrador/tServADM.js';
+import PesquisaFunc from './components/Administrador/tPesqFunc.js';
+import CadastroFunc from './components/Administrador/tCadFunc.js';
+import Agendamentos from './components/Administrador/tAgendamentos.js';
 
 
 
@@ -65,6 +65,11 @@ function App() {
             {/* Telas do Administrador */}
             <Route path="/tAgendarADM" element = {<AgendarADM />} />
             <Route path="/tCadServico" element = {<CadServicos />} />
+            <Route path="/tServADM" element = {<ServADM />} />
+            <Route path="/tPesqFunc" element =  {<PesquisaFunc />} />
+            <Route path="/tCadFunc" element = {<CadastroFunc />} />
+            <Route path="/tAgendamentosADM" element = {<Agendamentos />} />
+
 
             {/* Telas do Cliente */}
             <Route  path = "/tMenuCli" element = {<MenuCli />} />

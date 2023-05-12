@@ -2,7 +2,9 @@ import styles from './tCadastroCli.module.css';
 
 import { useState, useRef } from "react";
 
-//import agFetch from '../../axios/config.js';
+import agFetch from '../../axios/config.js';
+
+import axios from 'axios';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -23,14 +25,14 @@ const TelaCadastroUsuario = () => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [confSenha, setConfSenha] = useState("");
-    const [termos, setTermos] = useState(""); 
+    const [termos, setTermos] = useState("");
 
     const fCPF = useRef(null);
     const fTelefone = useRef(null);
     const fEmail = useRef(null);
 
     const signup = async (nome, sobrenome, cpf, telefone, email, senha, confSenha, termos) => {
-        const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
+        /*const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
         const hasEmail = usersStorage?.filter((user) => user.email === email);
 
@@ -49,29 +51,55 @@ const TelaCadastroUsuario = () => {
         else if (hasTelefone?.length) {
             alert("Telefone já cadastrados");
             fTelefone.current.focus();
+        }*/
+        //else {
+        /*let newUser;
+        //const post = { nome, sobrenome, cpf, telefone, email, senha, confSenha, termos };
+
+        if (usersStorage) {
+            newUser = [...usersStorage, { nome, sobrenome, cpf, telefone, email, senha, confSenha, termos }];
+
+        } else {
+            newUser = [{ nome, sobrenome, cpf, telefone, email, senha, confSenha, termos }];          
         }
-        else {
-            let newUser;
-            //const post = { nome, sobrenome, cpf, telefone, email, senha, confSenha, termos };
 
-            if (usersStorage) {
-                newUser = [...usersStorage, { nome, sobrenome, cpf, telefone, email, senha, confSenha, termos }];
+        localStorage.setItem("users_bd", JSON.stringify(newUser));*/
 
-            } else {
-                newUser = [{ nome, sobrenome, cpf, telefone, email, senha, confSenha, termos }];          
-            }
+        /*await agFetch.post(
+            REGISTER_URL,
+            JSON.stringify(post)
+        )*/
 
-            localStorage.setItem("users_bd", JSON.stringify(newUser));
-            
-            /*await agFetch.post(
-                REGISTER_URL,
-                JSON.stringify(post)
-            )*/
+        //const response = await agFetch.get('/clientes');
 
-            alert("Dados Cadastrados com Sucesso!");
+        // Cadastrar os dados
+        const novoUsuario = { 
+            nome: nome, 
+            sobrenome: sobrenome, 
+            cpf: cpf, 
+            telefone: telefone, 
+            email: email, 
+            senha: senha, 
+            confSenha: confSenha, 
+            termos: termos };
 
-            navigate("/tLoginCli");
-        }
+        //alert(JSON.stringify(novoUsuario));
+        axios.post('http://localhost:5000/api/clientes', novoUsuario)
+        .then(response => {
+          console.log(response.novoUsuario);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+        // Atualizar o arquivo dados.json
+        //await agFetch.put('/api/clientes.json', dados);
+
+
+        //alert("Dados Cadastrados com Sucesso!");
+
+        //navigate("/tLoginCli");
+        //}
 
         //deleta todos os dados cadastrados localmente
         //localStorage.removeItem("users_bd");
@@ -104,8 +132,8 @@ const TelaCadastroUsuario = () => {
                         <div className={styles.fundo}>
                             <form id={styles["formCadastro"]} onSubmit={(e) => cadCli(e)}>
                                 <div className={styles.entrada}>
-                                    <input type="text" placeholder="*Nome:" title="Digite o seu nome" name="nome" id="nome" required value = {nome} onChange={(e) => setNome(e.target.value)} />
-                                    <input type="text" placeholder="*Sobrenome:" title="Digite o seu sobrenome" name="sobrenome" id="sobrenome" value = {sobrenome} required onChange={(e) => setSobrenome(e.target.value)} />
+                                    <input type="text" placeholder="*Nome:" title="Digite o seu nome" name="nome" id="nome" required value={nome} onChange={(e) => setNome(e.target.value)} />
+                                    <input type="text" placeholder="*Sobrenome:" title="Digite o seu sobrenome" name="sobrenome" id="sobrenome" value={sobrenome} required onChange={(e) => setSobrenome(e.target.value)} />
                                     <input type="number"
                                         ref={fCPF}
                                         placeholder="*CPF:"
@@ -118,8 +146,8 @@ const TelaCadastroUsuario = () => {
                                                 event.preventDefault();
                                             }
                                         }}
-                                        required 
-                                        value = {cpf}
+                                        required
+                                        value={cpf}
                                         onChange={(e) => setCPF(e.target.value)} />
 
                                     <input type="number"
@@ -135,18 +163,18 @@ const TelaCadastroUsuario = () => {
                                                 event.preventDefault();
                                             }
                                         }}
-                                        value = {telefone}
+                                        value={telefone}
                                         onChange={(e) => setTelefone(e.target.value)} />
-                                    <input type="email" ref={fEmail} placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id="email" required value = {email} onChange={(e) => setEmail(e.target.value)} />
+                                    <input type="email" ref={fEmail} placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
                                     <div className="senha">
-                                        <input type="password" placeholder="*Senha:" title="Crie uma Senha" name="senha" id="senha" required value = {senha} onChange={(e) => setSenha(e.target.value)} />
-                                        <input type="password" placeholder="*Confirmar Senha:" title="Confirme sua Senha" name="confSenha" id="confSenha" required value = {confSenha} onChange={(e) => setConfSenha(e.target.value)} />
+                                        <input type="password" placeholder="*Senha:" title="Crie uma Senha" name="senha" id="senha" required value={senha} onChange={(e) => setSenha(e.target.value)} />
+                                        <input type="password" placeholder="*Confirmar Senha:" title="Confirme sua Senha" name="confSenha" id="confSenha" required value={confSenha} onChange={(e) => setConfSenha(e.target.value)} />
                                     </div>
 
                                 </div>
                                 <div className={styles.rodape}>
                                     <span className={styles.condicoes}>
-                                        <input type="checkbox" id={styles["termos"]} required value = {termos} onChange={(e) => setTermos(e.target.value)} />
+                                        <input type="checkbox" id={styles["termos"]} required value={termos} onChange={(e) => setTermos(e.target.value)} />
                                         <a href="/" target={'_blank'}>Aceitar termos</a>
                                     </span>
                                     <div className={styles.botoes}>
