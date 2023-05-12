@@ -1,7 +1,7 @@
 import styles from './tCadFunc.module.css';
-import voltar from '../../icones/Return.png';
-import perfil from  '../../img/perfil.png'
-import notificar from '../../img/notificar.png'
+//import voltar from '../../icones/Return.png';
+//import perfil from  '../../img/perfil.png';
+//import notificar from '../../img/notificar.png';
 
 
 const telaCadFunc = () => {

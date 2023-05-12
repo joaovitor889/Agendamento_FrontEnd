@@ -1,4 +1,4 @@
-import './tPesqFunc.css';
+import styles from './tPesqFunc.module.css';
 import menu from '../../img/Menu Rounded.png'
 import perfil from  '../../img/perfil.png'
 import notificar from '../../img/notificar.png'
@@ -48,7 +48,7 @@ const telaPesqFunc = () => {
                 </div>
             </div>
             {/* sidebar  final */}
-            <div className='container'>
+            <div className = {styles.container}> 
                 <div className='header-main'>
                     <div className='filter'>
                         <img src= {filter} alt="" id='icon-filter' />
