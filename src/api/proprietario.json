@@ -14,8 +14,8 @@
             "description": "",
             "method": "POST",
             "body": {
-                "mimeType": "application/json",
-                "text": "{\n\t\"email\":\"jean@example.com\",\n\t\"senha\":\"abc123\"\n}"
+                "mimeType": "application/json",                
+                "text": "{\n\t\"nome\":\"antonio@gmail.com\",\n\t\"senha\":\"abc123\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -109,7 +109,7 @@
             "method": "POST",
             "body": {
                 "mimeType": "application/json",
-                "text": "{\n\"nome\": \"Alice\",\n\"email\": \"jean@example.com\",\n\"senha\": \"abc123\",\n\"cpf\": \"121\",\n\"telefone\": \"15 996633174\",\n\"uf\": \"SP\",\n\"cidade\": \"São Paulo\",\n\"bairro\": \"Vila Mariana\",\n\"logradouro\": \"Rua Vergueiro\",\n\"numero\": \"1000\",\n\"complemento\": \"Apartamento 123\"\n}"
+                "text": "{\n\"nome\": \"antonio\",\n\"telefone\": \"15 996633174\",\n\"cpf\": \"121\",\n\"email\": \"antonio@gmail.com\",\n\"senha\": \"abc123\",\n\"confSenha\": \"abc123\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -152,7 +152,7 @@
             "method": "GET",
             "body": {
                 "mimeType": "application/json",
-                "text": "{\n\"nome\": \"Alice\",\n\"email\": \"jean@example.com\",\n\"senha\": \"abc123\",\n\"cpf\": \"121\",\n\"telefone\": \"15 996633174\",\n\"uf\": \"SP\",\n\"cidade\": \"São Paulo\",\n\"bairro\": \"Vila Mariana\",\n\"logradouro\": \"Rua Vergueiro\",\n\"numero\": \"1000\",\n\"complemento\": \"Apartamento 123\"\n}"
+                "text": "{\n\"nome\": \"antonio\",\n\"telefone\": \"15 996633174\",\n\"cpf\": \"121\",\n\"email\": \"antonio@gmail.com\",\n\"senha\": \"abc123\",\n\"confSenha\": \"abc123\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -183,7 +183,7 @@
             "method": "POST",
             "body": {
                 "mimeType": "application/json",
-                "text": "{\n\"email\": \"ali@example.com\",\n\"senha\": \"abc123\"\n}"
+                "text": "{\n\"email\": \"antonio@gmail.com\",\n\"senha\": \"abc123\"\n}"
             },
             "parameters": [],
             "headers": [
