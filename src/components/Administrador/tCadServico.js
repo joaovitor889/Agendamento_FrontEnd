@@ -47,8 +47,8 @@ const telaCadServico = () => {
                 </div>
             </div>
             {/* sidebar  final */}
-            <main>
-                <div className='container'>
+            <div className='main'>
+                <div className='Container'>
                   <h1>Cadastro de Serviços</h1>
                   <div className='categories'>
                     <img src= {catergory1} alt="" className='category'/>
@@ -63,10 +63,11 @@ const telaCadServico = () => {
                   </div>
                   <div className='finsh'>
                     <input type="text" className='texto' />
+                    <br/>
                     <a href="/">Cadastrar</a>
                   </div>
                 </div>
-            </main>
+            </div>
         </div>
     )
 }

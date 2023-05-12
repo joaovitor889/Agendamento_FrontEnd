@@ -1,5 +1,4 @@
 import './tCadastroAdm.css';
-
 import Logo from '../../img/logo-site.png';
 import Senha from '../../img/Lock.png';
 import Email from '../../img/Mail.png';
@@ -11,6 +10,9 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const TelaCadastroAdm = () => {
+
+
+
     document.title = "CadastroAdm";
 
     const navigate = useNavigate();
@@ -57,7 +59,7 @@ const TelaCadastroAdm = () => {
         //alert(JSON.stringify({nome, telefone, cpf, email, senha, confSenha}));
 
         //logica
-        
+
 
 
         navigate("/tLoginAdm");
@@ -97,76 +99,82 @@ const TelaCadastroAdm = () => {
                         <a href="./tCadastroAdm" className='Cadastro'>Cadastro</a>
                     </div>
                     <div className='formulario'>
-                        <form id="formCadastroAdm" onSubmit={handleSubmit}>
-                            <div className='User'>
-                                <img src={User} alt="" />
-                                <input type="text" placeholder='Usuário' name="nome" title='Digite seu Usuário' onChange={(e) => setNome(e.target.value)} required />
-                            </div>
-                            <div className='Telefone'>
-                                <img src={Telefone} alt="" />
-                                <input
-                                    type="number"
-                                    ref={fTelefone}
-                                    placeholder="Telefone:"
-                                    title="Digite o seu Telefone"
-                                    name="tel"
-                                    id="tel"
-                                    maxLength="11"
-                                    onKeyPress={(event) => {
-                                        if (
-                                            !/[0-9]/.test(event.key) ||
-                                            event.target.value.length >
-                                            event.target.maxLength - 1
-                                        ) {
-                                            event.preventDefault();
-                                        }
-                                    }}
-                                    value={telefone}
-                                    onChange={(e) => setTelefone(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className='Documento'>
-                                <img src={Doc} alt="" />
-                                <input type="number"
-                                    ref={fCPF}
-                                    placeholder="CPF:"
-                                    title="Digite o seu CPF"
-                                    name="cpf"
-                                    id="cpf"
-                                    maxLength="11"
-                                    onKeyPress={(event) => {
-                                        if (
-                                            !/[0-9]/.test(event.key) ||
-                                            event.target.value.length >
-                                            event.target.maxLength - 1
-                                        ) {
-                                            event.preventDefault();
-                                        }
-                                    }}
-                                    required
-                                    value={cpf}
-                                    onChange={(e) => setCPF(e.target.value)}
-                                />
-                            </div>
-                            <div className='E-mail'>
-                                <img src={Email} alt="" />
-                                <input type="email" placeholder='E-mail' title='Digite seu E-mail' onChange={(e) => setEmail(e.target.value)} required />
-                            </div>
-                            <div className='Senha'>
-                                <img src={Senha} alt="" />
-                                <input type="password" placeholder='Senha' title='Digite sua senha' onChange={(e) => setSenha(e.target.value)} required />
-                            </div>
-                            <div className='Senha'>
-                                <img src={Senha} alt="" />
-                                <input type="password" placeholder='Confirmar Senha' title='Confirme sua senha' onChange={(e) => setConfSenha(e.target.value)} required />
-                            </div>
-                            <div id='termosCadADM'>
-                                <input type="checkbox" name = "termos" required />
-                                <a href="/" target={'_blank'}>Aceitar termos</a>
-                            </div>
-                            <input type="submit" id="btnCadastroADM" name="btnCadastroADM" value="Cadastrar" />
-                        </form>
+                        <div className='Form'>
+                            <form id="formCadastroAdm" onSubmit={handleSubmit}>
+                                <div className='User'>
+                                    <img src={User} alt="" />
+                                    <input type="text" placeholder='Usuário' name="nome" title='Digite seu Usuário' onChange={(e) => setNome(e.target.value)} required />
+                                </div>
+                                <div className='Telefone'>
+                                    <img src={Telefone} alt="" />
+                                    <input
+                                        type="number"
+                                        ref={fTelefone}
+                                        placeholder="Telefone:"
+                                        title="Digite o seu Telefone"
+                                        name="tel"
+                                        id="tel"
+                                        maxLength="11"
+                                        onKeyPress={(event) => {
+                                            if (
+                                                !/[0-9]/.test(event.key) ||
+                                                event.target.value.length >
+                                                event.target.maxLength - 1
+                                            ) {
+                                                event.preventDefault();
+                                            }
+                                        }}
+                                        value={telefone}
+                                        onChange={(e) => setTelefone(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className='Documento'>
+                                    <img src={Doc} alt="" />
+                                    <input type="number"
+                                        ref={fCPF}
+                                        placeholder="CPF:"
+                                        title="Digite o seu CPF"
+                                        name="cpf"
+                                        id="cpf"
+                                        maxLength="11"
+                                        onKeyPress={(event) => {
+                                            if (
+                                                !/[0-9]/.test(event.key) ||
+                                                event.target.value.length >
+                                                event.target.maxLength - 1
+                                            ) {
+                                                event.preventDefault();
+                                            }
+                                        }}
+                                        required
+                                        value={cpf}
+                                        onChange={(e) => setCPF(e.target.value)}
+                                    />
+                                </div>
+                                <div className='E-mail'>
+                                    <img src={Email} alt="" />
+                                    <input type="email" placeholder='E-mail' title='Digite seu E-mail' onChange={(e) => setEmail(e.target.value)} required />
+                                </div>
+                                <div className='Telefone'>
+                                    <img src={Telefone} alt="" />
+                                    <input type="email" placeholder='Telefone' title='Digite seu E-mail' />
+                                </div>
+                                <div className='Senha'>
+                                    <img src={Senha} alt="" />
+                                    <input type="password" placeholder='Senha' title='Digite sua senha' onChange={(e) => setSenha(e.target.value)} required />
+                                </div>
+                                <div className='Senha'>
+                                    <img src={Senha} alt="" />
+                                    <input type="password" placeholder='Confirmar Senha' title='Confirme sua senha' onChange={(e) => setConfSenha(e.target.value)} required />
+                                </div>
+                                <div id='termosCadADM'>
+                                    <input type="checkbox" name="termos" required />
+                                    <a href="/" target={'_blank'}>Aceitar termos</a>
+                                </div>
+                                <input type="submit" id="btnCadastroADM" name="btnCadastroADM" value="Cadastrar" />
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

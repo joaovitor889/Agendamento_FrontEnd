@@ -48,7 +48,7 @@ const telaAgendarADM = () => {
             </div>
             {/* sidebar  final */}
             <main>
-                <div className='container'>
+                <div className='Container'>
                   <h1>Agendar</h1>
                   <div className='categories'>
                     <img src= {catergory1} alt="" className='category'/>
@@ -58,8 +58,8 @@ const telaAgendarADM = () => {
                     <img src= {catergory5} alt="" className='category'/>
                   </div>
                   <div className='dados'>
-                    <input type="text" className='texto' />
-                    <input type="text" className='texto' />
+                    <input type="text" className='texto' placeholder='Serviço'/>
+                    <input type="text" className='texto' placeholder='Profissional'/>
                     <div className='dois_campos'>
                         <input type="text" className='texto' />
                         <input type="text" className='texto' />
@@ -73,6 +73,7 @@ const telaAgendarADM = () => {
                   </div>
                   <div className='finsh'>
                     <input type="text" className='texto texto-demonstrativo' />
+                    <br/>
                     <a href="/">Cadastrar</a>
                   </div>
                 </div>

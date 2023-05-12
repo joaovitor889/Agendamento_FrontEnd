@@ -1,4 +1,4 @@
-import './tCadFunc.css';
+import styles from './tCadFunc.module.css';
 import voltar from '../../icones/Return.png';
 import perfil from  '../../img/perfil.png'
 import notificar from '../../img/notificar.png'
@@ -11,7 +11,7 @@ const telaCadFunc = () => {
     return (
         <div className="fCadFunc">
             <div className="fCadastro">
-                <nav id="cabecalho">
+                <nav id={styles["cabecalho"]}>
                     <p>Shostners & Shostners</p>
                 </nav>
                 <div className="cadCliLogo">Cadastro de Funcionário</div>

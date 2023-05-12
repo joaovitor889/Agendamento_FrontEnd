@@ -1,11 +1,14 @@
 import styles from './tCadastroCli.module.css';
 import { useState, useEffect, useRef } from "react";
 import agFetch from '../../axios/config.js';
+import { useState, useRef } from "react";
+import agFetch from '../../axios/config.js';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const TelaCadastroUsuario = () => {
     document.title = "Cadastrar Cliente";
-    
+
     const navigate = useNavigate();
 
     const [nome, setNome] = useState("");
@@ -25,7 +28,6 @@ const TelaCadastroUsuario = () => {
     useEffect(() => {
         const cpf = fCPF.current;
         const telefone = fTelefone.current;
-
         const bloquearRolagem = (e) => {
             e.preventDefault();
         };
@@ -50,16 +52,21 @@ const TelaCadastroUsuario = () => {
     }, []);
 
     const signup = async (nome, sobrenome, cpf, telefone, email, senha, confSenha, termos) => {
+        /*const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
+ 
+        
+ 
+    const signup = async (nome, sobrenome, cpf, telefone, email, senha, confSenha, termos) => {
         try {
             const response = await agFetch.get("/dados");
-
+ 
             if (response && response.data && typeof response.data === 'object') {
                 const clientes = response.data.clientes;
-
+ 
                 const checkExistingData = (array, field, value) => {
                     return array.some((item) => item[field] === value);
                 };
-
+ 
                 if (checkExistingData(clientes, "email", email)) {
                     alert(`Já existe um cliente cadastrado com o Email ${email}`);
                     fEmail.current.focus();
@@ -87,11 +94,11 @@ const TelaCadastroUsuario = () => {
                             termos,
                         },
                     };
-
+ 
                     await agFetch.post('/dados', novoUsuario);
-
+ 
                     alert("Dados Cadastrados com Sucesso!");
-
+ 
                     navigate("/tLoginCli");
                 }
             } else {
@@ -103,6 +110,69 @@ const TelaCadastroUsuario = () => {
             console.error("Erro na requisição:", error);
             alert('Ocorreu um erro ao realizar a requisição. Verifique a conexão ou tente novamente mais tarde.');
         }
+=======
+        else if (hasCPF?.length) {
+            alert("CPF já cadastrados");
+            fCPF.current.focus();
+        }
+        else if (hasTelefone?.length) {
+            alert("Telefone já cadastrados");
+            fTelefone.current.focus();
+        }*/
+        //else {
+        /*let newUser;
+        //const post = { nome, sobrenome, cpf, telefone, email, senha, confSenha, termos };
+ 
+        if (usersStorage) {
+            newUser = [...usersStorage, { nome, sobrenome, cpf, telefone, email, senha, confSenha, termos }];
+ 
+        } else {
+            newUser = [{ nome, sobrenome, cpf, telefone, email, senha, confSenha, termos }];          
+        }
+ 
+        localStorage.setItem("users_bd", JSON.stringify(newUser));*/
+
+        /*await agFetch.post(
+            REGISTER_URL,
+            JSON.stringify(post)
+        )*/
+
+        //const response = await agFetch.get('/clientes');
+
+        // Cadastrar os dados
+        const novoUsuario = {
+            nome: nome,
+            sobrenome: sobrenome,
+            cpf: cpf,
+            telefone: telefone,
+            email: email,
+            senha: senha,
+            confSenha: confSenha,
+            termos: termos
+        };
+
+        //alert(JSON.stringify(novoUsuario));
+        axios.post('http://localhost:5000/api/clientes', novoUsuario)
+            .then(response => {
+                console.log(response.novoUsuario);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+        // Atualizar o arquivo dados.json
+        //await agFetch.put('/api/clientes.json', dados);
+
+
+        //alert("Dados Cadastrados com Sucesso!");
+
+        //navigate("/tLoginCli");
+        //}
+
+        //deleta todos os dados cadastrados localmente
+        //localStorage.removeItem("users_bd");
+        //localStorage.clear()
+        return;
     };
 
     const handleSubmit = (e) => {
@@ -155,8 +225,7 @@ const TelaCadastroUsuario = () => {
                                         required
                                         onChange={(e) => setSobrenome(e.target.value)}
                                     />
-                                    <input
-                                        type="number"
+                                    <input type="number"
                                         ref={fCPF}
                                         placeholder="*CPF:"
                                         title="Digite o seu CPF"
@@ -229,6 +298,11 @@ const TelaCadastroUsuario = () => {
                                             value={confSenha}
                                             onChange={(e) => setConfSenha(e.target.value)}
                                         />
+                                </div>
+                                    <input type="email" ref={fEmail} placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                                    <div className="senha">
+                                        <input type="password" placeholder="*Senha:" title="Crie uma Senha" name="senha" id="senha" required value={senha} onChange={(e) => setSenha(e.target.value)} />
+                                        <input type="password" placeholder="*Confirmar Senha:" title="Confirme sua Senha" name="confSenha" id="confSenha" required value={confSenha} onChange={(e) => setConfSenha(e.target.value)} />
                                     </div>
                                 </div>
                                 <div className={styles.rodape}>
@@ -240,6 +314,7 @@ const TelaCadastroUsuario = () => {
                                             value={termos}
                                             onChange={(e) => setTermos(e.target.value)}
                                         />
+                                        <input type="checkbox" id={styles["termos"]} required value={termos} onChange={(e) => setTermos(e.target.value)} />
                                         <a href="/" target={'_blank'}>Aceitar termos</a>
                                     </span>
                                     <div className={styles.botoes}>
