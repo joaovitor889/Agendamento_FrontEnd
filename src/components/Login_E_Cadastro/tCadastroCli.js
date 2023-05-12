@@ -1,15 +1,13 @@
 import styles from './tCadastroCli.module.css';
 import { useState, useEffect, useRef } from "react";
-import agFetch from '../../axios/config.js';
-import { useState, useRef } from "react";
-import agFetch from '../../axios/config.js';
+//import agFetch from '../../axios/config.js';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 const TelaCadastroUsuario = () => {
     document.title = "Cadastrar Cliente";
 
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
