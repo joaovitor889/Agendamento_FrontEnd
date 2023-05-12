@@ -5,6 +5,7 @@ import Senha  from '../../img/Lock.png'
 import Email from '../../img/Mail.png'
 import User from '../../img/User.png'
 import Doc from '../../img/Profiles.png'
+import Telefone from '../../img/Telefone.png'
 
 const telaCadastroAdm = () => {
     document.title = "CadastroAdm";
@@ -23,7 +24,7 @@ const telaCadastroAdm = () => {
                     <a href="./tLoginAdm" className='Login'>Login</a>
                     <a href="./tCadastroAdm" className='Cadastro'>Cadastro</a>
                     </div>
-                    <div className='formulario'>
+                    <div className='Form'>
                         <form  id ="formCadastroAdm">
                             <div className='User'>
                                 <img src={User} alt="" />
@@ -36,6 +37,10 @@ const telaCadastroAdm = () => {
                             <div className='E-mail'>
                                 <img src={Email} alt="" />
                                 <input type="email" placeholder='E-mail' title='Digite seu E-mail'/>
+                            </div>
+                            <div className='Telefone'>
+                                <img src={Telefone} alt="" />
+                                <input type="email" placeholder='Telefone' title='Digite seu E-mail'/>
                             </div>
                             <div className='Senha'>
                                 <img src={Senha} alt="" />

@@ -28,7 +28,7 @@ a{
     display: flex;
     justify-content: space-between;
 }
-.formulario{
+.Form{
     width: 500px;
     height: 100%;
     background: #F7F7F7;
@@ -57,7 +57,7 @@ img{
     margin: 10px;
 }
 
-.formulario img{
+.Form img{
     height: 30px;
     margin-right: 20px;
 }
@@ -94,6 +94,11 @@ img{
 	background-repeat: no-repeat;
 	background-attachment: fixed;
     font-family: 'Euphoria Script', cursive;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
 }
 
 @media only screen  and (max-width: 600px) {
