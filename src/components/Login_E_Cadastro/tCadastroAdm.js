@@ -11,6 +11,8 @@ import { useState, useEffect, useRef } from "react";
 
 import { useNavigate } from 'react-router-dom';
 
+import agFetch from '../../axios/config.js';
+
 const TelaCadastroAdm = () => {
     document.title = "CadastroAdm";
 
@@ -55,15 +57,51 @@ const TelaCadastroAdm = () => {
 
     const signup = async (nome, telefone, cpf, email, senha, confSenha) => {
         //teste se os dados estao sendo enviados
-        alert(JSON.stringify({ nome, telefone, cpf, email, senha, confSenha }));
+        //alert(JSON.stringify({ nome, telefone, cpf, email, senha, confSenha }));
 
         //logica
+        try {
+            // Crie um objeto com os dados do novo proprietário
+            const novoProprietario = {
+                nome,
+                telefone,
+                cpf,
+                email,
+                senha,
+                confSenha
+            };
+    
+            // Faça a requisição POST para a API utilizando o Axios
+            const response = await agFetch.post('/proprietarios/criar', novoProprietario);
+    
+            // Verifique a resposta da API e faça o redirecionamento se necessário
+            if (response.status === 200 || response.status === 201) {
+                alert("Dados cadastrados com sucesso!");
+                navigate("/tLoginADM");
+            } 
 
+            else if (response.status === 400) {
+                alert("Dado digitato incorretamente!");
+            }
 
+            else if (response.status === 409) {
+                alert("Dados únicos já cadastrados!");
+            }
 
-
-
-        navigate("/tLoginADM");
+            else if (response.status === 401) {
+                alert("Token Inválido!");
+            }            
+            else {
+                alert("Ocorreu um erro ao cadastrar o proprietário.");
+            }
+        } catch (error) {
+            //alert("Ocorreu um erro na comunicação com o servidor.");
+            
+            let valErro = error.response.status;
+            
+            if (valErro === 400 || valErro === 409)
+                alert("Telefone, CPF ou Email já cadastrados!");
+        }
     }
 
     const handleSubmit = (e) => {
