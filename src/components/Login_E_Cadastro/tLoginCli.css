@@ -127,6 +127,11 @@
 	margin-top: 5%;
 }
 
+.fLogin #imagem img {
+	height: 20vh;
+	width: 25vw;
+}
+
 .fundo a {
 	text-decoration: underline;
 	font-size: 80%;
@@ -183,7 +188,7 @@
 		height: 28%;
 		width: 15%;
 	}
-	#imagem img {
+	.fLogin #imagem img {
 		width: 100%;
 		height: 100%;
 	}
@@ -192,5 +197,8 @@
 		position: absolute;
 		top: 90%;
 		left: 85%;
+	}
+	.botoesLoginCli input[type=submit]{
+		margin-left: 30%;
 	}
 }

@@ -67,6 +67,7 @@
 .fLoginFunc .fundoFunc h1 {
 	font-family: 'Bona Nova', serif;
 	color: #fff;
+	font-size: 8vw;
 }
 
 .entrada input{
@@ -129,6 +130,11 @@
 	margin-top: 5%;
 }
 
+.fLoginFunc #imagem img {
+	height: 20vh;
+	width: 25vw;
+}
+
 #voltFunc button{
 	font-family: "Times New Roman", Times, serif;
 	font-weight: bold;
@@ -177,16 +183,16 @@
 		margin-top: 0%;
 		margin-left: 35%;			
 	}	
-	.fundoFunc h1 {
+	.fLoginFunc .fundoFunc h1 {
 		font-size: 1.7em;
 	}
-	#imagem {
+	.fLoginFunc #imagem {
 		margin-top: 3%;
 		margin-left: 42%;
 		height: 28%;
 		width: 15%;
 	}
-	#imagem img {
+	.fLoginFunc #imagem img {
 		width: 100%;
 		height: 100%;
 	}
@@ -195,5 +201,8 @@
 		position: absolute;
 		top: 90%;
 		left: 85%;
+	}
+	.fLoginFunc input[type=submit]{
+		margin-left: 30%;
 	}
 }
