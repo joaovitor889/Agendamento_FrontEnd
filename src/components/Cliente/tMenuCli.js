@@ -13,74 +13,76 @@ import agFetch from '../../axios/config.js';
 
 import { useState, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
-
 const TelaMenuCliente = () => {
 
     document.title = "Menu do Cliente";
 
     //Requisicoes com a API
-    const { id } = useParams();
-    const [post, setPost] = useState([]);
+    // Estado para armazenar os dados do usuário
+    const [userData, setUserData] = useState({});
 
-    const getPost = async () => {
+    const valToken = localStorage.getItem('user_token');
+    const JSToken = JSON.parse(valToken);
+
+
+    var token = JSToken['token'];
+    var tkEmail = JSToken['email'];
+
+    //alert(JSON.stringify(JSToken['token']));
+    //alert(JSON.stringify(JSToken['email']));
+
+    // Função para obter os dados do usuário
+    const fetchUserData = async () => {
         try {
-            const response = await agFetch.get(`/posts/${id}`);
+            const response = await agFetch.get('/clientes/criar', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
 
             const data = response.data;
 
-            setPost(post, data);
+            //filtra o objeto
+            var objFiltrado = data.find((item) => item.email === tkEmail);
+            var objF = objFiltrado ? { ...objFiltrado } : null;
+
+            setUserData(objF);
+            //alert(tkEmail);
+            //alert(JSON.stringify(data));
+            //alert(JSON.stringify(objF));
         } catch (error) {
-            console.log(error);
+            alert(error);
         }
     };
 
+
+    //alert(JSON.stringify(userData));
+
+    // Chama a função fetchUserData quando o componente é montado
     useEffect(() => {
-        getPost();
+        fetchUserData();
     });
 
+    // Extrai as informações necessárias do usuário
     //const nome = "José";
+    //sobrenome = "Luis";
 
-    const valores = localStorage.getItem('users_bd');
-    const valToken = localStorage.getItem('user_token');
+    const nome = userData.nome;
+    const sobrenome = userData.sobrenome;
 
-    const JSONObject = JSON.parse(valores);
-    const JSToken = JSON.parse(valToken);
+    var pnome = '';
+    var psobrenome = '';
 
-    var nome, sobrenome, pnome, psobrenome;
-
-    if(JSONObject.length === 1)
-    {
-        nome = JSONObject.map((JSONObject) => {        
-            return JSONObject['nome'] ;
-        })
-        sobrenome= JSONObject.map((JSONObject) => {        
-            return JSONObject['sobrenome'] ;
-        })
-    }
-    else {
-        try {
-            for (let i = 0; i <= localStorage.length; i++) {
-                if (JSONObject[i]['email'] === JSToken['email']){
-                    nome = JSONObject[i]['nome'];
-                    sobrenome = JSONObject[i]['sobrenome'];
-                }
-            }
-        } catch (error) {
-            //coloquei este try catch para parar de reclamar de erro
-        }
+    if (nome && nome.length > 0) {
+        pnome = nome.charAt(0);
     }
 
-    //Primeira letra de cada nome
-    const cNome = nome.toString();
-
-    pnome = cNome[0];
-
-    const cSobrenome = sobrenome.toString();
-
-    psobrenome = cSobrenome[0];
+    if (sobrenome && sobrenome.length > 0) {
+        psobrenome = sobrenome.charAt(0);
+    }
 
     const iniciais = pnome + psobrenome;
+
 
     return (
         <div className={styles.fMenuCliente}>
@@ -95,7 +97,7 @@ const TelaMenuCliente = () => {
                 </div>
             </nav>
             <div className={styles.fPreto}></div>
-            <div className={styles.texto}>Bem-Vindo(a)<br></br>Cliente<br></br><div className={styles.nome}>{nome}</div></div>
+            <div className={styles.texto}>Bem-Vindo(a)<br></br>Cliente<br></br><div className={styles.nome}>{`${nome}`}</div></div>
             <div className={styles.botoes}>
                 <div className={styles.linha}>
                     <img src={AddAgenda} alt="addAgenda" />

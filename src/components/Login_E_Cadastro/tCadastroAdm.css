@@ -9,6 +9,11 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+.fCadastroAdm .logo {
+    margin-left: 35%;
+}
+
 a{
     text-decoration: none;
     font-size: 36px;
@@ -62,16 +67,6 @@ img{
     margin-right: 20px;
 }
 
-#termosCadADM a{
-    font-size: 85%;
-    color: #000;
-    text-decoration: underline;
-}
-
-#termosCadADM input[type=checkbox] {
-    width: 10%;
-}
-
 #formCadastroAdm div input {
 	text-align:left;
     background: #F7F7F7;
@@ -81,7 +76,6 @@ img{
 }
 
 #btnCadastroADM {
-
     border-style: none;
     background-color: #3293CA;
     font-weight: bold;
@@ -95,6 +89,15 @@ img{
     background-color: #273791;
 }
 
+.termosADM a {
+    font-size: 85%;
+    color: #000;
+    text-decoration: underline;
+}
+
+#formCadastroAdm div input[type=checkbox] {
+    width: 10%;
+}
 
 .fAgendamento {
     position: fixed;
@@ -117,18 +120,25 @@ img{
 
 @media only screen  and (max-width: 600px) {
     .butoes {
-        width: 90%;        
-    }
-
-    .campo-de-Cadastro{ 
         width: 90%;
     }
     
     .formulario{
         width: 90%;
     }
+
+    #formCadastroAdm {
+        width: 90%;
+    }
     
     #formCadastroAdm div input {
+        width: 90%;
+    }
+    .Form {
+        width: 90%;
+    }
+    .campo-de-Cadastro{ 
+        margin-left: 5%;
         width: 90%;
     }
 }

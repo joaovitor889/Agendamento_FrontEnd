@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 import { useNavigate } from 'react-router-dom';
 
+import authCli from '../../axios/configAuthCli.js';
+
 
 const TelaLogin = () => {
 
@@ -19,41 +21,71 @@ const TelaLogin = () => {
     //Requisicoes com a API
 
     useEffect(() => {
-        const userToken = localStorage.getItem("user_token");
-        const usersStorage = localStorage.getItem("users_bd");
-    
+        const userToken = localStorage.getItem('user_token');
+        const usersStorage = localStorage.getItem('users_bd');
+
         if (userToken && usersStorage) {
-          const hasUser = JSON.parse(usersStorage)?.filter(
-            (user) => user.email === JSON.parse(userToken).email
-          );
-    
-          if (hasUser) setUser(hasUser[0]);
+            const hasUser = JSON.parse(usersStorage)?.filter(
+                (user) => user.email === JSON.parse(userToken).email
+            );
+
+            if (hasUser) setUser(hasUser[0]);
         }
-      }, []);
 
-    const signin = (email, senha) => {
-        const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
+        const cameFromMenu = localStorage.getItem('came_from_menu');
+        if (cameFromMenu) {
+            localStorage.removeItem('user_token');
+            localStorage.removeItem('came_from_menu');
+        }
+        // Após a linha 39, adicione o seguinte código para executar o método delete
+        authCli.delete('/auth/cliente')
+            .then((response) => {
+                console.log(response.data);
+                // Faça o tratamento necessário após a exclusão dos dados authProp
+            })
+            .catch((error) => {
+                console.error(error);
+                //alert('Erro ao excluir os dados authProp!');
+            });
 
-        const hasUser = usersStorage?.filter((user) => user.email === email);
+    }, []);
 
-        if (hasUser?.length) {
-            if (hasUser[0].email === email && hasUser[0].senha === senha) {
+    const signin = async (email, senha) => {
+        //teste se os dados estao sendo enviados
+        //alert(JSON.stringify({ email, senha }));
+
+        const data = require('../../clientes/criar.json');
+
+        // Verifique se há um objeto com o mesmo email e senha
+        const user = data.find((obj) => obj.email === email && obj.senha === senha);
+
+        if (user) {
+            // Crie um token contendo o email e a senha do usuário
+            //const token = Math.random().toString(36).substring(2);
+            //const userToken = { token, email, senha };            
+
+            // Faça uma requisição POST para gerar o token no servidor
+            try {
                 const token = Math.random().toString(36).substring(2);
-                localStorage.setItem("user_token", JSON.stringify({ email, token }));
-                setUser(user, { email, senha });
-                navigate("/tMenuCli");
-                return;
-            } else {
-                alert("E-mail ou senha incorretos");
+                await authCli.post('/auth/cliente', { token, email, senha });
+                // Armazene o token no localStorage
+                localStorage.setItem('user_token', JSON.stringify({ token, email, senha }));
+
+                navigate('/tMenuCli');
+            } catch (error) {
+                console.error(error);
+                alert('Erro ao fazer login!');
             }
         } else {
-            alert("Usuário não cadastrado!");
+            // Se os dados forem inválidas, exiba uma mensagem de erro 
+            alert('Dados Inválidos!');
+            return;
         }
     };
 
     const loginCli = async (e) => {
         e.preventDefault();
-
+        localStorage.setItem('came_from_menu', 'true');
         signin(email, senha);
     }
 

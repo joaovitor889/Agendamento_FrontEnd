@@ -11,6 +11,8 @@ import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
 import React, { useState, useEffect } from "react";
 
+import agFetch from '../../axios/config.js';
+
 
 const TelaFotoCliente = () => {
 
@@ -58,10 +60,10 @@ const TelaFotoCliente = () => {
             setSelectedFile(undefined);
             return;
         }
-        
+
         var myPicture = document.getElementById('fotoDefCli');
         myPicture.className = styles.desImgDef;
-        
+
         setSelectedFile(e.target.files[0]);
     }
 
@@ -72,57 +74,64 @@ const TelaFotoCliente = () => {
         alert('Dados Salvos!');
     }
 
-    const dados = localStorage.getItem("users_bd");
-    const valToken = localStorage.getItem('user_token');
+    const [userData, setUserData] = useState({});
 
-    const JSONObject = JSON.parse(dados);
+    const valToken = localStorage.getItem('user_token');
     const JSToken = JSON.parse(valToken);
 
 
-    var nome, sobrenome, pnome, psobrenome;
+    var token = JSToken['token'];
+    var tkEmail = JSToken['email'];
 
-    //Mapeamento do objeto local
-    try {
-        for (let i = 0; i <= localStorage.length; i++) {
-            if (JSONObject[i]['email'] === JSToken['email']) {
-                nome = JSONObject[i]['nome'];
-                sobrenome = JSONObject[i]['sobrenome'];
-            }
-        }
-    } catch (error) {
-        //coloquei este try catch para parar de reclamar de erro
-    }
+    //alert(JSON.stringify(JSToken['token']));
+    //alert(JSON.stringify(JSToken['email']));
 
-    if(JSONObject.length === 1)
-    {
-        nome = JSONObject.map((JSONObject) => {        
-            return JSONObject['nome'] ;
-        })
-        sobrenome= JSONObject.map((JSONObject) => {        
-            return JSONObject['sobrenome'] ;
-        })
-    }
-    else {
+    // Função para obter os dados do usuário
+    const fetchUserData = async () => {
         try {
-            for (let i = 0; i <= localStorage.length; i++) {
-                if (JSONObject[i]['email'] === JSToken['email']){
-                    nome = JSONObject[i]['nome'];
-                    sobrenome = JSONObject[i]['sobrenome'];
-                }
-            }
+            const response = await agFetch.get('/clientes/criar', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            const data = response.data;
+
+            //filtra o objeto
+            var objFiltrado = data.find((item) => item.email === tkEmail);
+            var objF = objFiltrado ? { ...objFiltrado } : null;
+
+            setUserData(objF);
+            //alert(tkEmail);
+            //alert(JSON.stringify(data));
+            //alert(JSON.stringify(objF));
         } catch (error) {
-            //coloquei este try catch para parar de reclamar de erro
+            alert(error);
         }
+    };
+
+    // Chama a função fetchUserData quando o componente é montado
+    useEffect(() => {
+        fetchUserData();
+    });
+
+    // Extrai as informações necessárias do usuário
+    //const nome = "José";
+    //sobrenome = "Luis";
+
+    const nome = userData.nome;
+    const sobrenome = userData.sobrenome;
+
+    var pnome = '';
+    var psobrenome = '';
+
+    if (nome && nome.length > 0) {
+        pnome = nome.charAt(0);
     }
 
-    //Primeira letra de cada nome
-    const cNome = nome.toString();
-
-    pnome = cNome[0];
-
-    const cSobrenome = sobrenome.toString();
-
-    psobrenome = cSobrenome[0];
+    if (sobrenome && sobrenome.length > 0) {
+        psobrenome = sobrenome.charAt(0);
+    }
 
     const iniciais = pnome + psobrenome;
 

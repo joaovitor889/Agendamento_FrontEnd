@@ -1,4 +1,4 @@
-import './tServADM.css';
+import styles from './tServADM.module.css';
 import menu from '../../img/Menu Rounded.png'
 import perfil from  '../../img/perfil.png'
 import notificar from '../../img/notificar.png'
@@ -52,7 +52,7 @@ const telaMenuADM = () => {
             </div>
             {/* sidebar  final */}
             <main>
-                <div className='container'>
+            <div className = {styles.container}> 
                     <div className='header-container'>
                         <div className='categories'>
                             <img src= {catergory1} alt="" className='category'/>

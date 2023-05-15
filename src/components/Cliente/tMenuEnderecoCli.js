@@ -9,7 +9,9 @@ import Notificacao from '../../icones/Doorbell.png';
 
 import './menHamburger.css';
 
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+
+import agFetch from '../../axios/config.js';
 
 import { useForm } from "react-hook-form";
 
@@ -37,51 +39,20 @@ const TelaEnderecoCliente = () => {
         setIsMenuClicked(!isMenuClicked)
     }
 
-    const [altcep, setCEP] = useState();
-    const [altnum, setNum] = useState();
-    const [altcomp, setComp] = useState();
-
-    var jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jsuf;
-
-    const altCep = (e) => {
-        setCEP(e.target.value);
-    }
-
-    const altNum = (e) => {
-        setNum(e.target.value);
-    }
-
-    const altComp = (e) => {
-        setComp(e.target.value);
-    }
-
-    const dados = localStorage.getItem("users_bd");
-    const valToken = localStorage.getItem('user_token');
-
-    const JSONObject = JSON.parse(dados);
-    const JSToken = JSON.parse(valToken);
-
-    const inputCep = useRef();
-
-    //Mapeamento do objeto local
-    try {
-        for (let i = 0; i <= localStorage.length; i++) {
-            if (JSONObject[i]['email'] === JSToken['email']) {
-                jscep = JSONObject[i]['cep'];
-                jsrua = JSONObject[i]['rua'];
-                jsnum = JSONObject[i]['num'];
-                jscomp = JSONObject[i]['comp'];
-                jsbairro = JSONObject[i]['bairro'];
-                jscidade = JSONObject[i]['cidade'];
-                jsuf = JSONObject[i]['uf'];
-            }
-        }
-    } catch (error) {
-        //coloquei este try catch para parar de reclamar de erro
-    }
-
     //API do CEP
     const { register, setValue } = useForm();
+
+    //Campos
+    var jscep, jsnum, jscomp;
+    jscep = useRef(null);
+    jsnum = useRef(null);
+    jscomp = useRef(null);
+
+    //Campos da API
+    const [jsrua, setRua] = useState("");    
+    const [jsbairro, setBairro] = useState("");    
+    const [jscidade, setCidade] = useState("");    
+    const [jseuf, setUF] = useState("");    
 
     const checkCEP = (e) => {
         const cep = e.target.value.replace(/\D/g, '');
@@ -94,92 +65,132 @@ const TelaEnderecoCliente = () => {
                 setValue("bairro", data.bairro);
                 setValue("cidade", data.localidade);
                 setValue("uf", data.uf);
-
-                jscep = altcep;
-
-                jsrua = data.logradouro;
-                jsbairro = data.bairro;
-                jscidade = data.localidade;
-                jsuf = data.uf;
+                
+                setRua(data.logradouro);
+                setBairro(data.bairro);
+                setCidade(data.localidade);
+                setUF(data.uf);
             });
     }
 
     const updateEndereco = (e) => {
         e.preventDefault();
 
-        const valCep = inputCep.current.value;
+        const valCep = jscep.current.value;
+        const valComp = jscomp.current.value;
+        const valNum = jsnum.current.value;
+
+        const valRua = jsrua;
+        const valBairro = jsbairro;
+        const valCidade = jscidade;
+        const valUF = jseuf;
+        
         let qtdCep = valCep.length;
         if (qtdCep < 8) {
             alert("CEP Inválido!");
-            //inputCep.current.focus();
+            jscep.current.focus();
         } else {
             try {
-                for (let i = 0; i <= localStorage.length; i++) {
-                    if (JSONObject[i]['email'] === JSToken['email']) {
-                        jsnum = JSONObject[i]['num'];
-                        jscomp = JSONObject[i]['comp'];
-                        if (jsnum !== null && altnum != null)
-                            jsnum = altnum;
-                        if (jscomp !== null && altcomp != null)
-                            jscomp = altcomp;
-                        else
-                            jscomp = "";
+                //testar se esta pegando os dados
+                //alert(JSON.stringify({ valCep, valRua, valNum, valComp, valBairro, valCidade, valUF }));
 
-                        JSONObject[i]['cep'] = jscep;
-                        JSONObject[i]['rua'] = jsrua;
-                        JSONObject[i]['num'] = jsnum;
-                        JSONObject[i]['comp'] = jscomp;
-                        JSONObject[i]['bairro'] = jsbairro;
-                        JSONObject[i]['cidade'] = jscidade;
-                        JSONObject[i]['uf'] = jsuf;
+                //logica
+                
 
-                        localStorage.setItem("users_bd", JSON.stringify(JSONObject));
-                        alert("Dados Atualizados com Sucesso!");
-                        return;
-                    }
-                }
+                //alert("Dados Atualizados!");
+
             } catch (error) {
                 //coloquei este try catch para parar de reclamar de erro
             }
-
-            alert("Dados Atualizados!");
 
             //alert(data.cep, data.rua, data.num, data.comp, data.bairro, data.cidade, data.uf);
         }
     }
 
-    var nome, sobrenome, pnome, psobrenome;
+    const [userData, setUserData] = useState({});
 
-    if(JSONObject.length === 1)
-    {
-        nome = JSONObject.map((JSONObject) => {        
-            return JSONObject['nome'] ;
-        })
-        sobrenome= JSONObject.map((JSONObject) => {        
-            return JSONObject['sobrenome'] ;
-        })
-    }
-    else {
+    const valToken = localStorage.getItem('user_token');
+    const JSToken = JSON.parse(valToken);
+
+
+    var token = JSToken['token'];
+    var tkEmail = JSToken['email'];
+
+    //alert(JSON.stringify(JSToken['token']));
+    //alert(JSON.stringify(JSToken['email']));
+
+    // Função para obter os dados do usuário
+    const fetchUserData = async () => {
         try {
-            for (let i = 0; i <= localStorage.length; i++) {
-                if (JSONObject[i]['email'] === JSToken['email']){
-                    nome = JSONObject[i]['nome'];
-                    sobrenome = JSONObject[i]['sobrenome'];
-                }
-            }
+            const response = await agFetch.get('/clientes/criar', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            const data = response.data;
+
+            //filtra o objeto
+            var objFiltrado = data.find((item) => item.email === tkEmail);
+            var objF = objFiltrado ? { ...objFiltrado } : null;
+
+            setUserData(objF);
+            //alert(tkEmail);
+            //alert(JSON.stringify(data));
+            //alert(JSON.stringify(objF));
         } catch (error) {
-            //coloquei este try catch para parar de reclamar de erro
+            alert(error);
         }
+    };
+
+    //bloquear rolagem nos imputs number
+    useEffect(() => {
+        const cep = jscep.current;
+        const num = jsnum.current;
+        const bloquearRolagem = (e) => {
+            e.preventDefault();
+        };
+
+        if (cep) {
+            cep.addEventListener('wheel', bloquearRolagem);
+        }
+
+        if (num) {
+            num.addEventListener('wheel', bloquearRolagem);
+        }
+
+        return () => {
+            if (cep) {
+                cep.removeEventListener('wheel', bloquearRolagem);
+            }
+            if (num) {
+                num.removeEventListener('wheel', bloquearRolagem);
+            }
+        };
+    });
+
+    // Chama a função fetchUserData quando o componente é montado
+    useEffect(() => {
+        fetchUserData();
+    });
+
+    // Extrai as informações necessárias do usuário
+    //const nome = "José";
+    //sobrenome = "Luis";
+
+    const nome = userData.nome;
+    const sobrenome = userData.sobrenome;
+
+    var pnome = '';
+    var psobrenome = '';
+
+    if (nome && nome.length > 0) {
+        pnome = nome.charAt(0);
     }
 
-    //Primeira letra de cada nome
-    const cNome = nome.toString();
-
-    pnome = cNome[0];
-
-    const cSobrenome = sobrenome.toString();
-
-    psobrenome = cSobrenome[0];
+    if (sobrenome && sobrenome.length > 0) {
+        psobrenome = sobrenome.charAt(0);
+    }
 
     const iniciais = pnome + psobrenome;
 
@@ -228,12 +239,9 @@ const TelaEnderecoCliente = () => {
                                         event.preventDefault();
                                     }
                                 }}
-                                defaultValue={jscep}
-                                value={altcep}
                                 {...register("cep")}
-                                ref={inputCep}
-                                onBlur={checkCEP}
-                                onChange={altCep}
+                                onBlur={checkCEP}                                
+                                ref={jscep}
                                 required />
                         </div>
                         <div>
@@ -243,9 +251,8 @@ const TelaEnderecoCliente = () => {
                                 name="rua" id={styles["rua"]}
                                 className={styles.segColuna}
                                 {...register("rua")}
-                                defaultValue={jsrua}
-                                value={jsrua}
-                                disabled />
+                                onChange={(e) => setRua(e.target.value)}
+                                required />
                         </div>
                     </div>
                     <div className={styles.linha}>
@@ -260,10 +267,7 @@ const TelaEnderecoCliente = () => {
                                     }
                                 }}
                                 id={styles["numero"]}
-                                {...register("num")}
-                                defaultValue={jsnum}
-                                value={altnum}
-                                onChange={altNum}
+                                ref={jsnum}
                                 required /> <br></br>
                         </div>
                         <div>
@@ -272,10 +276,7 @@ const TelaEnderecoCliente = () => {
                                 title="Digite o seu Complemento"
                                 name="comp" id={styles["comple"]}
                                 className={styles.segColuna}
-                                {...register("comp")}
-                                defaultValue={jscomp}
-                                value={altcomp}
-                                onChange={altComp} /> <br></br>
+                                ref={jscomp} /> <br></br>
                         </div>
                     </div>
                     <div className={styles.linhaUnica}>
@@ -284,28 +285,25 @@ const TelaEnderecoCliente = () => {
                             title="Digite o seu bairro"
                             name="bairro"
                             id={styles["bairro"]}
-                            {...register("bairro")}
-                            defaultValue={jsbairro}
-                            value={jsbairro}
-                            disabled /> <br></br>
+                            {...register("bairro")}   
+                            onChange={(e) => setBairro(e.target.value)}                      
+                            required />
                         <input type="text"
                             placeholder="Cidade:"
                             title="Digite a sua Cidade"
                             name="cidade"
                             id={styles["cidade"]}
                             {...register("cidade")}
-                            defaultValue={jscidade}
-                            value={jscidade}
-                            disabled /> <br></br>
+                            onChange={(e) => setCidade(e.target.value)}
+                            required />
                         <input type="text"
                             placeholder="Estado:"
                             title="Digite o seu Estado"
                             name="estado"
                             id={styles["estado"]}
                             {...register("uf")}
-                            defaultValue={jsuf}
-                            value={jsuf}
-                            disabled /> <br></br>
+                            onChange={(e) => setUF(e.target.value)}
+                            required />
                     </div>
                     <div id="btnDBSalvar">
                         <input type="submit" id={styles["btnSalvarDDB"]} name="btnSalvarDDB" value="Salvar" />
