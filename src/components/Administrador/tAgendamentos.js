@@ -15,7 +15,7 @@ const telaAgendamentos = () => {
         <main>
         <div className={styles.fAgends}>
             <input type='checkbox' id='check' />
-            <input type='checkbox' id='check-rigth' />
+            <input type='checkbox' id={styles["check_rigth"]} />
             {/* header  começo */}
             <header>
                 <div className="esquerda">
@@ -49,7 +49,7 @@ const telaAgendamentos = () => {
             </div>
             {/* sidebar  final */}
             {/* sidebar começo */}
-            <div className='sidebar-rigth'>
+            <div className={styles.sidebar_rigth}>
                 <h1>Filtros</h1>
                 <br />
                 <p>Nome do cliente</p>
@@ -64,10 +64,10 @@ const telaAgendamentos = () => {
                 <button className='btn_fill'>Filtrar</button>
             </div>
             {/* sidebar  final */}
-            <label htmlFor='check-rigth' className={styles.filter}>
+            <label htmlFor={styles["check_rigth"]} className={styles.filter}>
                     <img src={filtro} alt="filtro" />
                     <h4>Filtro</h4>
-                </label>
+            </label>
                 <div className='calendario'>
                     <div className={styles.rowTop}>
                         <h4>Seg</h4>
