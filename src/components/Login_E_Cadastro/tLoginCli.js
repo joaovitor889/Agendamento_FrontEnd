@@ -1,5 +1,5 @@
 import styles from './tLoginCli.css';
-import Logo from '../../img/Logo.png';
+import Logo from '../../img/logo.png';
 
 import { useState, useEffect } from "react";
 
