@@ -65,10 +65,10 @@ document.title = "Endereço do Cliente";
                 setValue("cidade", data.localidade);
                 setValue("uf", data.uf);
 
-                setRua(data.logradouro);
-                setBairro(data.bairro);
-                setCidade(data.localidade);
-                setUF(data.uf);
+//                 setRua(data.logradouro);
+//                 setBairro(data.bairro);
+//                 setCidade(data.localidade);
+//                 setUF(data.uf);
             });
     }
 
@@ -250,7 +250,7 @@ document.title = "Endereço do Cliente";
                                 name="rua" id={styles["rua"]}
                                 className={styles.segColuna}
                                 {...register("rua")}
-                                onChange={(e) => setRua(e.target.value)}
+//                                 onChange={(e) => setRua(e.target.value)}
                                 required />
                         </div>
                     </div>
@@ -285,7 +285,7 @@ document.title = "Endereço do Cliente";
                             name="bairro"
                             id={styles["bairro"]}
                             {...register("bairro")}   
-                            onChange={(e) => setBairro(e.target.value)}                      
+//                             onChange={(e) => setBairro(e.target.value)}                      
                             required />
                         <input type="text"
                             placeholder="Cidade:"
@@ -293,7 +293,7 @@ document.title = "Endereço do Cliente";
                             name="cidade"
                             id={styles["cidade"]}
                             {...register("cidade")}
-                            onChange={(e) => setCidade(e.target.value)}
+//                             onChange={(e) => setCidade(e.target.value)}
                             required />
                         <input type="text"
                             placeholder="Estado:"
@@ -301,7 +301,7 @@ document.title = "Endereço do Cliente";
                             name="estado"
                             id={styles["estado"]}
                             {...register("uf")}
-                            onChange={(e) => setUF(e.target.value)}
+//                             onChange={(e) => setUF(e.target.value)}
                             required />
                     </div>
                     <div id="btnDBSalvar">
