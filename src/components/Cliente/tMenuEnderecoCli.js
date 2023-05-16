@@ -77,13 +77,13 @@ const TelaEnderecoCliente = () => {
         e.preventDefault();
 
         const valCep = jscep.current.value;
-        const valComp = jscomp.current.value;
-        const valNum = jsnum.current.value;
+        //const valComp = jscomp.current.value;
+        //const valNum = jsnum.current.value;
 
-        const valRua = jsrua;
-        const valBairro = jsbairro;
-        const valCidade = jscidade;
-        const valUF = jseuf;
+        //const valRua = jsrua;
+        //const valBairro = jsbairro;
+        //const valCidade = jscidade;
+        //const valUF = jseuf;
         
         let qtdCep = valCep.length;
         if (qtdCep < 8) {
