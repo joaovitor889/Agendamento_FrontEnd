@@ -55,9 +55,9 @@ const TelaCadastroAdm = () => {
         };
     }, []);
 
-    const signup = async (nome, telefone, cpf, email, senha, confSenha) => {
+    const signup = async (nome, telefone, cpf, email, senha) => {
         //teste se os dados estao sendo enviados
-        //alert(JSON.stringify({ nome, telefone, cpf, email, senha, confSenha }));
+        //alert(JSON.stringify({ nome, telefone, cpf, email, senha }));
 
         //logica
         try {
@@ -67,39 +67,27 @@ const TelaCadastroAdm = () => {
                 telefone,
                 cpf,
                 email,
-                senha,
-                confSenha
+                senha
             };
-    
+
             // Faça a requisição POST para a API utilizando o Axios
             const response = await agFetch.post('/proprietarios/criar', novoProprietario);
-    
+
             // Verifique a resposta da API e faça o redirecionamento se necessário
-            if (response.status === 200 || response.status === 201) {
+            if (response.status === 201) {
                 alert("Dados cadastrados com sucesso!");
                 navigate("/tLoginADM");
-            } 
-
-            else if (response.status === 400) {
-                alert("Dado digitato incorretamente!");
-            }
-
-            else if (response.status === 409) {
-                alert("Dados únicos já cadastrados!");
-            }
-
-            else if (response.status === 401) {
-                alert("Token Inválido!");
-            }            
-            else {
-                alert("Ocorreu um erro ao cadastrar o proprietário.");
             }
         } catch (error) {
-            //alert("Ocorreu um erro na comunicação com o servidor.");
+            console.log(error);
             
             let valErro = error.response.status;
             
-            if (valErro === 400 || valErro === 409)
+            if (valErro === 404)
+                alert("Servidor Indisponível!");
+            else if (valErro === 400)
+                alert("Dados Inválidos!");
+            else if (valErro === 409)
                 alert("Telefone, CPF ou Email já cadastrados!");
         }
     }
@@ -107,19 +95,37 @@ const TelaCadastroAdm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Validar os campos do formulário antes de realizar o cadastro
-        if (!nome || !telefone || !cpf || !email || !senha || !confSenha) {
-            alert("Por favor, preencha todos os campos.");
+        if (senha !== confSenha) {
+            alert("A senha e a confirmação de senha devem ser iguais!");
             return;
         }
 
-        if (senha !== confSenha) {
-            alert("A senha e a confirmação de senha devem ser iguais.");
+        if (senha.length < 6) {
+            alert("A senha deve ter pelo menos 6 caracteres!");
             return;
         }
+
+        //testa se os dados foram pegos
+        //alert(JSON.stringify({ nome, telefone, cpf, email, senha }));
 
         // Chamar a função de cadastro
-        signup(nome, telefone, cpf, email, senha, confSenha);
+        signup(nome, telefone, cpf, email, senha);
+    };
+
+    const handleChange = (e) => {
+        const { value } = e.target;
+
+        // Remove todos os caracteres não numéricos
+        const telefoneFormatado = value.replace(/\D/g, '');
+
+        // Formata o telefone com a máscara
+        const telefoneMascarado = telefoneFormatado
+            //.replace(/(\d{2})(\d)/, '($1) $2')
+            //.replace(/(\d{5})(\d)/, '$1-$2');
+
+            .replace(/^(\d{2})(\d{1,9})$/, '$1 $2');
+
+        setTelefone(telefoneMascarado);
     };
 
     return (
@@ -161,8 +167,7 @@ const TelaCadastroAdm = () => {
                                             event.preventDefault();
                                         }
                                     }}
-                                    value={telefone}
-                                    onChange={(e) => setTelefone(e.target.value)}
+                                    onChange={handleChange}
                                     required
                                 />
                             </div>

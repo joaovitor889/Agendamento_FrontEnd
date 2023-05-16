@@ -4,96 +4,59 @@ import Logo from '../../img/logo-site.png';
 import Senha from '../../img/Lock.png';
 import Email from '../../img/Mail.png';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import authprop from '../../axios/configAuthProp.js';
+import agFetch from '../../axios/config.js';
 
 const TelaLoginAdm = () => {
 
     document.title = "LoginAdm";
 
-    const [user, setUser] = useState("");
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
+    const [cmpEmail, setEmail] = useState("");
+    const [cmpSenha, setSenha] = useState("");
 
     const navigate = useNavigate();
 
     //Requisicoes com a API
 
-    useEffect(() => {
-        const userToken = localStorage.getItem('user_token');
-        const usersStorage = localStorage.getItem('users_bd');
-
-
-        if (userToken && usersStorage) {
-            const hasUser = JSON.parse(usersStorage)?.filter(
-                (user) => user.email === JSON.parse(userToken).email
-            );
-
-            if (hasUser) {
-                setUser(hasUser[0]);
-                console.log(user);
-            }
-
-        }
-
-        const cameFromMenu = localStorage.getItem('came_from_menu');
-        if (cameFromMenu) {
-            localStorage.removeItem('user_token');
-            localStorage.removeItem('came_from_menu');
-        }
-
-        authprop.delete('/auth/proprietario')
-            .then((response) => {
-                console.log(response.data);
-            })
-            .catch((error) => {
-                console.error(error);
-                //alert('Erro ao excluir os dados authProp!');
-            });
-
-    }, [user]);
-
-    const signin = async (email, senha) => {
+    const signin = async (cmpEmail, cmpSenha) => {
         //teste se os dados estao sendo enviados
         //alert(JSON.stringify({ email, senha }));
 
-        const data = require('../../proprietarios/criar.json');
+        try {        
+            const response = await agFetch.post('/auth/proprietario', {
+              email: cmpEmail,
+              senha: cmpSenha
+            });
+            
+            const token = response.data.token;
 
-        // Verifique se há um objeto com o mesmo email e senha
-        const user = data.find((obj) => obj.email === email && obj.senha === senha);
+            //alert(token);
+            
+            const config = {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            };
+        
+            const pegaToken = await agFetch.get('/auth/', config);
 
-        if (user) {
-            // Crie um token contendo o email e a senha do usuário
-            //const token = Math.random().toString(36).substring(2);
-            //const userToken = { token, email, senha };            
 
-            // Faça uma requisição POST para gerar o token no servidor
-            try {
-                const token = Math.random().toString(36).substring(2);
-                await authprop.post('/auth/proprietario', { token, email, senha });
-                // Armazene o token no localStorage
-                localStorage.setItem('user_token', JSON.stringify({ token, email, senha }));
-
+            if(pegaToken.status === 200) {
+                //alert("Logou no Proprietário");
                 navigate('/tAgendamentosADM');
-            } catch (error) {
-                console.error(error);
-                alert('Erro ao fazer login!');
-            }
-        } else {
-            // Se os dados forem inválidas, exiba uma mensagem de erro 
-            alert('Dados Inválidos!');
-            return;
-        }
+            }                
+          } catch (error) {
+            console.error(error);
+            alert("Dados Incorretos!");
+          }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        localStorage.setItem('came_from_menu', 'true');
-        signin(email, senha);
+        signin(cmpEmail, cmpSenha);
     }
 
     return (
