@@ -71,7 +71,8 @@ const TelaLoginAdm = () => {
                 <div className='campo-de-login'>
                     <div className='butoes'>
                         <a href="./tLoginAdm" className='Login'>Login</a>
-                        <a href="./tCadastroAdm" className='Cadastro'>Cadastro</a>
+                        <Link to="./tCadastroAdm">Acessar minha conta</Link>
+//                         <a href="./tCadastroAdm" className='Cadastro'>Cadastro</a>
                     </div>
                     <div className='formulario'>
                         <form id="formLoginAdm" onSubmit={handleSubmit}>
