@@ -80,17 +80,21 @@ const TelaCadastroAdm = () => {
             }
         } catch (error) {
             console.log(error);
-            
+
             let valErro = error.response.status;
-            
+
             if (valErro === 404)
                 alert("Servidor Indisponível!");
             else if (valErro === 400)
                 alert("Dados Inválidos!");
-            else if (valErro === 409)
-                alert("Telefone, CPF ou Email já cadastrados!");
+            else if (valErro === 409) {
+                //alert("Telefone, CPF ou Email já cadastrados!");
+                const texto = error.response.data;
+                const textoFormatado = JSON.stringify(texto).replace(/,(?=(?:[^"]*"[^"]*")*[^"]*$)|\[|\]|"(.*?)"/g, '$1\n').replace(/\n\s*/g, '\n');
+                alert(textoFormatado);
+            }
         }
-    }
+    }    
 
     const handleSubmit = (e) => {
         e.preventDefault();
