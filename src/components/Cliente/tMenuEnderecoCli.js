@@ -49,10 +49,10 @@ const TelaEnderecoCliente = () => {
     jscomp = useRef(null);
 
     //Campos da API
-    const [jsrua, setRua] = useState("");    
-    const [jsbairro, setBairro] = useState("");    
-    const [jscidade, setCidade] = useState("");    
-    const [jseuf, setUF] = useState("");    
+    //const [jsrua, setRua] = useState("");    
+    //const [jsbairro, setBairro] = useState("");    
+    //const [jscidade, setCidade] = useState("");    
+    //const [jseuf, setUF] = useState("");    
 
     const checkCEP = (e) => {
         const cep = e.target.value.replace(/\D/g, '');
