@@ -17,182 +17,181 @@ import { useForm } from "react-hook-form";
 
 
 const TelaEnderecoCliente = () => {
+document.title = "Endereço do Cliente";
 
-    document.title = "Endereço do Cliente";
+    //Programação do Menu de Hamburger
+    // to change burger classes
+    const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
+    const [menu_class, setMenuClass] = useState("menu hidden")
+    const [isMenuClicked, setIsMenuClicked] = useState(false)
 
-//     //Programação do Menu de Hamburger
-//     // to change burger classes
-//     const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
-//     const [menu_class, setMenuClass] = useState("menu hidden")
-//     const [isMenuClicked, setIsMenuClicked] = useState(false)
+    // toggle burger menu change
+    const updateMenu = () => {
+        if (!isMenuClicked) {
+            setBurgerClass("burger-bar clicked")
+            setMenuClass("menu visible")
+        }
+        else {
+            setBurgerClass("burger-bar unclicked")
+            setMenuClass("menu hidden")
+        }
+        setIsMenuClicked(!isMenuClicked)
+    }
 
-//     // toggle burger menu change
-//     const updateMenu = () => {
-//         if (!isMenuClicked) {
-//             setBurgerClass("burger-bar clicked")
-//             setMenuClass("menu visible")
-//         }
-//         else {
-//             setBurgerClass("burger-bar unclicked")
-//             setMenuClass("menu hidden")
-//         }
-//         setIsMenuClicked(!isMenuClicked)
-//     }
+    //API do CEP
+    const { register, setValue } = useForm();
 
-//     //API do CEP
-//     const { register, setValue } = useForm();
+    //Campos
+    var jscep, jsnum, jscomp;
+    jscep = useRef(null);
+    jsnum = useRef(null);
+    jscomp = useRef(null);
 
-//     //Campos
-//     var jscep, jsnum, jscomp;
-//     jscep = useRef(null);
-//     jsnum = useRef(null);
-//     jscomp = useRef(null);
+    //Campos da API
+    //const [jsrua, setRua] = useState("");    
+    //const [jsbairro, setBairro] = useState("");    
+    //const [jscidade, setCidade] = useState("");    
+    //const [jseuf, setUF] = useState("");    
 
-//     //Campos da API
-//     //const [jsrua, setRua] = useState("");    
-//     //const [jsbairro, setBairro] = useState("");    
-//     //const [jscidade, setCidade] = useState("");    
-//     //const [jseuf, setUF] = useState("");    
+    const checkCEP = (e) => {
+        const cep = e.target.value.replace(/\D/g, '');
+        //console.log(cep);
 
-//     const checkCEP = (e) => {
-//         const cep = e.target.value.replace(/\D/g, '');
-//         //console.log(cep);
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(res => res.json()).then(data => {
+                //console.log(JSON.stringify(data));                       
+                setValue("rua", data.logradouro);
+                setValue("bairro", data.bairro);
+                setValue("cidade", data.localidade);
+                setValue("uf", data.uf);
 
-//         fetch(`https://viacep.com.br/ws/${cep}/json/`)
-//             .then(res => res.json()).then(data => {
-//                 //console.log(JSON.stringify(data));                       
-//                 setValue("rua", data.logradouro);
-//                 setValue("bairro", data.bairro);
-//                 setValue("cidade", data.localidade);
-//                 setValue("uf", data.uf);
-                
-//                 setRua(data.logradouro);
-//                 setBairro(data.bairro);
-//                 setCidade(data.localidade);
-//                 setUF(data.uf);
-//             });
-//     }
+                setRua(data.logradouro);
+                setBairro(data.bairro);
+                setCidade(data.localidade);
+                setUF(data.uf);
+            });
+    }
 
-//     const updateEndereco = (e) => {
-//         e.preventDefault();
+    const updateEndereco = (e) => {
+        e.preventDefault();
 
-//         const valCep = jscep.current.value;
-//         //const valComp = jscomp.current.value;
-//         //const valNum = jsnum.current.value;
+        const valCep = jscep.current.value;
+        //const valComp = jscomp.current.value;
+        //const valNum = jsnum.current.value;
 
-//         //const valRua = jsrua;
-//         //const valBairro = jsbairro;
-//         //const valCidade = jscidade;
-//         //const valUF = jseuf;
-        
-//         let qtdCep = valCep.length;
-//         if (qtdCep < 8) {
-//             alert("CEP Inválido!");
-//             jscep.current.focus();
-//         } else {
-//             try {
-//                 //testar se esta pegando os dados
-//                 //alert(JSON.stringify({ valCep, valRua, valNum, valComp, valBairro, valCidade, valUF }));
+        //const valRua = jsrua;
+        //const valBairro = jsbairro;
+        //const valCidade = jscidade;
+        //const valUF = jseuf;
 
-//                 //logica
-                
+        let qtdCep = valCep.length;
+        if (qtdCep < 8) {
+            alert("CEP Inválido!");
+            jscep.current.focus();
+        } else {
+            try {
+                //testar se esta pegando os dados
+                //alert(JSON.stringify({ valCep, valRua, valNum, valComp, valBairro, valCidade, valUF }));
 
-//                 //alert("Dados Atualizados!");
-
-//             } catch (error) {
-//                 //coloquei este try catch para parar de reclamar de erro
-//             }
-
-//             //alert(data.cep, data.rua, data.num, data.comp, data.bairro, data.cidade, data.uf);
-//         }
-//     }
-
-//     const [userData, setUserData] = useState({});
-
-//     const valToken = localStorage.getItem('user_token');
-//     const JSToken = JSON.parse(valToken);
+                //logica
 
 
-//     var token = JSToken['token'];
-//     var tkEmail = JSToken['email'];
+                //alert("Dados Atualizados!");
 
-//     //alert(JSON.stringify(JSToken['token']));
-//     //alert(JSON.stringify(JSToken['email']));
+            } catch (error) {
+                //coloquei este try catch para parar de reclamar de erro
+            }
 
-//     // Função para obter os dados do usuário
-//     const fetchUserData = async () => {
-//         try {
-//             const response = await agFetch.get('/clientes/criar', {
-//                 headers: {
-//                     Authorization: `Bearer ${token}`,
-//                 },
-//             });
+            //alert(data.cep, data.rua, data.num, data.comp, data.bairro, data.cidade, data.uf);
+        }
+    }
 
-//             const data = response.data;
+    const [userData, setUserData] = useState({});
 
-//             //filtra o objeto
-//             var objFiltrado = data.find((item) => item.email === tkEmail);
-//             var objF = objFiltrado ? { ...objFiltrado } : null;
+    const valToken = localStorage.getItem('user_token');
+    const JSToken = JSON.parse(valToken);
 
-//             setUserData(objF);
-//             //alert(tkEmail);
-//             //alert(JSON.stringify(data));
-//             //alert(JSON.stringify(objF));
-//         } catch (error) {
-//             alert(error);
-//         }
-//     };
 
-//     //bloquear rolagem nos imputs number
-//     useEffect(() => {
-//         const cep = jscep.current;
-//         const num = jsnum.current;
-//         const bloquearRolagem = (e) => {
-//             e.preventDefault();
-//         };
+    var token = JSToken['token'];
+    var tkEmail = JSToken['email'];
 
-//         if (cep) {
-//             cep.addEventListener('wheel', bloquearRolagem);
-//         }
+    //alert(JSON.stringify(JSToken['token']));
+    //alert(JSON.stringify(JSToken['email']));
 
-//         if (num) {
-//             num.addEventListener('wheel', bloquearRolagem);
-//         }
+    // Função para obter os dados do usuário
+    const fetchUserData = async () => {
+        try {
+            const response = await agFetch.get('/clientes/criar', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
 
-//         return () => {
-//             if (cep) {
-//                 cep.removeEventListener('wheel', bloquearRolagem);
-//             }
-//             if (num) {
-//                 num.removeEventListener('wheel', bloquearRolagem);
-//             }
-//         };
-//     });
+            const data = response.data;
 
-//     // Chama a função fetchUserData quando o componente é montado
-//     useEffect(() => {
-//         fetchUserData();
-//     });
+            //filtra o objeto
+            var objFiltrado = data.find((item) => item.email === tkEmail);
+            var objF = objFiltrado ? { ...objFiltrado } : null;
 
-//     // Extrai as informações necessárias do usuário
-//     //const nome = "José";
-//     //sobrenome = "Luis";
+            setUserData(objF);
+            //alert(tkEmail);
+            //alert(JSON.stringify(data));
+            //alert(JSON.stringify(objF));
+        } catch (error) {
+            alert(error);
+        }
+    };
 
-//     const nome = userData.nome;
-//     const sobrenome = userData.sobrenome;
+    //bloquear rolagem nos imputs number
+    useEffect(() => {
+        const cep = jscep.current;
+        const num = jsnum.current;
+        const bloquearRolagem = (e) => {
+            e.preventDefault();
+        };
 
-//     var pnome = '';
-//     var psobrenome = '';
+        if (cep) {
+            cep.addEventListener('wheel', bloquearRolagem);
+        }
 
-//     if (nome && nome.length > 0) {
-//         pnome = nome.charAt(0);
-//     }
+        if (num) {
+            num.addEventListener('wheel', bloquearRolagem);
+        }
 
-//     if (sobrenome && sobrenome.length > 0) {
-//         psobrenome = sobrenome.charAt(0);
-//     }
+        return () => {
+            if (cep) {
+                cep.removeEventListener('wheel', bloquearRolagem);
+            }
+            if (num) {
+                num.removeEventListener('wheel', bloquearRolagem);
+            }
+        };
+    });
 
-//     const iniciais = pnome + psobrenome;
+    // Chama a função fetchUserData quando o componente é montado
+    useEffect(() => {
+        fetchUserData();
+    });
+
+    // Extrai as informações necessárias do usuário
+    //const nome = "José";
+    //sobrenome = "Luis";
+
+    const nome = userData.nome;
+    const sobrenome = userData.sobrenome;
+
+    var pnome = '';
+    var psobrenome = '';
+
+    if (nome && nome.length > 0) {
+        pnome = nome.charAt(0);
+    }
+
+    if (sobrenome && sobrenome.length > 0) {
+        psobrenome = sobrenome.charAt(0);
+    }
+
+    const iniciais = pnome + psobrenome;
 
     return (
         <div className={styles.fDBCliente}>
