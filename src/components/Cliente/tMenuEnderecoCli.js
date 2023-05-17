@@ -17,8 +17,7 @@ import { useForm } from "react-hook-form";
 
 
 const TelaEnderecoCliente = () => {
-
-    document.title = "Endereço do Cliente";
+document.title = "Endereço do Cliente";
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -49,10 +48,10 @@ const TelaEnderecoCliente = () => {
     jscomp = useRef(null);
 
     //Campos da API
-    const [jsrua, setRua] = useState("");    
-    const [jsbairro, setBairro] = useState("");    
-    const [jscidade, setCidade] = useState("");    
-    const [jseuf, setUF] = useState("");    
+    //const [jsrua, setRua] = useState("");    
+    //const [jsbairro, setBairro] = useState("");    
+    //const [jscidade, setCidade] = useState("");    
+    //const [jseuf, setUF] = useState("");    
 
     const checkCEP = (e) => {
         const cep = e.target.value.replace(/\D/g, '');
@@ -65,7 +64,7 @@ const TelaEnderecoCliente = () => {
                 setValue("bairro", data.bairro);
                 setValue("cidade", data.localidade);
                 setValue("uf", data.uf);
-                
+
                 setRua(data.logradouro);
                 setBairro(data.bairro);
                 setCidade(data.localidade);
@@ -77,14 +76,14 @@ const TelaEnderecoCliente = () => {
         e.preventDefault();
 
         const valCep = jscep.current.value;
-        const valComp = jscomp.current.value;
-        const valNum = jsnum.current.value;
+        //const valComp = jscomp.current.value;
+        //const valNum = jsnum.current.value;
 
-        const valRua = jsrua;
-        const valBairro = jsbairro;
-        const valCidade = jscidade;
-        const valUF = jseuf;
-        
+        //const valRua = jsrua;
+        //const valBairro = jsbairro;
+        //const valCidade = jscidade;
+        //const valUF = jseuf;
+
         let qtdCep = valCep.length;
         if (qtdCep < 8) {
             alert("CEP Inválido!");
@@ -95,7 +94,7 @@ const TelaEnderecoCliente = () => {
                 //alert(JSON.stringify({ valCep, valRua, valNum, valComp, valBairro, valCidade, valUF }));
 
                 //logica
-                
+
 
                 //alert("Dados Atualizados!");
 

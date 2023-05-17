@@ -1,5 +1,5 @@
 import './tLoginFunc.css';
-import Logo from '../../img/Logo.png';
+import Logo from '../../img/logo.png';
 
 
 const telaLogin = () => {
