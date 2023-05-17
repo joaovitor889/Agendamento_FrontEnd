@@ -50,7 +50,7 @@ function App() {
     <div className="App">
       <header className="App-header">
           <Routes>
-            <Route index element={<Agendamentos />} />
+            <Route index element={<LandPange />} />
             <Route path = "/tMenuOpcLogin" element = {<OpcLogin />} />
             <Route path = "/tMenuOpcCadastro" element = {<OpcCadastro />} />
 
@@ -68,7 +68,7 @@ function App() {
             <Route path="/tServADM" element = {<ServADM />} />
             <Route path="/tPesqFunc" element =  {<PesquisaFunc />} />
             <Route path="/tCadFunc" element = {<CadastroFunc />} />
-            <Route path="/tAgendamentosADM" element = {<LandPage />} />
+            <Route path="/tAgendamentosADM" element = {<Agendamentos />} />
 
 
             {/* Telas do Cliente */}
