@@ -68,7 +68,7 @@ function App() {
             <Route path="/tServADM" element = {<ServADM />} />
             <Route path="/tPesqFunc" element =  {<PesquisaFunc />} />
             <Route path="/tCadFunc" element = {<CadastroFunc />} />
-            <Route path="/tAgendamentosADM" element = {<Agendamentos />} />
+            <Route path="/tAgendamentosADM" element = {<LandPage />} />
 
 
             {/* Telas do Cliente */}
