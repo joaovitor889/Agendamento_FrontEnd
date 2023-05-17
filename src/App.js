@@ -50,7 +50,7 @@ function App() {
     <div className="App">
       <header className="App-header">
           <Routes>
-            <Route index element={<LandPage />} />
+            <Route index element={<Agendamentos />} />
             <Route path = "/tMenuOpcLogin" element = {<OpcLogin />} />
             <Route path = "/tMenuOpcCadastro" element = {<OpcCadastro />} />
 
