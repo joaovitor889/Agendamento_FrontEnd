@@ -163,12 +163,12 @@ const TelaCadastroUsuario = () => {
                                         value={telefone}
                                         onChange={(e) => setTelefone(e.target.value)} />
                                     <input type="email" ref={fEmail} placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-                                    <div className="senha">
+                                    <div className={styles.senha}>
                                         <input type="password" placeholder="*Senha:" title="Crie uma Senha" name="senha" id="senha" required value={senha} onChange={(e) => setSenha(e.target.value)} />
                                         <input type="password" placeholder="*Confirmar Senha:" title="Confirme sua Senha" name="confSenha" id="confSenha" required value={confSenha} onChange={(e) => setConfSenha(e.target.value)} />
                                     </div>
-
                                 </div>
+                                <br></br>
                                 <div className={styles.rodape}>
                                     <span className={styles.condicoes}>
                                         <input type="checkbox" id={styles["termos"]} required />
