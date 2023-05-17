@@ -48,14 +48,16 @@ document.title = "Endereço do Cliente";
     jscomp = useRef(null);
 
     //Campos da API
-    //const [jsrua, setRua] = useState("");    
-    //const [jsbairro, setBairro] = useState("");    
-    //const [jscidade, setCidade] = useState("");    
-    //const [jseuf, setUF] = useState("");    
+    const [jsrua, setRua] = useState("");    
+    const [jsbairro, setBairro] = useState("");    
+    const [jscidade, setCidade] = useState("");    
+    const [jseuf, setUF] = useState("");    
+
 
     const checkCEP = (e) => {
         const cep = e.target.value.replace(/\D/g, '');
         //console.log(cep);
+        console.log(jsrua, jsbairro, jscidade, jseuf);
 
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
             .then(res => res.json()).then(data => {
