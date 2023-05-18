@@ -14,12 +14,12 @@ const telaAgendamentos = () => {
     return (
         <main>
         <div className={styles.fAgends}>
-            <input type='checkbox' id='check' />
+            <input type='checkbox' id={styles["check"]} />
             <input type='checkbox' id={styles["check_rigth"]} />
             {/* header  começo */}
             <header>
                 <div className="esquerda">
-                    <label htmlFor='check'>
+                    <label htmlFor={styles["check"]}>
                         <img src={menu} alt="retunr" className='sidebar_btn' />
                     </label>
                 </div>
@@ -37,7 +37,7 @@ const telaAgendamentos = () => {
             </header>
             {/* final do header */}
             {/* sidebar começo */}
-            <div className='sidebar'>
+            <div className={styles.sidebar}>
                 <a href="/">Profissionais</a>
                 <a href="/">Agendamentos</a>
                 <a href="/">Agendar</a>
