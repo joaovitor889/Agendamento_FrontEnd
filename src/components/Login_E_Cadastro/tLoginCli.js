@@ -1,7 +1,7 @@
 import styles from './tLoginCli.css';
-import Logo from '../../img/Logo.png';
+import Logo from '../../img/logo.png';
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -24,12 +24,16 @@ const TelaLogin = () => {
         const userToken = localStorage.getItem('user_token');
         const usersStorage = localStorage.getItem('users_bd');
 
+
         if (userToken && usersStorage) {
             const hasUser = JSON.parse(usersStorage)?.filter(
                 (user) => user.email === JSON.parse(userToken).email
             );
 
-            if (hasUser) setUser(hasUser[0]);
+            if (hasUser) {
+                setUser(hasUser[0]);
+                console.log(user);
+            }
         }
 
         const cameFromMenu = localStorage.getItem('came_from_menu');
@@ -48,7 +52,7 @@ const TelaLogin = () => {
                 //alert('Erro ao excluir os dados authProp!');
             });
 
-    }, []);
+    }, [user]);
 
     const signin = async (email, senha) => {
         //teste se os dados estao sendo enviados
