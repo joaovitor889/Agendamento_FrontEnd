@@ -13,7 +13,6 @@ const telaCalendarioProfissional = () => {
 
     return (
         <div className={styles.fAgendProfissional}>
-           <input type='checkbox' id={styles["check"]} />
             <input type='checkbox' id={styles["check_rigth"]} />
             {/* header  começo */}
             <header>
