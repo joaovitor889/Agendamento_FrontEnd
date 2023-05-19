@@ -36,18 +36,6 @@ const telaCalendarioProfissional = () => {
             </header>
             {/* final do header */}
             {/* sidebar começo */}
-            <div className={styles.sidebar}>
-                <a href="/">Profissionais</a>
-                <a href="/">Agendamentos</a>
-                <a href="/">Agendar</a>
-                <a href="/">Serviços</a>
-                <a href="/">Perfil</a>
-                <div className='interprise'>
-                    <h3>Qual empresa?</h3>
-                </div>
-            </div>
-            {/* sidebar  final */}
-            {/* sidebar começo */}
             <div className={styles.sidebar_rigth}>
                 <h1>Filtros</h1>
                 <br />
