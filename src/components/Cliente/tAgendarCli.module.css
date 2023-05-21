@@ -58,30 +58,94 @@
 	content: 'S&S';
 }
 
-.notificacao {
-	width: 13%;
-	height: 8%;
+.notificacao .btnNot button {
+	width: 9vw; /* Largura responsiva */
+	height: 8vh;
+	border-style: none;
 	background-color: #000;
-	border-radius: 50px;
-	margin-left: auto;
+	border-radius: 100%;
+    position: absolute;
+	margin-left: -1%;
+    margin-top: 1.5%;
 }
 
-.notificacao:hover {
+.notificacao .btnNot button:hover {
 	background-color: #0000ff;
 }
 
-.notificacao img{
+.notificacao img {
 	width: 90%;
 	height: 90%;
 }
 
+.notificationContainer {
+	position: absolute;
+	margin-left: -40%;
+    margin-top: 15%;
+	z-index: 3;
+	width: 50%;
+	height: 40vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	background-color: white;
+	border: 1px solid black;
+	overflow-y: auto;
+    color: #000;
+}
+
+.notificationList {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.notification-item {
+	padding: 5px;
+	border-bottom: 1px solid black;
+	margin-left: 0;
+}
+
+.notification-title {
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+
+.notificationDescription {
+	margin-left: 5%;
+	word-break: break-word;
+	text-align: justify;
+}
+
+.first-notification {
+	margin-top: 0;
+}
+
+.closeButton {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+}
 .perfil {
 	background-color: #000;
 	color: #fff;
-	width: 12vw;
-  	height: 13vw;
+	width: 10vw;
+  	height: 12vw;
   	border-radius: 50%;
 	margin-left: auto;
+}
+
+.perfil p {
+	margin-top: 35%;
+	font-size: 5vw;
 }
 
 .perfil  img{
@@ -144,23 +208,33 @@
 	margin-left: -7%;
 }
 
+#horAtend {
+	font-size: 3vw;
+}
+
 #preco {
 	width: 58%;
 	height: 40px;
 	border-radius: 25px;
-	background-color: #8AFFEA;
+	margin-left: -12%;
+	margin-top: 2%;
 }
 
-#preco p {
+#preco p, input[type="text"][disabled] {
+	background-color: #8AFFEA;
 	text-align: left;
-	margin-top: 2%;
-	margin-left: 5%;
+	width: 58%;
+	height: 40px;
 }
 
 #rodape {
 	display: flex;
 	flex-direction: row;
 	margin-left: 10%;
+}
+
+#btn {
+	margin-left: 12%;
 }
 
 #rodape #btnAgendarCli {
@@ -170,8 +244,8 @@
     text-align: center;
 	width: 25vw;
 	height: 6.3vh;
+	position: relative;
 	margin-top: 15%;
-	margin-left: 60%;
 }
 
 #rodape #btnAgendarCli:hover {
@@ -190,7 +264,7 @@
 	.logoMenuCli {
 		width: 20%;
 		height: 5%;
-		margin-left: 25%;		
+		margin-left: 10%;		
 	}
 	.logoMenuCli p::before {
 		font-size: 1.6vw;
@@ -199,9 +273,36 @@
 		font-weight: bold;
 	}
 	.notificacao {
-		width: 50px;
-		height: 50px;
-		margin-left: 25%;
+		width: 3.5%;
+		height: 2%;
+        position: absolute;
+		margin-left: 90%;
+        margin-top: 0.5%;
+	}
+
+    .notificacao .btnNot button {
+        width: 4vw; /* Largura responsiva */
+        height: 8vh;
+        border-style: none;
+        background-color: #000;
+        border-radius: 100%;
+        position: absolute;
+        margin-left: -50%;
+        margin-top: -15%
+	}
+
+	.notificationContainer {
+		width: 200px;
+		height: 300px;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		background-color: white;
+		border: 1px solid black;
+		overflow-y: auto;
+		position: relative;
+		margin-left: -300%;
+        margin-top: 95%;
+        color: #000;
 	}
 	.perfil {
 		width: 50px;
@@ -243,5 +344,9 @@
 		height: 6.3vh;
 		margin-top: 9%;
 		margin-left: 60%;
+	}
+
+	#horAtend {
+		font-size: 100%;
 	}
 }

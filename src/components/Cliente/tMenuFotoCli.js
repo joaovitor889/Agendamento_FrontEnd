@@ -76,19 +76,19 @@ const TelaFotoCliente = () => {
 
     const [userData, setUserData] = useState({});
 
-    const valToken = localStorage.getItem('user_token');
-    const JSToken = JSON.parse(valToken);
+    //const valToken = localStorage.getItem('user_token');
+    //const JSToken = JSON.parse(valToken);
 
 
-    var token = JSToken['token'];
-    var tkEmail = JSToken['email'];
+    //var token = JSToken['token'];
+    //var tkEmail = JSToken['email'];
 
     //alert(JSON.stringify(JSToken['token']));
     //alert(JSON.stringify(JSToken['email']));
 
     // Função para obter os dados do usuário
     const fetchUserData = async () => {
-        try {
+        /*try {
             const response = await agFetch.get('/clientes/criar', {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -107,7 +107,7 @@ const TelaFotoCliente = () => {
             //alert(JSON.stringify(objF));
         } catch (error) {
             alert(error);
-        }
+        }*/
     };
 
     // Chama a função fetchUserData quando o componente é montado
@@ -116,11 +116,11 @@ const TelaFotoCliente = () => {
     });
 
     // Extrai as informações necessárias do usuário
-    //const nome = "José";
-    //sobrenome = "Luis";
+    const nome = "José";
+    const sobrenome = "Luis";
 
-    const nome = userData.nome;
-    const sobrenome = userData.sobrenome;
+    //const nome = userData.nome;
+    //const sobrenome = userData.sobrenome;
 
     var pnome = '';
     var psobrenome = '';
@@ -134,6 +134,34 @@ const TelaFotoCliente = () => {
     }
 
     const iniciais = pnome + psobrenome;
+
+
+
+    //Notificacao
+    const [notifications, setNotifications] = useState([]);
+    const [showNotifications, setShowNotifications] = useState(false);
+    const [newNotification, setNewNotification] = useState(false);
+
+    const fetchNotifications = () => {
+        const fakeNotifications = [
+            { id: 1, title: "Título 1", description: "Notificação 1" },
+            { id: 2, title: "Título 2", description: "Notificação 2" },
+            { id: 3, title: "Título 3", description: "Notificação 3" }
+        ];
+        setNotifications(fakeNotifications);
+    };
+
+    const handleClick = () => {
+        if (!showNotifications) {
+            fetchNotifications();
+        }
+        setShowNotifications(!showNotifications);
+        setNewNotification(false);
+    };
+
+    const handleListClose = () => {
+        setShowNotifications(false);
+    };
 
     return (
         <div className={styles.fFotoCliente}>
@@ -168,6 +196,7 @@ const TelaFotoCliente = () => {
                 <form id={styles["formFoto"]} onSubmit={updateFoto}>
                     <center><img id="fotoDefCli" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
                     <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
+                    <div className={styles.legFoto}><p>Adicionar / alterar imagem</p></div>
                     <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" required /></center>
                     <div id={styles["fbtnSalvarotoCli"]}>
                         <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" value="Salvar" />
@@ -234,7 +263,27 @@ const TelaFotoCliente = () => {
                     {/*<img src={Perfil} alt="perfil" />*/}
                     <p>{iniciais}</p>
                 </div>
-                <div className={styles.notificacao}><a href="/"><img src={Notificacao} alt="notificacao" /></a></div>
+                <div className={styles.notificacao}>
+                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
+                    {showNotifications && (
+                        <div className={styles.notificationContainer}>
+                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
+                            {newNotification && <p>Nova notificação recebida!</p>}
+                            <ul className={styles.notificationList}>
+                                {notifications.map((notification, index) => (
+                                    <li
+                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
+                                        key={notification.id}
+                                    >
+                                        <p className="notification-title">{notification.title}</p>
+                                        <p className={styles.notificationDescription}>{notification.description}</p>
+                                        <hr></hr>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
                 <div className={styles.logoMenuCli}><p></p></div>
                 <div id={styles["voltar"]}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>

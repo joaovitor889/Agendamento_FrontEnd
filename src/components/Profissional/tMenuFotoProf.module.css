@@ -65,26 +65,81 @@
     font-weight: bold;
 }
 
-.notificacao {
+.notificacao .btnNot button {
+	width: 10vw; /* Largura responsiva */
+	height: 7vh;
+	border-style: none;
+	background-color: #000;
+	border-radius: 100%;
     position: absolute;
-    left: 80%;
-    top: 20%;
-    background-color: #000;
-    border-radius: 50%;
-    width: 8%;
-    height: 65%;
+	margin-left: 25%;
+    margin-top: 2%;
 }
 
-.notificacao:hover {
-    background-color: #0000ff;
+.notificacao .btnNot button:hover {
+	background-color: #0000ff;
 }
 
 .notificacao img {
-    position: absolute;
-    top: 1%;
-    left: 5%;
-    width: 90%;
-    height: 90%;
+	width: 90%;
+	height: 90%;
+}
+
+.notificationContainer {
+	position: absolute;
+	margin-left: 30%;
+    margin-top: 3%;
+	z-index: 3;
+	width: 50%;
+	height: 40vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	background-color: white;
+	border: 1px solid black;
+	overflow-y: auto;
+    color: #000;
+}
+
+.notificationList {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.notification-item {
+	padding: 5px;
+	border-bottom: 1px solid black;
+	margin-left: 0;
+}
+
+.notification-title {
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+
+.notificationDescription {
+	margin-left: 5%;
+	word-break: break-word;
+	text-align: justify;
+}
+
+.first-notification {
+	margin-top: 0;
+}
+
+.closeButton {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
 }
 
 .perfil {
@@ -95,6 +150,11 @@
     border-radius: 50%;
     width: 8%;
     height: 65%;
+}
+
+.perfil p {
+    margin-top: 5%;
+    color: #fff;
 }
 
 .perfil img {
@@ -198,6 +258,14 @@ h2 {
    display:none;
 }
 
+.legFoto {
+    margin-top: -2%;
+    margin-left: 13%;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: left;
+    color: #fff;
+}
+
 
 @media only screen and (min-width: 1024px) {
     .fFotoFuncente {
@@ -259,23 +327,37 @@ h2 {
     }
 
     .notificacao {
+		width: 3.5%;
+		height: 2%;
         position: absolute;
-        left: 91%;
-        top: 20%;
+		margin-left: 90%;
+        margin-top: 0.5%;
+	}
+
+    .notificacao .btnNot button {
+        width: 4vw; /* Largura responsiva */
+        height: 7vh;
+        border-style: none;
         background-color: #000;
-        border-radius: 50%;
-        width: 3vw;
-        height: 3vw;
-    }
-    .notificacao:hover {
-        background-color: #0000ff;
-    }
-    .notificacao img {
-        margin-top: 5%;
-        margin-left: 5%;
-        width: 80%;
-        height: 80%;
-    }
+        border-radius: 100%;
+        position: absolute;
+        margin-left: -50%;
+        margin-top: 2%
+	}
+
+	.notificationContainer {
+		width: 200px;
+		height: 300px;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		background-color: white;
+		border: 1px solid black;
+		overflow-y: auto;
+		position: relative;
+		margin-left: -300%;
+        margin-top: 95%;
+        color: #000;
+	}
 
     .perfil {
         background-color: #000;
@@ -333,12 +415,18 @@ h2 {
     
     #perfilLateral {
         display: flex;
-        width: 50%;
-        height: 95%;
+        width: 60%;
+        height: 65%;
         background-color: #000;
         margin-left: -5%;
         border-radius: 50%;
         margin-top: 12%;
+    }
+    #perfilLateral p {
+        color: #fff;
+        margin-top: 15%;
+        margin-left: 25%;
+        font-size: 350%;
     }
     #perfilLateral img{
         position: absolute;

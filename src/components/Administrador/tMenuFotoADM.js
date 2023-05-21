@@ -1,7 +1,5 @@
-import styles from './tMenuDBCli.module.css';
+import styles from './tMenuFotoADM.module.css';
 //import logo from '../../img/logo.PNG';
-
-import React, { useState, useEffect, useRef } from "react";
 
 import Voltar from '../../icones/chevron-left.png';
 
@@ -9,13 +7,16 @@ import Notificacao from '../../icones/Doorbell.png';
 
 //import Perfil from '../../icones/perfilCliente.png';
 
+import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
+
+import React, { useState, useEffect } from "react";
+
 import agFetch from '../../axios/config.js';
 
-import './menHamburger.css';
 
-const TelaDadosBasicosCliente = () => {
+const TelaFotoCliente = () => {
 
-    document.title = "Dados Básicos";
+    document.title = "Foto do Cliente";
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -36,8 +37,43 @@ const TelaDadosBasicosCliente = () => {
         setIsMenuClicked(!isMenuClicked)
     }
 
-    //Requisicoes com a API
-    // Estado para armazenar os dados do usuário
+    //logica do upload da foto
+    const [selectedFile, setSelectedFile] = useState();
+    const [preview, setPreview] = useState();
+
+
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview(undefined);
+            return;
+        }
+
+        const objUrl = URL.createObjectURL(selectedFile);
+        setPreview(objUrl);
+
+        //libera memoria quando o componente nao e criado
+        return () => URL.revokeObjectURL(objUrl);
+    }, [selectedFile])
+
+    const onSelectFile = (e) => {
+        if (!e.target.files || e.target.files.lenght === 0) {
+            setSelectedFile(undefined);
+            return;
+        }
+
+        var myPicture = document.getElementById('fotoDefCli');
+        myPicture.className = styles.desImgDef;
+
+        setSelectedFile(e.target.files[0]);
+    }
+
+    //atualiza foto de perfil
+    const updateFoto = (e) => {
+        e.preventDefault();
+
+        alert('Dados Salvos!');
+    }
+
     const [userData, setUserData] = useState({});
 
     //const valToken = localStorage.getItem('user_token');
@@ -74,40 +110,10 @@ const TelaDadosBasicosCliente = () => {
         }*/
     };
 
-
-    //alert(JSON.stringify(userData));
-
     // Chama a função fetchUserData quando o componente é montado
     useEffect(() => {
         fetchUserData();
     });
-
-    //bloquear rolagem nos imputs number
-    useEffect(() => {
-        const cpf = cmpCPF.current;
-        const telefone = cmpTelefone.current;
-        const bloquearRolagem = (e) => {
-            e.preventDefault();
-        };
-
-        if (cpf) {
-            cpf.addEventListener('wheel', bloquearRolagem);
-        }
-
-        if (telefone) {
-            telefone.addEventListener('wheel', bloquearRolagem);
-        }
-
-        return () => {
-            if (cpf) {
-                cpf.removeEventListener('wheel', bloquearRolagem);
-            }
-
-            if (telefone) {
-                telefone.removeEventListener('wheel', bloquearRolagem);
-            }
-        };
-    }, []);
 
     // Extrai as informações necessárias do usuário
     const nome = "José";
@@ -129,96 +135,6 @@ const TelaDadosBasicosCliente = () => {
 
     const iniciais = pnome + psobrenome;
 
-    //Campos
-    //const cmpNome = useRef(userData.nome);
-    //const cmpSobrenome = useRef(userData.sobrenome);
-    //const cmpCPF = useRef(userData.cpf);
-    //const cmpTelefone = useRef(userData.telefone);
-    //const cmpEmail = useRef(userData.email);
-
-    const cmpNome = useRef("AAA");
-    const cmpSobrenome = useRef("AAA");
-    const cmpCPF = useRef("111");
-    const cmpTelefone = useRef("111");
-    const cmpEmail = useRef("aaa@gmail.com");
-
-    //Atualizacao dos dados
-    const updateData = async (userData) => {
-        /*try {
-            await agFetch.put(`/clientes/criar/${userData.email}`, {
-                nome: cmpNome.current.value,
-                sobrenome: cmpSobrenome.current.value,
-                cpf: cmpCPF.current.value,
-                telefone: cmpTelefone.current.value,
-                email: cmpEmail.current.value,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            //const updatedUserData = response.data;
-
-            //setUserData(updatedUserData);
-        } catch (error) {
-            throw new Error("Ocorreu um erro ao atualizar os dados do cliente na API.");
-        }*/
-    };
-
-
-    const updateCli = async (e) => {
-        e.preventDefault();
-
-        /*try {
-            const response = await agFetch.get("/clientes/criar");
-            const data = response.data;
-            const jsonData = data;
-
-            if (jsonData.some((item) => item.cpf === cmpCPF.current.value && item.cpf !== userData.cpf)) {
-                alert("CPF já cadastrado.");
-                cmpCPF.current.focus();
-                return;
-            }
-
-            if (jsonData.some((item) => item.telefone === cmpTelefone.current.value && item.telefone !== userData.telefone)) {
-                alert("Telefone já cadastrado.");
-                cmpTelefone.current.focus();
-                return;
-            }
-
-            if (jsonData.some((item) => item.email === cmpEmail.current.value && item.email !== userData.email)) {
-                alert("E-mail já cadastrado.");
-                cmpEmail.current.focus();
-                return;
-            }
-
-            // Encontrar o objeto do usuário atual pelo email
-            const userObject = jsonData.find((item) => item.email === userData.email);
-
-            // Atualizar os campos necessários
-            userObject.nome = cmpNome.current.value;
-            userObject.sobrenome = cmpSobrenome.current.value;
-            userObject.cpf = cmpCPF.current.value;
-            userObject.telefone = cmpTelefone.current.value;
-            userObject.email = cmpEmail.current.value;
-
-            // Verificar se o email foi alterado
-            if (cmpEmail.current.value !== userData.email) {
-                // Atualizar o email no token
-                const userToken = JSON.parse(localStorage.getItem("user_token"));
-                userToken.email = cmpEmail.current.value;
-                localStorage.setItem("user_token", JSON.stringify(userToken));
-            }
-
-            // Chamar a função de atualização dos dados
-            await updateData(userObject);
-
-            // Dados atualizados com sucesso
-            alert("Dados atualizados com sucesso.");
-        } catch (error) {
-            alert("Ocorreu um erro ao atualizar os dados do cliente. Erro: " + error.message);
-        }*/
-    };
 
 
     //Notificacao
@@ -248,7 +164,7 @@ const TelaDadosBasicosCliente = () => {
     };
 
     return (
-        <div className={styles.fDBCliente}>
+        <div className={styles.fFotoCliente}>
             <div id={styles["menuLatCli"]}>
                 <div id={styles["menuDesk"]}>
                     <ul id={styles["ulDesk"]}>
@@ -259,16 +175,16 @@ const TelaDadosBasicosCliente = () => {
                             <p>{iniciais}</p>
                         </div>
                         <div id={styles["textoLL"]}>
-                            <a href='./tMenuDBCli' rel="noreferrer">
-                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Dados Básicos</p></li>
+                            <a href="./tMenuDBCli" rel="noreferrer">
+                                <li><p>Dados Básicos</p></li>
                             </a>
 
-                            <a href='./tMenuEnderecoCli' rel="noreferrer">
+                            <a href="./tMenuEnderecoCli" rel="noreferrer">
                                 <li><p>Endereço</p></li>
                             </a>
 
-                            <a href='./tMenuFotoCli' rel="noreferrer">
-                                <li><p>Foto</p></li>
+                            <a href="./tMenuFotoCli" rel="noreferrer">
+                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Foto</p></li>
                             </a>
                         </div>
                     </ul>
@@ -276,74 +192,19 @@ const TelaDadosBasicosCliente = () => {
             </div>
 
             <div id={styles["conteudoCli"]}>
-                <h2><center>Dados Básicos (Cliente)</center></h2>
-                <form id={styles["formDB"]} onSubmit={(e) => updateCli(e)}>
-                    <input type="text"
-                        placeholder="*Nome:"
-                        title="Digite o seu nome"
-                        name="nome"
-                        id={styles["nome"]}
-                        required
-                        defaultValue={userData.nome || ""}
-                        ref={cmpNome}
-                        /*onChange={(e) => setCmpNome(e.target.value)}*/ /> <br></br>
-                    <input type="text"
-                        placeholder="*Sobrenome:"
-                        title="Digite o seu sobrenome"
-                        name="sobrenome"
-                        id={styles["sobrenome"]}
-                        required
-                        defaultValue={userData.sobrenome || ""}
-                        ref={cmpSobrenome} /> <br></br>
-                    <input type="number"
-                        placeholder="*CPF:"
-                        title="Digite o seu CPF"
-                        name="cpf" id={styles["cpf"]}
-                        maxLength="11"
-                        onKeyPress={(event) => {
-                            if (!/[0-9]/.test(event.key)
-                                || event.target.value.length > event.target.maxLength - 1) {
-                                event.preventDefault();
-                            }
-                        }}
-                        required
-                        defaultValue={userData.cpf || ""}
-                        ref={cmpCPF} />
-
-                    <input type="number"
-                        placeholder="Telefone:"
-                        title="Digite o seu Telefone"
-                        name="tel" id={styles["tel"]}
-                        maxLength="11"
-                        onKeyPress={(event) => {
-                            if (!/[0-9]/.test(event.key)
-                                || event.target.value.length > event.target.maxLength - 1) {
-                                event.preventDefault();
-                            }
-                        }}
-                        defaultValue={userData.telefone || ""}
-                        ref={cmpTelefone}
-                    />
-
-                    <input type="email"
-                        placeholder="*E-mail:"
-                        title="Digite o seu E-mail"
-                        name="email"
-                        id={styles["email"]}
-                        required /*disabled*/
-                        defaultValue={userData.email || ""}
-                        ref={cmpEmail}
-                        //style={{ display: 'none' }}
-                        //disabled
-                    /> <br></br>
-                    <div id="btnDBSalvar">
-                        <input type="submit" id={styles["btnSalvarDDB"]} name="btnSalvarDDB" value="Salvar" />
+                <h2><center>Foto (Cliente)</center></h2>
+                <form id={styles["formFoto"]} onSubmit={updateFoto}>
+                    <center><img id="fotoDefCli" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
+                    <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
+                    <div className={styles.legFoto}><p>Adicionar / alterar imagem</p></div>
+                    <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" required /></center>
+                    <div id={styles["fbtnSalvarotoCli"]}>
+                        <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" value="Salvar" />
                     </div>
                 </form>
             </div>
 
             <div id={styles["menuHorCli"]}>
-
                 {/*Menu Mobile*/}
                 <div className="menHamburger">
                     <div className="burger-menu" onClick={updateMenu}>
@@ -366,7 +227,7 @@ const TelaDadosBasicosCliente = () => {
                         </div>
 
                         <ul id="uMenHamburger">
-                            <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
+                            <li>
                                 <p>
                                     <a href="./tMenuDBCli" rel="noreferrer">
                                         Dados Básicos
@@ -380,7 +241,7 @@ const TelaDadosBasicosCliente = () => {
                                     </a>
                                 </p>
                             </li>
-                            <li>
+                            <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
                                     <a href="./tMenuFotoCli" rel="noreferrer">
                                         Foto
@@ -424,11 +285,10 @@ const TelaDadosBasicosCliente = () => {
                     )}
                 </div>
                 <div className={styles.logoMenuCli}><p></p></div>
-                <div id={styles["voltar"]}><a href="/tMenuCli"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div id={styles["voltar"]}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>
-
         </div>
     )
 }
 
-export default TelaDadosBasicosCliente
+export default TelaFotoCliente

@@ -40,8 +40,10 @@ import ServADM from './components/Administrador/tServADM.js';
 import PesquisaFunc from './components/Administrador/tPesqFunc.js';
 import CadastroFunc from './components/Administrador/tCadFunc.js';
 import Agendamentos from './components/Administrador/tAgendamentos.js';
-
-
+import DadosBasicosAdm from './components/Administrador/tMenuDBADM.js';
+import EnderecoAdm from './components/Administrador/tMenuEnderecoADM.js';
+import FotoADM from './components/Administrador/tMenuFotoADM.js';
+import Empreendimento from './components/Administrador/tMenuEmpr.js';
 
 import './App.css';
 
@@ -54,6 +56,7 @@ function App() {
             <Route path = "/tMenuOpcLogin" element = {<OpcLogin />} />
             <Route path = "/tMenuOpcCadastro" element = {<OpcCadastro />} />
 
+            {/* Login e Cadastro */}
             <Route  path = "/tLoginAdm" element = {<LoginAdm />} />
             <Route  path = "/tCadastroAdm" element = {<CadastroAdm />} />
             <Route  path = "/tLoginCli" element = {<LoginCli />} />
@@ -69,6 +72,12 @@ function App() {
             <Route path="/tPesqFunc" element =  {<PesquisaFunc />} />
             <Route path="/tCadFunc" element = {<CadastroFunc />} />
             <Route path="/tAgendamentosADM" element = {<Agendamentos />} />
+
+            {/* Perfil do Administrador */}
+            <Route path="/tMenuDBADM" element = {<DadosBasicosAdm />} />
+            <Route path="/tMenuEnderecoADM" element = {<EnderecoAdm />} />
+            <Route path="/tMenuFotoADM" element = {<FotoADM />} />
+            <Route path="/tEmpreendimento" element = {<Empreendimento />} />
 
 
             {/* Telas do Cliente */}

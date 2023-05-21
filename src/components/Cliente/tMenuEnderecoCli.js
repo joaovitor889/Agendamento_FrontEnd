@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 
 
 const TelaEnderecoCliente = () => {
-document.title = "Endereço do Cliente";
+    document.title = "Endereço do Cliente";
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -39,7 +39,7 @@ document.title = "Endereço do Cliente";
     }
 
     //API do CEP
-    const { register, setValue } = useForm();
+    //const { register, setValue } = useForm();
 
     //Campos
     var jscep, jsnum, jscomp;
@@ -48,14 +48,14 @@ document.title = "Endereço do Cliente";
     jscomp = useRef(null);
 
     //Campos da API
-    const [jsrua, setRua] = useState("");    
-    const [jsbairro, setBairro] = useState("");    
-    const [jscidade, setCidade] = useState("");    
-    const [jseuf, setUF] = useState("");    
+    const [jsrua, setRua] = useState("");
+    const [jsbairro, setBairro] = useState("");
+    const [jscidade, setCidade] = useState("");
+    const [jseuf, setUF] = useState("");
 
 
     const checkCEP = (e) => {
-        const cep = e.target.value.replace(/\D/g, '');
+        /*const cep = e.target.value.replace(/\D/g, '');
         //console.log(cep);
         console.log(jsrua, jsbairro, jscidade, jseuf);
 
@@ -71,7 +71,7 @@ document.title = "Endereço do Cliente";
                 setBairro(data.bairro);
                 setCidade(data.localidade);
                 setUF(data.uf);
-            });
+            });*/
     }
 
     const updateEndereco = (e) => {
@@ -108,21 +108,21 @@ document.title = "Endereço do Cliente";
         }
     }
 
-    const [userData, setUserData] = useState({});
+    //const [userData, setUserData] = useState({});
 
-    const valToken = localStorage.getItem('user_token');
-    const JSToken = JSON.parse(valToken);
+    //const valToken = localStorage.getItem('user_token');
+    //const JSToken = JSON.parse(valToken);
 
 
-    var token = JSToken['token'];
-    var tkEmail = JSToken['email'];
+    //var token = JSToken['token'];
+    //var tkEmail = JSToken['email'];
 
     //alert(JSON.stringify(JSToken['token']));
     //alert(JSON.stringify(JSToken['email']));
 
     // Função para obter os dados do usuário
     const fetchUserData = async () => {
-        try {
+        /*try {
             const response = await agFetch.get('/clientes/criar', {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -141,7 +141,7 @@ document.title = "Endereço do Cliente";
             //alert(JSON.stringify(objF));
         } catch (error) {
             alert(error);
-        }
+        }*/
     };
 
     //bloquear rolagem nos imputs number
@@ -176,11 +176,11 @@ document.title = "Endereço do Cliente";
     });
 
     // Extrai as informações necessárias do usuário
-    //const nome = "José";
-    //sobrenome = "Luis";
+    const nome = "José";
+    const sobrenome = "Luis";
 
-    const nome = userData.nome;
-    const sobrenome = userData.sobrenome;
+    //const nome = userData.nome;
+    //const sobrenome = userData.sobrenome;
 
     var pnome = '';
     var psobrenome = '';
@@ -194,6 +194,34 @@ document.title = "Endereço do Cliente";
     }
 
     const iniciais = pnome + psobrenome;
+
+
+
+    //Notificacao
+    const [notifications, setNotifications] = useState([]);
+    const [showNotifications, setShowNotifications] = useState(false);
+    const [newNotification, setNewNotification] = useState(false);
+
+    const fetchNotifications = () => {
+        const fakeNotifications = [
+            { id: 1, title: "Título 1", description: "Notificação 1" },
+            { id: 2, title: "Título 2", description: "Notificação 2" },
+            { id: 3, title: "Título 3", description: "Notificação 3" }
+        ];
+        setNotifications(fakeNotifications);
+    };
+
+    const handleClick = () => {
+        if (!showNotifications) {
+            fetchNotifications();
+        }
+        setShowNotifications(!showNotifications);
+        setNewNotification(false);
+    };
+
+    const handleListClose = () => {
+        setShowNotifications(false);
+    };
 
     return (
         <div className={styles.fDBCliente}>
@@ -240,8 +268,8 @@ document.title = "Endereço do Cliente";
                                         event.preventDefault();
                                     }
                                 }}
-                                {...register("cep")}
-                                onBlur={checkCEP}                                
+                                //{...register("cep")}
+                                onBlur={checkCEP}
                                 ref={jscep}
                                 required />
                         </div>
@@ -251,7 +279,7 @@ document.title = "Endereço do Cliente";
                                 title="Digite a sua Rua"
                                 name="rua" id={styles["rua"]}
                                 className={styles.segColuna}
-                                {...register("rua")}
+                                //{...register("rua")}
                                 onChange={(e) => setRua(e.target.value)}
                                 required />
                         </div>
@@ -286,15 +314,15 @@ document.title = "Endereço do Cliente";
                             title="Digite o seu bairro"
                             name="bairro"
                             id={styles["bairro"]}
-                            {...register("bairro")}   
-                            onChange={(e) => setBairro(e.target.value)}                      
+                            //{...register("bairro")}   
+                            onChange={(e) => setBairro(e.target.value)}
                             required />
                         <input type="text"
                             placeholder="Cidade:"
                             title="Digite a sua Cidade"
                             name="cidade"
                             id={styles["cidade"]}
-                            {...register("cidade")}
+                            //{...register("cidade")}
                             onChange={(e) => setCidade(e.target.value)}
                             required />
                         <input type="text"
@@ -302,7 +330,7 @@ document.title = "Endereço do Cliente";
                             title="Digite o seu Estado"
                             name="estado"
                             id={styles["estado"]}
-                            {...register("uf")}
+                            //{...register("uf")}
                             onChange={(e) => setUF(e.target.value)}
                             required />
                     </div>
@@ -371,7 +399,27 @@ document.title = "Endereço do Cliente";
                     {/*<img src={Perfil} alt="perfil" />*/}
                     <p>{iniciais}</p>
                 </div>
-                <div className={styles.notificacao}><a href="/"><img src={Notificacao} alt="notificacao" /></a></div>
+                <div className={styles.notificacao}>
+                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
+                    {showNotifications && (
+                        <div className={styles.notificationContainer}>
+                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
+                            {newNotification && <p>Nova notificação recebida!</p>}
+                            <ul className={styles.notificationList}>
+                                {notifications.map((notification, index) => (
+                                    <li
+                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
+                                        key={notification.id}
+                                    >
+                                        <p className="notification-title">{notification.title}</p>
+                                        <p className={styles.notificationDescription}>{notification.description}</p>
+                                        <hr></hr>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
                 <div className={styles.logoMenuCli}><p></p></div>
                 <div id={styles["voltar"]}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>
