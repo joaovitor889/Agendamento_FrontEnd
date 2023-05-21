@@ -10,8 +10,11 @@
     overflow-x: hidden;
 }
 
-.fLoginAdm .logo {
+.logo {
     margin-left: 35%;
+}
+.logo img{
+    height: 10rem;
 }
 
 a{
