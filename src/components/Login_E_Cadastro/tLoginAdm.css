@@ -10,33 +10,36 @@
     overflow-x: hidden;
 }
 
-.logo {
+.fLoginAdm .logo {
     margin-left: 35%;
 }
-.logo img{
+
+.fLoginAdm .logo img {
     height: 10rem;
+    width: 15rem;
 }
 
-a{
+a {
     text-decoration: none;
     font-size: 36px;
 }
 
-.campo-de-login .butoes .Login{    
+.campo-de-login .butoes .Login {
     color: #fff;
 }
 
-.campo-de-login .butoes .Cadastro{
+.campo-de-login .butoes .Cadastro {
     color: rgba(255, 255, 255, 0.5);
 }
 
 
-.butoes{
+.butoes {
     width: 300px;
     display: flex;
     justify-content: space-between;
 }
-.formulario{
+
+.formulario {
     width: 500px;
     background: #F7F7F7;
     border-radius: 15px;
@@ -46,24 +49,17 @@ a{
     justify-content: center;
 }
 
-.campo-de-login{
+.campo-de-login {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-img{
+img {
     height: 100px;
 }
 
-.E-mail{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: center;
-    margin: 1%;
-}
-.Senha{
+.E-mail {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -71,13 +67,21 @@ img{
     margin: 1%;
 }
 
-.formulario img{
+.Senha {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1%;
+}
+
+.formulario img {
     height: 30px;
     margin-right: 20px;
 }
 
 #formLoginAdm div input {
-	text-align:left;
+    text-align: left;
     background: #F7F7F7;
     border-style: none;
     border-bottom: 2px solid #000000;
@@ -85,7 +89,7 @@ img{
 }
 
 
-#btnLoginADM{
+#btnLoginADM {
 
     border-style: none;
     background-color: #3293CA;
@@ -103,15 +107,15 @@ img{
 
 .fAgendamento {
     position: fixed;
-	width: 100%;
-	height: 100%;
-	/*background-image: url("../../img/fundo.png");*/
-    background: rgb(72,178,247);
-	background: linear-gradient(180deg, rgba(72,178,247,0.9108018207282913) 35%, rgba(0,18,255,0.9864320728291317) 100%);
+    width: 100%;
+    height: 100%;
+    /*background-image: url("../../img/fundo.png");*/
+    background: rgb(72, 178, 247);
+    background: linear-gradient(180deg, rgba(72, 178, 247, 0.9108018207282913) 35%, rgba(0, 18, 255, 0.9864320728291317) 100%);
     color: #000;
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: 'Euphoria Script', cursive;
 }
 
@@ -121,18 +125,25 @@ img{
     text-decoration: underline;
 }
 
-@media only screen  and (max-width: 600px) {
-    .butoes{ 
+@media only screen and (max-width: 600px) {
+    .butoes {
         width: 85%;
     }
-    .fLoginAdm .campo-de-login{
+
+    .fLoginAdm .campo-de-login {
         width: 95%;
     }
-    .formulario{
+
+    .formulario {
         width: 90%;
         height: 189px;
     }
+
     #formLoginAdm div input {
         width: 90%;
+    }
+
+    .fLoginAdm .logo {
+        margin-left: 30%;
     }
 }
