@@ -9,11 +9,21 @@ import Notificacao from '../../icones/Doorbell.png';
 
 import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import agFetch from '../../axios/config.js';
 
 import { Link } from 'react-router-dom';
+
+import tAzul from '../../temas/tema01.png';
+
+import tVermelho from '../../temas/tema02.png';
+
+import tVerde from '../../temas/tema03.png';
+
+import tRoza from '../../temas/tema04.png';
+
+import tAmarelo from '../../temas/tema05.png';
 
 const TelaMenuEmpreendimento = () => {
     document.title = "Empreendimento";
@@ -36,6 +46,32 @@ const TelaMenuEmpreendimento = () => {
         }
         setIsMenuClicked(!isMenuClicked)
     }
+
+    //bloquear rolagem nos imputs number
+    useEffect(() => {
+        const cep = jscep.current;
+        const num = jsnum.current;
+        const bloquearRolagem = (e) => {
+            e.preventDefault();
+        };
+
+        if (cep) {
+            cep.addEventListener('wheel', bloquearRolagem);
+        }
+
+        if (num) {
+            num.addEventListener('wheel', bloquearRolagem);
+        }
+
+        return () => {
+            if (cep) {
+                cep.removeEventListener('wheel', bloquearRolagem);
+            }
+            if (num) {
+                num.removeEventListener('wheel', bloquearRolagem);
+            }
+        };
+    });
 
     //logica do upload da foto
     const [selectedFile, setSelectedFile] = useState();
@@ -163,6 +199,45 @@ const TelaMenuEmpreendimento = () => {
         setShowNotifications(false);
     };
 
+
+
+
+    //API do CEP
+    //const { register, setValue } = useForm();
+
+    //Campos
+    var jscep, jsnum, jscomp;
+    jscep = useRef(null);
+    jsnum = useRef(null);
+    jscomp = useRef(null);
+
+    //Campos da API
+    const [jsrua, setRua] = useState("");
+    const [jsbairro, setBairro] = useState("");
+    const [jscidade, setCidade] = useState("");
+    const [jseuf, setUF] = useState("");
+
+
+    const checkCEP = (e) => {
+        /*const cep = e.target.value.replace(/\D/g, '');
+        //console.log(cep);
+        console.log(jsrua, jsbairro, jscidade, jseuf);
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(res => res.json()).then(data => {
+                //console.log(JSON.stringify(data));                       
+                setValue("rua", data.logradouro);
+                setValue("bairro", data.bairro);
+                setValue("cidade", data.localidade);
+                setValue("uf", data.uf);
+
+                setRua(data.logradouro);
+                setBairro(data.bairro);
+                setCidade(data.localidade);
+                setUF(data.uf);
+            });*/
+    }
+
     return (
         <div className={styles.fEmpr}>
             <div id={styles["menuLatCli"]}>
@@ -277,12 +352,108 @@ const TelaMenuEmpreendimento = () => {
                     </div>
                     <p id={styles["legTema"]}>Escolha o tema de fundo da sua empresa</p><br></br>
                     <div id={styles["temas"]}>
-                        <button>Azul</button>
+                        {/*<button>Azul</button>
                         <button>Vermelho</button>
                         <button>Verde</button>
                         <button>Roza</button>
-                        <button>Amarelo</button>
+                        <button>Amarelo</button>*/}
+
+                        {/*<input type="radio" value="azul" name="temas"/>                     
+                        <input type="radio" value="vermelho" name="temas" />                         
+                        <input type="radio" value="verde" name="temas" />                         
+                        <input type="radio" value="roza" name="temas" />                         
+                        <input type="radio" value="amarelo" name="temas" />*/}
+
+                        <img src={tAzul} alt="Tema Azul" onClick={(e) => { alert("Azul") }} />
+                        <img src={tVermelho} alt="Tema Vermelho" onClick={(e) => { alert("Vermelho") }} />
+                        <img src={tVerde} alt="Tema Verde" onClick={(e) => { alert("Verde") }} />
+                        <img src={tRoza} alt="Tema Roza" onClick={(e) => { alert("Roza") }} />
+                        <img src={tAmarelo} alt="Tema Amarelo" onClick={(e) => { alert("Amarelo") }} />
                     </div>
+                    <br></br>
+                    <br></br>
+                    <p id={styles["legEndereco"]}>Endereço</p>
+                    <div className={styles.linha}>
+                        <div>
+                            <input type="number"
+                                placeholder="CEP:"
+                                title="Digite o seu CEP"
+                                name="cep"
+                                id={styles["cep"]}
+                                maxLength="8"
+                                onKeyPress={(event) => {
+                                    if (!/[0-9]/.test(event.key)
+                                        || event.target.value.length > event.target.maxLength - 1) {
+                                        event.preventDefault();
+                                    }
+                                }}
+                                //{...register("cep")}
+                                onBlur={checkCEP}
+                                ref={jscep}
+                                required />
+                        </div>
+                        <div>
+                            <input type="text"
+                                placeholder="Rua:"
+                                title="Digite a sua Rua"
+                                name="rua" id={styles["rua"]}
+                                className={styles.segColuna}
+                                //{...register("rua")}
+                                onChange={(e) => setRua(e.target.value)}
+                                required />
+                        </div>
+                    </div>
+                    <div className={styles.linha}>
+                        <div>
+                            <input type="number"
+                                placeholder="Número:"
+                                title="Digite o seu Número"
+                                name="num"
+                                onKeyPress={(event) => {
+                                    if (!/[0-9]/.test(event.key)) {
+                                        event.preventDefault();
+                                    }
+                                }}
+                                id={styles["numero"]}
+                                ref={jsnum}
+                                required /> <br></br>
+                        </div>
+                        <div>
+                            <input type="text"
+                                placeholder="Complemento:"
+                                title="Digite o seu Complemento"
+                                name="comp" id={styles["comple"]}
+                                className={styles.segColuna}
+                                ref={jscomp} /> <br></br>
+                        </div>
+                    </div>
+                    <div className={styles.linhaUnica}>
+                        <input type="text"
+                            placeholder="Bairro:"
+                            title="Digite o seu bairro"
+                            name="bairro"
+                            id={styles["bairro"]}
+                            //{...register("bairro")}   
+                            onChange={(e) => setBairro(e.target.value)}
+                            required />
+                        <input type="text"
+                            placeholder="Cidade:"
+                            title="Digite a sua Cidade"
+                            name="cidade"
+                            id={styles["cidade"]}
+                            //{...register("cidade")}
+                            onChange={(e) => setCidade(e.target.value)}
+                            required />
+                        <input type="text"
+                            placeholder="Estado:"
+                            title="Digite o seu Estado"
+                            name="estado"
+                            id={styles["estado"]}
+                            //{...register("uf")}
+                            onChange={(e) => setUF(e.target.value)}
+                            required />
+                    </div>
+
                     <div id={styles["fbtnSalvarotoCli"]}>
                         <button id={styles["btnExcluir"]}>Excluir</button>
                         <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" value="Salvar" />

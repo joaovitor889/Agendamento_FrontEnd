@@ -54,7 +54,7 @@
     font-weight: bold;
     background-color: #fff;
     border-radius: 25px;
-    display: table; 
+    display: table;
 }
 
 .logoMenuCli p {
@@ -73,80 +73,81 @@
 }
 
 .notificacao .btnNot button {
-	width: 10vw; /* Largura responsiva */
-	height: 7vh;
-	border-style: none;
-	background-color: #000;
-	border-radius: 100%;
+    width: 10vw;
+    /* Largura responsiva */
+    height: 7vh;
+    border-style: none;
+    background-color: #000;
+    border-radius: 100%;
     position: absolute;
-	margin-left: 25%;
+    margin-left: 25%;
     margin-top: -6%;
 }
 
 .notificacao .btnNot button:hover {
-	background-color: #0000ff;
+    background-color: #0000ff;
 }
 
 .notificacao img {
-	width: 90%;
-	height: 90%;
+    width: 90%;
+    height: 90%;
 }
 
 .notificationContainer {
-	position: absolute;
-	margin-left: 30%;
+    position: absolute;
+    margin-left: 30%;
     margin-top: 3%;
-	z-index: 3;
-	width: 50%;
-	height: 40vh;
-	overflow-x: hidden;
-	overflow-y: scroll;
-	background-color: white;
-	border: 1px solid black;
-	overflow-y: auto;
+    z-index: 3;
+    width: 50%;
+    height: 40vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: white;
+    border: 1px solid black;
+    overflow-y: auto;
     color: #000;
 }
 
 .notificationList {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .notification-item {
-	padding: 5px;
-	border-bottom: 1px solid black;
-	margin-left: 0;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    margin-left: 0;
 }
 
 .notification-title {
-	font-weight: bold;
-	margin-top: 0;
-	margin-bottom: 5px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 5px;
 }
 
 .notificationDescription {
-	margin-left: 5%;
-	word-break: break-word;
-	text-align: justify;
+    margin-left: 5%;
+    word-break: break-word;
+    text-align: justify;
 }
 
 .first-notification {
-	margin-top: 0;
+    margin-top: 0;
 }
 
 .closeButton {
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	background-color: red;
-	color: white;
-	font-weight: bold;
-	border: none;
-	cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
 }
 
 .perfil {
@@ -169,7 +170,7 @@
     margin-left: 30%;
 }
 
-#perfilHamburgerFoto img{
+#perfilHamburgerFoto img {
     width: 90%;
     height: 90%;
 }
@@ -181,8 +182,8 @@
 }
 
 .perfil p {
-	font-size: 6vw;
-	line-height: 70%;
+    font-size: 6vw;
+    line-height: 70%;
     margin-top: 25%;
     color: #fff;
 }
@@ -218,7 +219,7 @@ h2 {
     margin-top: 5%;
 }
 
-#formFoto img{
+#formFoto img {
     width: 90%;
     height: 60%;
 }
@@ -227,7 +228,8 @@ h2 {
     background-color: #fff;
 }
 
-#formFoto #btnSalvarFoto, #btnExcluir {
+#formFoto #btnSalvarFoto,
+#btnExcluir {
     margin-left: 68%;
     width: 25%;
     font-size: 90%;
@@ -237,7 +239,8 @@ h2 {
     border-radius: 50px;
 }
 
-#formFoto #btnSalvarFoto:hover, #btnExcluir:hover {
+#formFoto #btnSalvarFoto:hover,
+#btnExcluir:hover {
     background-color: #0a1868;
     color: #fff;
 }
@@ -269,25 +272,24 @@ h2 {
     margin-left: 27%;
 }
 
-#perfilHamburger img{
+#perfilHamburger img {
     margin: 10%;
     width: 80%;
     height: 75%;
 }
 
-.linha { 
+.linha {
     width: 100%;
     display: table;
     margin-left: 1%;
-}	
+}
 
 .linha div {
     display: table-cell;
 }
 
-.desImgDef 
-{
-   display:none;
+.desImgDef {
+    display: none;
 }
 
 .legFoto {
@@ -319,7 +321,7 @@ h2 {
     background-color: #4fbd61;
     border: 3px solid #000;
     border-radius: 50px;
-    width: 60%;
+    width: 70%;
     height: 50%;
     margin-top: -5%;
 }
@@ -339,7 +341,7 @@ h2 {
 #legTema {
     color: #fff;
     font-family: 'Times New Roman', Times, serif;
-    margin-left: -25%;
+    margin-left: -5%;
 }
 
 #temas {
@@ -349,8 +351,35 @@ h2 {
     margin-top: -3%;
 }
 
-#temas button {
+#temas img {
     margin-left: 5%;
+    max-width: 65px;
+    max-height: 65px;
+}
+
+.linha { 
+    width: 100%;
+    display: table;
+    margin-left: -3%;
+}	
+
+.linha div {
+    display: table-cell;
+}
+
+.linhaUnica {
+    margin-left: -5%;
+    width: 105%;
+}
+
+.segColuna {
+    margin-left: 35%;
+}
+
+#legEndereco {
+    font-family: 'Times New Roman', Times, serif;
+    color: #fff;
+    text-align: left;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -391,7 +420,8 @@ h2 {
         display: flex;
         margin-top: 1%;
     }
-    #voltar img{
+
+    #voltar img {
         width: 80%;
         height: 80%;
     }
@@ -406,29 +436,32 @@ h2 {
         font-weight: bold;
         background-color: #fff;
         border-radius: 25px;
-        display:block;
+        display: block;
     }
+
     .logoMenuCli p {
         margin-top: -32%;
         font-weight: bold;
         color: #000;
-        display:block;
+        display: block;
     }
+
     .logoMenuCli p::before {
         font-size: 1.6vw;
         content: 'Shostners & shostners';
     }
 
     .notificacao {
-		width: 3.5%;
-		height: 2%;
+        width: 3.5%;
+        height: 2%;
         position: absolute;
-		margin-left: 90%;
+        margin-left: 90%;
         margin-top: 0.5%;
-	}
+    }
 
     .notificacao .btnNot button {
-        width: 4vw; /* Largura responsiva */
+        width: 4vw;
+        /* Largura responsiva */
         height: 7vh;
         border-style: none;
         background-color: #000;
@@ -436,21 +469,21 @@ h2 {
         position: absolute;
         margin-left: -50%;
         margin-top: 2%
-	}
+    }
 
-	.notificationContainer {
-		width: 200px;
-		height: 300px;
-		overflow-x: hidden;
-		overflow-y: scroll;
-		background-color: white;
-		border: 1px solid black;
-		overflow-y: auto;
-		position: relative;
-		margin-left: -300%;
+    .notificationContainer {
+        width: 200px;
+        height: 300px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        background-color: white;
+        border: 1px solid black;
+        overflow-y: auto;
+        position: relative;
+        margin-left: -300%;
         margin-top: 95%;
         color: #000;
-	}
+    }
 
     .perfil {
         background-color: #000;
@@ -460,11 +493,13 @@ h2 {
         border-radius: 50%;
         margin-left: 5%;
     }
+
     .perfil img {
         margin: 10%;
         width: 70%;
         height: 70%;
     }
+
     .perfil p {
         font-size: 2vw;
         margin-top: 20%;
@@ -477,6 +512,7 @@ h2 {
         width: 100%;
         height: 100%;
     }
+
     #ulDesk {
         list-style-type: none;
         width: 100%;
@@ -486,46 +522,51 @@ h2 {
     #textoLL {
         margin-top: 15%;
     }
-    
+
     #textoLL li {
-        margin-top: -10%; 
+        margin-top: -10%;
     }
 
-    #ulDesk li{
+    #ulDesk li {
         width: 100.5%;
         position: relative;
         margin-left: -22%;
     }
-    #ulDesk li:hover{
+
+    #ulDesk li:hover {
         background-color: rgba(80, 80, 80, 0.5);
     }
-    #ulDesk p{
+
+    #ulDesk p {
         text-align: left;
         font-family: 'Times New Roman', Times, serif;
         font-size: 1.5vw;
         margin-left: 2%;
         margin-bottom: -10px;
     }
+
     #ulDesk a {
         text-decoration: none;
         color: #fff;
     }
-    
+
     #perfilLateral {
         display: flex;
         width: 50%;
-        height: 55%;
+        height: 50%;
         background-color: #000;
         margin-left: -5%;
         border-radius: 50%;
         margin-top: 12%;
     }
-    #perfilLateral img{
+
+    #perfilLateral img {
         position: absolute;
         top: 12%;
         width: 50%;
         height: 15%;
     }
+
     #perfilLateral p {
         margin-left: 25%;
         line-height: 45%;
@@ -533,19 +574,21 @@ h2 {
         font-size: 3em;
         color: #fff;
     }
-    
+
     #formFoto img {
         width: 60%;
         height: 40%;
     }
+
     #formFoto input {
         margin-top: 2%;
     }
+
     #formFoto input {
         width: 60%;
         margin-top: 3%;
     }
-    
+
     .legFoto {
         margin-top: -2%;
         margin-left: 20%;
@@ -564,6 +607,10 @@ h2 {
         font-weight: bold;
     }
 
+    #legTema {
+        margin-left: -25%;
+    }
+
     #horarios {
         position: relative;
         background-color: #4fbd61;
@@ -573,7 +620,7 @@ h2 {
         height: 50%;
         margin-top: -5%;
     }
-    
+
     #horarios input[type="time"] {
         position: relative;
         margin-top: 7%;
@@ -585,5 +632,35 @@ h2 {
         flex-direction: row;
         margin-left: 15%;
         margin-top: -3%;
+    }
+
+    #formFoto .linha { 
+        width: 100%;
+        display: table;
+        margin-left: 6%;
+    }	
+    
+    .linha div {
+        display: table-cell;
+    }
+    
+    .linhaUnica {
+        margin-left: -5%;
+        width: 105%;
+    }
+    
+    #formFoto .segColuna {
+        margin-left: 15%;
+    }
+
+    #legEndereco {
+        margin-left: 17%;
+    }
+
+    #conteudoCli #btnExcluir {
+        margin-left: -30%;
+    }
+    #conteudoCli #btnSalvarFoto {
+        margin-left: 67%;
     }
 }
