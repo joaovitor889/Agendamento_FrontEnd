@@ -1,5 +1,5 @@
 import styles from './tAgendamentoProfis.module.css';
-import menu from '../../img/Menu Rounded.png';
+import menu from '../../icones/chevron-left.png';
 import perfil from '../../img/perfil.png'
 import notificar from '../../img/notificar.png'
 import block from '../../img/block-func.png'

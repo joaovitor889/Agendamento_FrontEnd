@@ -1,14 +1,169 @@
 @import url('https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap'); 
-
-.fAgendamento {
+.fAgendamento{
     position: fixed;
 	width: 100%;
 	height: 100%;
 	/*background-image: url("../../img/fundo.png");*/
-    background-color: red;
+    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     color: #000;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
     font-family: 'Euphoria Script', cursive;
+	overflow-y: auto;
+}
+
+.filter {
+	display: flex;
+	color: #fff;
+	width: 400px;
+	align-items: center;
+	margin: 0 30px;
+	height: 3.5rem;
+}
+.filter input{
+	height: 30px;
+	border-radius: 15px;
+	margin-left: 1rem;
+	border: none;
+}
+label img{
+	height: 20px;
+}
+
+.calendario{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100px;
+}
+
+.rowTop{
+	width: 100%;
+	height: 2rem;
+	background-color: #48A695;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	color:#ffffff
+}
+.rowBotton{
+	width: 100%;
+	height: 2rem;
+	background-color: #48A695;
+	margin-top: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	color: #ffffff;
+}
+
+img{
+	height: 35px;
+}
+.block{
+	margin: 15px;
+	float: right;
+}
+.Container{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	/*justify-content: start;*/
+}
+
+.Card{
+	width: 400px;
+	height: 150px;
+	background-color: #48A695;
+	border-left: solid 0.5rem #0e5639;
+	margin: 2rem 0 0 0.75rem;
+}
+
+.Card_Header{
+	color: #ffffff;
+	display: flex;
+	flex-direction: column;
+	/*align-items: start;*/
+	height: 6rem;
+}
+
+.Card_Header h2{
+	margin: 5px 0 0 5px;
+	padding: 0;
+	font-size: 24px;
+}
+
+.Card_Header p{
+	margin: 5px 0 0 5px;
+	font-size: 20px;
+}
+
+.Card_Body{
+	height: 3rem;
+	margin: 10px 0;
+	display: flex;
+	justify-content: space-between;
+	color: #ffffff;
+	align-items: center;
+}
+
+.Status{
+	display: flex;
+	font-size: 20px;
+	color: #ffffff;
+	align-items: center;
+	margin-right: 1rem;
+}
+
+.Status a{
+	font-size: 16px;
+	width: 100px;
+	background-color: #5FD854;
+	border-radius: 10px;
+	margin-left: 1rem;
+}
+
+
+#check{
+	display: none;
+}
+
+#check:checked ~ .sidebar{
+	display: flex;
+	flex-direction: column;
+}
+
+.sidebar{
+	z-index: 1;
+    position: fixed;
+    width: 15%;
+    height: 100%;
+    padding-top: 30px;
+    left: 0;
+    background: #252525;
+    border-right: white 3px solid;
+    display: none;
+}
+.sidebar a{
+    color: white;
+    display: block;
+    width: 100%;
+    line-height: 2.5rem;
+    text-decoration: none;
+    padding-left: 0;
+    box-sizing: border-box;
+    font-size: 1.5rem;
+}
+
+.interprise{
+    background: #9B9191;
+    color:  white;
+    text-align: center;
+    position: fixed;
+    bottom:0;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

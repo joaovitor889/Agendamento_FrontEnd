@@ -1,7 +1,7 @@
 import styles from './tAgendamentoCli.module.css';
-import menu from '../../img/Menu Rounded.png';
+import menu from '../../icones/chevron-left.png';
 import perfil from '../../img/perfil.png'
-import notificar from '../../img/notificar.png'
+import notificar from '../../img/Component 24.png'
 import block from '../../img/block-func.png'
 import filtro from '../../img/filter.png'
 //import logo from '../../img/logo.PNG';
@@ -13,6 +13,7 @@ const telaAgendamento = () => {
     
    return (
         <div className={styles.fAgendamento}>
+            <input type="checkbox" id={styles["check"]} />
             {/* header  começo */}
             <header>
                 <div className="esquerda">
@@ -75,7 +76,7 @@ const telaAgendamento = () => {
                 </div>
                 <div className={styles.Card}>
                     <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
+                        <h2>Profissional: Ana Catarina</h2>
                         <p>Serviços: cabelereira, manicure</p>
                     </div>
                     <div className={styles.Card_Body}>
@@ -88,7 +89,7 @@ const telaAgendamento = () => {
                 </div>
                 <div className={styles.Card}>
                     <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
+                        <h2>Profissional: Ana Catarina</h2>
                         <p>Serviços: cabelereira, manicure</p>
                     </div>
                     <div className={styles.Card_Body}>
@@ -101,7 +102,7 @@ const telaAgendamento = () => {
                 </div>
                 <div className={styles.Card}>
                     <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
+                        <h2>Profissional: Ana Catarina</h2>
                         <p>Serviços: cabelereira, manicure</p>
                     </div>
                     <div className={styles.Card_Body}>
@@ -114,7 +115,7 @@ const telaAgendamento = () => {
                 </div>
                 <div className={styles.Card}>
                     <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
+                        <h2>Profissional: Ana Catarina</h2>
                         <p>Serviços: cabelereira, manicure</p>
                     </div>
                     <div className={styles.Card_Body}>
@@ -127,7 +128,7 @@ const telaAgendamento = () => {
                 </div>
                 <div className={styles.Card}>
                     <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
+                        <h2>Profissional: Ana Catarina</h2>
                         <p>Serviços: cabelereira, manicure</p>
                     </div>
                     <div className={styles.Card_Body}>
@@ -140,7 +141,7 @@ const telaAgendamento = () => {
                 </div>
                 <div className={styles.Card}>
                     <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
+                        <h2>Profissional: Ana Catarina</h2>
                         <p>Serviços: cabelereira, manicure</p>
                     </div>
                     <div className={styles.Card_Body}>
@@ -153,7 +154,7 @@ const telaAgendamento = () => {
                 </div>
                 <div className={styles.Card}>
                     <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
+                        <h2>Profissional: Ana Catarina</h2>
                         <p>Serviços: cabelereira, manicure</p>
                     </div>
                     <div className={styles.Card_Body}>
