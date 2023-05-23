@@ -38,6 +38,7 @@ import AgendarADM from './components/Administrador/tAngendarADM.js'
 import CadServicos from './components/Administrador/tCadServico.js'
 import ServADM from './components/Administrador/tServADM.js';
 import PesquisaFunc from './components/Administrador/tPesqFunc.js';
+import PesquisaCli from './components/Administrador/tPesqCli.js';
 import CadastroFunc from './components/Administrador/tCadFunc.js';
 import Agendamentos from './components/Administrador/tAgendamentos.js';
 import DadosBasicosAdm from './components/Administrador/tMenuDBADM.js';
@@ -72,13 +73,14 @@ function App() {
             <Route path="/tPesqFunc" element =  {<PesquisaFunc />} />
             <Route path="/tCadFunc" element = {<CadastroFunc />} />
             <Route path="/tAgendamentosADM" element = {<Agendamentos />} />
+            <Route path="/tPesqCli" element = {<PesquisaCli />} />
 
             {/* Perfil do Administrador */}
             <Route path="/tMenuDBADM" element = {<DadosBasicosAdm />} />
             <Route path="/tMenuEnderecoADM" element = {<EnderecoAdm />} />
             <Route path="/tMenuFotoADM" element = {<FotoADM />} />
             <Route path="/tEmpreendimento" element = {<Empreendimento />} />
-
+            
 
             {/* Telas do Cliente */}
             <Route  path = "/tMenuCli" element = {<MenuCli />} />
