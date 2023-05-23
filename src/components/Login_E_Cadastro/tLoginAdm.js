@@ -41,7 +41,7 @@ const TelaLoginAdm = () => {
               }
             };
         
-            const pegaToken = await agFetch.get('/auth/', config);
+//             const pegaToken = await agFetch.get('/auth/', config);
 
 
             if(pegaToken.status === 200) {
