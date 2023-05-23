@@ -2,29 +2,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-.fFotoFunc {
+.fDBCliente {
     position: fixed;
-	width: 100%;
-	height: 100%;
-	/*background-image: url("../../img/fundo.png");*/
+    width: 100%;
+    height: 100%;
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     color: #000;
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
-#menuHorFunc {
+#menuHorCli {
     position: absolute;
     width: 100%;
     height: 10%;
     background-color: #3293CA;
     border-bottom: 3px solid #fff;
-    top: 0%;
-    left: 0%;
 }
 
-#conteudoFunc {
+#conteudoCli {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -33,11 +33,15 @@
     left: 0%;
 }
 
-#menuHorFunc nav {
+#voltar {
     display: none;
 }
 
-.logoMenuFunc {
+#menuHorCli nav {
+    display: none;
+}
+
+.logoMenuCli {
     position: absolute;
     width: 20%;
     height: 7vh;
@@ -50,16 +54,15 @@
     display: table; 
 }
 
-.logoMenuFunc p {
+.logoMenuCli p {
     text-align: center;
     vertical-align: middle;
     display: table-cell;
     margin-top: -15%;
     font-size: 8vw;
-    color: #000;
 }
 
-.logoMenuFunc p::before {
+.logoMenuCli p::before {
     margin-top: -1%;
     content: 'S&S';
     font-weight: bold;
@@ -73,7 +76,7 @@
 	border-radius: 100%;
     position: absolute;
 	margin-left: 25%;
-    margin-top: 2%;
+    margin-top: -6%;
 }
 
 .notificacao .btnNot button:hover {
@@ -97,7 +100,6 @@
 	background-color: white;
 	border: 1px solid black;
 	overflow-y: auto;
-    color: #000;
 }
 
 .notificationList {
@@ -152,24 +154,19 @@
     height: 65%;
 }
 
-.perfil p {
-    margin-top: 5%;
-    color: #fff;
-}
-
 .perfil img {
-    margin: 10%;
-    width: 75%;
-    height: 75%;
+    position: absolute;
+    top: 1%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
 }
 
-#voltar {
-    display: flex;
-    margin-top: 1%;
-}
-#voltar img{
-    width: 80%;
-    height: 80%;
+.perfil p {
+	font-size: 6vw;
+	line-height: 70%;
+    margin-top: 25%;
+    color: #fff;
 }
 
 h2 {
@@ -177,37 +174,32 @@ h2 {
     font-family: 'Times New Roman', Times, serif;
 }
 
-#formFotoFunc {
+#formDB {
     width: 90%;
     margin: 5%;
 }
 
-#formFotoFunc input {
+#formDB input {
     width: 80%;
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
-    font-size: 60%;
+    font-size: 25px;
     background-color: #d9d9d9;
     border-style: none;
     text-indent: 10px;
     border-radius: 25px;
     position: relative;
     height: 40px;
-    margin-top: 10%;
+    margin-top: 2%;
     margin-left: 50%;
     transform: translate(-50%, -50%);
 }
 
-#formFotoFunc img{
-    width: 90%;
-    height: 60%;
-}
-
-#formFotoFunc input:focus {
+#formDB input:focus {
     background-color: #fff;
 }
 
-#formFotoFunc #btnSalvarFoto {
+#formDB #btnSalvarDDB {
     margin-left: 77%;
     width: 25%;
     font-size: 90%;
@@ -215,7 +207,7 @@ h2 {
     text-align: center;
 }
 
-#formFotoFunc #btnSalvarFoto:hover {
+#formDB #btnSalvarDDB:hover {
     background-color: #0a1868;
     color: #fff;
 }
@@ -228,82 +220,52 @@ h2 {
     display: none;
 }
 
-#perfilHamburger {
-    background-color: #000;
-    border-radius: 50%;
-    width: 25%;
-    height: 25%;
-    margin-top: -10%;
-    margin-left: 27%;
-}
-
-#perfilHamburger img{
-    margin: 10%;
-    width: 80%;
-    height: 75%;
-}
-
-.linha { 
-    width: 100%;
-    display: table;
-    margin-left: 1%;
-}	
-
-.linha div {
-    display: table-cell;
-}
-
-.desImgDef 
-{
-   display:none;
-}
-
-.legFoto {
-    margin-top: -2%;
-    margin-left: 13%;
-    font-family: 'Times New Roman', Times, serif;
-    text-align: left;
-    color: #fff;
-}
-
-
 @media only screen and (min-width: 1024px) {
-    .fFotoFuncente {
+    .fDBCliente {
         overflow-y: auto;
     }
 
-    #menuLatFunc {
+    #menuLatCli {
         position: fixed;
         height: 100%;
         width: 15%;
         background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
-        left: 0%;
         top: 0%;
         border-right: 3px solid #fff;
     }
 
-    #menuHorFunc {
+    #menuHorCli {
         position: fixed;
-        top: 0%;
-        left: 0%;
         width: 100%;
         height: 10%;
         background-color: #3293CA;
         border-bottom: 3px solid #fff;
     }
 
-    #conteudoFunc {
+    #conteudoCli {
         position: fixed;
         width: 85%;
-        height: 100%;
+        height: 90%;
         background-color: blue;
         top: 10.5%;
         left: 15.2%;
-        overflow-x: hidden;
-        overflow-y: auto;
     }
 
-    .logoMenuFunc {
+    .menuHamb {
+        display: none;
+    }
+
+    #voltar {
+        display: flex;
+        margin-top: 1%;
+    }
+
+    #voltar img{
+        width: 80%;
+        height: 80%;
+    }
+
+    .logoMenuCli {
         position: absolute;
         width: 20%;
         height: 70%;
@@ -315,13 +277,15 @@ h2 {
         border-radius: 25px;
         display:block;
     }
-    .logoMenuFunc p {
+
+    .logoMenuCli p {
         margin-top: -32%;
         font-weight: bold;
         color: #000;
         display:block;
     }
-    .logoMenuFunc p::before {
+
+    .logoMenuCli p::before {
         font-size: 1.6vw;
         content: 'Shostners & shostners';
     }
@@ -356,7 +320,6 @@ h2 {
 		position: relative;
 		margin-left: -300%;
         margin-top: 95%;
-        color: #000;
 	}
 
     .perfil {
@@ -367,12 +330,17 @@ h2 {
         border-radius: 50%;
         margin-left: 5%;
     }
+
     .perfil img {
         margin: 10%;
         width: 70%;
         height: 70%;
     }
-
+    .perfil p {
+		font-size: 2vw;
+        margin-top: 20%;
+		line-height: 75%;
+	}
     #menuDesk {
         display: flex;
         flex-direction: column;
@@ -412,34 +380,26 @@ h2 {
         text-decoration: none;
         color: #fff;
     }
-    
     #perfilLateral {
         display: flex;
-        width: 60%;
-        height: 65%;
+        width: 50%;
+        height: 50%;
         background-color: #000;
         margin-left: -5%;
         border-radius: 50%;
-        margin-top: 12%;
+        margin-top: 14%;
+        color: #fff;
     }
     #perfilLateral p {
-        color: #fff;
-        margin-top: 15%;
         margin-left: 25%;
-        font-size: 350%;
+        line-height: 45%;
+        margin-top: 35%;
+        font-size: 3em;
     }
     #perfilLateral img{
         position: absolute;
         top: 12%;
         width: 50%;
         height: 15%;
-    }
-
-    #formFotoFunc img {
-        width: 80%;
-        height: 60%;
-    }
-    #formFotoFunc input {
-        margin-top: 2%;
     }
 }

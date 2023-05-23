@@ -68,26 +68,80 @@
     font-weight: bold;
 }
 
-.notificacao {
+.notificacao .btnNot button {
+	width: 10vw; /* Largura responsiva */
+	height: 7vh;
+	border-style: none;
+	background-color: #000;
+	border-radius: 100%;
     position: absolute;
-    left: 80%;
-    top: 20%;
-    background-color: #000;
-    border-radius: 50%;
-    width: 8%;
-    height: 65%;
+	margin-left: 25%;
+    margin-top: -6%;
 }
 
-.notificacao:hover {
-    background-color: #0000ff;
+.notificacao .btnNot button:hover {
+	background-color: #0000ff;
 }
 
 .notificacao img {
-    position: absolute;
-    top: 1%;
-    left: 5%;
-    width: 90%;
-    height: 90%;
+	width: 90%;
+	height: 90%;
+}
+
+.notificationContainer {
+	position: absolute;
+	margin-left: 30%;
+    margin-top: 3%;
+	z-index: 3;
+	width: 50%;
+	height: 40vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	background-color: white;
+	border: 1px solid black;
+	overflow-y: auto;
+}
+
+.notificationList {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.notification-item {
+	padding: 5px;
+	border-bottom: 1px solid black;
+	margin-left: 0;
+}
+
+.notification-title {
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+
+.notificationDescription {
+	margin-left: 5%;
+	word-break: break-word;
+	text-align: justify;
+}
+
+.first-notification {
+	margin-top: 0;
+}
+
+.closeButton {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
 }
 
 .perfil {
@@ -237,25 +291,36 @@ h2 {
     }
 
     .notificacao {
+		width: 3.5%;
+		height: 2%;
         position: absolute;
-        left: 91%;
-        top: 20%;
+		margin-left: 90%;
+        margin-top: 0.5%;
+	}
+
+    .notificacao .btnNot button {
+        width: 4vw; /* Largura responsiva */
+        height: 7vh;
+        border-style: none;
         background-color: #000;
-        border-radius: 50%;
-        width: 3vw;
-        height: 3vw;
-    }
+        border-radius: 100%;
+        position: absolute;
+        margin-left: -50%;
+        margin-top: 2%
+	}
 
-    .notificacao:hover {
-        background-color: #0000ff;
-    }
-
-    .notificacao img {
-        margin-top: 5%;
-        margin-left: 5%;
-        width: 80%;
-        height: 80%;
-    }
+	.notificationContainer {
+		width: 200px;
+		height: 300px;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		background-color: white;
+		border: 1px solid black;
+		overflow-y: auto;
+		position: relative;
+		margin-left: -300%;
+        margin-top: 95%;
+	}
 
     .perfil {
         background-color: #000;

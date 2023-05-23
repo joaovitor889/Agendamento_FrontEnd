@@ -1,4 +1,4 @@
-import styles from './tMenuDBCli.module.css';
+import styles from './tMenuDBADM.module.css';
 //import logo from '../../img/logo.PNG';
 
 import React, { useState, useEffect, useRef } from "react";
@@ -12,6 +12,8 @@ import Notificacao from '../../icones/Doorbell.png';
 import agFetch from '../../axios/config.js';
 
 import './menHamburger.css';
+
+import { Link } from 'react-router-dom';
 
 const TelaDadosBasicosCliente = () => {
 
@@ -259,17 +261,22 @@ const TelaDadosBasicosCliente = () => {
                             <p>{iniciais}</p>
                         </div>
                         <div id={styles["textoLL"]}>
-                            <a href='./tMenuDBCli' rel="noreferrer">
+                            <Link to='/tMenuDBADM' rel="noreferrer">
                                 <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Dados Básicos</p></li>
-                            </a>
+                            </Link>
 
-                            <a href='./tMenuEnderecoCli' rel="noreferrer">
+                            {/*<Link to='/tMenuEnderecoADM' target = "_blank" rel="noreferrer">*/}
+                            <Link to='/tMenuEnderecoADM' rel="noreferrer">
                                 <li><p>Endereço</p></li>
-                            </a>
+                            </Link>
 
-                            <a href='./tMenuFotoCli' rel="noreferrer">
+                            <Link to='/tMenuFotoADM' rel="noreferrer">
                                 <li><p>Foto</p></li>
-                            </a>
+                            </Link>
+
+                            <Link to='/tEmpreendimento' rel="noreferrer">
+                                <li><p>Empreendimento</p></li>
+                            </Link>
                         </div>
                     </ul>
                 </div>
@@ -333,8 +340,8 @@ const TelaDadosBasicosCliente = () => {
                         required /*disabled*/
                         defaultValue={userData.email || ""}
                         ref={cmpEmail}
-                        //style={{ display: 'none' }}
-                        //disabled
+                    //style={{ display: 'none' }}
+                    //disabled
                     /> <br></br>
                     <div id="btnDBSalvar">
                         <input type="submit" id={styles["btnSalvarDDB"]} name="btnSalvarDDB" value="Salvar" />
@@ -368,32 +375,40 @@ const TelaDadosBasicosCliente = () => {
                         <ul id="uMenHamburger">
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <a href="./tMenuDBCli" rel="noreferrer">
+                                    <Link to="/tMenuDBADM" rel="noreferrer">
                                         Dados Básicos
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuEnderecoCli" rel="noreferrer">
+                                    <Link to="/tMenuEnderecoADM" rel="noreferrer">
                                         Endereço
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuFotoCli" rel="noreferrer">
+                                    <Link to="/tMenuFotoADM" rel="noreferrer">
                                         Foto
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuCli" rel="noreferrer">
-                                        Voltar ao Menu
-                                    </a>
+                                    <Link to='/tEmpreendimento' rel="noreferrer">
+                                        Empreendimento
+                                    </Link>
                                 </p>
                             </li>
+                            <li>
+                                <p>
+                                    <Link to="/tMenuADM" rel="noreferrer">
+                                        Voltar ao Menu
+                                    </Link>
+                                </p>
+                            </li>
+
                         </ul>
                     </div>
                 </div>

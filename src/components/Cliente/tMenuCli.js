@@ -21,19 +21,19 @@ const TelaMenuCliente = () => {
     // Estado para armazenar os dados do usuário
     const [userData, setUserData] = useState({});
 
-    const valToken = localStorage.getItem('user_token');
-    const JSToken = JSON.parse(valToken);
+    //const valToken = localStorage.getItem('user_token');
+    //const JSToken = JSON.parse(valToken);
 
 
-    var token = JSToken['token'];
-    var tkEmail = JSToken['email'];
+    //var token = JSToken['token'];
+    //var tkEmail = JSToken['email'];
 
     //alert(JSON.stringify(JSToken['token']));
     //alert(JSON.stringify(JSToken['email']));
 
     // Função para obter os dados do usuário
     const fetchUserData = async () => {
-        try {
+        /*try {
             const response = await agFetch.get('/clientes/criar', {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -52,7 +52,7 @@ const TelaMenuCliente = () => {
             //alert(JSON.stringify(objF));
         } catch (error) {
             alert(error);
-        }
+        }*/
     };
 
 
@@ -64,11 +64,11 @@ const TelaMenuCliente = () => {
     });
 
     // Extrai as informações necessárias do usuário
-    //const nome = "José";
-    //sobrenome = "Luis";
+    const nome = "José";
+    const sobrenome = "Luis";
 
-    const nome = userData.nome;
-    const sobrenome = userData.sobrenome;
+    //const nome = userData.nome;
+    //const sobrenome = userData.sobrenome;
 
     var pnome = '';
     var psobrenome = '';
@@ -84,12 +84,58 @@ const TelaMenuCliente = () => {
     const iniciais = pnome + psobrenome;
 
 
+    //Notificacao
+    const [notifications, setNotifications] = useState([]);
+    const [showNotifications, setShowNotifications] = useState(false);
+    const [newNotification, setNewNotification] = useState(false);
+
+    const fetchNotifications = () => {
+        const fakeNotifications = [
+            { id: 1, title: "Título 1", description: "Notificação 1" },
+            { id: 2, title: "Título 2", description: "Notificação 2" },
+            { id: 3, title: "Título 3", description: "Notificação 3" }
+        ];
+        setNotifications(fakeNotifications);
+    };
+
+    const handleClick = () => {
+        if (!showNotifications) {
+            fetchNotifications();
+        }
+        setShowNotifications(!showNotifications);
+        setNewNotification(false);
+    };
+
+    const handleListClose = () => {
+        setShowNotifications(false);
+    };
+
     return (
         <div className={styles.fMenuCliente}>
             <nav id={styles["cabecalhoMenuCli"]}>
                 <div className={styles.voltar}><Link to="../../tLoginCli"><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
                 <div className={styles.logoMenuCli}><p></p></div>
-                <div className={styles.notificacao}><a href="/"><img src={Notificacao} alt="notificacao" /></a></div>
+                <div className={styles.notificacao}>
+                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
+                    {showNotifications && (
+                        <div className={styles.notificationContainer}>
+                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
+                            {newNotification && <p>Nova notificação recebida!</p>}
+                            <ul className={styles.notificationList}>
+                                {notifications.map((notification, index) => (
+                                    <li
+                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
+                                        key={notification.id}
+                                    >
+                                        <p className="notification-title">{notification.title}</p>
+                                        <p className={styles.notificationDescription}>{notification.description}</p>
+                                        <hr></hr>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
                 <div className={styles.perfil}>
                     {/*<img src={Perfil} alt="perfil" />*/}
 

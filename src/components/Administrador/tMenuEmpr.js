@@ -1,4 +1,4 @@
-import styles from './tMenuEnderecoCli.module.css';
+import styles from './tMenuEmpr.module.css';
 //import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
@@ -7,17 +7,26 @@ import Notificacao from '../../icones/Doorbell.png';
 
 //import Perfil from '../../icones/perfilCliente.png';
 
-import './menHamburger.css';
+import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
 import React, { useState, useEffect, useRef } from "react";
 
 import agFetch from '../../axios/config.js';
 
-import { useForm } from "react-hook-form";
+import { Link } from 'react-router-dom';
 
+import tAzul from '../../temas/tema01.png';
 
-const TelaEnderecoCliente = () => {
-    document.title = "Endereço do Cliente";
+import tVermelho from '../../temas/tema02.png';
+
+import tVerde from '../../temas/tema03.png';
+
+import tRoza from '../../temas/tema04.png';
+
+import tAmarelo from '../../temas/tema05.png';
+
+const TelaMenuEmpreendimento = () => {
+    document.title = "Empreendimento";
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -38,77 +47,70 @@ const TelaEnderecoCliente = () => {
         setIsMenuClicked(!isMenuClicked)
     }
 
-    //API do CEP
-    //const { register, setValue } = useForm();
+    //bloquear rolagem nos imputs number
+    useEffect(() => {
+        const cep = jscep.current;
+        const num = jsnum.current;
+        const bloquearRolagem = (e) => {
+            e.preventDefault();
+        };
 
-    //Campos
-    var jscep, jsnum, jscomp;
-    jscep = useRef(null);
-    jsnum = useRef(null);
-    jscomp = useRef(null);
+        if (cep) {
+            cep.addEventListener('wheel', bloquearRolagem);
+        }
 
-    //Campos da API
-    const [jsrua, setRua] = useState("");
-    const [jsbairro, setBairro] = useState("");
-    const [jscidade, setCidade] = useState("");
-    const [jseuf, setUF] = useState("");
+        if (num) {
+            num.addEventListener('wheel', bloquearRolagem);
+        }
+
+        return () => {
+            if (cep) {
+                cep.removeEventListener('wheel', bloquearRolagem);
+            }
+            if (num) {
+                num.removeEventListener('wheel', bloquearRolagem);
+            }
+        };
+    });
+
+    //logica do upload da foto
+    const [selectedFile, setSelectedFile] = useState();
+    const [preview, setPreview] = useState();
 
 
-    const checkCEP = (e) => {
-        /*const cep = e.target.value.replace(/\D/g, '');
-        //console.log(cep);
-        console.log(jsrua, jsbairro, jscidade, jseuf);
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview(undefined);
+            return;
+        }
 
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then(res => res.json()).then(data => {
-                //console.log(JSON.stringify(data));                       
-                setValue("rua", data.logradouro);
-                setValue("bairro", data.bairro);
-                setValue("cidade", data.localidade);
-                setValue("uf", data.uf);
+        const objUrl = URL.createObjectURL(selectedFile);
+        setPreview(objUrl);
 
-                setRua(data.logradouro);
-                setBairro(data.bairro);
-                setCidade(data.localidade);
-                setUF(data.uf);
-            });*/
+        //libera memoria quando o componente nao e criado
+        return () => URL.revokeObjectURL(objUrl);
+    }, [selectedFile])
+
+    const onSelectFile = (e) => {
+        if (!e.target.files || e.target.files.lenght === 0) {
+            setSelectedFile(undefined);
+            return;
+        }
+
+        var myPicture = document.getElementById('fotoDefCli');
+        myPicture.className = styles.desImgDef;
+
+        setSelectedFile(e.target.files[0]);
     }
 
-    const updateEndereco = (e) => {
+    //atualiza foto de perfil
+    const updateFoto = (e) => {
         e.preventDefault();
 
-        const valCep = jscep.current.value;
-        //const valComp = jscomp.current.value;
-        //const valNum = jsnum.current.value;
-
-        //const valRua = jsrua;
-        //const valBairro = jsbairro;
-        //const valCidade = jscidade;
-        //const valUF = jseuf;
-
-        let qtdCep = valCep.length;
-        if (qtdCep < 8) {
-            alert("CEP Inválido!");
-            jscep.current.focus();
-        } else {
-            try {
-                //testar se esta pegando os dados
-                //alert(JSON.stringify({ valCep, valRua, valNum, valComp, valBairro, valCidade, valUF }));
-
-                //logica
-
-
-                //alert("Dados Atualizados!");
-
-            } catch (error) {
-                //coloquei este try catch para parar de reclamar de erro
-            }
-
-            //alert(data.cep, data.rua, data.num, data.comp, data.bairro, data.cidade, data.uf);
-        }
+        alert('Dados Salvos!');
     }
 
-    //const [userData, setUserData] = useState({});
+    const [userData, setUserData] = useState({});
 
     //const valToken = localStorage.getItem('user_token');
     //const JSToken = JSON.parse(valToken);
@@ -143,32 +145,6 @@ const TelaEnderecoCliente = () => {
             alert(error);
         }*/
     };
-
-    //bloquear rolagem nos imputs number
-    useEffect(() => {
-        const cep = jscep.current;
-        const num = jsnum.current;
-        const bloquearRolagem = (e) => {
-            e.preventDefault();
-        };
-
-        if (cep) {
-            cep.addEventListener('wheel', bloquearRolagem);
-        }
-
-        if (num) {
-            num.addEventListener('wheel', bloquearRolagem);
-        }
-
-        return () => {
-            if (cep) {
-                cep.removeEventListener('wheel', bloquearRolagem);
-            }
-            if (num) {
-                num.removeEventListener('wheel', bloquearRolagem);
-            }
-        };
-    });
 
     // Chama a função fetchUserData quando o componente é montado
     useEffect(() => {
@@ -223,8 +199,47 @@ const TelaEnderecoCliente = () => {
         setShowNotifications(false);
     };
 
+
+
+
+    //API do CEP
+    //const { register, setValue } = useForm();
+
+    //Campos
+    var jscep, jsnum, jscomp;
+    jscep = useRef(null);
+    jsnum = useRef(null);
+    jscomp = useRef(null);
+
+    //Campos da API
+    const [jsrua, setRua] = useState("");
+    const [jsbairro, setBairro] = useState("");
+    const [jscidade, setCidade] = useState("");
+    const [jseuf, setUF] = useState("");
+
+
+    const checkCEP = (e) => {
+        /*const cep = e.target.value.replace(/\D/g, '');
+        //console.log(cep);
+        console.log(jsrua, jsbairro, jscidade, jseuf);
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(res => res.json()).then(data => {
+                //console.log(JSON.stringify(data));                       
+                setValue("rua", data.logradouro);
+                setValue("bairro", data.bairro);
+                setValue("cidade", data.localidade);
+                setValue("uf", data.uf);
+
+                setRua(data.logradouro);
+                setBairro(data.bairro);
+                setCidade(data.localidade);
+                setUF(data.uf);
+            });*/
+    }
+
     return (
-        <div className={styles.fDBCliente}>
+        <div className={styles.fEmpr}>
             <div id={styles["menuLatCli"]}>
                 <div id={styles["menuDesk"]}>
                     <ul id={styles["ulDesk"]}>
@@ -235,25 +250,129 @@ const TelaEnderecoCliente = () => {
                             <p>{iniciais}</p>
                         </div>
                         <div id={styles["textoLL"]}>
-                            <a href="./tMenuDBCli" rel="noreferrer">
+                            <Link to="/tMenuDBADM" rel="noreferrer">
                                 <li><p>Dados Básicos</p></li>
-                            </a>
+                            </Link>
 
-                            <a href="./tMenuEnderecoCli" rel="noreferrer">
-                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Endereço</p></li>
-                            </a>
+                            <Link to="/tMenuEnderecoADM" rel="noreferrer">
+                                <li><p>Endereço</p></li>
+                            </Link>
 
-                            <a href="./tMenuFotoCli" rel="noreferrer">
+                            <Link to="/tMenuFotoADM" rel="noreferrer">
                                 <li><p>Foto</p></li>
-                            </a>
+                            </Link>
+
+                            <Link to="/tEmpreendimento" rel="noreferrer">
+                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Empreendimento</p></li>
+                            </Link>
                         </div>
                     </ul>
                 </div>
             </div>
 
             <div id={styles["conteudoCli"]}>
-                <h2><center>Endereço (Cliente)</center></h2>
-                <form id={styles["formEN"]} onSubmit={(e) => updateEndereco(e)}>
+                <h2><center>Logo</center></h2>
+                <form id={styles["formFoto"]} onSubmit={updateFoto}>
+                    <center><img id="fotoDefCli" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
+                    <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
+                    <div className={styles.legFoto}><p>Adicionar / alterar imagem</p></div>
+                    <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" required /></center>
+                    <center><input type="text" placeholder='Nome:' name="nome" /></center>
+                    <div id={styles["ptHor"]}>
+                        <center>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <p id={styles["horDeFunc"]}>
+                                Horário de funcionamento
+                            </p>
+                        </center>
+                        <div id={styles["horarios"]}>
+                            <br></br>
+                            <table>
+                                <tr>
+                                    <td><p>Segunda</p></td>
+                                    <td><p>Início</p></td>
+                                    <td><input type="time" name="horInicio" /></td>
+                                    <td><p>Fim</p></td>
+                                    <td><input type="time" name="horFinal" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td><p>Terça</p></td>
+                                    <td><p>Início</p></td>
+                                    <td><input type="time" name="horInicio" /></td>
+                                    <td><p>Fim</p></td>
+                                    <td><input type="time" name="horFinal" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td><p>Quarta</p></td>
+                                    <td><p>Início</p></td>
+                                    <td><input type="time" name="horInicio" /></td>
+                                    <td><p>Fim</p></td>
+                                    <td><input type="time" name="horFinal" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td><p>Quinta</p></td>
+                                    <td><p>Início</p></td>
+                                    <td><input type="time" name="horInicio" /></td>
+                                    <td><p>Fim</p></td>
+                                    <td><input type="time" name="horFinal" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td><p>Sexta</p></td>
+                                    <td><p>Início</p></td>
+                                    <td><input type="time" name="horInicio" /></td>
+                                    <td><p>Fim</p></td>
+                                    <td><input type="time" name="horFinal" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td><p>Sábado</p></td>
+                                    <td><p>Início</p></td>
+                                    <td><input type="time" name="horInicio" /></td>
+                                    <td><p>Fim</p></td>
+                                    <td><input type="time" name="horFinal" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td><p>Domingo</p></td>
+                                    <td><p>Início</p></td>
+                                    <td><input type="time" name="horInicio" /></td>
+                                    <td><p>Fim</p></td>
+                                    <td><input type="time" name="horFinal" /></td>
+                                </tr>
+                            </table>
+                            <br></br>
+                        </div>
+                    </div>
+                    <p id={styles["legTema"]}>Escolha o tema de fundo da sua empresa</p><br></br>
+                    <div id={styles["temas"]}>
+                        {/*<button>Azul</button>
+                        <button>Vermelho</button>
+                        <button>Verde</button>
+                        <button>Roza</button>
+                        <button>Amarelo</button>*/}
+
+                        {/*<input type="radio" value="azul" name="temas"/>                     
+                        <input type="radio" value="vermelho" name="temas" />                         
+                        <input type="radio" value="verde" name="temas" />                         
+                        <input type="radio" value="roza" name="temas" />                         
+                        <input type="radio" value="amarelo" name="temas" />*/}
+
+                        <img src={tAzul} alt="Tema Azul" onClick={(e) => { alert("Azul") }} />
+                        <img src={tVermelho} alt="Tema Vermelho" onClick={(e) => { alert("Vermelho") }} />
+                        <img src={tVerde} alt="Tema Verde" onClick={(e) => { alert("Verde") }} />
+                        <img src={tRoza} alt="Tema Roza" onClick={(e) => { alert("Roza") }} />
+                        <img src={tAmarelo} alt="Tema Amarelo" onClick={(e) => { alert("Amarelo") }} />
+                    </div>
+                    <br></br>
+                    <br></br>
+                    <p id={styles["legEndereco"]}>Endereço</p>
                     <div className={styles.linha}>
                         <div>
                             <input type="number"
@@ -334,10 +453,13 @@ const TelaEnderecoCliente = () => {
                             onChange={(e) => setUF(e.target.value)}
                             required />
                     </div>
-                    <div id="btnDBSalvar">
-                        <input type="submit" id={styles["btnSalvarDDB"]} name="btnSalvarDDB" value="Salvar" />
+
+                    <div id={styles["fbtnSalvarotoCli"]}>
+                        <button id={styles["btnExcluir"]}>Excluir</button>
+                        <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" value="Salvar" />
                     </div>
                 </form>
+                <br></br>
             </div>
 
             <div id={styles["menuHorCli"]}>
@@ -365,30 +487,37 @@ const TelaEnderecoCliente = () => {
                         <ul id="uMenHamburger">
                             <li>
                                 <p>
-                                    <a href="./tMenuDBCli" rel="noreferrer">
+                                    <Link to="/tMenuDBADM" rel="noreferrer">
                                         Dados Básicos
-                                    </a>
+                                    </Link>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <Link to="/tMenuEnderecoADM" rel="noreferrer">
+                                        Endereço
+                                    </Link>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <Link to="/tMenuFotoADM" rel="noreferrer">
+                                        Foto
+                                    </Link>
                                 </p>
                             </li>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <a href="./tMenuEnderecoCli" rel="noreferrer">
-                                        Endereço
-                                    </a>
+                                    <Link to="/tEmpreendimento" rel="noreferrer">
+                                        Empreendimento
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuFotoCli" rel="noreferrer">
-                                        Foto
-                                    </a>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <a href="./tMenuCli" rel="noreferrer">
+                                    <Link to="/tMenuADM" rel="noreferrer">
                                         Voltar ao Menu
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                         </ul>
@@ -427,4 +556,4 @@ const TelaEnderecoCliente = () => {
     )
 }
 
-export default TelaEnderecoCliente
+export default TelaMenuEmpreendimento

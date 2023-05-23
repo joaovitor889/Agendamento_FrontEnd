@@ -2,16 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-.fFotoCliente {
+.fEmpr {
     position: fixed;
-	width: 100%;
-	height: 100%;
-	/*background-image: url("../../img/fundo.png");*/
+    width: 100%;
+    height: 100%;
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     color: #000;
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 #menuHorCli {
@@ -31,6 +33,7 @@
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     top: 10.4%;
     left: 0%;
+    overflow-y: auto;
 }
 
 #voltar {
@@ -51,7 +54,7 @@
     font-weight: bold;
     background-color: #fff;
     border-radius: 25px;
-    display: table; 
+    display: table;
 }
 
 .logoMenuCli p {
@@ -70,80 +73,81 @@
 }
 
 .notificacao .btnNot button {
-	width: 10vw; /* Largura responsiva */
-	height: 7vh;
-	border-style: none;
-	background-color: #000;
-	border-radius: 100%;
+    width: 10vw;
+    /* Largura responsiva */
+    height: 7vh;
+    border-style: none;
+    background-color: #000;
+    border-radius: 100%;
     position: absolute;
-	margin-left: 25%;
+    margin-left: 25%;
     margin-top: -6%;
 }
 
 .notificacao .btnNot button:hover {
-	background-color: #0000ff;
+    background-color: #0000ff;
 }
 
 .notificacao img {
-	width: 90%;
-	height: 90%;
+    width: 90%;
+    height: 90%;
 }
 
 .notificationContainer {
-	position: absolute;
-	margin-left: 30%;
+    position: absolute;
+    margin-left: 30%;
     margin-top: 3%;
-	z-index: 3;
-	width: 50%;
-	height: 40vh;
-	overflow-x: hidden;
-	overflow-y: scroll;
-	background-color: white;
-	border: 1px solid black;
-	overflow-y: auto;
+    z-index: 3;
+    width: 50%;
+    height: 40vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: white;
+    border: 1px solid black;
+    overflow-y: auto;
     color: #000;
 }
 
 .notificationList {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .notification-item {
-	padding: 5px;
-	border-bottom: 1px solid black;
-	margin-left: 0;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    margin-left: 0;
 }
 
 .notification-title {
-	font-weight: bold;
-	margin-top: 0;
-	margin-bottom: 5px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 5px;
 }
 
 .notificationDescription {
-	margin-left: 5%;
-	word-break: break-word;
-	text-align: justify;
+    margin-left: 5%;
+    word-break: break-word;
+    text-align: justify;
 }
 
 .first-notification {
-	margin-top: 0;
+    margin-top: 0;
 }
 
 .closeButton {
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	background-color: red;
-	color: white;
-	font-weight: bold;
-	border: none;
-	cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
 }
 
 .perfil {
@@ -166,7 +170,7 @@
     margin-left: 30%;
 }
 
-#perfilHamburgerFoto img{
+#perfilHamburgerFoto img {
     width: 90%;
     height: 90%;
 }
@@ -178,8 +182,8 @@
 }
 
 .perfil p {
-	font-size: 6vw;
-	line-height: 70%;
+    font-size: 6vw;
+    line-height: 70%;
     margin-top: 25%;
     color: #fff;
 }
@@ -191,11 +195,11 @@ h2 {
 
 #formFoto {
     width: 90%;
-    margin: 5%;
+    margin: 3%;
 }
 
 #formFoto input {
-    width: 80%;
+    width: 100%;
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
     font-size: 60%;
@@ -210,7 +214,12 @@ h2 {
     transform: translate(-50%, -50%);
 }
 
-#formFoto img{
+#formFoto input {
+    width: 90%;
+    margin-top: 5%;
+}
+
+#formFoto img {
     width: 90%;
     height: 60%;
 }
@@ -219,17 +228,31 @@ h2 {
     background-color: #fff;
 }
 
-#formFoto #btnSalvarFoto {
-    margin-left: 77%;
+#formFoto #btnSalvarFoto,
+#btnExcluir {
+    margin-left: 68%;
     width: 25%;
     font-size: 90%;
     background-color: #6375D6;
     text-align: center;
+    border-style: none;
+    border-radius: 50px;
 }
 
-#formFoto #btnSalvarFoto:hover {
+#formFoto #btnSalvarFoto:hover,
+#btnExcluir:hover {
     background-color: #0a1868;
     color: #fff;
+}
+
+#btnExcluir {
+    position: absolute;
+    margin-left: 3%;
+    margin-top: 1%;
+    width: 25%;
+    height: 6%;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
 }
 
 #menuDesk {
@@ -249,35 +272,115 @@ h2 {
     margin-left: 27%;
 }
 
-#perfilHamburger img{
+#perfilHamburger img {
     margin: 10%;
     width: 80%;
     height: 75%;
 }
 
-.linha { 
+.linha {
     width: 100%;
     display: table;
     margin-left: 1%;
+}
+
+.linha div {
+    display: table-cell;
+}
+
+.desImgDef {
+    display: none;
+}
+
+.legFoto {
+    margin-top: -5%;
+    margin-left: 5%;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: left;
+    color: #fff;
+}
+
+#ptHor {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+}
+
+#horDeFunc {
+    position: relative;
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 35%;
+    word-wrap: break-word;
+    font-size: 3vw;
+    text-align: left;
+}
+
+#horarios {
+    position: relative;
+    background-color: #4fbd61;
+    border: 3px solid #000;
+    border-radius: 50px;
+    width: 70%;
+    height: 50%;
+    margin-top: -5%;
+}
+
+#horarios input[type="time"] {
+    position: relative;
+    margin-top: 7%;
+    width: 7vw;
+}
+
+#horarios p {
+    margin-left: 5%;
+    margin-top: 5%;
+    font-size: 75%;
+}
+
+#legTema {
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: -5%;
+}
+
+#temas {
+    display: flex;
+    flex-direction: row;
+    margin-left: -5%;
+    margin-top: -3%;
+}
+
+#temas img {
+    margin-left: 5%;
+    max-width: 65px;
+    max-height: 65px;
+}
+
+.linha { 
+    width: 100%;
+    display: table;
+    margin-left: -3%;
 }	
 
 .linha div {
     display: table-cell;
 }
 
-.desImgDef 
-{
-   display:none;
+.linhaUnica {
+    margin-left: -5%;
+    width: 105%;
 }
 
-.legFoto {
-    margin-top: -2%;
-    margin-left: 13%;
+.segColuna {
+    margin-left: 35%;
+}
+
+#legEndereco {
     font-family: 'Times New Roman', Times, serif;
-    text-align: left;
     color: #fff;
+    text-align: left;
 }
-
 
 @media only screen and (min-width: 1024px) {
     .fFotoCliente {
@@ -285,7 +388,7 @@ h2 {
     }
 
     #menuLatCli {
-        position: fixed;
+        position: relative;
         height: 100%;
         width: 15%;
         background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
@@ -309,17 +412,16 @@ h2 {
         width: 85%;
         height: 100%;
         background-color: blue;
-        top: 10.5%;
+        top: 10.4%;
         left: 15.2%;
-        overflow-x: hidden;
-        overflow-y: auto;
     }
 
     #voltar {
         display: flex;
         margin-top: 1%;
     }
-    #voltar img{
+
+    #voltar img {
         width: 80%;
         height: 80%;
     }
@@ -334,29 +436,32 @@ h2 {
         font-weight: bold;
         background-color: #fff;
         border-radius: 25px;
-        display:block;
+        display: block;
     }
+
     .logoMenuCli p {
         margin-top: -32%;
         font-weight: bold;
         color: #000;
-        display:block;
+        display: block;
     }
+
     .logoMenuCli p::before {
         font-size: 1.6vw;
         content: 'Shostners & shostners';
     }
 
     .notificacao {
-		width: 3.5%;
-		height: 2%;
+        width: 3.5%;
+        height: 2%;
         position: absolute;
-		margin-left: 90%;
+        margin-left: 90%;
         margin-top: 0.5%;
-	}
+    }
 
     .notificacao .btnNot button {
-        width: 4vw; /* Largura responsiva */
+        width: 4vw;
+        /* Largura responsiva */
         height: 7vh;
         border-style: none;
         background-color: #000;
@@ -364,21 +469,21 @@ h2 {
         position: absolute;
         margin-left: -50%;
         margin-top: 2%
-	}
+    }
 
-	.notificationContainer {
-		width: 200px;
-		height: 300px;
-		overflow-x: hidden;
-		overflow-y: scroll;
-		background-color: white;
-		border: 1px solid black;
-		overflow-y: auto;
-		position: relative;
-		margin-left: -300%;
+    .notificationContainer {
+        width: 200px;
+        height: 300px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        background-color: white;
+        border: 1px solid black;
+        overflow-y: auto;
+        position: relative;
+        margin-left: -300%;
         margin-top: 95%;
         color: #000;
-	}
+    }
 
     .perfil {
         background-color: #000;
@@ -388,11 +493,13 @@ h2 {
         border-radius: 50%;
         margin-left: 5%;
     }
+
     .perfil img {
         margin: 10%;
         width: 70%;
         height: 70%;
     }
+
     .perfil p {
         font-size: 2vw;
         margin-top: 20%;
@@ -405,6 +512,7 @@ h2 {
         width: 100%;
         height: 100%;
     }
+
     #ulDesk {
         list-style-type: none;
         width: 100%;
@@ -414,46 +522,51 @@ h2 {
     #textoLL {
         margin-top: 15%;
     }
-    
+
     #textoLL li {
-        margin-top: -10%; 
+        margin-top: -10%;
     }
 
-    #ulDesk li{
+    #ulDesk li {
         width: 100.5%;
         position: relative;
         margin-left: -22%;
     }
-    #ulDesk li:hover{
+
+    #ulDesk li:hover {
         background-color: rgba(80, 80, 80, 0.5);
     }
-    #ulDesk p{
+
+    #ulDesk p {
         text-align: left;
         font-family: 'Times New Roman', Times, serif;
         font-size: 1.5vw;
         margin-left: 2%;
         margin-bottom: -10px;
     }
+
     #ulDesk a {
         text-decoration: none;
         color: #fff;
     }
-    
+
     #perfilLateral {
         display: flex;
         width: 50%;
-        height: 55%;
+        height: 50%;
         background-color: #000;
         margin-left: -5%;
         border-radius: 50%;
         margin-top: 12%;
     }
-    #perfilLateral img{
+
+    #perfilLateral img {
         position: absolute;
         top: 12%;
         width: 50%;
         height: 15%;
     }
+
     #perfilLateral p {
         margin-left: 25%;
         line-height: 45%;
@@ -461,12 +574,93 @@ h2 {
         font-size: 3em;
         color: #fff;
     }
-    
+
     #formFoto img {
-        width: 80%;
-        height: 60%;
+        width: 60%;
+        height: 40%;
     }
+
     #formFoto input {
         margin-top: 2%;
+    }
+
+    #formFoto input {
+        width: 60%;
+        margin-top: 3%;
+    }
+
+    .legFoto {
+        margin-top: -2%;
+        margin-left: 20%;
+        font-family: 'Times New Roman', Times, serif;
+        text-align: left;
+        color: #fff;
+    }
+
+    #btnExcluir {
+        position: absolute;
+        margin-left: -27%;
+        margin-top: -2%;
+        width: 20%;
+        height: 6vh;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+    }
+
+    #legTema {
+        margin-left: -25%;
+    }
+
+    #horarios {
+        position: relative;
+        background-color: #4fbd61;
+        border: 3px solid #000;
+        border-radius: 50px;
+        width: 40%;
+        height: 50%;
+        margin-top: -5%;
+    }
+
+    #horarios input[type="time"] {
+        position: relative;
+        margin-top: 7%;
+        width: 7vw;
+    }
+
+    #temas {
+        display: flex;
+        flex-direction: row;
+        margin-left: 15%;
+        margin-top: -3%;
+    }
+
+    #formFoto .linha { 
+        width: 100%;
+        display: table;
+        margin-left: 6%;
+    }	
+    
+    .linha div {
+        display: table-cell;
+    }
+    
+    .linhaUnica {
+        margin-left: -5%;
+        width: 105%;
+    }
+    
+    #formFoto .segColuna {
+        margin-left: 15%;
+    }
+
+    #legEndereco {
+        margin-left: 17%;
+    }
+
+    #conteudoCli #btnExcluir {
+        margin-left: -30%;
+    }
+    #conteudoCli #btnSalvarFoto {
+        margin-left: 67%;
     }
 }
