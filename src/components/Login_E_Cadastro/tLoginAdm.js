@@ -32,22 +32,27 @@ const TelaLoginAdm = () => {
             });
             
             const token = response.data.token;
+            
+            if(response.status === 200) {
+                //alert("Logou no Proprietário");
+                navigate('/tAgendamentosADM');
+            }                
 
             //alert(token);
             
-            const config = {
+            /*const config = {
               headers: {
                 Authorization: `Bearer ${token}`
               }
-            };
+            };*/
         
 //             const pegaToken = await agFetch.get('/auth/', config);
 
 
-            if(pegaToken.status === 200) {
+            /*if(.status === 200) {
                 //alert("Logou no Proprietário");
                 navigate('/tAgendamentosADM');
-            }                
+            } */               
           } catch (error) {
             console.error(error);
             alert("Dados Incorretos!");
