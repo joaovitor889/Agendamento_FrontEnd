@@ -33,7 +33,7 @@ const TelaLoginAdm = () => {
             
             
             
-            if(response.status >= 200 &&  response.status <= 299) 
+            if(response.status >= 200 &&  response.status <= 299) {
                  const token = response.data.token; 
                 alert("Logou no Proprietário" + token);
                
