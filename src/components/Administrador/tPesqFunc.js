@@ -18,15 +18,15 @@ const telaPesqFunc = () => {
            
             {/* header  começo */}
             <header>
-                <div className="esquerda">
+                <div className={styles.esquerda}>
                     <label  for = {styles["check"]}>
                         <img src = {menu} alt = "retunr"  className='sidebar_btn'/>
                     </label>
                 </div>
-                <div className="Centro">
+                <div className={styles.Centro}>
                     <h3>Shostners & Shostners</h3>
                 </div>
-                <div className="direita">
+                <div className={styles.direita}>
                     <a href="/" className="btn_perfil">
                         <img src= {perfil} alt="notificar" />
                     </a>
@@ -43,7 +43,7 @@ const telaPesqFunc = () => {
                 <a href="/">Agendar</a>
                 <a href="/">Serviços</a>
                 <a href="/">Perfil</a>
-                <div className='interprise'>
+                <div className={styles.interprise}>
                     <h3>Qual empresa?</h3>
                 </div>
             </div>

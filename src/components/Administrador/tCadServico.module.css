@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap'); 
 
-.fAgendar{
+.fCadServico{
 	position: fixed;
     width: 100%;
     height: 100%;
     font-family: 'Euphoria Script', cursive;
     margin: 0;
+    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     
 }
 header{
@@ -17,7 +18,7 @@ header{
 	height: 4rem;
     background: #3293CA;
 }
-main{
+.main{
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     position: fixed;
     right: 0;
@@ -67,12 +68,13 @@ a{
 .sidebar{
     z-index: 1;
     position: fixed;
-    width: 15%;
+    width: 200px;
     height: 100%;
     padding-top: 30px;
     left: 0;
     background: #252525;
     border-right: white 3px solid;
+    display: none;
 }
 .sidebar a{
     color: white;
@@ -91,29 +93,32 @@ a{
     text-align: center;
     position: fixed;
     bottom:0;
-    width: 15%;
+    width: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #check:checked ~ .sidebar {
-    display: none;
+    display: flex;
+    flex-direction: column;
 }
 
 
-
-.Container{
+.Container {
     display: flex;
+    flex-direction: column;
     
 }
+
 .Container h1{
     background-color: #000000;
     border-radius: 15px;
     padding: 0 1rem;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #6375D6;
     margin-top: 10%;
+    text-align: center;
 
 }
 
@@ -172,4 +177,22 @@ a{
 
 #check{
     display: none;
+}
+
+@media only screen and (max-width: 500px) {
+
+    .fCadServico header{
+        padding: 0 1rem;
+    }
+
+    .Centro{
+        width: 200px;
+    }
+    .direita{
+        width: 90px;
+    }
+    .direita  img{
+        height: 2.5rem;
+        margin: 0;
+    }
 }

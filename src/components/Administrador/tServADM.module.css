@@ -25,6 +25,8 @@ main{
     display: flex;
     align-items: center;
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 a{
@@ -112,7 +114,7 @@ a{
 	right: 0;
 }
 
-.header-container{
+.header_container{
 	display: flex;
 	justify-content: space-between;
 	width: 60rem;

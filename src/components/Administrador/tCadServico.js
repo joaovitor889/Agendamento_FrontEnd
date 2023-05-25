@@ -1,4 +1,4 @@
-import './tCadServico.css';
+import styles from'./tCadServico.module.css';
 import menu from '../../img/Menu Rounded.png';
 import perfil from  '../../img/perfil.png'
 import notificar from '../../img/notificar.png'
@@ -13,19 +13,19 @@ const telaCadServico = () => {
     document.title ="Cadastrar Serviço";
 
     return (
-        <div className='fCadServico'>
-             <input type='checkbox' id='check'/>
+        <div className={styles.fCadServico}>
+             <input type='checkbox' id={styles["check"]}/>
              {/* header  começo */}
              <header>
-                <div className="esquerda">
-                    <label  for = 'check'>
+                <div className={styles.esquerda}>
+                    <label  for = {styles["check"]}>
                         <img src = {menu} alt = "retunr"  className='sidebar_btn'/>
                     </label>
                 </div>
-                <div className="Centro">
+                <div className={styles.Centro}>
                     <h3>Shostners & Shostners</h3>
                 </div>
-                <div className="direita">
+                <div className={styles.direita}>
                     <a href="/" className="btn_perfil">
                         <img src= {perfil} alt="notificar" />
                     </a>
@@ -36,33 +36,27 @@ const telaCadServico = () => {
             </header>
             {/* final do header */}
             {/* sidebar começo */}
-            <div className='sidebar'>
+            <div className={styles.sidebar}>
                 <a href="/">Profissionais</a>
                 <a href="/">Agendamentos</a>
                 <a href="/">Agendar</a>
                 <a href="/">Serviços</a>
                 <a href="/">Perfil</a>
-                <div className='interprise'>
+                <div className={styles.interprise}>
                     <h3>Qual empresa?</h3>
                 </div>
             </div>
             {/* sidebar  final */}
-            <div className='main'>
-                <div className='Container'>
+            <div className={styles.main}>
+                <div className={styles.Container}>
                   <h1>Cadastro de Serviços</h1>
-                  <div className='categories'>
-                    <img src= {catergory1} alt="" className='category'/>
-                    <img src= {catergory2} alt="" className='category'/>
-                    <img src= {catergory3} alt="" className='category'/>
-                    <img src= {catergory4} alt="" className='category'/>
-                    <img src= {catergory5} alt="" className='category'/>
+                  <div className={styles.dados}>
+                    <input type="text" className={styles.texto} />
+                    <input type="text" className={styles.texto} />
+                    <input type="text" className={styles.texto} />
                   </div>
-                  <div className='dados'>
-                    <input type="text" className='texto' />
-                    <input type="text" className='texto' />
-                  </div>
-                  <div className='finsh'>
-                    <input type="text" className='texto' />
+                  <div className={styles.finsh}>
+                    <input type="text" className={styles.texto} />
                     <br/>
                     <a href="/">Cadastrar</a>
                   </div>

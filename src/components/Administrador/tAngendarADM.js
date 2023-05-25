@@ -1,31 +1,27 @@
-import './tAgendarADM.css';
+import styles from './tAgendarADM.module.css';
 import menu from '../../img/Menu Rounded.png';
 import perfil from  '../../img/perfil.png'
 import notificar from '../../img/notificar.png'
-import catergory1 from  '../../img/Component 51.png'
-import catergory2 from  '../../img/Component 52.png'
-import catergory3 from  '../../img/Component 53.png'
-import catergory4 from  '../../img/Component 54.png'
-import catergory5 from  '../../img/Component 55.png'
+
 
 
 const telaAgendarADM = () => {
     document.title ="Cadastrar Serviço";
 
     return (
-        <div className='fAgendar'>
-            <input type='checkbox' id='check'/>
+        <div className={styles.fAgendar}>
+            <input type='checkbox' id={styles["check"]}/>
              {/* header  começo */}
-             <header>
-                <div className="esquerda">
-                    <label  for = 'check'>
+             <div className={styles.body_header}>
+                <div className={styles.esquerda}>
+                    <label  htmlFor = {styles["check"]}>
                         <img src = {menu} alt = "retunr"  className='sidebar_btn'/>
                     </label>
                 </div>
-                <div className="Centro">
+                <div className={styles.Centro}>
                     <h3>Shostners & Shostners</h3>
                 </div>
-                <div className="direita">
+                <div className={styles.direita}>
                     <a href="/" className="btn_perfil">
                         <img src= {perfil} alt="notificar" />
                     </a>
@@ -33,48 +29,42 @@ const telaAgendarADM = () => {
                         <img src= {notificar} alt="notificar" />
                     </a>
                 </div>
-            </header>
+            </div>
             {/* final do header */}
             {/* sidebar começo */}
-            <div className='sidebar'>
-                <a href="/">Profissionais</a>
-                <a href="/">Agendamentos</a>
-                <a href="/">Agendar</a>
-                <a href="/">Serviços</a>
-                <a href="/">Perfil</a>
-                <div className='interprise'>
+            <div className={styles.sidebar}>
+                <a href="/tPesqFunc">Profissionais</a>
+                <a href="/tAgendamentosADM">Agendamentos</a>
+                <a href="/tAgendarADM">Agendar</a>
+                <a href="/tSevADM">Serviços</a>
+                <a href="/tMenuDBADM">Perfil</a>
+                <div className={styles.interprise}>
                     <h3>Qual empresa?</h3>
                 </div>
             </div>
             {/* sidebar  final */}
             <main>
-                <div className='Container'>
+                <div className={styles.Container}>
                   <h1>Agendar</h1>
-                  <div className='categories'>
-                    <img src= {catergory1} alt="" className='category'/>
-                    <img src= {catergory2} alt="" className='category'/>
-                    <img src= {catergory3} alt="" className='category'/>
-                    <img src= {catergory4} alt="" className='category'/>
-                    <img src= {catergory5} alt="" className='category'/>
-                  </div>
-                  <div className='dados'>
-                    <input type="text" className='texto' placeholder='Serviço'/>
-                    <input type="text" className='texto' placeholder='Profissional'/>
-                    <div className='dois_campos'>
-                        <input type="text" className='texto' />
-                        <input type="text" className='texto' />
+                  <div className={styles.dados}>
+                    <input type="text" className={styles.texto} placeholder='Categoria'/>
+                    <input type="text" className={styles.texto} placeholder='Serviço'/>
+                    <input type="text" className={styles.texto} placeholder='Profissional'/>
+                    <div className={styles.dois_campos}>
+                        <input type="text" className={styles.texto} placeholder='Data'/>
+                        <input type="text" className={styles.texto} placeholder='Horario de atendimento'/>
                     </div>
-                    <input type="text" className='texto' />
+                    <input type="text" className={styles.texto} placeholder='Local'/>
                   </div>
-                  <div className='client'>
-                    <input type="text" className='texto' />
-                    <input type="text" className='texto' />
-                    <input type="text" className='texto' />
+                  <div className={styles.cliente}>
+                    <input type="text" className={styles.texto} placeholder='Nome do Cliente'/>
+                    <input type="text" className={styles.texto} placeholder='Telefone'/>
+                    <input type="text" className={styles.texto} placeholder='CPF'/>
                   </div>
-                  <div className='finsh'>
-                    <input type="text" className='texto texto-demonstrativo' />
+                  <div className={styles.finsh}>
+                    <input type="text" className={styles.texto_demonstrativo} placeholder='Preço (R$)'/>
                     <br/>
-                    <a href="/">Cadastrar</a>
+                    <a href="/tAgendamentosADM">Agendar</a>
                   </div>
                 </div>
             </main>

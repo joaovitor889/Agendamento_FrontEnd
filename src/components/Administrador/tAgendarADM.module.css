@@ -1,14 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300&display=swap');
 
-.fCadServico{
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital@1&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+.fAgendar{
 	position: fixed;
     width: 100%;
     height: 100%;
     font-family: 'Euphoria Script', cursive;
     margin: 0;
-    
+    overflow-x: hidden;
+    overflow-y: auto;
 }
-header{
+.body_header{
 	display: flex;
 	justify-content: space-between;
 	padding: 0 3rem;
@@ -17,7 +22,8 @@ header{
 	height: 4rem;
     background: #3293CA;
 }
-.main{
+
+main{
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     position: fixed;
     right: 0;
@@ -26,6 +32,8 @@ header{
     display: flex;
     align-items: center;
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 a{
@@ -47,7 +55,7 @@ a{
 	align-items: center;
 	border-radius: 20px;
 	color: #000000;
-
+    font-family: 'Euphoria Script', cursive;
 }
 
 .esquerda img{ 
@@ -67,12 +75,13 @@ a{
 .sidebar{
     z-index: 1;
     position: fixed;
-    width: 15%;
+    width: 200px;
     height: 100%;
     padding-top: 30px;
     left: 0;
     background: #252525;
     border-right: white 3px solid;
+    display: none;
 }
 .sidebar a{
     color: white;
@@ -91,46 +100,33 @@ a{
     text-align: center;
     position: fixed;
     bottom:0;
-    width: 15%;
+    width: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #check:checked ~ .sidebar {
-    display: none;
-}
-
-
-.Container {
     display: flex;
     flex-direction: column;
-    
 }
 
+
+
+.Container{
+    display: flex;
+    flex-direction: column;   
+}
 .Container h1{
     background-color: #000000;
     border-radius: 15px;
     padding: 0 1rem;
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #6375D6;
-    margin-top: 10%;
-    text-align: center;
+    margin-top: 2rem;
+    text-align: center
 
 }
-
-.categories{
-    width: 360px;
-    display: flex;
-    /*Fica dando aviso*/
-    /*align-items: end;*/
-}
-.category{
-    width: 2rem;
-    height: 2rem;
-    margin-right: 0.3rem;
-}
-
 .dados{
     margin-top: 0.5rem;
     display: flex;
@@ -151,7 +147,7 @@ a{
     width: 175px;
 }
 .finsh{
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 .finsh .texto{
     width: 150px;
@@ -161,17 +157,41 @@ a{
     padding: 0.5rem  1rem;
     border-radius: 15px;
     margin-left: 20px;
+    margin-top: 0.5;
 }
-.client{
+.cliente{
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
 }
 
-.texto-demonstrativo{
+.texto_demonstrativo{
     background-color: aquamarine;
+    margin-bottom: 1rem;
+    height: 2rem;
+    border-radius: 15px;
+    border-style: none;
+    width: 260px;
 }
 
 #check{
     display: none;
+}
+
+@media only screen and (max-width: 500px) {
+
+    .body_header{
+        padding: 0 1rem;
+    }
+
+    .Centro{
+        width: 200px;
+    }
+    .direita{
+        width: 90px;
+    }
+    .direita  img{
+        height: 2.5rem;
+        margin: 0;
+    }
 }

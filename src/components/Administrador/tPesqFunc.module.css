@@ -27,6 +27,10 @@ a{
     padding-left: 1rem;
 }
 
+.esquerda img{ 
+	height: 2.5rem;
+}
+
 .Centro{
 	background-color: aliceblue;
 	width: 300px;
@@ -37,6 +41,11 @@ a{
 	border-radius: 20px;
 	color: #000000;
 
+}
+.direita {
+	width: 110px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .direita  img{

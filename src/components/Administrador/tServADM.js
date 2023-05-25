@@ -17,19 +17,19 @@ const telaMenuADM = () => {
     document.title = "Menu do Administrador";
 
    return (
-        <div className = "fMenuADM">
-            <input type='checkbox' id='check'/>
+        <div className = {styles.fMenuADM}>
+            <input type='checkbox' id={styles["check"]}/>
             {/* header  começo */}
             <header>
-                <div className="esquerda">
-                    <label  for = 'check'>
+                <div className={styles.esquerda}>
+                    <label  for = {styles["check"]}>
                         <img src = {menu} alt = "retunr"  className='sidebar_btn'/>
                     </label>
                 </div>
-                <div className="Centro">
+                <div className={styles.Centro}>
                     <h3>Shostners & Shostners</h3>
                 </div>
-                <div className="direita">
+                <div className={styles.direita}>
                     <a href="/" className="btn_perfil">
                         <img src= {perfil} alt="notificar" />
                     </a>
@@ -40,33 +40,27 @@ const telaMenuADM = () => {
             </header>
             {/* final do header */}
             {/* sidebar começo */}
-            <div className='sidebar'>
+            <div className={styles.sidebar}>
                 <a href="/">Profissionais</a>
                 <a href="/">Agendamentos</a>
                 <a href="/">Agendar</a>
                 <a href="/">Serviços</a>
                 <a href="/">Perfil</a>
-                <div className='interprise'>
+                <div className={styles.interprise}>
                     <h3>Qual empresa?</h3>
                 </div>
             </div>
             {/* sidebar  final */}
             <main>
             <div className = {styles.container}> 
-                    <div className='header-container'>
-                        <div className='categories'>
-                            <img src= {catergory1} alt="" className='category'/>
-                            <img src= {catergory2} alt="" className='category'/>
-                            <img src= {catergory3} alt="" className='category'/>
-                            <img src= {catergory4} alt="" className='category'/>
-                            <img src= {catergory5} alt="" className='category'/>
-                        </div>
-                        <img src={newServ} alt="" className='newServ'/>
+                    <div className={styles.header_container}>
+                        <input type="text" placeholder='categoria' className={styles.texto} />
+                        <img src={newServ} alt="" className={styles.newServ}/>
                     </div>
-                    <div  className='card'>
-                        <h4 className='card-header'>Corte de cabelo channel</h4>
-                        <p className='card-body'>Descrição: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-                        <div className='card-footer'>
+                    <div  className={styles.card}>
+                        <h4 className={styles.card_header}>Corte de cabelo channel</h4>
+                        <p className={styles.card_body}>Descrição: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                        <div className={styles.card_footer}>
                             <h4>Preço: 60,00 R$</h4>
                             <img src={lixeira} alt="" />
                         </div>

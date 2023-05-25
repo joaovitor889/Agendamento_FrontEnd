@@ -102,7 +102,7 @@ const TelaAgendarCliente = () => {
         <div className={styles.fAgendarCliente}>
             <nav id={styles["cabecalhoMenuCli"]}>
                 <div className={styles.voltar}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
-                <div className={styles.logoMenuCli}><p></p></div>
+                <div className={styles.logoMenuCli}><p>Shostners & shostners</p></div>
                 <div className={styles.notificacao}>
                     <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
                     {showNotifications && (

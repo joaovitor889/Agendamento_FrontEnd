@@ -16,15 +16,15 @@ const telaAgendamento = () => {
             <input type="checkbox" id={styles["check"]} />
             {/* header  começo */}
             <header>
-                <div className="esquerda">
-                    <label htmlFor={styles["check"]}>
+                <div className={styles.esquerda}>
+                    <a href='./tMenuCli'>
                         <img src={menu} alt="retunr" className='sidebar_btn' />
-                    </label>
+                    </a>
                 </div>
-                <div className="Centro">
+                <div className={styles.Centro}>
                     <h3>Shostners & Shostners</h3>
                 </div>
-                <div className="direita">
+                <div className={styles.direita}>
                     <a href="/" className="btn_perfil">
                         <img src={perfil} alt="notificar" />
                     </a>
