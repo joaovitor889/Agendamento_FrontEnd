@@ -31,23 +31,34 @@ const TelaLoginAdm = () => {
               senha: cmpSenha
             });
             
-            const token = response.data.token;
+            
+            
+            if(response.status >= 200 &&  response.status <= 299) {
+                 const token = response.data.token; 
+                alert("Logou no Proprietário" + token);
+               
+                navigate('/tAgendamentosADM');
+            }  else if(response.status === 401){
+                alert("Senha ou email invalido");
+            }else{
+                alert("Houve um problema ao logar, tente mais tarde");
+            }             
 
             //alert(token);
             
-            const config = {
+            /*const config = {
               headers: {
                 Authorization: `Bearer ${token}`
               }
-            };
+            };*/
         
-            const pegaToken = await agFetch.get('/auth/', config);
+//             const pegaToken = await agFetch.get('/auth/', config);
 
 
-            if(pegaToken.status === 200) {
+            /*if(.status === 200) {
                 //alert("Logou no Proprietário");
                 navigate('/tAgendamentosADM');
-            }                
+            } */               
           } catch (error) {
             console.error(error);
             alert("Dados Incorretos!");
