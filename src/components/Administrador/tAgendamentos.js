@@ -90,9 +90,9 @@ const telaAgendamentos = () => {
                     </div>
                 </div>
                 <a href='/' className={styles.block}> <img src={block} alt="bloquear" /></a>
-                <div className={styles.Container}>
-            <div className={styles.Card}>
-                <div className={styles.Card_Header}>
+            <div className={styles.Container}>
+                <div className={styles.Card}>
+                    <div className={styles.Card_Header}>
                         <h2>Cliente: Ana Catarina</h2>
                         <p>Serviços: cabelereira, manicure</p>
                     </div>

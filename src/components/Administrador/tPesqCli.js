@@ -18,32 +18,33 @@ const telaPesqCli = () => {
            
            {/* header  começo */}
            <header>
-               <div className="esquerda">
+               <div className={styles.esquerda}>
                    <label  for = {styles["check"]}>
                        <img src = {menu} alt = "retunr"  className='sidebar_btn'/>
                    </label>
                </div>
-               <div className="Centro">
+               <div className={styles.Centro}>
                    <h3>Shostners & Shostners</h3>
                </div>
-               <div className="direita">
+               <div className={styles.direita}>
                    <a href="/" className="btn_perfil">
                        <img src= {perfil} alt="notificar" />
                    </a>
                    <a href="/" className="btn_noticia">
-                       <img src= {notificar} alt="notificar" />
+                       {/* <img src= {notificar} alt="notificar" /> */}
                    </a>
                </div>
            </header>
            {/* final do header */}
            {/* sidebar começo */}
            <div className={styles.sidebar}>
-               <a href="/">Profissionais</a>
-               <a href="/">Agendamentos</a>
-               <a href="/">Agendar</a>
-               <a href="/">Serviços</a>
-               <a href="/">Perfil</a>
-               <div className='interprise'>
+                <a href="/tPesqFunc">Profissionais</a>
+                <a href="/tPesqCli">Clientes</a>
+                <a href="/tAgendamentosADM">Agendamentos</a>
+                <a href="/tAgendarADM">Agendar</a>
+                <a href="/tServADM">Serviços</a>
+                <a href="/tMenuDBADM">Perfil</a>
+               <div className={styles.interprise}>
                    <h3>Qual empresa?</h3>
                </div>
            </div>

@@ -30,19 +30,20 @@ const telaPesqFunc = () => {
                     <a href="/" className="btn_perfil">
                         <img src= {perfil} alt="notificar" />
                     </a>
-                    <a href="/" className="btn_noticia">
+                    {/* <a href="/" className="btn_noticia">
                         <img src= {notificar} alt="notificar" />
-                    </a>
+                    </a> */}
                 </div>
             </header>
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-                <a href="/">Profissionais</a>
-                <a href="/">Agendamentos</a>
-                <a href="/">Agendar</a>
-                <a href="/">Serviços</a>
-                <a href="/">Perfil</a>
+                <a href="/tPesqFunc">Profissionais</a>
+                <a href="/tPesqCli">Clientes</a>
+                <a href="/tAgendamentosADM">Agendamentos</a>
+                <a href="/tAgendarADM">Agendar</a>
+                <a href="/tServADM">Serviços</a>
+                <a href="/tMenuDBADM">Perfil</a>
                 <div className={styles.interprise}>
                     <h3>Qual empresa?</h3>
                 </div>
@@ -64,7 +65,7 @@ const telaPesqFunc = () => {
                         <h4>Joana Joaquina</h4>
                         <p>Serviços: cabelereira, manicure</p>
                         <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
                     </div>
@@ -72,7 +73,7 @@ const telaPesqFunc = () => {
                         <h4>Joana Joaquina</h4>
                         <p>Serviços: cabelereira, manicure</p>
                         <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
                     </div>
@@ -80,7 +81,7 @@ const telaPesqFunc = () => {
                         <h4>Joana Joaquina</h4>
                         <p>Serviços: cabelereira, manicure</p>
                         <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
                     </div>
@@ -88,7 +89,14 @@ const telaPesqFunc = () => {
                         <h4>Joana Joaquina</h4>
                         <p>Serviços: cabelereira, manicure</p>
                         <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
+                            <img src={lixeira} alt="" />
+                        </div>
+                    </div><div  className={styles.card}>
+                        <h4>Joana Joaquina</h4>
+                        <p>Serviços: cabelereira, manicure</p>
+                        <div className={styles.card_footer}>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
                     </div>
@@ -96,24 +104,14 @@ const telaPesqFunc = () => {
                         <h4>Joana Joaquina</h4>
                         <p>Serviços: cabelereira, manicure</p>
                         <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
-                    </div>
-
-                    <div  className={styles.card}>
+                    </div><div  className={styles.card}>
                         <h4>Joana Joaquina</h4>
                         <p>Serviços: cabelereira, manicure</p>
                         <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
-                            <img src={lixeira} alt="" />
-                        </div>
-                    </div>
-                    <div  className={styles.card}>
-                        <h4>Joana Joaquina</h4>
-                        <p>Serviços: cabelereira, manicure</p>
-                        <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
                     </div>
@@ -121,7 +119,14 @@ const telaPesqFunc = () => {
                         <h4>Joana Joaquina</h4>
                         <p>Serviços: cabelereira, manicure</p>
                         <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
+                            <img src={lixeira} alt="" />
+                        </div>
+                    </div><div  className={styles.card}>
+                        <h4>Joana Joaquina</h4>
+                        <p>Serviços: cabelereira, manicure</p>
+                        <div className={styles.card_footer}>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
                     </div>
@@ -129,7 +134,14 @@ const telaPesqFunc = () => {
                         <h4>Joana Joaquina</h4>
                         <p>Serviços: cabelereira, manicure</p>
                         <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
+                            <img src={lixeira} alt="" />
+                        </div>
+                    </div><div  className={styles.card}>
+                        <h4>Joana Joaquina</h4>
+                        <p>Serviços: cabelereira, manicure</p>
+                        <div className={styles.card_footer}>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
                     </div>
@@ -137,7 +149,14 @@ const telaPesqFunc = () => {
                         <h4>Joana Joaquina</h4>
                         <p>Serviços: cabelereira, manicure</p>
                         <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
+                            <img src={lixeira} alt="" />
+                        </div>
+                    </div><div  className={styles.card}>
+                        <h4>Joana Joaquina</h4>
+                        <p>Serviços: cabelereira, manicure</p>
+                        <div className={styles.card_footer}>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
                     </div>
@@ -145,18 +164,18 @@ const telaPesqFunc = () => {
                         <h4>Joana Joaquina</h4>
                         <p>Serviços: cabelereira, manicure</p>
                         <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
-                    </div>
-                    <div  className={styles.card}>
+                    </div><div  className={styles.card}>
                         <h4>Joana Joaquina</h4>
                         <p>Serviços: cabelereira, manicure</p>
                         <div className={styles.card_footer}>
-                            <h4>Faturamento Mensal: 400,00 R$</h4>
+                            <h4>Faturamento Mensal: R$ 400,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
                     </div>
+                    
                 </div>
                 
             </div>

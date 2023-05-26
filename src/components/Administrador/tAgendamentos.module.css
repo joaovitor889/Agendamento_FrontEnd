@@ -104,7 +104,8 @@ img{
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	/*justify-content: start;*/
+	justify-content: center;
+	
 }
 
 .Card{
@@ -223,7 +224,7 @@ img{
 .sidebar{
 	z-index: 1;
     position: fixed;
-    width: 15%;
+    width: 200px;
     height: 100%;
     padding-top: 30px;
     left: 0;
@@ -248,7 +249,7 @@ img{
     text-align: center;
     position: fixed;
     bottom:0;
-    width: 15%;
+    width: 200px;
     display: flex;
     align-items: center;
     justify-content: center;

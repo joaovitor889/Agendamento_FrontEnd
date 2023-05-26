@@ -25,18 +25,19 @@ const telaAgendarADM = () => {
                     <a href="/" className="btn_perfil">
                         <img src= {perfil} alt="notificar" />
                     </a>
-                    <a href="/" className="btn_noticia">
+                    {/* <a href="/" className="btn_noticia">
                         <img src= {notificar} alt="notificar" />
-                    </a>
+                    </a> */}
                 </div>
             </div>
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
                 <a href="/tPesqFunc">Profissionais</a>
+                <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
                 <a href="/tAgendarADM">Agendar</a>
-                <a href="/tSevADM">Serviços</a>
+                <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
                 <div className={styles.interprise}>
                     <h3>Qual empresa?</h3>
