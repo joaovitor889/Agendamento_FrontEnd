@@ -96,7 +96,7 @@ const TelaLoginAdm = () => {
                             </div>
 
                             <div className="linksLogADM">
-                                <a href="./tEsqueceuSenhaCli">Esqueceu a senha?</a>
+                                <a href="./tEsqueceuSenhaAdm">Esqueceu a senha?</a>
                             </div>
 
                             <input type="submit" id="btnLoginADM" name="btnLoginADM" value="Login" />
