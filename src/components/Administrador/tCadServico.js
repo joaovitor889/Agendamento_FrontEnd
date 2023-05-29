@@ -37,11 +37,12 @@ const telaCadServico = () => {
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-                <a href="/">Profissionais</a>
-                <a href="/">Agendamentos</a>
-                <a href="/">Agendar</a>
-                <a href="/">Serviços</a>
-                <a href="/">Perfil</a>
+                <a href="/tPesqFunc">Profissionais</a>
+                <a href="/tPesqCli">Clientes</a>
+                <a href="/tAgendamentosADM">Agendamentos</a>
+                <a href="/tAgendarADM">Agendar</a>
+                <a href="/tServADM">Serviços</a>
+                <a href="/tMenuDBADM">Perfil</a>
                 <div className={styles.interprise}>
                     <h3>Qual empresa?</h3>
                 </div>
@@ -51,12 +52,12 @@ const telaCadServico = () => {
                 <div className={styles.Container}>
                   <h1>Cadastro de Serviços</h1>
                   <div className={styles.dados}>
-                    <input type="text" className={styles.texto} />
-                    <input type="text" className={styles.texto} />
-                    <input type="text" className={styles.texto} />
+                    <input type="text" className={styles.texto} placeholder='Categoria'/>
+                    <input type="text" className={styles.texto} placeholder='Nome'/>
+                    <input type="text" className={styles.texto} placeholder='Tempo'/>
                   </div>
                   <div className={styles.finsh}>
-                    <input type="text" className={styles.texto} />
+                    <input type="text" className={styles.texto} placeholder='R$'/>
                     <br/>
                     <a href="/">Cadastrar</a>
                   </div>

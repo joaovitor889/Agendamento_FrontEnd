@@ -16,15 +16,15 @@ const telaCalendarioProfissional = () => {
             <input type='checkbox' id={styles["check_rigth"]} />
             {/* header  começo */}
             <header>
-                <div className="esquerda">
+                <div className={styles.esquerda}>
                     <label htmlFor={styles["check"]}>
                         <img src={menu} alt="retunr" className='sidebar_btn' />
                     </label>
                 </div>
-                <div className="Centro">
+                <div className={styles.Centro}>
                     <h3>Shostners & Shostners</h3>
                 </div>
-                <div className="direita">
+                <div className={styles.direita}>
                     <a href="/" className="btn_perfil">
                         <img src={perfil} alt="notificar" />
                     </a>

@@ -186,3 +186,29 @@ img{
     align-items: center;
     justify-content: center;
 }
+
+.Centro{
+	background-color: aliceblue;
+	width: 300px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+	color: #000000;
+
+}
+
+.esquerda img{ 
+	height: 2.5rem;
+}
+
+.direita {
+	width: 110px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.direita  img{
+    height: 3rem;
+}

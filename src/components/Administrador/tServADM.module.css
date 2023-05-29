@@ -6,6 +6,7 @@
     width: 100%;
     height: 100%;
     font-family: 'Euphoria Script', cursive;
+    
 }
 header{
 	display: flex;
@@ -25,7 +26,6 @@ main{
     display: flex;
     align-items: center;
     flex-direction: column;
-    overflow-x: hidden;
     overflow-y: auto;
 }
 
@@ -74,6 +74,7 @@ a{
     left: 0;
     background: #252525;
     border-right: white 3px solid;
+    display: none;
 }
 .sidebar a{
     color: white;
@@ -99,7 +100,8 @@ a{
 }
 
 #check:checked ~ .sidebar {
-    display: none;
+    display: flex;
+    flex-direction: column;
 }
 
 #check {
@@ -109,9 +111,8 @@ a{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 80%;
 	position: fixed;
-	right: 0;
+    flex-direction: column;
 }
 
 .header_container{
@@ -122,16 +123,6 @@ a{
 
 }
 
-.categories{
-    width: 360px;
-    display: flex;
-    /*align-items: end;*/
-}
-.category{
-    width: 2rem;
-    height: 2rem;
-    margin-right: 0.3rem;
-}
 
 .newServ{
 	width: 2.5rem;
@@ -144,7 +135,7 @@ a{
 	flex-direction: column;
 	justify-content: center;
 	padding: 0.5rem 1rem;
-	/*align-items: start;*/
+	align-items: start;
 	width: 60rem ;
 	height: 7rem;
 	margin-bottom: 0.5rem;
@@ -156,4 +147,17 @@ a{
 .card  p{
 	flex-wrap: wrap;
 	margin: 10px 0;
+}
+
+.card_footer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.texto{
+    border: none;
+    height: 30px;
+    width: 200px;
+    border-radius: 15px;
 }
