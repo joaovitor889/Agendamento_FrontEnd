@@ -1,7 +1,7 @@
 import styles from './tAgendarADM.module.css';
 import menu from '../../img/Menu Rounded.png';
 import perfil from  '../../img/perfil.png'
-import notificar from '../../img/notificar.png'
+
 
 
 

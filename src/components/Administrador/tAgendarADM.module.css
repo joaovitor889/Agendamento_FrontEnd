@@ -62,12 +62,6 @@ a{
 	height: 2.5rem;
 }
 
-.direita {
-	width: 110px;
-	display: flex;
-	justify-content: space-between;
-}
-
 .direita  img{
     height: 3rem;
 }
@@ -187,9 +181,7 @@ a{
     .Centro{
         width: 200px;
     }
-    .direita{
-        width: 90px;
-    }
+
     .direita  img{
         height: 2.5rem;
         margin: 0;
