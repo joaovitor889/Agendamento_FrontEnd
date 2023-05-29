@@ -117,7 +117,7 @@
 .condicoes {
 	display: flex;
 	flex-direction: row;
-	margin-top: 35%;
+	margin-top: 5%;
 }
 
 .condicoes a {
@@ -203,7 +203,7 @@
 	.condicoes {
 		display: flex;
 		flex-direction: row;
-		margin-top: 5%;
+		margin-top: 30%;
 	}
 	.condicoes a {
 		position: absolute;
