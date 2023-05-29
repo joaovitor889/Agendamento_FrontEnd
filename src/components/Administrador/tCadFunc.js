@@ -42,22 +42,61 @@ const telaCadFunc = () => {
                         <input type="text" className={styles.cidade} placeholder='Cidade'/>
                         <input type="text" className={styles.estado} placeholder='Estado'/>
                     </div>
-                    <div>
+                    <div className={styles.doc}>
                         <input type="text" className={styles.documentos} placeholder='RG:' />
                         <input type="text" className={styles.documentos} placeholder='CPF:' />
                     </div>
-                    <div>
+                    <div className={styles.final}>
                         <div className={styles.horarios}>
-
+                            <div className={styles.dia}>
+                                <input type="checkbox" />
+                                <p className={styles.diaS}>Segunda  inicio</p>
+                                <input type="text" className={styles.hora}/>
+                                <p>final</p>
+                                <input type="text" className={styles.hora}/>
+                            </div>
+                            <div className={styles.dia}>
+                                <input type="checkbox" />
+                                <p className={styles.diaS}>Terça inicio</p>
+                                <input type="text" className={styles.hora}/>
+                                <p>final</p>
+                                <input type="text" className={styles.hora}/>
+                            </div>
+                            <div className={styles.dia}>
+                                <input type="checkbox" />
+                                <p className={styles.diaS}>Quarta  inicio</p>
+                                <input type="text" className={styles.hora}/>
+                                <p>final</p>
+                                <input type="text" className={styles.hora}/>
+                            </div>
+                            <div className={styles.dia}>
+                                <input type="checkbox" />
+                                <p className={styles.diaS}>Quinta  inicio</p>
+                                <input type="text" className={styles.hora}/>
+                                <p>final</p>
+                                <input type="text" className={styles.hora}/>
+                            </div>
+                             <div className={styles.dia}>
+                                <input type="checkbox" />
+                                <p className={styles.diaS}>Sexta  inicio</p>
+                                <input type="text" className={styles.hora}/>
+                                <p>final</p>
+                                <input type="text" className={styles.hora}/>
+                            </div>
+                            
                         </div>
                         <div className={styles.funcoes}>
-
+                            <h5>Funções do funcionário</h5>
+                            <input type="text" placeholder='cabelereira'/>
+                            <button>Adicionar</button>
+                            <div className={styles.atividades}></div>
                         </div>
                         <div className={styles.senhas}>
-                            <input type="text" className={styles.senhas} placeholder='Senha'/>
-                            <input type="text" className={styles.senhas} placeholder='Confirmar Senha'/>
+                            <input type="text" className={styles.senha} placeholder='Senha'/>
+                            <input type="text" className={styles.senha} placeholder='Confirmar Senha'/>
                         </div>
                     </div>
+                    <button className={styles.cadfunc}>Cadastrar</button>
             </div>
      
         </div>
