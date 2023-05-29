@@ -53,15 +53,10 @@
 	margin-left: 20%;
 }
 
-.logoMenuCli p::before {
-	margin: 1% 5% 5% 5%;
-	font-size: 7vw;
+.logoMenuCli p {
 	font-family: 'Merienda', cursive;
 	font-weight: bold;
-	color: #000;
-	display: inline-block;
-	vertical-align: middle;
-	line-height: 1%;
+	font-size: 85%;
 }
 
 .notificacao .btnNot button {

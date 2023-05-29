@@ -8,7 +8,11 @@ import OpcCadastro from './components/Login_E_Cadastro/tMenuOpcCadastro.js';
 //telas de Login
 import LoginCli from './components/Login_E_Cadastro/tLoginCli.js';
 import EsqSenhaCli from './components/Login_E_Cadastro/tEsqueceuSenhaCli.js';
+import AltSenhaCli from './components/Login_E_Cadastro/alterarSenhaCli.js';
 import EsqSenhaFunc from './components/Login_E_Cadastro/tEsqueceuSenhaFunc.js';
+import AltSenhaFunc from './components/Login_E_Cadastro/alterarSenhaFunc.js';
+import EsqSenhaAdm from './components/Login_E_Cadastro/esqSenhaAdm.js';
+import AltSenhaAdm from './components/Login_E_Cadastro/alterarSenhaAdm.js';
 import LoginAdm from './components/Login_E_Cadastro/tLoginAdm';
 import LoginFunc from './components/Login_E_Cadastro/tLoginFunc.js';
 
@@ -59,10 +63,14 @@ function App() {
 
             {/* Login e Cadastro */}
             <Route  path = "/tLoginAdm" element = {<LoginAdm />} />
+            <Route path = "/tEsqueceuSenhaAdm" element = {<EsqSenhaAdm />} />
+            <Route path = "/tAlterarSenhaAdm" element = {<AltSenhaAdm />} />
             <Route  path = "/tCadastroAdm" element = {<CadastroAdm />} />
             <Route  path = "/tLoginCli" element = {<LoginCli />} />
             <Route  path = "/tEsqueceuSenhaCli" element = {<EsqSenhaCli />} />
+            <Route  path = "/tAlterarSenhaCli" element = {<AltSenhaCli />} />
             <Route  path = "/tEsqueceuSenhaFunc" element = {<EsqSenhaFunc />} />
+            <Route path = "/tAlterarSenhaFunc" element = {<AltSenhaFunc />} />
             <Route  path = "/tCadastroCli" element = {<CadastroCli />} />
             <Route  path = "/tLoginFunc" element = {<LoginFunc />} />
             
