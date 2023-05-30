@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+ 
 
 .fPesqFunc {
 	position: fixed;
@@ -127,7 +129,7 @@ a{
     margin-left: 1rem;
 }
 
-.filter input{
+.filter select{
     border: none;
     margin-left: 1rem;
     height: 30px;
@@ -165,9 +167,10 @@ a{
 	margin: 0
 }
 .card  p{
-    font-size: 16px;
+    font-size: 12px;
 	flex-wrap: wrap;
 	margin: 5px 0;
+    font-family: 'Roboto';
 }
 .card_footer{
     display: flex;
@@ -192,7 +195,7 @@ a{
         margin: 0;
     }
 
-    .filter input{
+    .filter select{
         width: 180px;
     }
 }

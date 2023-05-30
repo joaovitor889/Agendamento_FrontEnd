@@ -194,6 +194,17 @@ img{
 	margin: 0;
 	padding: 0;
 }
+
+.sidebar_rigth select{
+	width: 200px;
+	height: 30px;
+	border: none;
+	border-radius: 15px;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
  .sidebar_rigth button{
 	border-radius: 20px;
 	width: 200px;

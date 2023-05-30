@@ -131,14 +131,14 @@ a{
     border-radius: 15px;
     border-style: none;
     margin-bottom: 0.5rem;
-    width: 360px;
+    width: 340px;
 }
 .dois_campos{
     display: flex;
     justify-content: space-between;
 }
 .dois_campos .texto{
-    width: 175px;
+    width: 160px;
 }
 .finsh{
     margin-top: 0.5rem;

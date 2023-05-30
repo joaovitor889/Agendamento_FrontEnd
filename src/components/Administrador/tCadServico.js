@@ -16,7 +16,7 @@ const telaCadServico = () => {
         <div className={styles.fCadServico}>
              <input type='checkbox' id={styles["check"]}/>
              {/* header  começo */}
-             <header>
+             <header className={styles.body_header}>
                 <div className={styles.esquerda}>
                     <label  for = {styles["check"]}>
                         <img src = {menu} alt = "retunr"  className='sidebar_btn'/>
@@ -29,9 +29,7 @@ const telaCadServico = () => {
                     <a href="/" className="btn_perfil">
                         <img src= {perfil} alt="notificar" />
                     </a>
-                    <a href="/" className="btn_noticia">
-                        <img src= {notificar} alt="notificar" />
-                    </a>
+                    
                 </div>
             </header>
             {/* final do header */}
@@ -58,6 +56,7 @@ const telaCadServico = () => {
                   </div>
                   <div className={styles.finsh}>
                     <input type="text" className={styles.texto} placeholder='R$'/>
+                    <br/>
                     <br/>
                     <a href="/">Cadastrar</a>
                   </div>

@@ -1,7 +1,7 @@
 import styles from './tAgendamentos.module.css';
 import menu from '../../img/Menu Rounded.png';
 import perfil from '../../img/perfil.png'
-import notificar from '../../img/notificar.png'
+
 import block from '../../img/block-func.png'
 import filtro from '../../img/filter.png'
 
@@ -44,9 +44,10 @@ const telaAgendamentos = () => {
                 <a href="/tAgendarADM">Agendar</a>
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
-                <div className={styles.interprise}>
-                    <h3>Qual empresa?</h3>
-                </div>
+                <select name='qual empresa?' className={styles.interprise}>
+                    <option value="emp1">Shostners and Shostners</option>
+                    <option value="emp2">Show de bola</option>
+                </select>
             </div>
             {/* sidebar  final */}
             {/* sidebar começo */}
@@ -60,7 +61,14 @@ const telaAgendamentos = () => {
                 <input type="text" placeholder='CPF:' />
                 <br />
                 <p>Nome do Profissional</p>
-                <input type="text" placeholder='Joana Joaquina' />
+                <select name="func" className={styles.texto}>
+                    <option value="corte">Todos os funcionários</option>
+                    <option value="corte">João</option>
+                    <option value="corte">Bruno</option>
+                    <option value="sombrancelha">Antônio</option>
+                    <option value="manicure">Guilherme</option>
+                    <option value="hidratação">Jean</option>
+                </select>
 
                 <button className='btn_fill'>Filtrar</button>
             </div>

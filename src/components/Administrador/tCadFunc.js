@@ -87,7 +87,13 @@ const telaCadFunc = () => {
                         </div>
                         <div className={styles.funcoes}>
                             <h5>Funções do funcionário</h5>
-                            <input type="text" placeholder='cabelereira'/>
+                            <select name="cars" className={styles.texto}>
+                                <option value="corte">Serviços</option>
+                                <option value="corte">Corte</option>
+                                <option value="sombrancelha">Sombrancelha</option>
+                                <option value="manicure">Manicure</option>
+                                <option value="hidratação">hidratação</option>
+                            </select>
                             <button>Adicionar</button>
                             <div className={styles.atividades}></div>
                         </div>
