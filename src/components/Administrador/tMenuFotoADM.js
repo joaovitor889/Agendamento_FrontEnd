@@ -198,7 +198,7 @@ const TelaFotoCliente = () => {
             </div>
 
             <div id={styles["conteudoCli"]}>
-                <h2><center>Foto (Cliente)</center></h2>
+                <h2><center>Foto (ADM)</center></h2>
                 <form id={styles["formFoto"]} onSubmit={updateFoto}>
                     <center><img id="fotoDefCli" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
                     <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>

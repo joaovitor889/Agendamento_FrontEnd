@@ -82,6 +82,7 @@
     position: absolute;
     margin-left: 25%;
     margin-top: -6%;
+    display: none;
 }
 
 .notificacao .btnNot button:hover {

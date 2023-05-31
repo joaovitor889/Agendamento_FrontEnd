@@ -283,7 +283,7 @@ const TelaDadosBasicosCliente = () => {
             </div>
 
             <div id={styles["conteudoCli"]}>
-                <h2><center>Dados Básicos (Cliente)</center></h2>
+                <h2><center>Dados Básicos (ADM)</center></h2>
                 <form id={styles["formDB"]} onSubmit={(e) => updateCli(e)}>
                     <input type="text"
                         placeholder="*Nome:"
