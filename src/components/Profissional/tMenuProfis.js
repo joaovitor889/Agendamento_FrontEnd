@@ -112,7 +112,7 @@ const TelaMenuProfissional = () => {
             <nav id={styles["cabecalhoMenuCli"]}>
                 <div className={styles.voltar}><Link to="../../tLoginFunc"><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
                 <div className={styles.logoMenuCli}><p></p></div>
-                <div className={styles.notificacao}>
+                {/*<div className={styles.notificacao}>
                     <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
                     {showNotifications && (
                         <div className={styles.notificationContainer}>
@@ -132,7 +132,7 @@ const TelaMenuProfissional = () => {
                             </ul>
                         </div>
                     )}
-                </div>
+                </div>*/}
                 <div className={styles.perfil}>
                     {/*<img src={Perfil} alt="perfil" />*/}
 

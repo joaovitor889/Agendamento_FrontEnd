@@ -103,7 +103,7 @@ const TelaAgendarCliente = () => {
             <nav id={styles["cabecalhoMenuCli"]}>
                 <div className={styles.voltar}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
                 <div className={styles.logoMenuCli}><p>Shostners & shostners</p></div>
-                <div className={styles.notificacao}>
+                {/*<div className={styles.notificacao}>
                     <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
                     {showNotifications && (
                         <div className={styles.notificationContainer}>
@@ -123,7 +123,7 @@ const TelaAgendarCliente = () => {
                             </ul>
                         </div>
                     )}
-                </div>
+                </div>*/}
                 <div className={styles.perfil}>
                     {/*<img src={Perfil} alt="perfil" />*/}
                     <p>{iniciais}</p>

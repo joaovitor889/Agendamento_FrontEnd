@@ -399,7 +399,7 @@ const TelaEnderecoCliente = () => {
                     {/*<img src={Perfil} alt="perfil" />*/}
                     <p>{iniciais}</p>
                 </div>
-                <div className={styles.notificacao}>
+                {/*<div className={styles.notificacao}>
                     <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
                     {showNotifications && (
                         <div className={styles.notificationContainer}>
@@ -419,7 +419,7 @@ const TelaEnderecoCliente = () => {
                             </ul>
                         </div>
                     )}
-                </div>
+                </div>*/}
                 <div className={styles.logoMenuCli}><p></p></div>
                 <div id={styles["voltar"]}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>

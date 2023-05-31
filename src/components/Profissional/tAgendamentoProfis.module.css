@@ -205,10 +205,10 @@ img{
 
 .direita {
 	width: 110px;
-	display: flex;
+	/*display: flex;*/
 	justify-content: space-between;
 }
 
 .direita  img{
-    height: 3rem;
+    height: 3rem;	
 }

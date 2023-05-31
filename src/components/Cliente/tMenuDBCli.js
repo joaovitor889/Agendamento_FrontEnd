@@ -402,7 +402,7 @@ const TelaDadosBasicosCliente = () => {
                     {/*<img src={Perfil} alt="perfil" />*/}
                     <p>{iniciais}</p>
                 </div>
-                <div className={styles.notificacao}>
+                {/*<div className={styles.notificacao}>
                     <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
                     {showNotifications && (
                         <div className={styles.notificationContainer}>
@@ -422,7 +422,7 @@ const TelaDadosBasicosCliente = () => {
                             </ul>
                         </div>
                     )}
-                </div>
+                    </div>*/}
                 <div className={styles.logoMenuCli}><p></p></div>
                 <div id={styles["voltar"]}><a href="/tMenuCli"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>
