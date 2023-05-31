@@ -211,7 +211,7 @@ const TelaAgendamentos = () => {
                 
             </div>
                 
-               <Bloquear  isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/> 
+            <Bloquear  isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/> 
         </div>
         </main>
     )

@@ -63,7 +63,7 @@ const telaAgendamento = () => {
                 <div className={styles.Container}>
             <div className={styles.Card}>
                 <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
+                        <h2>Profissional: Ana Catarina</h2>
                         <p>Serviços: cabelereira, manicure</p>
                     </div>
                     <div className={styles.Card_Body}>

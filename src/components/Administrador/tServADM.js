@@ -7,10 +7,17 @@ import filtro from '../../img/filter.png'
 import lixeira from '../../icones/trash-2.png'
 //import logo from '../../img/logo.PNG';
 
+import Modal from '../modal/EditServ'
+import { useState } from 'react'
 
-const telaMenuADM = () => {
+
+const TelaMenuADM = () => {
 
     document.title = "Menu do Administrador";
+
+    document.title = "Agendamentos";
+
+    const [openModal, setOpenModal] = useState(false)
 
    return (
         <div className = {styles.fMenuADM}>
@@ -65,7 +72,7 @@ const telaMenuADM = () => {
                         
                         <img src={newServ} alt="" className={styles.newServ}/>
                     </div>
-                    <div  className={styles.card}>
+                    <div  className={styles.card} onClick={()=> setOpenModal(true)}>
                         <h4 className={styles.card_header}>Corte de cabelo persobalizado</h4>
                         <p className={styles.card_body}>Descrição: Nossa equipe de cabeleireiros especializados oferece um serviço de corte de cabelo personalizado, levando em consideração suas preferências, tipo de cabelo e estilo desejado. Com habilidade e criatividade, trabalhamos para realçar sua aparência e ressaltar sua individualidade.</p>
                         <div className={styles.card_footer}>
@@ -74,7 +81,7 @@ const telaMenuADM = () => {
                         </div>
                     </div>
 
-                    <div  className={styles.card}>
+                    <div  className={styles.card} onClick={()=> setOpenModal(true)}>
                         <h4 className={styles.card_header}>Coloração e mechas</h4>
                         <p className={styles.card_body}>Descrição: Se você está buscando uma transformação de cor ou simplesmente deseja realçar seu tom natural, nossos cabeleireiros estão prontos para ajudar. Com conhecimento sobre as últimas tendências em coloração e técnicas de mechas, podemos criar resultados deslumbrantes e personalizados, adaptados às suas preferências e estilo.</p>
                         <div className={styles.card_footer}>
@@ -83,7 +90,7 @@ const telaMenuADM = () => {
                         </div>
                     </div>
 
-                    <div  className={styles.card}>
+                    <div  className={styles.card} onClick={()=> setOpenModal(true)}>
                         <h4 className={styles.card_header}>Tratamentos capilares revitalizantes</h4>
                         <p className={styles.card_body}>Descrição: Oferecemos uma variedade de tratamentos capilares que ajudam a melhorar a saúde e a aparência do seu cabelo. Desde hidratação intensa até tratamentos para fortalecimento e reparação dos fios, nossa equipe de cabeleireiros utiliza produtos de alta qualidade para revitalizar seu cabelo e deixá-lo com uma aparência radiante.</p>
                         <div className={styles.card_footer}>
@@ -91,8 +98,8 @@ const telaMenuADM = () => {
                             <img src={lixeira} alt="" />
                         </div>
                     </div>
-                   
-                    
+                
+                    <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
 
                 </div>
             </main>
@@ -103,4 +110,4 @@ const telaMenuADM = () => {
     )
 }
 
-export default telaMenuADM
+export default TelaMenuADM
