@@ -1,4 +1,4 @@
-import './tCadastroAdm.css';
+import styles from './tCadastroAdm.css';
 
 import Logo from '../../img/logo-site.png';
 import User from '../../img/User.png';
@@ -139,7 +139,7 @@ const TelaCadastroAdm = () => {
                     <br />
                     <br />
                     <br />
-                    <img src={Logo} alt="Logo do site" />
+                    <img src={Logo} alt="Logo do site"  className={styles.Logo}/>
                 </div>
                 <div className='campo-de-Cadastro'>
                     <div className='butoes'>

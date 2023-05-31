@@ -1,10 +1,8 @@
 import styles from './tPesqCli.module.css';
 import menu from '../../img/Menu Rounded.png'
 import perfil from  '../../img/perfil.png'
-import notificar from '../../img/notificar.png'
 import filter from '../../img/filter.png'
 import add from '../../img/add-func.png'
-import block from '../../img/block-func.png'
 import lixeira from '../../icones/trash-2.png'
 
 
@@ -59,7 +57,6 @@ const telaPesqCli = () => {
                    </div>
                    <div className={styles.funcionarios}> 
                        <img src={add} alt="" />
-                        <img src={block} alt="" />
                    </div>
                </div>
                <div className={styles.cards}>

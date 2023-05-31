@@ -1,12 +1,7 @@
 import styles from'./tCadServico.module.css';
 import menu from '../../img/Menu Rounded.png';
 import perfil from  '../../img/perfil.png'
-import notificar from '../../img/notificar.png'
-import catergory1 from  '../../img/Component 51.png'
-import catergory2 from  '../../img/Component 52.png'
-import catergory3 from  '../../img/Component 53.png'
-import catergory4 from  '../../img/Component 54.png'
-import catergory5 from  '../../img/Component 55.png'
+
 
 
 const telaCadServico = () => {
@@ -50,8 +45,15 @@ const telaCadServico = () => {
                 <div className={styles.Container}>
                   <h1>Cadastro de Serviços</h1>
                   <div className={styles.dados}>
-                    <input type="text" className={styles.texto} placeholder='Categoria'/>
+                  <select name="cars" className={styles.texto}>
+                                <option value="corte">Categorias</option>
+                                <option value="corte">Corte</option>
+                                <option value="sombrancelha">Sombrancelha</option>
+                                <option value="manicure">Manicure</option>
+                                <option value="hidratação">hidratação</option>
+                    </select>
                     <input type="text" className={styles.texto} placeholder='Nome'/>
+                    <textarea placeholder='Descrição'  className={styles.desc}/>
                     <input type="text" className={styles.texto} placeholder='Tempo'/>
                   </div>
                   <div className={styles.finsh}>

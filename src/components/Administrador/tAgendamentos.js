@@ -1,15 +1,20 @@
 import styles from './tAgendamentos.module.css';
 import menu from '../../img/Menu Rounded.png';
 import perfil from '../../img/perfil.png'
-
 import block from '../../img/block-func.png'
 import filtro from '../../img/filter.png'
 
+import Bloquear from '../modal/Bloquear'
+import { useState } from 'react'
 
 
-const telaAgendamentos = () => {
+
+const TelaAgendamentos = () => {
 
     document.title = "Agendamentos";
+
+    const [openModal, setOpenModal] = useState(false)
+
 
     return (
         <main>
@@ -97,7 +102,7 @@ const telaAgendamentos = () => {
                         <h4>06/03</h4>
                     </div>
                 </div>
-                <a href='/' className={styles.block}> <img src={block} alt="bloquear" /></a>
+                <a onClick={()=> setOpenModal(true)} className={styles.block}> <img src={block} alt="bloquear" /></a>
             <div className={styles.Container}>
                 <div className={styles.Card}>
                     <div className={styles.Card_Header}>
@@ -206,10 +211,10 @@ const telaAgendamentos = () => {
                 
             </div>
                 
-                
+               <Bloquear  isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/> 
         </div>
         </main>
     )
 }
 
-export default telaAgendamentos
+export default TelaAgendamentos
