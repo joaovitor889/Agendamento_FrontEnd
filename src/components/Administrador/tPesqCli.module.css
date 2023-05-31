@@ -113,6 +113,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .header-main  img{
@@ -186,4 +187,37 @@ a{
     align-items: center;
     width: 100%;
     font-size: 24px;
+}
+
+
+@media only screen and (max-width: 500px) {
+
+	header{
+		padding: 0 1rem;
+	}
+
+    .Centro{
+        width: 200px;
+    }
+
+    .direita  img{
+        height: 2.5rem;
+        margin: 0;
+    }
+
+    .filter input{
+        width: 150px;
+        margin-left: 0.5rem;
+    }
+
+    .filter button{
+        border: none;
+        height: 2.5rem;
+        width: 80px;
+        border-radius: 20px;
+        font-size: 16px;
+        color: #ffff;
+        background-color:#2036AC;
+        margin-left: 0.5rem;
+    }
 }

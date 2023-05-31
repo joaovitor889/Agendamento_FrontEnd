@@ -54,7 +54,14 @@ const telaPesqFunc = () => {
                     <div className={styles.filter}>
                         <img src= {filter} alt="" id='icon-filter' />
                         <h4>Filtre</h4>
-                        <input type="text" placeholder='nome funcionario'/>
+                        <select name="func" className={styles.texto}>
+                                <option value="corte">Todos os funcionários</option>
+                                <option value="corte">João</option>
+                                <option value="corte">Bruno</option>
+                                <option value="sombrancelha">Antônio</option>
+                                <option value="manicure">Guilherme</option>
+                                <option value="hidratação">Jean</option>
+                            </select>
                     </div>
                     <div className={styles.funcionarios}> 
                         <img src={add} alt="" />
