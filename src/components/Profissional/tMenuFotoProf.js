@@ -180,7 +180,7 @@ const TelaFotoProfissional = () => {
                     {/*<img src={Perfil} alt="perfil" />*/}
                     <p>{iniciais}</p>
                 </div>
-                <div className={styles.notificacao}>
+                {/*<div className={styles.notificacao}>
                     <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
                     {showNotifications && (
                         <div className={styles.notificationContainer}>
@@ -200,7 +200,7 @@ const TelaFotoProfissional = () => {
                             </ul>
                         </div>
                     )}
-                </div>
+                </div>*/}
                 <div className={styles.logoMenuFunc}><p></p></div>
                 <div id={styles["voltar"]}><a href="./tMenuProfis" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>

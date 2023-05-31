@@ -28,9 +28,6 @@ const telaCalendarioProfissional = () => {
                     <a href="/" className="btn_perfil">
                         <img src={perfil} alt="notificar" />
                     </a>
-                    <a href="/" className="btn_noticia">
-                        <img src={notificar} alt="notificar" />
-                    </a>
                 </div>
             </header>
             {/* final do header */}

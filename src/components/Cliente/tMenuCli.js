@@ -115,7 +115,7 @@ const TelaMenuCliente = () => {
             <nav id={styles["cabecalhoMenuCli"]}>
                 <div className={styles.voltar}><Link to="../../tLoginCli"><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
                 <div className={styles.logoMenuCli}><p>Shostners & shostners</p></div>
-                <div className={styles.notificacao}>
+                {/*<div className={styles.notificacao}>
                     <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
                     {showNotifications && (
                         <div className={styles.notificationContainer}>
@@ -135,7 +135,7 @@ const TelaMenuCliente = () => {
                             </ul>
                         </div>
                     )}
-                </div>
+                    </div>*/}
                 <div className={styles.perfil}>
                     {/*<img src={Perfil} alt="perfil" />*/}
 
