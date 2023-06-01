@@ -43,7 +43,7 @@ const telaCadFunc = () => {
                         <input type="text" className={styles.estado} placeholder='Estado'/>
                     </div>
                     <div className={styles.doc}>
-                        <input type="text" className={styles.documentos} placeholder='RG:' />
+                        {/*<input type="text" className={styles.documentos} placeholder='RG:' />*/}
                         <input type="text" className={styles.documentos} placeholder='CPF:' />
                     </div>
                     <div className={styles.final}>
