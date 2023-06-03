@@ -45,13 +45,7 @@ const telaCadServico = () => {
                 <div className={styles.Container}>
                   <h1>Cadastro de Serviços</h1>
                   <div className={styles.dados}>
-                  <select name="cars" className={styles.texto}>
-                                <option value="corte">Categorias</option>
-                                <option value="corte">Corte</option>
-                                <option value="sombrancelha">Sombrancelha</option>
-                                <option value="manicure">Manicure</option>
-                                <option value="hidratação">hidratação</option>
-                    </select>
+                    <input type="text" className={styles.texto} placeholder='Categoria'/>
                     <input type="text" className={styles.texto} placeholder='Nome'/>
                     <textarea placeholder='Descrição'  className={styles.desc}/>
                     <input type="text" className={styles.texto} placeholder='Tempo'/>
