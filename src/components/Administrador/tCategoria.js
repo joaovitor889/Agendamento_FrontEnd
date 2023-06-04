@@ -9,6 +9,8 @@ import lixeira from '../../icones/trash-2.png';
 import Modal from '../modal/EditCat';
 import { useState } from 'react';
 
+import CadCat from '../modal/CadCat';
+
 //import { useState, useEffect, useRef } from "react";
 
 //import { Link, useNavigate } from "react-router-dom";
@@ -17,7 +19,8 @@ const TelaCategoriasADM = () => {
 
     document.title = "Categorias";
 
-    const [openModal, setOpenModal] = useState(false)
+    const [openModal, setOpenModal] = useState(false);
+    const [openCadCat, setOpenCadCat] = useState(false);
 
    return (
         <div className = {styles.fMenuADM}>
@@ -62,7 +65,7 @@ const TelaCategoriasADM = () => {
                         <div className={styles.filter}>
                         </div>
                         
-                        <img src={newCat} alt="" className={styles.newCat}/>
+                        <img src={newCat} alt="" className={styles.newCat} onClick={()=> setOpenCadCat(true)}/>
                     </div>
                     <div  className={styles.card} onClick={()=> setOpenModal(true)}>
                         <h4 className={styles.card_header}>Corte</h4>
@@ -92,7 +95,7 @@ const TelaCategoriasADM = () => {
                     </div>
                 
                     <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
-
+                    <CadCat isOpen={openCadCat} setOpenCadCat={() => setOpenCadCat(!openCadCat)}/>
                 </div>
             </main>
             
