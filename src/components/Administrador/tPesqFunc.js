@@ -7,8 +7,11 @@ import add from '../../img/add-func.png'
 import lixeira from '../../icones/trash-2.png'
 //import logo from '../../img/logo.PNG';
 
+//import { useState, useEffect, useRef } from "react";
 
-const telaPesqFunc = () => {
+//import { Link, useNavigate } from "react-router-dom";
+
+const TelaPesqFunc = () => {
 
    document.title = "Pesquisar Funcionário";
 
@@ -192,4 +195,4 @@ const telaPesqFunc = () => {
     )
 }
 
-export default telaPesqFunc
+export default TelaPesqFunc

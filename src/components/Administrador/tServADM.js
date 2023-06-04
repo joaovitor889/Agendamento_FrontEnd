@@ -1,15 +1,18 @@
 import styles from './tServADM.module.css';
-import menu from '../../img/Menu Rounded.png'
-import perfil from  '../../img/perfil.png'
-import newServ from '../../img/Component 88.png'
-import filtro from '../../img/filter.png'
+import menu from '../../img/Menu Rounded.png';
+import perfil from  '../../img/perfil.png';
+import newServ from '../../img/Component 88.png';
+import filtro from '../../img/filter.png';
 
-import lixeira from '../../icones/trash-2.png'
+import lixeira from '../../icones/trash-2.png';
 //import logo from '../../img/logo.PNG';
 
-import Modal from '../modal/EditServ'
-import { useState } from 'react'
+import Modal from '../modal/EditServ';
+import { useState } from 'react';
 
+//import { useState, useEffect, useRef } from "react";
+
+//import { Link, useNavigate } from "react-router-dom";
 
 const TelaMenuADM = () => {
 

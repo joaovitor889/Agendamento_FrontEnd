@@ -1,13 +1,15 @@
 import styles from './tAgendamentos.module.css';
 import menu from '../../img/Menu Rounded.png';
-import perfil from '../../img/perfil.png'
-import block from '../../img/block-func.png'
-import filtro from '../../img/filter.png'
+import perfil from '../../img/perfil.png';
+import block from '../../img/block-func.png';
+import filtro from '../../img/filter.png';
 
-import Bloquear from '../modal/Bloquear'
-import { useState } from 'react'
+import Bloquear from '../modal/Bloquear';
+import { useState } from 'react';
 
+//import { useState, useEffect, useRef } from "react";
 
+//import { Link, useNavigate } from "react-router-dom";
 
 const TelaAgendamentos = () => {
 

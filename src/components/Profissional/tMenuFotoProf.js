@@ -11,6 +11,9 @@ import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
 import React, { useState, useEffect } from "react";
 
+//import { useState, useEffect, useRef } from "react";
+
+//import { Link, useNavigate } from "react-router-dom";
 
 const TelaFotoProfissional = () => {
 

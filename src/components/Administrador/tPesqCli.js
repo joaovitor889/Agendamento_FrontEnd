@@ -5,8 +5,11 @@ import filter from '../../img/filter.png'
 import add from '../../img/add-func.png'
 import lixeira from '../../icones/trash-2.png'
 
+//import { useState, useEffect, useRef } from "react";
 
-const telaPesqCli = () => {
+//import { Link, useNavigate } from "react-router-dom";
+
+const TelaPesqCli = () => {
 
    document.title = "Pesquisar Cliente";
 
@@ -133,4 +136,4 @@ const telaPesqCli = () => {
     )
 }
 
-export default telaPesqCli
+export default TelaPesqCli

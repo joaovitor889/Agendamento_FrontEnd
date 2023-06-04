@@ -2,8 +2,11 @@ import styles from './tCadFunc.module.css';
 import menu from '../../icones/chevron-left.png';
 import perfil from  '../../img/perfil.png'
 
+//import { useState, useEffect, useRef } from "react";
 
-const telaCadFunc = () => {
+//import { Link, useNavigate } from "react-router-dom";
+
+const TelaCadFunc = () => {
 
     document.title = "Cadastrar Funcionário";
 
@@ -111,4 +114,4 @@ const telaCadFunc = () => {
         
 }
 
-export default telaCadFunc
+export default TelaCadFunc

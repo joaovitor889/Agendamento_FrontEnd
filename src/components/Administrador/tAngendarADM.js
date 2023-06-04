@@ -2,10 +2,12 @@ import styles from './tAgendarADM.module.css';
 import menu from '../../img/Menu Rounded.png';
 import perfil from  '../../img/perfil.png'
 
+//import { useState, useEffect, useRef } from "react";
+
+//import { Link, useNavigate } from "react-router-dom";
 
 
-
-const telaAgendarADM = () => {
+const TelaAgendarADM = () => {
     document.title ="Cadastrar Serviço";
 
     return (
@@ -99,4 +101,4 @@ const telaAgendarADM = () => {
     )
 }
 
-export default telaAgendarADM
+export default TelaAgendarADM
