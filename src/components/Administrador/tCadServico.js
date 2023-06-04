@@ -46,14 +46,14 @@ const TelaCadServico = () => {
             <div className={styles.main}>
                 <div className={styles.Container}>
                     <h1>Cadastro de Serviços</h1>
-                    <div className={styles.dados}>
-                        <input type="text" className={styles.texto} placeholder='Categoria' />
+                    <div className={styles.dados}>                        
                         <select name="catServ">
                             <option value="categoria">Categoria</option>
                             <option value="corte">Corte</option>
                             <option value="barba">Barba</option>
                             <option value="manicure">Manicure</option>
                         </select>
+                        <input type="text" className={styles.texto} placeholder='Nome' />
                         <textarea placeholder='Descrição' className={styles.desc} />
                         <input type="text" className={styles.texto} placeholder='Tempo' />
                     </div>
