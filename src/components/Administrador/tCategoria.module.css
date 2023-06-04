@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap'); 
 
-.fCadServico{
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+
+.fMenuADM {
 	position: fixed;
+    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     width: 100%;
     height: 100%;
     font-family: 'Euphoria Script', cursive;
-    margin: 0;
-    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
+    overflow-y: auto;
     
 }
-.body_header{
+header{
 	display: flex;
 	justify-content: space-between;
 	padding: 0 3rem;
@@ -18,7 +21,7 @@
 	height: 4rem;
     background: #3293CA;
 }
-.main{
+main{
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     position: fixed;
     right: 0;
@@ -35,7 +38,9 @@ a{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
+.btn_noticia{
+    padding-left: 1rem;
+}
 
 .Centro{
 	background-color: aliceblue;
@@ -46,11 +51,16 @@ a{
 	align-items: center;
 	border-radius: 20px;
 	color: #000000;
+
 }
 
 .esquerda img{ 
 	height: 2.5rem;
-    margin-right: 1rem;
+}
+
+.direita { 
+	display: flex;
+	justify-content: space-between;
 }
 
 .direita  img{
@@ -96,102 +106,97 @@ a{
     flex-direction: column;
 }
 
-
-.Container {
-    display: flex;
-    flex-direction: column;
-    
+#check {
+	display: none;
 }
-
-.Container h1{
-    background-color: #000000;
-    border-radius: 15px;
-    padding: 0 1rem;
-    font-size: 2.5rem;
-    color: #6375D6;
-    margin-top: 10%;
-    text-align: center;
-
-}
-
-.categories{
-    width: 360px;
-    display: flex;
-    /*Fica dando aviso*/
-    /*align-items: end;*/
-}
-.category{
-    width: 2rem;
-    height: 2rem;
-    margin-right: 0.3rem;
-}
-
-.dados{
-    margin-top: 0.5rem;
-    display: flex;
+.container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
     flex-direction: column;
 }
-.texto, select{
-    height: 2rem;
-    border-radius: 15px;
-    border-style: none;
-    margin-bottom: 0.5rem;
-    width: 340px;
+
+.header_container{
+	display: flex;
+	justify-content: space-between;
+	width: 60rem;
+	margin: 1rem 0;
+
 }
-.dois_campos{
+.filter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newCat{
+	width: 2.5rem;
+	height: 2.5rem;
+}
+.card{
+	background-color: #48A695;
+	border-left: #034522 solid 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0.5rem 1rem;
+	align-items: flex-start;
+	width: 60rem ;
+	min-height: 7rem;
+	margin-bottom: 0.5rem;
+}
+
+.card h4{
+	margin: 0
+}
+.card  p{
+	flex-wrap: wrap;
+	margin: 10px 0;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;;
+    text-align: justify;
+}
+
+.card_footer{
     display: flex;
     justify-content: space-between;
-}
-.dois_campos .texto{
-    width: 175px;
-}
-.finsh{
-    margin-top: 1rem;
-}
-.finsh .texto{
-    width: 150px;
-}
-.finsh a{
-    background-color: #6375D6;
-    padding: 0.5rem  1rem;
-    border-radius: 15px;
-    margin-left: 20px;
-}
-.client{
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
 }
 
-.texto-demonstrativo{
-    background-color: aquamarine;
-}
-
-#check{
-    display: none;
-}
-
-.desc{
-    border-radius: 15px;
+.texto{
     border: none;
-    margin-bottom: 0.5rem;
-    
+    height: 30px;
+    width: 200px;
+    border-radius: 15px;
 }
+
+select{
+    font-size: 20px;
+}
+
+
 
 @media only screen and (max-width: 500px) {
 
-    .fCadServico header{
-        padding: 0 1rem;
-    }
+	header{
+		padding: 0 1rem;
+	}
 
     .Centro{
         width: 200px;
     }
-    .direita{
-        width: 90px;
-    }
+
     .direita  img{
         height: 2.5rem;
         margin: 0;
+    }
+
+    .card{
+        width: 300px;
+    }
+
+    .header_container{
+        width: 20rem;
     }
 }
