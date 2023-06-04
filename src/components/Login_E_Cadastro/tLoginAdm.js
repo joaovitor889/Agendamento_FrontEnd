@@ -34,8 +34,9 @@ const TelaLoginAdm = () => {
             
             
             if(response.status >= 200 &&  response.status <= 299) {
-                 const token = response.data.token; 
-                alert("Logou no Proprietário" + token);
+                const token = response.data.token; 
+                //alert("Logou no Proprietário" + token);
+                console.log("Logou no Proprietário" + token);
                
                 navigate('/tAgendamentosADM');
             }  else if(response.status === 401){
