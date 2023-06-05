@@ -1,6 +1,6 @@
 import styles from './tCadFunc.module.css';
 import menu from '../../icones/chevron-left.png';
-import perfil from  '../../img/perfil.png'
+import perfil from  '../../img/perfil.png';
 
 //import { useState, useEffect, useRef } from "react";
 
