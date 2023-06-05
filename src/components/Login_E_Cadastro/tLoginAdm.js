@@ -38,7 +38,8 @@ const TelaLoginAdm = () => {
                 //alert("Logou no Proprietário" + token);
                 console.log("Logou no Proprietário" + token);
                
-                navigate('/tAgendamentosADM');
+                //navigate('/tAgendamentosADM');
+                navigate('/tPesqCli');
             }  else if(response.status === 401){
                 alert("Senha ou email invalido");
             }else{
