@@ -407,7 +407,7 @@ const TelaDadosBasicosCliente = () => {
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tMenuADM" rel="noreferrer">
+                                    <Link to="/tPesqFunc" rel="noreferrer">
                                         Voltar ao Menu
                                     </Link>
                                 </p>
@@ -443,7 +443,7 @@ const TelaDadosBasicosCliente = () => {
                     )}
                 </div>
                 <div className={styles.logoMenuCli}><p></p></div>
-                <div id={styles["voltar"]}><a href="/tMenuCli"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div id={styles["voltar"]}><a href="/tPesqFunc"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>
 
         </div>
