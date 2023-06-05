@@ -5,13 +5,17 @@ import filter from '../../img/filter.png'
 import add from '../../img/add-func.png'
 import lixeira from '../../icones/trash-2.png'
 
-//import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 //import { Link, useNavigate } from "react-router-dom";
+
+import Modal from '../modal/tCategoria';
 
 const TelaPesqCli = () => {
 
    document.title = "Pesquisar Cliente";
+
+   const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
    return (
         <div className = {styles.fPesqCli}>
@@ -43,7 +47,7 @@ const TelaPesqCli = () => {
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
                 <a href="/tAgendarADM">Agendar</a>                
-                <a href="/tCategoriaADM">Categorias</a>
+                <p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
                 <a href="/">Sair</a>
@@ -133,7 +137,7 @@ const TelaPesqCli = () => {
                </div>
                
            </div>
-           
+           <Modal isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>
        </div>
     )
 }

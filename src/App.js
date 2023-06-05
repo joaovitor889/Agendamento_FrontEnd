@@ -40,7 +40,7 @@ import FotoProfis from './components/Profissional/tMenuFotoProf.js';
 //Telas do Administrador
 import AgendarADM from './components/Administrador/tAngendarADM.js';
 import CadServicos from './components/Administrador/tCadServico.js';
-import Categorias from './components/Administrador/tCategoria.js';
+//import Categorias from './components/Administrador/tCategoria.js';
 import ServADM from './components/Administrador/tServADM.js';
 import PesquisaFunc from './components/Administrador/tPesqFunc.js';
 import PesquisaCli from './components/Administrador/tPesqCli.js';
@@ -78,7 +78,7 @@ function App() {
             {/* Telas do Administrador */}
             <Route path="/tAgendarADM" element = {<AgendarADM />} />
             <Route path="/tCadServico" element = {<CadServicos />} />
-            <Route path="/tCategoriaADM" element = {<Categorias />} />
+            {/*<Route path="/tCategoriaADM" element = {<Categorias />} />*/}
             <Route path="/tServADM" element = {<ServADM />} />
             <Route path="/tPesqFunc" element =  {<PesquisaFunc />} />
             <Route path="/tCadFunc" element = {<CadastroFunc />} />

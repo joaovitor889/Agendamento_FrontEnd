@@ -8,6 +8,7 @@ import lixeira from '../../icones/trash-2.png';
 //import logo from '../../img/logo.PNG';
 
 import Modal from '../modal/EditServ';
+import Categoria from '../modal/tCategoria';
 import { useState } from 'react';
 
 //import { useState, useEffect, useRef } from "react";
@@ -18,7 +19,9 @@ const TelaMenuADM = () => {
 
     document.title = "Serviços";
 
-    const [openModal, setOpenModal] = useState(false)
+    const [openModal, setOpenModal] = useState(false);
+
+    const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
    return (
         <div className = {styles.fMenuADM}>
@@ -49,7 +52,7 @@ const TelaMenuADM = () => {
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
                 <a href="/tAgendarADM">Agendar</a>                
-                <a href="/tCategoriaADM">Categorias</a>
+                <p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
                 <a href="/">Sair</a>
@@ -103,7 +106,7 @@ const TelaMenuADM = () => {
                     </div>
                 
                     <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
-
+                    <Categoria isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>
                 </div>
             </main>
             

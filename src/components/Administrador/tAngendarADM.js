@@ -1,14 +1,18 @@
 import styles from './tAgendarADM.module.css';
 import menu from '../../img/Menu Rounded.png';
-import perfil from  '../../img/perfil.png'
+import perfil from  '../../img/perfil.png';
 
-//import { useState, useEffect, useRef } from "react";
+import Modal from '../modal/tCategoria';
+
+import { useState } from "react";
 
 //import { Link, useNavigate } from "react-router-dom";
 
 
 const TelaAgendarADM = () => {
     document.title ="Cadastrar Serviço";
+
+    const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
     return (
         <div className={styles.fAgendar}>
@@ -39,7 +43,7 @@ const TelaAgendarADM = () => {
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
                 <a href="/tAgendarADM">Agendar</a>                
-                <a href="/tCategoriaADM">Categorias</a>
+                <p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
                 <a href="/">Sair</a>
@@ -99,6 +103,7 @@ const TelaAgendarADM = () => {
                   </div>
                 </div>
             </main>
+            <Modal isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>
         </div>
     )
 }

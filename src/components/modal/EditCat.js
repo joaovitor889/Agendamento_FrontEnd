@@ -78,7 +78,7 @@ const TEXT_SHORT_STYLE={
     border: '1px solid #000',
 }
 
-export default function Modal({isOpen, setModalOpen, children }) {
+export default function Modal({isOpen, setOpenModalEditCat, children }) {
 
     if(isOpen){
         return(
@@ -88,7 +88,7 @@ export default function Modal({isOpen, setModalOpen, children }) {
                     <br/>
                         <input type = "text" placeholder="Categoria"/>
                     <br/>                
-                    <button onClick={setModalOpen} style={BTN_STYLE}>Salvar</button>
+                    <button onClick={setOpenModalEditCat} style={BTN_STYLE}>Salvar</button>
                 </div>
             </div>
             

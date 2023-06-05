@@ -6,13 +6,17 @@ import add from '../../img/add-func.png';
 import lixeira from '../../icones/trash-2.png';
 //import logo from '../../img/logo.PNG';
 
-//import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+
+import Modal from '../modal/tCategoria';
 
 //import { Link, useNavigate } from "react-router-dom";
 
 const TelaPesqFunc = () => {
 
    document.title = "Pesquisar Funcionário";
+
+   const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
    return (
         <div className = {styles.fPesqFunc}>
@@ -44,7 +48,7 @@ const TelaPesqFunc = () => {
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
                 <a href="/tAgendarADM">Agendar</a>                
-                <a href="/tCategoriaADM">Categorias</a>
+                <p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
                 <a href="/">Sair</a>
@@ -191,7 +195,7 @@ const TelaPesqFunc = () => {
                 </div>
                 
             </div>
-            
+            <Modal isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>
         </div>
     )
 }

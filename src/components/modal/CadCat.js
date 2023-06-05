@@ -44,7 +44,7 @@ const BTN_STYLE ={
     margin: 'auto'
 }
 
-export default function Modal({isOpen, setOpenCadCat, children }) {
+export default function Modal({isOpen, setOpenModalAddCat, children }) {
 
     if(isOpen){
         return(
@@ -54,7 +54,7 @@ export default function Modal({isOpen, setOpenCadCat, children }) {
                     <br/>
                         <input type = "text" placeholder="Categoria"/>
                     <br/>                
-                    <button onClick={setOpenCadCat} style={BTN_STYLE}>Salvar</button>
+                    <button onClick={setOpenModalAddCat} style={BTN_STYLE}>Salvar</button>
                 </div>
             </div>
             
