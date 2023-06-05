@@ -71,49 +71,49 @@ const TelaCadFunc = () => {
                     <div className={styles.final}>
                         <div className={styles.horarios}>
                             <div className={styles.dia}>
-                                {/*<input type="checkbox" />*/}
+                                <input type="checkbox" />
                                 <p className={styles.diaS}>Segunda  inicio</p>
                                 <input type="time" className={styles.hora} />
                                 <p>final</p>
                                 <input type="time" className={styles.hora} />
                             </div>
                             <div className={styles.dia}>
-                                {/*<input type="checkbox" />*/}
+                                <input type="checkbox" />
                                 <p className={styles.diaS}>Terça inicio</p>
                                 <input type="time" className={styles.hora} />
                                 <p>final</p>
                                 <input type="time" className={styles.hora} />
                             </div>
                             <div className={styles.dia}>
-                                {/*<input type="checkbox" />*/}
+                                <input type="checkbox" />
                                 <p className={styles.diaS}>Quarta  inicio</p>
                                 <input type="time" className={styles.hora} />
                                 <p>final</p>
                                 <input type="time" className={styles.hora} />
                             </div>
                             <div className={styles.dia}>
-                                {/*<input type="checkbox" />*/}
+                                <input type="checkbox" />
                                 <p className={styles.diaS}>Quinta  inicio</p>
                                 <input type="time" className={styles.hora} />
                                 <p>final</p>
                                 <input type="time" className={styles.hora} />
                             </div>
                             <div className={styles.dia}>
-                                {/*<input type="checkbox" />*/}
+                                <input type="checkbox" />
                                 <p className={styles.diaS}>Sexta  inicio</p>
                                 <input type="time" className={styles.hora} />
                                 <p>final</p>
                                 <input type="time" className={styles.hora} />
                             </div>
                             <div className={styles.dia}>
-                                {/*<input type="checkbox" />*/}
+                                <input type="checkbox" />
                                 <p className={styles.diaS}>Sábado  inicio</p>
                                 <input type="time" className={styles.hora} />
                                 <p>final</p>
                                 <input type="time" className={styles.hora} />
                             </div>
                             <div className={styles.dia}>
-                                {/*<input type="checkbox" />*/}
+                                <input type="checkbox" />
                                 <p className={styles.diaS}>Domingo  inicio</p>
                                 <input type="time" className={styles.hora} />
                                 <p>final</p>
