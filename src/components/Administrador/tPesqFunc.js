@@ -1,10 +1,9 @@
 import styles from './tPesqFunc.module.css';
-import menu from '../../img/Menu Rounded.png'
-import perfil from  '../../img/perfil.png'
-import notificar from '../../img/notificar.png'
-import filter from '../../img/filter.png'
-import add from '../../img/add-func.png'
-import lixeira from '../../icones/trash-2.png'
+import menu from '../../img/Menu Rounded.png';
+import perfil from  '../../img/perfil.png';
+import filter from '../../img/filter.png';
+import add from '../../img/add-func.png';
+import lixeira from '../../icones/trash-2.png';
 //import logo from '../../img/logo.PNG';
 
 //import { useState, useEffect, useRef } from "react";
