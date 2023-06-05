@@ -69,7 +69,7 @@ const TelaPesqFunc = () => {
                             </select>
                     </div>
                     <div className={styles.funcionarios}> 
-                        <img src={add} alt="" />
+                        <a href = "/tCadFunc" target = "_blank"><img src={add} alt="" /></a>
                     </div>
                 </div>
                 <div className={styles.cards}>
