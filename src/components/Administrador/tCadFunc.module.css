@@ -123,7 +123,7 @@
 .final{
 	background-color: #000000;
 	width: 100%;
-	min-height: 220px;
+	min-height: 520px;
 	border-radius:15px ;
 	display: flex;
 	align-items: center;
@@ -133,13 +133,17 @@
 }
 
 .horarios{
-	height: 200px;
-	width: 300px;
+	height: 390px;
+	width: 310px;
 	background-color: aquamarine;
 	border-radius: 15px;
 	display: flex;
 	flex-direction: column;
-	
+	margin-bottom: 2%;
+}
+
+.horarios input[type="time"] {
+	width: 35%;
 }
 
 .dia{
@@ -227,6 +231,15 @@
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	font-size: 20px;
+}
+
+.cadfunc:hover{
+	background-color: rgb(10, 68, 33);
+	color: #fff;
+}
+
+input:focus {
+	background-color: #fff;
 }
 
 @media only screen and (max-width: 500px) {
