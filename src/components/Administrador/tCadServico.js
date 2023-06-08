@@ -36,7 +36,7 @@ const TelaCadServico = () => {
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
                 <a href="/tAgendarADM">Agendar</a>                
-                <a href="/tCategoriaADM">Categorias</a>
+                {/*<a href="/tCategoriaADM">Categorias</a>*/}
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
                 <a href="/">Sair</a>
@@ -50,12 +50,13 @@ const TelaCadServico = () => {
                 <div className={styles.Container}>
                     <h1>Cadastro de Serviços</h1>
                     <div className={styles.dados}>                        
-                        <select name="catServ">
+                        {/*<select name="catServ">
                             <option value="categoria">Categoria</option>
                             <option value="corte">Corte</option>
                             <option value="barba">Barba</option>
                             <option value="manicure">Manicure</option>
-                        </select>
+                        </select>*/}
+                        <input type="text" className={styles.texto} placeholder='Categoria' />
                         <input type="text" className={styles.texto} placeholder='Nome' />
                         <textarea placeholder='Descrição' className={styles.desc} />
                         <input type="text" className={styles.texto} placeholder='Tempo' />

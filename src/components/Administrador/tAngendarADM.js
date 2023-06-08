@@ -2,9 +2,9 @@ import styles from './tAgendarADM.module.css';
 import menu from '../../img/Menu Rounded.png';
 import perfil from  '../../img/perfil.png';
 
-import Modal from '../modal/tCategoria';
+//import Modal from '../modal/tCategoria';
 
-import { useState } from "react";
+//import { useState } from "react";
 
 //import { Link, useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ import { useState } from "react";
 const TelaAgendarADM = () => {
     document.title ="Cadastrar Serviço";
 
-    const [openModalCategoria, setOpenModalCategoria] = useState(false);
+    //const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
     return (
         <div className={styles.fAgendar}>
@@ -43,7 +43,7 @@ const TelaAgendarADM = () => {
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
                 <a href="/tAgendarADM">Agendar</a>                
-                <p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>
+                {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
                 <a href="/">Sair</a>
@@ -103,7 +103,7 @@ const TelaAgendarADM = () => {
                   </div>
                 </div>
             </main>
-            <Modal isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>
+            {/*<Modal isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>*/}
         </div>
     )
 }
