@@ -13,6 +13,8 @@ import agFetch from '../../axios/config.js';
 
 import { useState, useEffect } from "react";
 
+import Foto from './FotoPerfilCliente/fotoCliente';
+
 const TelaMenuCliente = () => {
 
     document.title = "Menu do Cliente";
@@ -136,11 +138,8 @@ const TelaMenuCliente = () => {
                         </div>
                     )}
                     </div>*/}
-                <div className={styles.perfil}>
-                    {/*<img src={Perfil} alt="perfil" />*/}
-
-                    <p>{iniciais}</p>
-                </div>
+                
+                <Foto />
             </nav>
             <div className={styles.fPreto}></div>
             <div className={styles.texto}>Bem-Vindo(a)<br></br>Cliente<br></br><div className={styles.nome}>{`${nome}`}</div></div>

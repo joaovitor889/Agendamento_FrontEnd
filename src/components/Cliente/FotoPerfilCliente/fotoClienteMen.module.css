@@ -28,8 +28,6 @@
     top: 0;
     left: 0;
     z-index: 1;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 
 .menu ul {
@@ -103,6 +101,7 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
+/*fundo*/
 #perfilHamburger {
 	background-color: #000;
 	color: #fff;
@@ -122,7 +121,8 @@
 #perfilHamburger p {
     color: #fff;    
     margin-top: 89%;
-    font-size: 25vw;
+    font-size: 30vw;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 @media only screen and (min-width: 1024px) {

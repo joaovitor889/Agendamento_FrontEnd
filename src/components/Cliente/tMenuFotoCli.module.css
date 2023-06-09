@@ -427,7 +427,7 @@ h2 {
     #ulDesk li:hover{
         background-color: rgba(80, 80, 80, 0.5);
     }
-    #ulDesk p{
+    #ulDesk #textoLL p{
         text-align: left;
         font-family: 'Times New Roman', Times, serif;
         font-size: 1.5vw;
