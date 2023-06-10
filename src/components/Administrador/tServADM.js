@@ -11,6 +11,8 @@ import Modal from '../modal/EditServ';
 //import Categoria from '../modal/tCategoria';
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 //import { useState, useEffect, useRef } from "react";
 
 //import { Link, useNavigate } from "react-router-dom";
@@ -22,6 +24,13 @@ const TelaMenuADM = () => {
     const [openModal, setOpenModal] = useState(false);
 
     //const [openModalCategoria, setOpenModalCategoria] = useState(false);
+
+    const navigate = useNavigate();
+
+    const handleADD = (e) => {
+        e.preventDefault();
+        navigate("/tCadServico");  
+    }
 
    return (
         <div className = {styles.fMenuADM}>
@@ -76,7 +85,7 @@ const TelaMenuADM = () => {
                             </select>
                         </div>
                         
-                        <img src={newServ} alt="" className={styles.newServ}/>
+                        <img src={newServ} alt="" className={styles.newServ} onClick = {handleADD} />
                     </div>
                     <div  className={styles.card} onClick={()=> setOpenModal(true)}>
                         <h4 className={styles.card_header}>Corte de cabelo persobalizado</h4>
