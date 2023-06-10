@@ -187,11 +187,14 @@ const TelaFotoCliente = () => {
                             </Link>
 
                             <Link to="/tMenuFotoADM" rel="noreferrer">
-                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Foto</p></li>
+                                <li style={{ color: '#000' }}><p>Foto</p></li>
                             </Link>
 
                             <Link to="/tEmpreendimento" rel="noreferrer">
                                 <li><p>Empreendimento</p></li>
+                            </Link>
+                            <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>
                     </ul>
@@ -262,6 +265,9 @@ const TelaFotoCliente = () => {
                                     </Link>
                                 </p>
                             </li>
+                            <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                <li><p>New Empreendimento</p></li>
+                            </Link>
                             <li>
                                 <p>
                                     <Link to="/tPesqFunc" rel="noreferrer">

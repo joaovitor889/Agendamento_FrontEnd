@@ -242,7 +242,7 @@ const TelaEnderecoCliente = () => {
                             </Link>
 
                             <Link to="/tMenuEnderecoADM" rel="noreferrer">
-                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Endereço</p></li>
+                                <li style={{ color: '#000' }}><p>Endereço</p></li>
                             </Link>
     
                             <Link to="/tMenuFotoADM" rel="noreferrer">
@@ -251,6 +251,9 @@ const TelaEnderecoCliente = () => {
 
                             <Link to="/tEmpreendimento" rel="noreferrer">
                                 <li><p>Empreendimento</p></li>
+                            </Link>
+                            <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>
                     </ul>
@@ -394,6 +397,13 @@ const TelaEnderecoCliente = () => {
                                 <p>
                                     <Link to="/tEmpreendimento" rel="noreferrer">
                                         Empreendimento
+                                    </Link>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                        Novo Empreendimento
                                     </Link>
                                 </p>
                             </li>

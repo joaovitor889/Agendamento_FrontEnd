@@ -266,7 +266,7 @@ const TelaDadosBasicosCliente = () => {
                         </div>
                         <div id={styles["textoLL"]}>
                             <Link to='/tMenuDBADM' rel="noreferrer">
-                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Dados Básicos</p></li>
+                                <li style={{ color: '#000' }}><p>Dados Básicos</p></li>
                             </Link>
 
                             {/*<Link to='/tMenuEnderecoADM' target = "_blank" rel="noreferrer">*/}
@@ -280,6 +280,9 @@ const TelaDadosBasicosCliente = () => {
 
                             <Link to='/tEmpreendimento' rel="noreferrer">
                                 <li><p>Empreendimento</p></li>
+                            </Link>
+                            <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>
                     </ul>
@@ -402,6 +405,13 @@ const TelaDadosBasicosCliente = () => {
                                 <p>
                                     <Link to='/tEmpreendimento' rel="noreferrer">
                                         Empreendimento
+                                    </Link>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                        Novo Empreendimento
                                     </Link>
                                 </p>
                             </li>
