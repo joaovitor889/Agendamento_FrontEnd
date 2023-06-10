@@ -78,7 +78,7 @@ function App() {
             <Route path="/tAgendarADM" element = {<AgendarADM />} />
             <Route path="/tCadServico" element = {<CadServicos />} />
             <Route path="/tServADM" element = {<ServADM />} />
-            <Route path="/tPesqFunc" element =  {<PesquisaFunc />} />
+            <Route path="/tPesqFunc/:id" element =  {<PesquisaFunc />} />
             <Route path="/tCadFunc" element = {<CadastroFunc />} />
             <Route path="/tAgendamentosADM" element = {<Agendamentos />} />
             <Route path="/tPesqCli" element = {<PesquisaCli />} />

@@ -263,10 +263,15 @@ const TelaMenuEmpreendimento = () => {
                             </Link>
 
                             <Link to="/tEmpreendimento" rel="noreferrer">
-                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Empreendimento</p></li>
+                                <li><p>Empreendimento</p></li>
+                            </Link>
+
+                            <Link to="/tEmpreendimento" rel="noreferrer">
+                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>New Empreendimeno</p></li>
                             </Link>
                         </div>
                     </ul>
+
                 </div>
             </div>
 
