@@ -25,6 +25,8 @@ import tRoza from '../../temas/tema04.png';
 
 import tAmarelo from '../../temas/tema05.png';
 
+//import { Link, useNavigate } from "react-router-dom";
+
 const TelaMenuEmpreendimento = () => {
     document.title = "Empreendimento";
 
@@ -520,7 +522,7 @@ const TelaMenuEmpreendimento = () => {
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tMenuADM" rel="noreferrer">
+                                    <Link to="/tPesqFunc" rel="noreferrer">
                                         Voltar ao Menu
                                     </Link>
                                 </p>
@@ -555,7 +557,7 @@ const TelaMenuEmpreendimento = () => {
                     )}
                 </div>
                 <div className={styles.logoMenuCli}><p></p></div>
-                <div id={styles["voltar"]}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div id={styles["voltar"]}><a href="/tPesqFunc" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>
         </div>
     )

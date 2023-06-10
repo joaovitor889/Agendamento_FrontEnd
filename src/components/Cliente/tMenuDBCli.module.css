@@ -144,31 +144,6 @@
 	cursor: pointer;
 }
 
-.perfil {
-    position: absolute;
-    left: 90%;
-    top: 20%;
-    background-color: #000;
-    border-radius: 50%;
-    width: 8%;
-    height: 50%;
-}
-
-.perfil img {
-    position: absolute;
-    top: 1%;
-    left: 5%;
-    width: 90%;
-    height: 90%;
-}
-
-.perfil p {
-	font-size: 6vw;
-	line-height: 70%;
-    margin-top: 25%;
-    color: #fff;
-}
-
 h2 {
     color: #fff;
     font-family: 'Times New Roman', Times, serif;
@@ -213,10 +188,6 @@ h2 {
 }
 
 #menuDesk {
-    display: none;
-}
-
-#perfilLateral {
     display: none;
 }
 
@@ -321,26 +292,7 @@ h2 {
 		margin-left: -300%;
         margin-top: 95%;
 	}
-
-    .perfil {
-        background-color: #000;
-        color: #fff;
-        width: 3vw;
-        height: 3vw;
-        border-radius: 50%;
-        margin-left: 5%;
-    }
-
-    .perfil img {
-        margin: 10%;
-        width: 70%;
-        height: 70%;
-    }
-    .perfil p {
-		font-size: 2vw;
-        margin-top: 20%;
-		line-height: 75%;
-	}
+    
     #menuDesk {
         display: flex;
         flex-direction: column;
@@ -379,27 +331,5 @@ h2 {
     #ulDesk a {
         text-decoration: none;
         color: #fff;
-    }
-    #perfilLateral {
-        display: flex;
-        width: 50%;
-        height: 55%;
-        background-color: #000;
-        margin-left: -5%;
-        border-radius: 50%;
-        margin-top: 14%;
-        color: #fff;
-    }
-    #perfilLateral p {
-        margin-left: 25%;
-        line-height: 45%;
-        margin-top: 35%;
-        font-size: 3em;
-    }
-    #perfilLateral img{
-        position: absolute;
-        top: 12%;
-        width: 50%;
-        height: 15%;
     }
 }

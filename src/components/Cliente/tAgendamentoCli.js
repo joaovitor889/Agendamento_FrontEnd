@@ -6,8 +6,11 @@ import block from '../../img/block-func.png'
 import filtro from '../../img/filter.png'
 //import logo from '../../img/logo.PNG';
 
+//import { useState, useEffect, useRef } from "react";
 
-const telaAgendamento = () => {
+//import { Link, useNavigate } from "react-router-dom";
+
+const TelaAgendamento = () => {
 
    document.title = "Agendamento";
     
@@ -168,4 +171,4 @@ const telaAgendamento = () => {
     )
 }
 
-export default telaAgendamento
+export default TelaAgendamento

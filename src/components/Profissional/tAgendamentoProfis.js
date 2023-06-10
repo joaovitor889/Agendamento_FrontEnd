@@ -6,8 +6,11 @@ import block from '../../img/block-func.png'
 import filtro from '../../img/filter.png'
 //import logo from '../../img/logo.PNG';
 
+//import { useState, useEffect, useRef } from "react";
 
-const telaCalendarioProfissional = () => {
+//import { Link, useNavigate } from "react-router-dom";
+
+const TelaCalendarioProfissional = () => {
 
     document.title = "Agendamentos Profissional";
 
@@ -180,4 +183,4 @@ const telaCalendarioProfissional = () => {
     )
 }
 
-export default telaCalendarioProfissional
+export default TelaCalendarioProfissional

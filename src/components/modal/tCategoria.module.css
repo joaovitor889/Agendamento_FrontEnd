@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap'); 
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+
+.fMenuADM {
+	position: fixed;
+    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
+    width: 100%;
+    height: 100%;
+    font-family: 'Euphoria Script', cursive;
+    overflow-y: auto;
+    
+}
+header{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 3rem;
+	border-bottom: white 2px solid;
+	align-items: center;
+	height: 4rem;
+    background: #3293CA;
+}
+main{
+    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
+    position: fixed;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn_noticia{
+    padding-left: 1rem;
+}
+
+.Centro{
+	background-color: aliceblue;
+	width: 300px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+	color: #000000;
+
+}
+
+.esquerda img{ 
+	height: 2.5rem;
+}
+
+.direita { 
+	display: flex;
+	justify-content: space-between;
+}
+
+.direita  img{
+    height: 3rem;
+}
+
+.sidebar{
+    z-index: 1;
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    padding-top: 30px;
+    left: 0;
+    background: #252525;
+    border-right: white 3px solid;
+    display: none;
+}
+.sidebar a{
+    color: white;
+    display: block;
+    width: 100%;
+    line-height: 2.5rem;
+    text-decoration: none;
+    padding-left: 0;
+    box-sizing: border-box;
+    font-size: 1.5rem;
+}
+
+.interprise{
+    background: #9B9191;
+    color:  white;
+    text-align: center;
+    position: fixed;
+    bottom:0;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#check:checked ~ .sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+#check {
+	display: none;
+}
+.container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+    flex-direction: column;
+}
+
+.header_container{
+	display: flex;
+	justify-content: space-between;
+	width: 60rem;
+	margin: 1rem 0;
+
+}
+.filter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newCat{
+	width: 2.5rem;
+	height: 2.5rem;
+}
+.card{
+	background-color: #48A695;
+	border-left: #034522 solid 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0.5rem 1rem;
+	align-items: flex-start;
+	width: 60rem ;
+	min-height: 7rem;
+	margin-bottom: 0.5rem;
+}
+
+.card h4{
+	margin: 0
+}
+.card  p{
+	flex-wrap: wrap;
+	margin: 10px 0;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;;
+    text-align: justify;
+}
+
+.card_footer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.texto{
+    border: none;
+    height: 30px;
+    width: 200px;
+    border-radius: 15px;
+}
+
+select{
+    font-size: 20px;
+}
+
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .modalContainer {
+    background-color: white;
+    width: 400px;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .fecharModal {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+
+@media only screen and (max-width: 500px) {
+
+	header{
+		padding: 0 1rem;
+	}
+
+    .Centro{
+        width: 200px;
+    }
+
+    .direita  img{
+        height: 2.5rem;
+        margin: 0;
+    }
+
+    .card{
+        width: 300px;
+    }
+
+    .header_container{
+        width: 20rem;
+    }
+}

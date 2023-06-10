@@ -131,7 +131,7 @@ a{
     display: flex;
     flex-direction: column;
 }
-.texto{
+.texto, select{
     height: 2rem;
     border-radius: 15px;
     border-style: none;

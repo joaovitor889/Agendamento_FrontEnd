@@ -1,23 +1,27 @@
 import styles from './tServADM.module.css';
-import menu from '../../img/Menu Rounded.png'
-import perfil from  '../../img/perfil.png'
-import newServ from '../../img/Component 88.png'
-import filtro from '../../img/filter.png'
+import menu from '../../img/Menu Rounded.png';
+import perfil from  '../../img/perfil.png';
+import newServ from '../../img/Component 88.png';
+import filtro from '../../img/filter.png';
 
-import lixeira from '../../icones/trash-2.png'
+import lixeira from '../../icones/trash-2.png';
 //import logo from '../../img/logo.PNG';
 
-import Modal from '../modal/EditServ'
-import { useState } from 'react'
+import Modal from '../modal/EditServ';
+//import Categoria from '../modal/tCategoria';
+import { useState } from 'react';
 
+//import { useState, useEffect, useRef } from "react";
+
+//import { Link, useNavigate } from "react-router-dom";
 
 const TelaMenuADM = () => {
 
-    document.title = "Menu do Administrador";
+    document.title = "Serviços";
 
-    document.title = "Agendamentos";
+    const [openModal, setOpenModal] = useState(false);
 
-    const [openModal, setOpenModal] = useState(false)
+    //const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
    return (
         <div className = {styles.fMenuADM}>
@@ -47,9 +51,11 @@ const TelaMenuADM = () => {
                 <a href="/tPesqFunc">Profissionais</a>
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
-                <a href="/tAgendarADM">Agendar</a>
+                <a href="/tAgendarADM">Agendar</a>                
+                {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
+                <a href="/">Sair</a>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>
                     <option value="emp2">Show de bola</option>
@@ -100,7 +106,7 @@ const TelaMenuADM = () => {
                     </div>
                 
                     <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
-
+                    {/*<Categoria isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>*/}
                 </div>
             </main>
             

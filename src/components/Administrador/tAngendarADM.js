@@ -1,12 +1,18 @@
 import styles from './tAgendarADM.module.css';
 import menu from '../../img/Menu Rounded.png';
-import perfil from  '../../img/perfil.png'
+import perfil from  '../../img/perfil.png';
+
+//import Modal from '../modal/tCategoria';
+
+//import { useState } from "react";
+
+//import { Link, useNavigate } from "react-router-dom";
 
 
-
-
-const telaAgendarADM = () => {
+const TelaAgendarADM = () => {
     document.title ="Cadastrar Serviço";
+
+    //const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
     return (
         <div className={styles.fAgendar}>
@@ -36,9 +42,11 @@ const telaAgendarADM = () => {
                 <a href="/tPesqFunc">Profissionais</a>
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
-                <a href="/tAgendarADM">Agendar</a>
+                <a href="/tAgendarADM">Agendar</a>                
+                {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
+                <a href="/">Sair</a>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>
                     <option value="emp2">Show de bola</option>
@@ -95,8 +103,9 @@ const telaAgendarADM = () => {
                   </div>
                 </div>
             </main>
+            {/*<Modal isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>*/}
         </div>
     )
 }
 
-export default telaAgendarADM
+export default TelaAgendarADM

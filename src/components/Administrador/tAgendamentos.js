@@ -1,13 +1,15 @@
 import styles from './tAgendamentos.module.css';
 import menu from '../../img/Menu Rounded.png';
-import perfil from '../../img/perfil.png'
-import block from '../../img/block-func.png'
-import filtro from '../../img/filter.png'
+import perfil from '../../img/perfil.png';
+import block from '../../img/block-func.png';
+import filtro from '../../img/filter.png';
 
-import Bloquear from '../modal/Bloquear'
-import { useState } from 'react'
+import Bloquear from '../modal/Bloquear';
+import { useState } from 'react';
 
+//import { useState, useEffect, useRef } from "react";
 
+//import { Link, useNavigate } from "react-router-dom";
 
 const TelaAgendamentos = () => {
 
@@ -46,9 +48,11 @@ const TelaAgendamentos = () => {
                 <a href="/tPesqFunc">Profissionais</a>
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
-                <a href="/tAgendarADM">Agendar</a>
+                <a href="/tAgendarADM">Agendar</a>                
+                {/*<a href="/tCategoriaADM">Categorias</a>*/}
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
+                <a href="/">Sair</a>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>
                     <option value="emp2">Show de bola</option>

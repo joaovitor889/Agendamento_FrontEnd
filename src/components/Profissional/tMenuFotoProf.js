@@ -5,12 +5,17 @@ import Voltar from '../../icones/chevron-left.png';
 
 import Notificacao from '../../icones/Doorbell.png';
 
-import Perfil from '../../icones/perfilCliente.png';
+import FotoLat from './FotoPerfilFunc/fotoFuncLat';
+
+import FotoHor from './FotoPerfilFunc/fotoFuncHor';
 
 import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
 import React, { useState, useEffect } from "react";
 
+//import { useState, useEffect, useRef } from "react";
+
+//import { Link, useNavigate } from "react-router-dom";
 
 const TelaFotoProfissional = () => {
 
@@ -147,10 +152,7 @@ const TelaFotoProfissional = () => {
                     <ul id={styles["ulDesk"]}>
                         <br></br>
                         <br></br>
-                        <div id={styles["perfilLateral"]}>
-                            {/*<img src={Perfil} alt="perfil" />*/}
-                            <p>{iniciais}</p>
-                        </div>
+                        <FotoLat />
                         <div id={styles["textoLL"]}>
                             <a href="./tMenuFotoProf" rel="noreferrer">
                                 <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Foto</p></li>
@@ -174,12 +176,7 @@ const TelaFotoProfissional = () => {
             </div>
 
             <div id={styles["menuHorFunc"]}>
-
-
-                <div className={styles.perfil}>
-                    {/*<img src={Perfil} alt="perfil" />*/}
-                    <p>{iniciais}</p>
-                </div>
+                <FotoHor />
                 {/*<div className={styles.notificacao}>
                     <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
                     {showNotifications && (

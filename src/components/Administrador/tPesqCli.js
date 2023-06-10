@@ -5,10 +5,17 @@ import filter from '../../img/filter.png'
 import add from '../../img/add-func.png'
 import lixeira from '../../icones/trash-2.png'
 
+//import { useState } from "react";
 
-const telaPesqCli = () => {
+//import { Link, useNavigate } from "react-router-dom";
+
+//import Modal from '../modal/tCategoria';
+
+const TelaPesqCli = () => {
 
    document.title = "Pesquisar Cliente";
+
+   //const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
    return (
         <div className = {styles.fPesqCli}>
@@ -39,14 +46,16 @@ const telaPesqCli = () => {
                 <a href="/tPesqFunc">Profissionais</a>
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
-                <a href="/tAgendarADM">Agendar</a>
+                <a href="/tAgendarADM">Agendar</a>                
+                {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
+                <a href="/">Sair</a>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>
                     <option value="emp2">Show de bola</option>
                 </select>
-           </div>
+            </div>
            {/* sidebar  final */}
            <div className = {styles.container}> 
                <div className={styles.header_main}>
@@ -128,9 +137,9 @@ const telaPesqCli = () => {
                </div>
                
            </div>
-           
+           {/*<Modal isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>*/}
        </div>
     )
 }
 
-export default telaPesqCli
+export default TelaPesqCli

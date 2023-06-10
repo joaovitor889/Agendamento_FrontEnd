@@ -236,10 +236,6 @@ h2 {
     display: none;
 }
 
-#perfilLateral {
-    display: none;
-}
-
 #perfilHamburger {
     background-color: #000;
     border-radius: 50%;
@@ -437,7 +433,7 @@ h2 {
     #ulDesk li:hover{
         background-color: rgba(80, 80, 80, 0.5);
     }
-    #ulDesk p{
+    #ulDesk #textoLL p{
         text-align: left;
         font-family: 'Times New Roman', Times, serif;
         font-size: 1.5vw;
@@ -447,27 +443,6 @@ h2 {
     #ulDesk a {
         text-decoration: none;
         color: #fff;
-    }
-    #perfilLateral {
-        display: flex;
-        width: 50%;
-        height: 55%;
-        background-color: #000;
-        margin-left: -5%;
-        border-radius: 50%;
-        margin-top: 12%;
-    }
-    #perfilLateral p {
-        margin-left: 25%;
-        line-height: 45%;
-        margin-top: 35%;
-        font-size: 3em;
-    }
-    #perfilLateral img{
-        position: absolute;
-        top: 12%;
-        width: 50%;
-        height: 15%;
     }
     #formEN input {
         font-size: 2vw;

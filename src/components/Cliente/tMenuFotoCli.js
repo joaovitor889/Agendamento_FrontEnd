@@ -7,6 +7,11 @@ import Notificacao from '../../icones/Doorbell.png';
 
 //import Perfil from '../../icones/perfilCliente.png';
 
+//foto de perfil
+import FotoHor from './FotoPerfilCliente/fotoClienteHor';
+import FotoLat from './FotoPerfilCliente/fotoClienteLat';
+import FotoMen from './FotoPerfilCliente/fotoClienteMen';
+
 import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
 import React, { useState, useEffect } from "react";
@@ -170,10 +175,7 @@ const TelaFotoCliente = () => {
                     <ul id={styles["ulDesk"]}>
                         <br></br>
                         <br></br>
-                        <div id={styles["perfilLateral"]}>
-                            {/*<img src={Perfil} alt="perfil" />*/}
-                            <p>{iniciais}</p>
-                        </div>
+                        <FotoLat />
                         <div id={styles["textoLL"]}>
                             <a href="./tMenuDBCli" rel="noreferrer">
                                 <li><p>Dados Básicos</p></li>
@@ -221,10 +223,7 @@ const TelaFotoCliente = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <div id="perfilHamburger">
-                            {/*<img src={Perfil} alt="perfil" />*/}
-                            <p>{iniciais}</p>
-                        </div>
+                        <FotoMen />
 
                         <ul id="uMenHamburger">
                             <li>
@@ -259,10 +258,7 @@ const TelaFotoCliente = () => {
                     </div>
                 </div>
 
-                <div className={styles.perfil}>
-                    {/*<img src={Perfil} alt="perfil" />*/}
-                    <p>{iniciais}</p>
-                </div>
+                <FotoHor />
                 {/*<div className={styles.notificacao}>
                     <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
                     {showNotifications && (

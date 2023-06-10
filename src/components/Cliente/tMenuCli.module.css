@@ -132,26 +132,6 @@
 	cursor: pointer;
 }
 
-.perfil {
-	background-color: #000;
-	color: #fff;
-	width: 12vw;
-	height: 13vw;
-	border-radius: 50%;
-	margin-left: auto;
-}
-
-.perfil p {
-	font-size: 6vw;
-	line-height: 10%;
-}
-
-.perfil img {
-	margin: 10%;
-	width: 80%;
-	height: 80%;
-}
-
 .texto {
 	color: #fff;
 	position: absolute;
@@ -323,16 +303,6 @@
 		overflow-y: auto;
 		position: relative;
 		margin-left: -300%;
-	}
-
-	.perfil {
-		width: 50px;
-		height: 50px;
-	}
-
-	.perfil p {
-		font-size: 2vw;
-		line-height: 10%;
 	}
 
 	#voltarDesk {

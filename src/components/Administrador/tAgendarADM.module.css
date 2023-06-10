@@ -172,6 +172,16 @@ a{
     display: none;
 }
 
+.sidebar p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar p:hover {
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 500px) {
 
     .body_header{

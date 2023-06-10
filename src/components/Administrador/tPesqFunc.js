@@ -15,6 +15,7 @@ import {
     useParams
   } from "react-router-dom";
 
+//import { useState } from "react";
 
 const TelaPesqFunc = () => {
 
@@ -82,7 +83,8 @@ const TelaPesqFunc = () => {
                 <a href="/tPesqFunc">Profissionais</a>
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
-                <a href="/tAgendarADM">Agendar</a>
+                <a href="/tAgendarADM">Agendar</a>                
+                {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
                 <select name='qual empresa?' className={styles.interprise} >
@@ -127,7 +129,7 @@ const TelaPesqFunc = () => {
                 </div>
                 
             </div>
-            
+            {/*<Modal isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>*/}
         </div>
     )
 }

@@ -38,8 +38,9 @@ import AgendamentoProfis from './components/Profissional/tAgendamentoProfis.js';
 import FotoProfis from './components/Profissional/tMenuFotoProf.js';
 
 //Telas do Administrador
-import AgendarADM from './components/Administrador/tAngendarADM.js'
-import CadServicos from './components/Administrador/tCadServico.js'
+import AgendarADM from './components/Administrador/tAngendarADM.js';
+import CadServicos from './components/Administrador/tCadServico.js';
+//import Categorias from './components/Administrador/tCategoria.js';
 import ServADM from './components/Administrador/tServADM.js';
 import PesquisaFunc from './components/Administrador/tPesqFunc.js';
 import PesquisaCli from './components/Administrador/tPesqCli.js';
@@ -49,6 +50,7 @@ import DadosBasicosAdm from './components/Administrador/tMenuDBADM.js';
 import EnderecoAdm from './components/Administrador/tMenuEnderecoADM.js';
 import FotoADM from './components/Administrador/tMenuFotoADM.js';
 import Empreendimento from './components/Administrador/tMenuEmpr.js';
+import NovoEmpreendimento from './components/Administrador/tMenuEmprNew.js'
 
 import './App.css';
 
@@ -77,6 +79,7 @@ function App() {
             {/* Telas do Administrador */}
             <Route path="/tAgendarADM" element = {<AgendarADM />} />
             <Route path="/tCadServico" element = {<CadServicos />} />
+            {/*<Route path="/tCategoriaADM" element = {<Categorias />} />*/}
             <Route path="/tServADM" element = {<ServADM />} />
             <Route path="/tPesqFunc/:id" element =  {<PesquisaFunc />} />
             <Route path="/tCadFunc" element = {<CadastroFunc />} />
@@ -88,6 +91,7 @@ function App() {
             <Route path="/tMenuEnderecoADM" element = {<EnderecoAdm />} />
             <Route path="/tMenuFotoADM" element = {<FotoADM />} />
             <Route path="/tEmpreendimento" element = {<Empreendimento />} />
+            <Route path="/tNovoEmpreendimento" element = {<NovoEmpreendimento />} />
             
 
             {/* Telas do Cliente */}

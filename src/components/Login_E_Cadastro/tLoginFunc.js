@@ -1,8 +1,11 @@
 import './tLoginFunc.css';
 import Logo from '../../img/logo.png';
 
+//import { useState, useEffect, useRef } from "react";
 
-const telaLogin = () => {
+//import { Link, useNavigate } from "react-router-dom";
+
+const TelaLogin = () => {
 
     document.title = "Login Funcionario";
 
@@ -45,4 +48,4 @@ const telaLogin = () => {
     )
 }
 
-export default telaLogin
+export default TelaLogin

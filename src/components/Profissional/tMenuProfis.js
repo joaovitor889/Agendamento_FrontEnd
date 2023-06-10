@@ -6,10 +6,15 @@ import Notificacao from '../../icones/Doorbell.png';
 import Agenda from '../../icones/Tear-Off Calendar.png';
 import Perfil from '../../icones/perfilCliente.png';
 
+import Foto from './FotoPerfilFunc/fotoFunc';
+
 import { Link } from "react-router-dom";
 
 import { useState, useEffect } from 'react';
 
+//import { useState, useEffect, useRef } from "react";
+
+//import { Link, useNavigate } from "react-router-dom";
 
 const TelaMenuProfissional = () => {
 
@@ -133,11 +138,7 @@ const TelaMenuProfissional = () => {
                         </div>
                     )}
                 </div>*/}
-                <div className={styles.perfil}>
-                    {/*<img src={Perfil} alt="perfil" />*/}
-
-                    <p>{iniciais}</p>
-                </div>
+                <Foto />
             </nav>
             <div className={styles.fPreto}></div>
             <div className={styles.texto}>Bem-Vindo(a)<br></br>Profissional<br></br><div className={styles.nome}>{nome}</div></div>
