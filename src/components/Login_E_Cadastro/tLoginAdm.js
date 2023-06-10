@@ -25,6 +25,7 @@ const TelaLoginAdm = () => {
         //teste se os dados estao sendo enviados
         //alert(JSON.stringify({ email, senha }));
 
+        
         try {        
             const response = await agFetch.post('/auth/proprietario', {
               email: cmpEmail,
