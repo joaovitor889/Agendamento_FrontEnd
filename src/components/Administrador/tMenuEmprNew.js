@@ -284,7 +284,7 @@ const TelaMenuEmpreendimentoNew = () => {
                     <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
                     <div className={styles.legFoto}><p>Adicionar / alterar imagem</p></div>
                     <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" required /></center>
-                    <center><input type="text" placeholder='Nome:' name="nome" /></center>
+                    <center><input type="text" placeholder='Nome:' name="nome" id='NomeProp'/></center>
                     <div id={styles["ptHor"]}>
                         <center>
                             <br></br>
