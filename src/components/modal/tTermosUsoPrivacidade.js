@@ -25,6 +25,7 @@ const MODAL_STYLE = {
   alignItems: 'justify',
   fontFamily: 'Arial',
   fontSize: '16px',
+  color: '#000',
   overflowY: 'auto' // Adicionando o overflow y automático
 };
 

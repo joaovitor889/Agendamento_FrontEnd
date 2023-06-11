@@ -120,13 +120,17 @@
 	margin-top: 5%;
 }
 
-.condicoes a {
+.condicoes p {
 	color: #fff;
 	margin-left: 0%;
 	margin-top: -1%;
 	font-size: 5vw;
 	text-decoration: underline;
 	font-family: 'Times New Roman', Times, serif;
+}
+
+.condicoes p:hover {
+	cursor: pointer;
 }
 #formCadastro .condicoes input {
 	margin-top: 3%;
@@ -205,7 +209,7 @@
 		flex-direction: row;
 		margin-top: 30%;
 	}
-	.condicoes a {
+	.condicoes p {
 		position: absolute;
 		margin-left: 35%;
 		font-size: 3vh;
