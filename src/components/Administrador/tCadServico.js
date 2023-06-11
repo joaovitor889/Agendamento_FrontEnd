@@ -2,16 +2,117 @@ import styles from './tCadServico.module.css';
 import menu from '../../img/Menu Rounded.png';
 import perfil from '../../img/perfil.png'
 
-//import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+
+import agFetch from '../../axios/config';
 
 //import { Link, useNavigate } from "react-router-dom";
 
 const TelaCadServico = () => {
     document.title = "Cadastrar Serviço";
 
+    const [categoria, setCategoria] = useState("");
+    const descCat = "";
+    const [nome, setNome] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [tempo, setTempo] = useState("");
+    const [preco, setPreco] = useState("");
+
+    const fTempo = useRef(null);
+    const fPreco = useRef(null);
+
+    //bloquear rolagem nos imputs number
+    useEffect(() => {
+        const tempo = fTempo.current;
+        const preco = fPreco.current;
+        const bloquearRolagem = (e) => {
+            e.preventDefault();
+        };
+
+        if (tempo) {
+            tempo.addEventListener('wheel', bloquearRolagem);
+        }
+
+        if (preco) {
+            preco.addEventListener('wheel', bloquearRolagem);
+        }
+
+        return () => {
+            if (tempo) {
+                tempo.removeEventListener('wheel', bloquearRolagem);
+            }
+
+            if (preco) {
+                preco.removeEventListener('wheel', bloquearRolagem);
+            }
+        };
+    }, []);
+
+    const handleChangePreco = (e) => {
+        const precoConvertido = e.target.value.replace(',', '.');
+        setPreco(precoConvertido);
+    }
+
+
+
+    //Enviar os Dados para a API com o AXIOS
+    const cadastrarServico = async (nome, preco, tempo, descricao, categoria, descCat) => {
+        try {
+
+            const dados = await agFetch.get('/estabelecimento/prop');
+
+            const uid = dados.data.uid;
+
+            const novoServico = {
+                uid,
+                nome,
+                preco,
+                tempo,
+                descricao,
+                categoria: {
+                    nome: categoria,
+                    descricao: descCat 
+                }
+            };
+
+            alert(uid);
+
+
+            // Faça a requisição POST para a API utilizando o Axios
+            const response = await agFetch.post('/servicos/criar', novoServico);
+
+            // Verifique a resposta da API e faça o redirecionamento se necessário
+            if (response.status === 201) {
+                alert("Dados cadastrados com sucesso!");
+                setCategoria("");
+                setNome("");
+                setDescricao("");
+                setTempo("");
+                setPreco("");
+            }
+        } catch (error) {
+            console.log(error);
+
+            let valErro = error.response.status;
+
+            if (valErro === 404)
+                alert("Servidor Indisponível!");
+            else if (valErro === 400)
+                alert("Dados Inválidos!");
+            else if (valErro === 409) {
+                //alert("Telefone, CPF ou Email já cadastrados!");
+                const texto = error.response.data;
+                const textoFormatado = JSON.stringify(texto).replace(/,(?=(?:[^"]*"[^"]*")*[^"]*$)|\[|\]|"(.*?)"/g, '$1\n').replace(/\n\s*/g, '\n');
+                alert(textoFormatado);
+            }
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert("Teste");
+        //alert(JSON.stringify({ nome, preco, tempo, descricao, categoria, descCat }));
+
+        cadastrarServico(nome, preco, tempo, descricao, categoria, descCat);
     }
 
     return (
@@ -62,16 +163,48 @@ const TelaCadServico = () => {
                             <option value="barba">Barba</option>
                             <option value="manicure">Manicure</option>
                         </select>*/}
-                            <input type="text" className={styles.texto} placeholder='Categoria' />
-                            <input type="text" className={styles.texto} placeholder='Nome' />
-                            <textarea placeholder='Descrição' className={styles.desc} />
-                            <input type="text" className={styles.texto} placeholder='Tempo' />
+                            <input type="text" className={styles.texto} placeholder='Categoria' onChange={(e) => { setCategoria(e.target.value) }} required />
+                            <input type="text" className={styles.texto} placeholder='Nome' onChange={(e) => { setNome(e.target.value) }} required />
+                            <textarea placeholder='Descrição' className={styles.desc} onChange={(e) => { setDescricao(e.target.value) }} required />
+                            <input type="number"
+                                className={styles.texto}
+                                placeholder="Tempo"
+                                title="Digite o seu Tempo"
+                                name="temp"
+                                id="temp"
+                                maxLength="20"
+                                onKeyPress={(event) => {
+                                    if (!/[0-9]/.test(event.key)
+                                        || event.target.value.length > event.target.maxLength - 1) {
+                                        event.preventDefault();
+                                    }
+                                }}
+                                ref={fTempo}
+                                onChange={(e) => { setTempo(e.target.value) }}
+                                required />
                         </div>
                         <div className={styles.finsh}>
-                            <input type="text" className={styles.texto} placeholder='R$' />
+                            <input type="text" className={styles.texto}
+                                placeholder='R$'
+                                ref={fPreco}
+                                onChange={handleChangePreco}
+                                onKeyPress={(event) => {
+                                    const { key, target } = event;
+                                    const hasComma = target.value.includes(',');
+                                    const commaIndex = target.value.indexOf(',');
+                                    if (!/[0-9,]/.test(event.key) || key === ',' && (hasComma || commaIndex !== -1 || target.value === '')) {
+                                        event.preventDefault();
+                                    }
+
+                                    if (commaIndex !== -1 && target.value.substring(commaIndex + 1).length >= 2 && key !== ',' && key !== 'Backspace') {
+                                        event.preventDefault();
+                                    }
+                                }}
+
+                                required />
                             <br />
                             <br />
-                            <input type="submit" valur="Cadastrar" />
+                            <input type="submit" value="Cadastrar" />
                         </div>
                     </form>
                 </div>
