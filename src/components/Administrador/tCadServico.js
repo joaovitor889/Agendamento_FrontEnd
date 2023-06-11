@@ -9,6 +9,11 @@ import perfil from '../../img/perfil.png'
 const TelaCadServico = () => {
     document.title = "Cadastrar Serviço";
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        alert("Teste");
+    }
+
     return (
         <div className={styles.fCadServico}>
             <input type='checkbox' id={styles["check"]} />
@@ -35,7 +40,7 @@ const TelaCadServico = () => {
                 <a href="/tPesqFunc">Profissionais</a>
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
-                <a href="/tAgendarADM">Agendar</a>                
+                <a href="/tAgendarADM">Agendar</a>
                 {/*<a href="/tCategoriaADM">Categorias</a>*/}
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
@@ -48,25 +53,27 @@ const TelaCadServico = () => {
             {/* sidebar  final */}
             <div className={styles.main}>
                 <div className={styles.Container}>
-                    <h1>Cadastro de Serviços</h1>
-                    <div className={styles.dados}>                        
-                        {/*<select name="catServ">
+                    <form onSubmit={handleSubmit}>
+                        <h1>Cadastro de Serviços</h1>
+                        <div className={styles.dados}>
+                            {/*<select name="catServ">
                             <option value="categoria">Categoria</option>
                             <option value="corte">Corte</option>
                             <option value="barba">Barba</option>
                             <option value="manicure">Manicure</option>
                         </select>*/}
-                        <input type="text" className={styles.texto} placeholder='Categoria' />
-                        <input type="text" className={styles.texto} placeholder='Nome' />
-                        <textarea placeholder='Descrição' className={styles.desc} />
-                        <input type="text" className={styles.texto} placeholder='Tempo' />
-                    </div>
-                    <div className={styles.finsh}>
-                        <input type="text" className={styles.texto} placeholder='R$' />
-                        <br />
-                        <br />
-                        <a href="/">Cadastrar</a>
-                    </div>
+                            <input type="text" className={styles.texto} placeholder='Categoria' />
+                            <input type="text" className={styles.texto} placeholder='Nome' />
+                            <textarea placeholder='Descrição' className={styles.desc} />
+                            <input type="text" className={styles.texto} placeholder='Tempo' />
+                        </div>
+                        <div className={styles.finsh}>
+                            <input type="text" className={styles.texto} placeholder='R$' />
+                            <br />
+                            <br />
+                            <input type="submit" valur="Cadastrar" />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
