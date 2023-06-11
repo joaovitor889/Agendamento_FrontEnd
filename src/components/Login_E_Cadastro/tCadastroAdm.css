@@ -89,10 +89,14 @@ img{
     background-color: #273791;
 }
 
-.termosADM a {
+.termosADM p {
     font-size: 85%;
     color: #000;
     text-decoration: underline;
+}
+
+.termosADM p:hover {
+    cursor: pointer;
 }
 
 #formCadastroAdm div input[type=checkbox] {
