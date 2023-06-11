@@ -1,6 +1,6 @@
 import styles from './tServADM.module.css';
 import menu from '../../img/Menu Rounded.png';
-import perfil from  '../../img/perfil.png';
+import perfil from '../../img/perfil.png';
 import newServ from '../../img/Component 88.png';
 import filtro from '../../img/filter.png';
 
@@ -9,7 +9,7 @@ import lixeira from '../../icones/trash-2.png';
 
 import Modal from '../modal/EditServ';
 //import Categoria from '../modal/tCategoria';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -17,11 +17,16 @@ import { useNavigate } from 'react-router-dom';
 
 //import { Link, useNavigate } from "react-router-dom";
 
+import agFetch from '../../axios/config';
+
 const TelaMenuADM = () => {
 
     document.title = "Serviços";
 
     const [openModal, setOpenModal] = useState(false);
+    const [services, setServices] = useState([]);
+
+
 
     //const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
@@ -29,17 +34,30 @@ const TelaMenuADM = () => {
 
     const handleADD = (e) => {
         e.preventDefault();
-        navigate("/tCadServico");  
+        navigate("/tCadServico");
     }
 
-   return (
-        <div className = {styles.fMenuADM}>
-            <input type='checkbox' id={styles["check"]}/>
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const response = await agFetch.get('/servicos/todos');
+                setServices(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchServices();
+    }, []);
+
+    return (
+        <div className={styles.fMenuADM}>
+            <input type='checkbox' id={styles["check"]} />
             {/* header  começo */}
             <header>
                 <div className={styles.esquerda}>
-                    <label  for = {styles["check"]}>
-                        <img src = {menu} alt = "retunr"  className='sidebar_btn'/>
+                    <label for={styles["check"]}>
+                        <img src={menu} alt="retunr" className='sidebar_btn' />
                     </label>
                 </div>
                 <div className={styles.Centro}>
@@ -47,7 +65,7 @@ const TelaMenuADM = () => {
                 </div>
                 <div className={styles.direita}>
                     <a href="/" className="btn_perfil">
-                        <img src= {perfil} alt="notificar" />
+                        <img src={perfil} alt="notificar" />
                     </a>
                     {/* <a href="/" className="btn_noticia">
                         <img src= {notificar} alt="notificar" />
@@ -60,7 +78,7 @@ const TelaMenuADM = () => {
                 <a href="/tPesqFunc">Profissionais</a>
                 <a href="/tPesqCli">Clientes</a>
                 <a href="/tAgendamentosADM">Agendamentos</a>
-                <a href="/tAgendarADM">Agendar</a>                
+                <a href="/tAgendarADM">Agendar</a>
                 {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
                 <a href="/tServADM">Serviços</a>
                 <a href="/tMenuDBADM">Perfil</a>
@@ -72,7 +90,7 @@ const TelaMenuADM = () => {
             </div>
             {/* sidebar  final */}
             <main>
-            <div className = {styles.container}> 
+                <div className={styles.container}>
                     <div className={styles.header_container}>
                         <div className={styles.filter}>
                             <img src={filtro} alt="" />
@@ -84,42 +102,38 @@ const TelaMenuADM = () => {
                                 <option value="hidratação">hidratação</option>
                             </select>
                         </div>
-                        
-                        <img src={newServ} alt="" className={styles.newServ} onClick = {handleADD} />
+
+                        <img src={newServ} alt="" className={styles.newServ} onClick={handleADD} />
                     </div>
-                    <div  className={styles.card} onClick={()=> setOpenModal(true)}>
+                    {/*<div  className={styles.card} onClick={()=> setOpenModal(true)}>
                         <h4 className={styles.card_header}>Corte de cabelo persobalizado</h4>
                         <p className={styles.card_body}>Descrição: Nossa equipe de cabeleireiros especializados oferece um serviço de corte de cabelo personalizado, levando em consideração suas preferências, tipo de cabelo e estilo desejado. Com habilidade e criatividade, trabalhamos para realçar sua aparência e ressaltar sua individualidade.</p>
                         <div className={styles.card_footer}>
                             <h4>Preço: R$ 60,00</h4>
                             <img src={lixeira} alt="" />
                         </div>
-                    </div>
+                    </div>*/}
 
-                    <div  className={styles.card} onClick={()=> setOpenModal(true)}>
-                        <h4 className={styles.card_header}>Coloração e mechas</h4>
-                        <p className={styles.card_body}>Descrição: Se você está buscando uma transformação de cor ou simplesmente deseja realçar seu tom natural, nossos cabeleireiros estão prontos para ajudar. Com conhecimento sobre as últimas tendências em coloração e técnicas de mechas, podemos criar resultados deslumbrantes e personalizados, adaptados às suas preferências e estilo.</p>
-                        <div className={styles.card_footer}>
-                            <h4>Preço: R$ 60,00</h4>
-                            <img src={lixeira} alt="" />
+                    {services.map((service) => (
+                        <div key={service.id} className={styles.card} onClick={() => setOpenModal(true)}>
+                            <h4 className={styles.card_header}>{service.nome}</h4>
+                            <p className={styles.card_body}>{service.descricao}</p>
+                            <div className={styles.card_footer}>
+                                <h4>Preço: {service.preco}</h4>
+                                <img src={lixeira} alt="" />
+                            </div>
                         </div>
-                    </div>
+                    ))}
+                    <br />
+                    <br />
+                    <br />
 
-                    <div  className={styles.card} onClick={()=> setOpenModal(true)}>
-                        <h4 className={styles.card_header}>Tratamentos capilares revitalizantes</h4>
-                        <p className={styles.card_body}>Descrição: Oferecemos uma variedade de tratamentos capilares que ajudam a melhorar a saúde e a aparência do seu cabelo. Desde hidratação intensa até tratamentos para fortalecimento e reparação dos fios, nossa equipe de cabeleireiros utiliza produtos de alta qualidade para revitalizar seu cabelo e deixá-lo com uma aparência radiante.</p>
-                        <div className={styles.card_footer}>
-                            <h4>Preço: R$ 60,00</h4>
-                            <img src={lixeira} alt="" />
-                        </div>
-                    </div>
-                
-                    <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
+                    <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)} />
                     {/*<Categoria isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>*/}
                 </div>
             </main>
-            
-            
+
+
 
         </div>
     )
