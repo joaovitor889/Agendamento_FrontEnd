@@ -26,7 +26,8 @@ const TelaMenuADM = () => {
     const [openModal, setOpenModal] = useState(false);
     const [services, setServices] = useState([]);
 
-
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
 
     //const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
@@ -48,7 +49,22 @@ const TelaMenuADM = () => {
         };
 
         fetchServices();
+
+        const fetchCategories = async () => {
+            try {
+                const response = await agFetch.get('/servicos/todos');
+                setCategories(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchCategories();
     }, []);
+
+    const handleCategoryChange = (event) => {
+        setSelectedCategory(event.target.value);
+    };
 
     return (
         <div className={styles.fMenuADM}>
@@ -94,12 +110,19 @@ const TelaMenuADM = () => {
                     <div className={styles.header_container}>
                         <div className={styles.filter}>
                             <img src={filtro} alt="" />
-                            <select name="cars" className={styles.texto}>
+                            {/*<select name="cars" className={styles.texto}>
                                 <option value="corte">Todas as categorias</option>
                                 <option value="corte">Corte</option>
                                 <option value="sombrancelha">Sombrancelha</option>
                                 <option value="manicure">Manicure</option>
                                 <option value="hidratação">hidratação</option>
+                            </select>*/}
+
+                            <select name="category" className={styles.texto} value={selectedCategory} onChange={handleCategoryChange}>
+                                <option value="">Todas as categorias</option>
+                                {categories.map(category => (
+                                    <option key={category.id} value={category.nome}>{category.nome}</option>
+                                ))}
                             </select>
                         </div>
 
@@ -119,11 +142,12 @@ const TelaMenuADM = () => {
                             <h4 className={styles.card_header}>{service.nome}</h4>
                             <p className={styles.card_body}>{service.descricao}</p>
                             <div className={styles.card_footer}>
-                                <h4>Preço: {service.preco}</h4>
+                                <h4>Preço: {service.preco.toLocaleString('pt-BR')}</h4>
                                 <img src={lixeira} alt="" />
                             </div>
                         </div>
                     ))}
+
                     <br />
                     <br />
                     <br />
