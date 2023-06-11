@@ -6,20 +6,26 @@ import { useState, useEffect, useRef } from "react";
 
 import agFetch from '../../axios/config';
 
-//import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const TelaCadServico = () => {
     document.title = "Cadastrar Serviço";
 
-    const [categoria, setCategoria] = useState("");
+    //Fazer a requisicao do Estabelecimento
+    const vUIDEstabelecimento = "jMQqNo";
+
     const descCat = "";
-    const [nome, setNome] = useState("");
-    const [descricao, setDescricao] = useState("");
+    const [vNome, setVNome] = useState("");
+    const [vPreco, setVPreco] = useState("");
+    const vAtivo = true;
     const [tempo, setTempo] = useState("");
-    const [preco, setPreco] = useState("");
+    const [nomeCategoria, setNomeCategoria] = useState("");
+    const [vDescricao, setVDescricao] = useState("");
 
     const fTempo = useRef(null);
     const fPreco = useRef(null);
+
+    const navigate = useNavigate("");
 
     //bloquear rolagem nos imputs number
     useEffect(() => {
@@ -50,45 +56,38 @@ const TelaCadServico = () => {
 
     const handleChangePreco = (e) => {
         const precoConvertido = e.target.value.replace(',', '.');
-        setPreco(precoConvertido);
+        setVPreco(precoConvertido);
     }
 
 
 
     //Enviar os Dados para a API com o AXIOS
-    const cadastrarServico = async (nome, preco, tempo, descricao, categoria, descCat) => {
+    const cadastrarServico = async (vUIDEstabelecimento, vNome, vPreco, vAtivo, tempo, vDescricao, nomeCategoria, descCat) => {
         try {
-
-            const dados = await agFetch.get('/estabelecimento/prop');
-
-            const uid = dados.data.uid;
-
+            // Converter os valores para números antes de enviar a requisição
+            const convertePreco = parseFloat(vPreco);
+            const tempoConvertido = parseInt(tempo);
             const novoServico = {
-                uid,
-                nome,
-                preco,
-                tempo,
-                descricao,
+                UIDEstabelecimento: vUIDEstabelecimento,
+                nome: vNome,
+                preco: convertePreco,
+                ativo: vAtivo,
+                tempoMedioMin: tempoConvertido,
+                descricao: vDescricao,
                 categoria: {
-                    nome: categoria,
-                    descricao: descCat 
+                    nome: nomeCategoria,
+                    descricao: ""
                 }
             };
 
-            alert(uid);
-
-
+            console.log(novoServico);
             // Faça a requisição POST para a API utilizando o Axios
             const response = await agFetch.post('/servicos/criar', novoServico);
 
             // Verifique a resposta da API e faça o redirecionamento se necessário
             if (response.status === 201) {
                 alert("Dados cadastrados com sucesso!");
-                setCategoria("");
-                setNome("");
-                setDescricao("");
-                setTempo("");
-                setPreco("");
+                navigate("/tServADM");
             }
         } catch (error) {
             console.log(error);
@@ -97,8 +96,11 @@ const TelaCadServico = () => {
 
             if (valErro === 404)
                 alert("Servidor Indisponível!");
-            else if (valErro === 400)
+            else if (valErro === 400) {
                 alert("Dados Inválidos!");
+                console.log(error.response.data);
+                console.log(error.response.status);
+            }
             else if (valErro === 409) {
                 //alert("Telefone, CPF ou Email já cadastrados!");
                 const texto = error.response.data;
@@ -110,9 +112,10 @@ const TelaCadServico = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //alert(JSON.stringify({ nome, preco, tempo, descricao, categoria, descCat }));
 
-        cadastrarServico(nome, preco, tempo, descricao, categoria, descCat);
+        //alert(JSON.stringify({ vUIDEstabelecimento, vNome, vPreco, vAtivo, tempo, vDescricao, nomeCategoria, descCat }));
+
+        cadastrarServico(vUIDEstabelecimento, vNome, vPreco, vAtivo, tempo, vDescricao, nomeCategoria, descCat);
     }
 
     return (
@@ -121,7 +124,7 @@ const TelaCadServico = () => {
             {/* header  começo */}
             <header className={styles.body_header}>
                 <div className={styles.esquerda}>
-                    <label for={styles["check"]}>
+                    <label htmlFor={styles["check"]}>
                         <img src={menu} alt="retunr" className='sidebar_btn' />
                     </label>
                 </div>
@@ -163,9 +166,9 @@ const TelaCadServico = () => {
                             <option value="barba">Barba</option>
                             <option value="manicure">Manicure</option>
                         </select>*/}
-                            <input type="text" className={styles.texto} placeholder='Categoria' onChange={(e) => { setCategoria(e.target.value) }} required />
-                            <input type="text" className={styles.texto} placeholder='Nome' onChange={(e) => { setNome(e.target.value) }} required />
-                            <textarea placeholder='Descrição' className={styles.desc} onChange={(e) => { setDescricao(e.target.value) }} required />
+                            <input type="text" className={styles.texto} placeholder='Categoria' onChange={(e) => { setNomeCategoria(e.target.value) }} required />
+                            <input type="text" className={styles.texto} placeholder='Nome' onChange={(e) => { setVNome(e.target.value) }} required />
+                            <textarea placeholder='Descrição' className={styles.desc} onChange={(e) => { setVDescricao(e.target.value) }} required />
                             <input type="number"
                                 className={styles.texto}
                                 placeholder="Tempo"
@@ -192,7 +195,7 @@ const TelaCadServico = () => {
                                     const { key, target } = event;
                                     const hasComma = target.value.includes(',');
                                     const commaIndex = target.value.indexOf(',');
-                                    if (!/[0-9,]/.test(event.key) || key === ',' && (hasComma || commaIndex !== -1 || target.value === '')) {
+                                    if ((!/[0-9,]/.test(event.key) || key === ',') && (hasComma || commaIndex !== -1 || target.value === '')) {
                                         event.preventDefault();
                                     }
 
