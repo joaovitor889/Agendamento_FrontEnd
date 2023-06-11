@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom';
 
 import agFetch from '../../axios/config.js';
 
+import { decodeToken } from "react-jwt";
+
 const TelaLoginAdm = () => {
 
     document.title = "LoginAdm";
@@ -20,52 +22,38 @@ const TelaLoginAdm = () => {
     const navigate = useNavigate();
 
     //Requisicoes com a API
-
     const signin = async (cmpEmail, cmpSenha) => {
         //teste se os dados estao sendo enviados
         //alert(JSON.stringify({ email, senha }));
 
-        
-        try {        
+
+        try {
             const response = await agFetch.post('/auth/proprietario', {
-              email: cmpEmail,
-              senha: cmpSenha
+                email: cmpEmail,
+                senha: cmpSenha
             });
-            
-            
-            
-            if(response.status >= 200 &&  response.status <= 299) {
-                const token = response.data.token; 
+
+            if (response.status >= 200 && response.status <= 299) {
+                const token = response.data.token;
                 //alert("Logou no Proprietário" + token);
                 console.log("Logou no Proprietário" + token);
-               
+
                 //navigate('/tAgendamentosADM');
-                navigate('/tPesqFunc');
-            }  else if(response.status === 401){
+                //navigate('/tPesqFunc');
+
+                const decodedToken = decodeToken(token);
+                const valID = decodedToken.id;
+
+                navigate(`/tPesqFunc/${valID}`);                
+            } else if (response.status === 401) {
                 alert("Senha ou email invalido");
-            }else{
+            } else {
                 alert("Houve um problema ao logar, tente mais tarde");
-            }             
-
-            //alert(token);
-            
-            /*const config = {
-              headers: {
-                Authorization: `Bearer ${token}`
-              }
-            };*/
-        
-//             const pegaToken = await agFetch.get('/auth/', config);
-
-
-            /*if(.status === 200) {
-                //alert("Logou no Proprietário");
-                navigate('/tAgendamentosADM');
-            } */               
-          } catch (error) {
+            }
+        } catch (error) {
             console.error(error);
             alert("Dados Incorretos!");
-          }
+        }
     }
 
     const handleSubmit = (e) => {

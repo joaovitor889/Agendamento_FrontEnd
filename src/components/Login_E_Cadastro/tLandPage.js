@@ -8,9 +8,15 @@ import Contato from '../../img/Headset.png';
 
 import { Link } from "react-router-dom";
 
-const telaLandPage = () => {
+import { useState } from 'react';
+
+import ContSuporte from '../modal/tConatoSuporte';
+
+const TelaLandPage = () => {
 
     document.title = "Bem-Vindo!";
+
+    const [openModalContSuporte, setOpenModalContSuporte] = useState(false);
 
     return (
         <div className="fLandPage">
@@ -51,7 +57,7 @@ const telaLandPage = () => {
 
                 <div className='contato'>
                     <img src={Contato} alt='Contato' />
-                    <a href="/" target="_blank" rel="noreferrer">Entre em contato com <br></br>a nossa equipe</a>
+                    <p onClick={() => setOpenModalContSuporte(true)}>Entre em contato com <br></br>a nossa equipe</p>
                 </div>
             </div>
 
@@ -85,8 +91,9 @@ const telaLandPage = () => {
                     Agradecemos o seu acesso
                 </center>
             </div>
+            <ContSuporte isOpen={openModalContSuporte} setOpenModalContSuporte={() => setOpenModalContSuporte(!openModalContSuporte)}/>
         </div>
     )
 }
 
-export default telaLandPage
+export default TelaLandPage
