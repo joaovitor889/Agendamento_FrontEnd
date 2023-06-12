@@ -539,7 +539,7 @@ h2 {
         color: #000;
     }
 
-    #ulDesk p {
+    #ulDesk li p {
         text-align: left;
         font-family: 'Times New Roman', Times, serif;
         font-size: 1.5vw;
