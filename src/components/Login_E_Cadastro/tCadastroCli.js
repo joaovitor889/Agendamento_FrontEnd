@@ -6,6 +6,8 @@ import agFetch from '../../axios/config.js';
 
 import { useNavigate } from 'react-router-dom';
 
+import TermosUso from '../modal/tTermosUsoPrivacidade';
+
 const TelaCadastroUsuario = () => {
 
     document.title = "Cadastrar Cliente";
@@ -20,6 +22,8 @@ const TelaCadastroUsuario = () => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [confSenha, setConfSenha] = useState("");
+
+    const [openModalTermosUso, setOpenModalTermosUso] = useState(false);
 
     const fCPF = useRef(null);
     const fTelefone = useRef(null);
@@ -172,7 +176,7 @@ const TelaCadastroUsuario = () => {
                                 <div className={styles.rodape}>
                                     <span className={styles.condicoes}>
                                         <input type="checkbox" id={styles["termos"]} required />
-                                        <a href="/" target={'_blank'}>Aceitar termos</a>
+                                        <p onClick={() => {setOpenModalTermosUso(true)}}>Aceitar termos</p>
                                     </span>
                                     <div className={styles.botoes}>
                                         <input type="submit" id={styles["btnCadastro"]} name="btnCadastro" value="Cadastrar" />
@@ -184,6 +188,7 @@ const TelaCadastroUsuario = () => {
                 </div>
             </div>
             <div className={styles.rodFundo}></div>
+            <TermosUso isOpen={openModalTermosUso} setOpenModalTermosUso={() => setOpenModalTermosUso(!openModalTermosUso)}/>
         </div>
     )
 }

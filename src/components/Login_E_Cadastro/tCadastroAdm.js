@@ -13,6 +13,8 @@ import { useNavigate } from 'react-router-dom';
 
 import agFetch from '../../axios/config.js';
 
+import TermosUso from '../modal/tTermosUsoPrivacidade';
+
 const TelaCadastroAdm = () => {
     document.title = "CadastroAdm";
 
@@ -27,6 +29,8 @@ const TelaCadastroAdm = () => {
     const fTelefone = useRef(null);
 
     const navigate = useNavigate();
+
+    const [openModalTermosUso, setOpenModalTermosUso] = useState(false);
 
     //bloquear rolagem nos imputs number
     useEffect(() => {
@@ -212,13 +216,14 @@ const TelaCadastroAdm = () => {
                             </div>
                             <div className='termosADM'>
                                 <input type="checkbox" name="termos" required />
-                                <a href="/" target={'_blank'}>Aceitar termos</a>
+                                <p onClick={() => {setOpenModalTermosUso(true)}}>Aceitar termos</p>
                             </div>
                             <input type="submit" id="btnCadastroADM" name="btnLogin" value="Cadastrar" />
                         </form>
                     </div>
                 </div>
             </div>
+            <TermosUso isOpen={openModalTermosUso} setOpenModalTermosUso={() => setOpenModalTermosUso(!openModalTermosUso)}/>
         </div>
     )
 }

@@ -17,6 +17,10 @@ import { useForm } from "react-hook-form";
 
 import { Link } from 'react-router-dom';
 
+import FotoHor from './FotoPerfilAdm/fotoAdmHor';
+import FotoLat from './FotoPerfilAdm/fotoAdmLat';
+import FotoMen from './FotoPerfilAdm/fotoAdmMen';
+
 
 const TelaEnderecoCliente = () => {
     document.title = "Endereço do Cliente";
@@ -232,17 +236,14 @@ const TelaEnderecoCliente = () => {
                     <ul id={styles["ulDesk"]}>
                         <br></br>
                         <br></br>
-                        <div id={styles["perfilLateral"]}>
-                            {/*<img src={Perfil} alt="perfil" />*/}
-                            <p>{iniciais}</p>
-                        </div>
+                        <FotoLat />
                         <div id={styles["textoLL"]}>
                             <Link to="/tMenuDBADM" rel="noreferrer">
                                 <li><p>Dados Básicos</p></li>
                             </Link>
 
                             <Link to="/tMenuEnderecoADM" rel="noreferrer">
-                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Endereço</p></li>
+                                <li style={{ color: '#000' }}><p>Endereço</p></li>
                             </Link>
     
                             <Link to="/tMenuFotoADM" rel="noreferrer">
@@ -251,6 +252,9 @@ const TelaEnderecoCliente = () => {
 
                             <Link to="/tEmpreendimento" rel="noreferrer">
                                 <li><p>Empreendimento</p></li>
+                            </Link>
+                            <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>
                     </ul>
@@ -363,10 +367,7 @@ const TelaEnderecoCliente = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <div id="perfilHamburger">
-                            {/*<img src={Perfil} alt="perfil" />*/}
-                            <p>{iniciais}</p>
-                        </div>
+                        <FotoMen />
 
                         <ul id="uMenHamburger">
                             <li>
@@ -399,6 +400,13 @@ const TelaEnderecoCliente = () => {
                             </li>
                             <li>
                                 <p>
+                                    <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                        Novo Empreendimento
+                                    </Link>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
                                     <Link to="/tPesqFunc" rel="noreferrer">
                                         Voltar ao Menu
                                     </Link>
@@ -408,10 +416,7 @@ const TelaEnderecoCliente = () => {
                     </div>
                 </div>
 
-                <div className={styles.perfil}>
-                    {/*<img src={Perfil} alt="perfil" />*/}
-                    <p>{iniciais}</p>
-                </div>
+                <FotoHor />
                 <div className={styles.notificacao}>
                     <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
                     {showNotifications && (

@@ -427,9 +427,9 @@ h2 {
         margin-left: -22%;
     }
     #ulDesk li:hover{
-        background-color: rgba(80, 80, 80, 0.5);
+        color: #000;
     }
-    #ulDesk p{
+    #ulDesk li p{
         text-align: left;
         font-family: 'Times New Roman', Times, serif;
         font-size: 1.5vw;
