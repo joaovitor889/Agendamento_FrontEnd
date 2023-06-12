@@ -238,11 +238,30 @@ const TelaMenuEmpreendimento = () => {
             ],
         };
 
+        if ((segInic !== "" && segFim === "") ||
+            (terInic !== "" && terFim === "") ||
+            (quaInic !== "" && quaFim === "") ||
+            (quiInic !== "" && quiFim === "") ||
+            (sexInic !== "" && sexFim === "") ||
+            (sabInic !== "" && sabFim === "") ||
+            (domInic !== "" && domFim === "") ||
+
+            (segInic === "" && segFim !== "") ||
+            (terInic === "" && terFim !== "") ||
+            (quaInic === "" && quaFim !== "") ||
+            (quiInic === "" && quiFim !== "") ||
+            (sexInic === "" && sexFim !== "") ||
+            (sabInic === "" && sabFim !== "") ||
+            (domInic === "" && domFim !== "")) {
+            alert("Horários incorretos! Preencha todos os campos corretamente.");
+            return;
+        }
+
         console.log(textData);
 
         try {
             //alert(token);
-            
+
             //Autorizar o envio dos dados
             const headers = {
                 Authorization: `Bearer ${token}`,
@@ -271,6 +290,7 @@ const TelaMenuEmpreendimento = () => {
 
         } catch (error) {
             console.error('Erro ao enviar requisições:', error);
+            alert("Dados Inválidos!");
         }
     }
 
