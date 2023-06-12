@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 
 import agFetch from '../../axios/config.js';
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import tAzul from '../../temas/tema01.png';
 
@@ -35,6 +35,8 @@ import FotoMen from './FotoPerfilAdm/fotoAdmMen';
 
 const TelaMenuEmpreendimento = () => {
     document.title = "Empreendimento";
+
+    const { token } = useParams();
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -133,7 +135,7 @@ const TelaMenuEmpreendimento = () => {
 
     const [ftema, setTema] = useState("");
 
-    const ftelefone = "";
+    const ftelefone = "15 996633179";
 
     const [userData, setUserData] = useState({});
 
@@ -187,7 +189,7 @@ const TelaMenuEmpreendimento = () => {
         //alert(JSON.stringify({ selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
 
         const textData = {
-            nome: nomeEst, 
+            nome: nomeEst,
             telefone: ftelefone,
             uf: jseuf,
             cidade: jscidade,
@@ -224,7 +226,7 @@ const TelaMenuEmpreendimento = () => {
                     fim: sexFim
                 },
                 {
-                    diaSemana: "sabado",
+                    diaSemana: "sábado",
                     inicio: sabInic,
                     fim: sabFim
                 },
@@ -236,27 +238,35 @@ const TelaMenuEmpreendimento = () => {
             ],
         };
 
-        //alert(JSON.stringify({textData}));
+        console.log(textData);
 
         try {
+            //alert(token);
+            
+            //Autorizar o envio dos dados
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
             // Enviar os dados de texto
-            const responseText = await agFetch.post('/estabelecimento/criar', textData);
+            const responseText = await agFetch.post('/estabelecimento/criar', textData, { headers });
+
             console.log('Resposta de texto:', responseText.data);
 
             // Criar um objeto FormData para enviar a foto
-            
+
             //const formData = new FormData();
             //formData.append('photo', selectedFile);
 
             // Fazer upload da foto
             //const responsePhoto = await agFetch.post('/api/photo-endpoint', formData, {
-                //headers: {
-                    //'Content-Type': 'multipart/form-data',
-                //},
+            //headers: {
+            //'Content-Type': 'multipart/form-data',
+            //},
             //});
             //console.log('Resposta de foto:', responsePhoto.data);
 
-            if(responseText.status === 201)
+            if (responseText.status === 201)
                 alert("Estabelecimento Cadastrado!");
 
         } catch (error) {

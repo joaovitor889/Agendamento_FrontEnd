@@ -10,8 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 import agFetch from '../../axios/config.js';
 
-import { decodeToken } from "react-jwt";
-
 const TelaLoginAdm = () => {
 
     document.title = "LoginAdm";
@@ -23,10 +21,6 @@ const TelaLoginAdm = () => {
 
     //Requisicoes com a API
     const signin = async (cmpEmail, cmpSenha) => {
-        //teste se os dados estao sendo enviados
-        //alert(JSON.stringify({ email, senha }));
-
-
         try {
             const response = await agFetch.post('/auth/proprietario', {
                 email: cmpEmail,
@@ -35,42 +29,22 @@ const TelaLoginAdm = () => {
 
             if (response.status >= 200 && response.status <= 299) {
                 const token = response.data.token;
-                //alert("Logou no Proprietário" + token);
                 console.log("Logou no Proprietário" + token);
 
-                //navigate('/tAgendamentosADM');
-                //navigate('/tPesqFunc');
 
-                const decodedToken = decodeToken(token);
-                const valID = decodedToken.id;
+                navigate(`/tEmpreendimento/${token}`);
 
-                var UIDEmpr;
-
-                const empreendimentos = await agFetch.get('/estabelecimento');
-                const dadosEmpreendimentos = empreendimentos.data;
-
-                const primeiroEmpreendimento = dadosEmpreendimentos.find((empreendimento) => empreendimento.proprietariosId === valID);
-
-
-                if (primeiroEmpreendimento) {
-                    UIDEmpr = primeiroEmpreendimento.uid;
-                    navigate(`/tEmpreendimento/${UIDEmpr}`);
-                } else {
-                    alert("Bem-Vindo a plataforma, cadastre um novo Empreendimento!");
-                }
-
-                //navigate(`/tPesqFunc/${UIDEmpr}`);
-                navigate(`/tEmpreendimento/${UIDEmpr}`);
             } else if (response.status === 401) {
-                alert("Senha ou email invalido");
+                alert("Senha ou email inválido");
             } else {
-                alert("Houve um problema ao logar, tente mais tarde");
+                alert("Houve um problema ao logar, tente novamente mais tarde");
             }
         } catch (error) {
             console.error(error);
-            alert("Dados Incorretos!");
+            alert("Dados incorretos!");
         }
-    }
+    };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
