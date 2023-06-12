@@ -50,7 +50,7 @@ import DadosBasicosAdm from './components/Administrador/tMenuDBADM.js';
 import EnderecoAdm from './components/Administrador/tMenuEnderecoADM.js';
 import FotoADM from './components/Administrador/tMenuFotoADM.js';
 import Empreendimento from './components/Administrador/tMenuEmpr.js';
-import NovoEmpreendimento from './components/Administrador/tMenuEmprNew.js'
+import NovoEmpreendimento from './components/Administrador/tMenuEmprNew.js';
 
 import './App.css';
 
@@ -90,8 +90,9 @@ function App() {
             <Route path="/tMenuDBADM" element = {<DadosBasicosAdm />} />
             <Route path="/tMenuEnderecoADM" element = {<EnderecoAdm />} />
             <Route path="/tMenuFotoADM" element = {<FotoADM />} />
-            <Route path="/tEmpreendimento" element = {<Empreendimento />} />
-            <Route path="/tNovoEmpreendimento" element = {<NovoEmpreendimento />} />
+
+            
+            <Route path="/tNovoEmpreendimento/:token" element = {<NovoEmpreendimento />} />
             
 
             {/* Telas do Cliente */}

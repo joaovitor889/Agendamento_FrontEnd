@@ -11,9 +11,11 @@ import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
 import React, { useState, useEffect, useRef } from "react";
 
+import { useForm } from "react-hook-form";
+
 import agFetch from '../../axios/config.js';
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import tAzul from '../../temas/tema01.png';
 
@@ -27,8 +29,14 @@ import tAmarelo from '../../temas/tema05.png';
 
 //import { Link, useNavigate } from "react-router-dom";
 
-const TelaMenuEmpreendimentoNew = () => {
+import FotoHor from './FotoPerfilAdm/fotoAdmHor';
+import FotoLat from './FotoPerfilAdm/fotoAdmLat';
+import FotoMen from './FotoPerfilAdm/fotoAdmMen';
+
+const TelaMenuEmpreendimento = () => {
     document.title = "Empreendimento";
+
+    const { token } = useParams();
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -105,47 +113,35 @@ const TelaMenuEmpreendimentoNew = () => {
         setSelectedFile(e.target.files[0]);
     }
 
-    //atualiza foto de perfil
-    const updateFoto = (e) => {
-        e.preventDefault();
+    //dados do formulario
+    const [nomeEst, setNomeEst] = useState("");
 
-        alert('Dados Salvos!');
-    }
+    //horario de funcionamento
+    const [segInic, setSegInic] = useState("");
+    const [terInic, setTerInic] = useState("");
+    const [quaInic, setQuaInic] = useState("");
+    const [quiInic, setQuiInic] = useState("");
+    const [sexInic, setSexInic] = useState("");
+    const [sabInic, setSabInic] = useState("");
+    const [domInic, setDomInic] = useState("");
+
+    const [segFim, setSegFim] = useState("");
+    const [terFim, setTerFim] = useState("");
+    const [quaFim, setQuaFim] = useState("");
+    const [quiFim, setQuiFim] = useState("");
+    const [sexFim, setSexFim] = useState("");
+    const [sabFim, setSabFim] = useState("");
+    const [domFim, setDomFim] = useState("");
+
+    const [ftema, setTema] = useState("");
+
+    const ftelefone = "15 996633179";
 
     const [userData, setUserData] = useState({});
 
-    //const valToken = localStorage.getItem('user_token');
-    //const JSToken = JSON.parse(valToken);
-
-
-    //var token = JSToken['token'];
-    //var tkEmail = JSToken['email'];
-
-    //alert(JSON.stringify(JSToken['token']));
-    //alert(JSON.stringify(JSToken['email']));
-
     // Função para obter os dados do usuário
     const fetchUserData = async () => {
-        /*try {
-            const response = await agFetch.get('/clientes/criar', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
 
-            const data = response.data;
-
-            //filtra o objeto
-            var objFiltrado = data.find((item) => item.email === tkEmail);
-            var objF = objFiltrado ? { ...objFiltrado } : null;
-
-            setUserData(objF);
-            //alert(tkEmail);
-            //alert(JSON.stringify(data));
-            //alert(JSON.stringify(objF));
-        } catch (error) {
-            alert(error);
-        }*/
     };
 
     // Chama a função fetchUserData quando o componente é montado
@@ -153,75 +149,23 @@ const TelaMenuEmpreendimentoNew = () => {
         fetchUserData();
     });
 
-    // Extrai as informações necessárias do usuário
-    const nome = "José";
-    const sobrenome = "Luis";
-
-    //const nome = userData.nome;
-    //const sobrenome = userData.sobrenome;
-
-    var pnome = '';
-    var psobrenome = '';
-
-    if (nome && nome.length > 0) {
-        pnome = nome.charAt(0);
-    }
-
-    if (sobrenome && sobrenome.length > 0) {
-        psobrenome = sobrenome.charAt(0);
-    }
-
-    const iniciais = pnome + psobrenome;
-
-
-
-    //Notificacao
-    const [notifications, setNotifications] = useState([]);
-    const [showNotifications, setShowNotifications] = useState(false);
-    const [newNotification, setNewNotification] = useState(false);
-
-    const fetchNotifications = () => {
-        const fakeNotifications = [
-            { id: 1, title: "Título 1", description: "Notificação 1" },
-            { id: 2, title: "Título 2", description: "Notificação 2" },
-            { id: 3, title: "Título 3", description: "Notificação 3" }
-        ];
-        setNotifications(fakeNotifications);
-    };
-
-    const handleClick = () => {
-        if (!showNotifications) {
-            fetchNotifications();
-        }
-        setShowNotifications(!showNotifications);
-        setNewNotification(false);
-    };
-
-    const handleListClose = () => {
-        setShowNotifications(false);
-    };
-
-
-
-
     //API do CEP
-    //const { register, setValue } = useForm();
+    const { register, setValue } = useForm();
 
     //Campos
-    var jscep, jsnum, jscomp;
-    jscep = useRef(null);
-    jsnum = useRef(null);
-    jscomp = useRef(null);
 
-    //Campos da API
+    //Campos da API CEP
+    const [jscep, setCEP] = useState("");
     const [jsrua, setRua] = useState("");
+    const [jsnum, setNum] = useState("");
+    const [jscomp, setComp] = useState("");
     const [jsbairro, setBairro] = useState("");
     const [jscidade, setCidade] = useState("");
     const [jseuf, setUF] = useState("");
 
 
     const checkCEP = (e) => {
-        /*const cep = e.target.value.replace(/\D/g, '');
+        const cep = e.target.value.replace(/\D/g, '');
         //console.log(cep);
         console.log(jsrua, jsbairro, jscidade, jseuf);
 
@@ -237,8 +181,125 @@ const TelaMenuEmpreendimentoNew = () => {
                 setBairro(data.bairro);
                 setCidade(data.localidade);
                 setUF(data.uf);
-            });*/
+            });
     }
+
+    //salvar o empreendimento
+    const cadEstabelecimento = async (selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
+        //alert(JSON.stringify({ selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
+
+        const textData = {
+            nome: nomeEst,
+            telefone: ftelefone,
+            uf: jseuf,
+            cidade: jscidade,
+            bairro: jsbairro,
+            logradouro: jsrua,
+            numero: jsnum,
+            complemento: jscomp,
+            tema: ftema,
+
+            horarios: [
+                {
+                    diaSemana: "segunda",
+                    inicio: segInic,
+                    fim: segFim
+                },
+                {
+                    diaSemana: "terça",
+                    inicio: terInic,
+                    fim: terFim
+                },
+                {
+                    diaSemana: "quarta",
+                    inicio: quaInic,
+                    fim: quaFim
+                },
+                {
+                    diaSemana: "quinta",
+                    inicio: quiInic,
+                    fim: quiFim
+                },
+                {
+                    diaSemana: "sexta",
+                    inicio: sexInic,
+                    fim: sexFim
+                },
+                {
+                    diaSemana: "sábado",
+                    inicio: sabInic,
+                    fim: sabFim
+                },
+                {
+                    diaSemana: "domingo",
+                    inicio: domInic,
+                    fim: domFim
+                }
+            ],
+        };
+
+        if ((segInic !== "" && segFim === "") ||
+            (terInic !== "" && terFim === "") ||
+            (quaInic !== "" && quaFim === "") ||
+            (quiInic !== "" && quiFim === "") ||
+            (sexInic !== "" && sexFim === "") ||
+            (sabInic !== "" && sabFim === "") ||
+            (domInic !== "" && domFim === "") ||
+
+            (segInic === "" && segFim !== "") ||
+            (terInic === "" && terFim !== "") ||
+            (quaInic === "" && quaFim !== "") ||
+            (quiInic === "" && quiFim !== "") ||
+            (sexInic === "" && sexFim !== "") ||
+            (sabInic === "" && sabFim !== "") ||
+            (domInic === "" && domFim !== "")) {
+            alert("Horários incorretos! Preencha todos os campos corretamente.");
+            return;
+        }
+
+        console.log(textData);
+
+        try {
+            //alert(token);
+
+            //Autorizar o envio dos dados
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            // Enviar os dados de texto
+            const responseText = await agFetch.post('/estabelecimento/criar', textData, { headers });
+
+            console.log('Resposta de texto:', responseText.data);
+
+            // Criar um objeto FormData para enviar a foto
+
+            //const formData = new FormData();
+            //formData.append('photo', selectedFile);
+
+            // Fazer upload da foto
+            //const responsePhoto = await agFetch.post('/api/photo-endpoint', formData, {
+            //headers: {
+            //'Content-Type': 'multipart/form-data',
+            //},
+            //});
+            //console.log('Resposta de foto:', responsePhoto.data);
+
+            if (responseText.status === 201)
+                alert("Estabelecimento Cadastrado!");
+
+        } catch (error) {
+            console.error('Erro ao enviar requisições:', error);
+            alert("Dados Inválidos!");
+        }
+    }
+
+    const salvarEmpreendimento = (e) => {
+        e.preventDefault();
+
+        cadEstabelecimento(selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
+    }
+
 
     return (
         <div className={styles.fEmpr}>
@@ -247,10 +308,7 @@ const TelaMenuEmpreendimentoNew = () => {
                     <ul id={styles["ulDesk"]}>
                         <br></br>
                         <br></br>
-                        <div id={styles["perfilLateral"]}>
-                            {/*<img src={Perfil} alt="perfil" />*/}
-                            <p>{iniciais}</p>
-                        </div>
+                        <FotoLat />
                         <div id={styles["textoLL"]}>
                             <Link to="/tMenuDBADM" rel="noreferrer">
                                 <li><p>Dados Básicos</p></li>
@@ -265,11 +323,11 @@ const TelaMenuEmpreendimentoNew = () => {
                             </Link>
 
                             <Link to="/tEmpreendimento" rel="noreferrer">
-                                <li><p>Empreendimento</p></li>
+                                <li style={{ color: '#000' }}><p>Empreendimento</p></li>
                             </Link>
 
-                            <Link to="/tEmpreendimento" rel="noreferrer">
-                                <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>New Empreendimeno</p></li>
+                            <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>
                     </ul>
@@ -279,12 +337,12 @@ const TelaMenuEmpreendimentoNew = () => {
 
             <div id={styles["conteudoCli"]}>
                 <h2><center>Logo</center></h2>
-                <form id={styles["formFoto"]} onSubmit={updateFoto}>
+                <form id={styles["formFoto"]} onSubmit={salvarEmpreendimento}>
                     <center><img id="fotoDefCli" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
                     <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
                     <div className={styles.legFoto}><p>Adicionar / alterar imagem</p></div>
-                    <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" required /></center>
-                    <center><input type="text" placeholder='Nome:' name="nome" id='NomeProp'/></center>
+                    <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" /*required*/ /></center>
+                    <center><input type="text" placeholder='Nome:' name="nome" onChange={(e) => setNomeEst(e.target.value)} required /></center>
                     <div id={styles["ptHor"]}>
                         <center>
                             <br></br>
@@ -301,57 +359,57 @@ const TelaMenuEmpreendimentoNew = () => {
                                 <tr>
                                     <td><p>Segunda</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" id='SegInicio'/></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setSegInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" id='SegFim'/></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setSegFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Terça</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" id='TerInicio'/></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setTerInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" id='TerFim'/></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setTerFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Quarta</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" id='QuarInicio'/></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setQuaInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" id='QuarFim'/></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setQuaFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Quinta</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" id='QuinInicio'/></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setQuiInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" id='QuinFim'/></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setQuiFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Sexta</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" id='SexInicio'/></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setSexInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" id='SexFim'/></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setSexFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Sábado</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" id='SabInicio'/></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setSabInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" id='SabFim'/></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setSabFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Domingo</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" id='DomInicio'/></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setDomInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" id='DomFim'/></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setDomFim(e.target.value)} /></td>
                                 </tr>
                             </table>
                             <br></br>
@@ -371,11 +429,11 @@ const TelaMenuEmpreendimentoNew = () => {
                         <input type="radio" value="roza" name="temas" />                         
                         <input type="radio" value="amarelo" name="temas" />*/}
 
-                        <img src={tAzul} alt="Tema Azul" onClick={(e) => { alert("Azul") }} />
-                        <img src={tVermelho} alt="Tema Vermelho" onClick={(e) => { alert("Vermelho") }} />
-                        <img src={tVerde} alt="Tema Verde" onClick={(e) => { alert("Verde") }} />
-                        <img src={tRoza} alt="Tema Roza" onClick={(e) => { alert("Roza") }} />
-                        <img src={tAmarelo} alt="Tema Amarelo" onClick={(e) => { alert("Amarelo") }} />
+                        <img src={tAzul} alt="Tema Azul" onClick={() => setTema("#3293CA")} />
+                        <img src={tVermelho} alt="Tema Vermelho" onClick={() => setTema("#f02d1f")} />
+                        <img src={tVerde} alt="Tema Verde" onClick={() => setTema("#1ff076")} />
+                        <img src={tRoza} alt="Tema Roza" onClick={() => setTema("#f01fbf")} />
+                        <img src={tAmarelo} alt="Tema Amarelo" onClick={() => setTema("#dbd51d")} />
                     </div>
                     <br></br>
                     <br></br>
@@ -396,7 +454,7 @@ const TelaMenuEmpreendimentoNew = () => {
                                 }}
                                 //{...register("cep")}
                                 onBlur={checkCEP}
-                                ref={jscep}
+                                onChange={(e) => setCEP(e.target.value)}
                                 required />
                         </div>
                         <div>
@@ -405,7 +463,7 @@ const TelaMenuEmpreendimentoNew = () => {
                                 title="Digite a sua Rua"
                                 name="rua" id={styles["rua"]}
                                 className={styles.segColuna}
-                                //{...register("rua")}
+                                {...register("rua")}
                                 onChange={(e) => setRua(e.target.value)}
                                 required />
                         </div>
@@ -422,7 +480,7 @@ const TelaMenuEmpreendimentoNew = () => {
                                     }
                                 }}
                                 id={styles["numero"]}
-                                ref={jsnum}
+                                onChange={(e) => setNum(e.target.value)}
                                 required /> <br></br>
                         </div>
                         <div>
@@ -431,7 +489,7 @@ const TelaMenuEmpreendimentoNew = () => {
                                 title="Digite o seu Complemento"
                                 name="comp" id={styles["comple"]}
                                 className={styles.segColuna}
-                                ref={jscomp} /> <br></br>
+                                onChange={(e) => setComp(e.target.value)} /> <br></br>
                         </div>
                     </div>
                     <div className={styles.linhaUnica}>
@@ -440,7 +498,7 @@ const TelaMenuEmpreendimentoNew = () => {
                             title="Digite o seu bairro"
                             name="bairro"
                             id={styles["bairro"]}
-                            //{...register("bairro")}   
+                            {...register("bairro")}
                             onChange={(e) => setBairro(e.target.value)}
                             required />
                         <input type="text"
@@ -448,7 +506,7 @@ const TelaMenuEmpreendimentoNew = () => {
                             title="Digite a sua Cidade"
                             name="cidade"
                             id={styles["cidade"]}
-                            //{...register("cidade")}
+                            {...register("cidade")}
                             onChange={(e) => setCidade(e.target.value)}
                             required />
                         <input type="text"
@@ -456,7 +514,7 @@ const TelaMenuEmpreendimentoNew = () => {
                             title="Digite o seu Estado"
                             name="estado"
                             id={styles["estado"]}
-                            //{...register("uf")}
+                            {...register("uf")}
                             onChange={(e) => setUF(e.target.value)}
                             required />
                     </div>
@@ -486,10 +544,7 @@ const TelaMenuEmpreendimentoNew = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <div id="perfilHamburger">
-                            {/*<img src={Perfil} alt="perfil" />*/}
-                            <p>{iniciais}</p>
-                        </div>
+                        <FotoMen />
 
                         <ul id="uMenHamburger">
                             <li>
@@ -522,6 +577,13 @@ const TelaMenuEmpreendimentoNew = () => {
                             </li>
                             <li>
                                 <p>
+                                    <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                        New Empreendimento
+                                    </Link>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
                                     <Link to="/tPesqFunc" rel="noreferrer">
                                         Voltar ao Menu
                                     </Link>
@@ -531,36 +593,13 @@ const TelaMenuEmpreendimentoNew = () => {
                     </div>
                 </div>
 
-                <div className={styles.perfil}>
-                    {/*<img src={Perfil} alt="perfil" />*/}
-                    <p>{iniciais}</p>
-                </div>
-                <div className={styles.notificacao}>
-                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
-                    {showNotifications && (
-                        <div className={styles.notificationContainer}>
-                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
-                            {newNotification && <p>Nova notificação recebida!</p>}
-                            <ul className={styles.notificationList}>
-                                {notifications.map((notification, index) => (
-                                    <li
-                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
-                                        key={notification.id}
-                                    >
-                                        <p className="notification-title">{notification.title}</p>
-                                        <p className={styles.notificationDescription}>{notification.description}</p>
-                                        <hr></hr>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>
-                <div className={styles.logoMenuCli}><p></p></div>
+                <FotoHor />
+
+                <div className={styles.logoMenuCli}><p>Shostners & Shotners</p></div>
                 <div id={styles["voltar"]}><a href="/tPesqFunc" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>
         </div>
     )
 }
 
-export default TelaMenuEmpreendimentoNew
+export default TelaMenuEmpreendimento

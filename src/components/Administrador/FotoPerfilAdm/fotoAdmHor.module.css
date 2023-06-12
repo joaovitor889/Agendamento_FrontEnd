@@ -1,0 +1,44 @@
+.perfil {
+    position: absolute;
+    left: 90%;
+    top: 15%;
+    background-color: #000;
+    border-radius: 50%;
+    width: 8%;
+    height: 70%;
+}
+
+.perfil img {
+    position: absolute;
+    top: 1%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+}
+
+.perfil p {
+	font-size: 6vw;
+	line-height: 70%;
+    margin-top: 25%;
+    color: #fff;
+}
+
+@media only screen and (min-width: 1024px) {
+	.perfil {
+        width: 3vw;
+        height: 3vw;
+        border-radius: 50%;
+        margin-left: 5%;
+    }
+
+    .perfil img {
+        margin: 10%;
+        width: 70%;
+        height: 70%;
+    }
+    .perfil p {
+		font-size: 2vw;
+        margin-top: 20%;
+		line-height: 75%;
+	}
+}
