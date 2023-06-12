@@ -9,7 +9,6 @@ import styles from './fotoAdmMen.module.css';
 //import { Link } from "react-router-dom";
 
 const FotoAdmMen = () => {
-
     //variaveis
 
 
@@ -17,23 +16,16 @@ const FotoAdmMen = () => {
 
     // Extrai as informações necessárias do usuário
     const nome = "José";
-    const sobrenome = "Luis";
 
     //const nome = userData.nome;
     //const sobrenome = userData.sobrenome;
 
     var pnome = '';
-    var psobrenome = '';
+    var iniciais = '';
 
     if (nome && nome.length > 0) {
-        pnome = nome.charAt(0);
+        iniciais = nome.charAt(0) + nome.charAt(1);
     }
-
-    if (sobrenome && sobrenome.length > 0) {
-        psobrenome = sobrenome.charAt(0);
-    }
-
-    const iniciais = pnome + psobrenome;
 
     //conteudo HTML
     return (
