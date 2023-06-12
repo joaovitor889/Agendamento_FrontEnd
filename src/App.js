@@ -91,9 +91,10 @@ function App() {
             <Route path="/tMenuEnderecoADM" element = {<EnderecoAdm />} />
             <Route path="/tMenuFotoADM" element = {<FotoADM />} />
             
+            
             <Route path="/tEmpreendimento/:token" element = {<Empreendimento />} />
 
-            {/*<Route path="/tEmpreendimento" render={(props) => <Empreendimento {...props} token={token} />} />*/}
+            
             <Route path="/tNovoEmpreendimento" element = {<NovoEmpreendimento />} />
             
 
