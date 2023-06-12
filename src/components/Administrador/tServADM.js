@@ -39,9 +39,11 @@ const TelaMenuADM = () => {
     }
 
     useEffect(() => {
+        //fazer uma variavel global que pegue o ID do estabelecimento
         const fetchServices = async () => {
-            try {
-                const response = await agFetch.get('/servicos/todos');
+            try {                
+                //const response = await agFetch.get('/estabelecimento/todosServ/WLShVu');
+                const response = await agFetch.get('/estabelecimento/todosServ/jMQqNo');
                 setServices(response.data);
             } catch (error) {
                 console.log(error);
@@ -52,7 +54,8 @@ const TelaMenuADM = () => {
 
         const fetchCategories = async () => {
             try {
-                const response = await agFetch.get('/servicos/todos');
+                //const response = await agFetch.get('/estabelecimento/todasCat/WLShVu');
+                const response = await agFetch.get('/estabelecimento/todasCat/jMQqNo');
                 setCategories(response.data);
             } catch (error) {
                 console.log(error);
