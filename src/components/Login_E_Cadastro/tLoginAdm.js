@@ -44,7 +44,23 @@ const TelaLoginAdm = () => {
                 const decodedToken = decodeToken(token);
                 const valID = decodedToken.id;
 
-                navigate(`/tPesqFunc/${valID}`);                
+                var UIDEmpr;
+
+                const empreendimentos = await agFetch.get('/estabelecimento');
+                const dadosEmpreendimentos = empreendimentos.data;
+
+                const primeiroEmpreendimento = dadosEmpreendimentos.find((empreendimento) => empreendimento.proprietariosId === valID);
+
+
+                if (primeiroEmpreendimento) {
+                    UIDEmpr = primeiroEmpreendimento.uid;
+                    navigate(`/tEmpreendimento/${UIDEmpr}`);
+                } else {
+                    alert("Bem-Vindo a plataforma, cadastre um novo Empreendimento!");
+                }
+
+                //navigate(`/tPesqFunc/${UIDEmpr}`);
+                navigate(`/tEmpreendimento/${UIDEmpr}`);
             } else if (response.status === 401) {
                 alert("Senha ou email invalido");
             } else {

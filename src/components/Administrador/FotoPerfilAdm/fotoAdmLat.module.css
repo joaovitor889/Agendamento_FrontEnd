@@ -1,0 +1,32 @@
+#perfilLateral {
+    display: none;
+}
+
+@media only screen and (min-width: 1024px) {
+    #perfilLateral {
+        display: flex;
+        width: 50%;
+        height: 15vh;
+        background-color: #000;
+        margin-left: -5%;
+        border-radius: 50%;
+        margin-top: 14%;
+    }
+
+    #perfilLateral p {
+        margin-left: 25%;
+        line-height: 95%;
+        margin-top: 35%;
+        color: #fff;
+        font-size: 4vw;
+        margin-top: 20%;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    #perfilLateral img {
+        position: absolute;
+        top: 12%;
+        width: 50%;
+        height: 15%;
+    }
+}

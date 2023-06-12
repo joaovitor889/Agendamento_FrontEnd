@@ -90,7 +90,7 @@ function App() {
             <Route path="/tMenuDBADM" element = {<DadosBasicosAdm />} />
             <Route path="/tMenuEnderecoADM" element = {<EnderecoAdm />} />
             <Route path="/tMenuFotoADM" element = {<FotoADM />} />
-            <Route path="/tEmpreendimento" element = {<Empreendimento />} />
+            <Route path="/tEmpreendimento/:id" element = {<Empreendimento />} />
             <Route path="/tNovoEmpreendimento" element = {<NovoEmpreendimento />} />
             
 

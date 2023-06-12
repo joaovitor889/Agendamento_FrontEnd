@@ -17,6 +17,10 @@ import { Link } from 'react-router-dom';
 
 //import { Link, useNavigate } from "react-router-dom";
 
+import FotoHor from './FotoPerfilAdm/fotoAdmHor';
+import FotoLat from './FotoPerfilAdm/fotoAdmLat';
+import FotoMen from './FotoPerfilAdm/fotoAdmMen';
+
 const TelaFotoCliente = () => {
 
     document.title = "Foto do Cliente";
@@ -173,10 +177,7 @@ const TelaFotoCliente = () => {
                     <ul id={styles["ulDesk"]}>
                         <br></br>
                         <br></br>
-                        <div id={styles["perfilLateral"]}>
-                            {/*<img src={Perfil} alt="perfil" />*/}
-                            <p>{iniciais}</p>
-                        </div>
+                        <FotoLat />
                         <div id={styles["textoLL"]}>
                             <Link to="/tMenuDBADM" rel="noreferrer">
                                 <li><p>Dados Básicos</p></li>
@@ -231,10 +232,7 @@ const TelaFotoCliente = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <div id="perfilHamburger">
-                            {/*<img src={Perfil} alt="perfil" />*/}
-                            <p>{iniciais}</p>
-                        </div>
+                        <FotoMen />
 
                         <ul id="uMenHamburger">
                             <li>
@@ -279,10 +277,7 @@ const TelaFotoCliente = () => {
                     </div>
                 </div>
 
-                <div className={styles.perfil}>
-                    {/*<img src={Perfil} alt="perfil" />*/}
-                    <p>{iniciais}</p>
-                </div>
+                <FotoHor />
                 <div className={styles.notificacao}>
                     <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
                     {showNotifications && (
