@@ -558,7 +558,7 @@ const TelaMenuEmpreendimento = () => {
                         </div>
                     )}
                 </div>
-                <div className={styles.logoMenuCli}><p></p></div>
+                <div className={styles.logoMenuCli}><p>Shostners & Shotners</p></div>
                 <div id={styles["voltar"]}><a href="/tPesqFunc" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>
         </div>
