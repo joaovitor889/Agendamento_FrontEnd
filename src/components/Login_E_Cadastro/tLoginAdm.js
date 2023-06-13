@@ -31,9 +31,31 @@ const TelaLoginAdm = () => {
                 const token = response.data.token;
                 console.log("Logou no Proprietário" + token);
 
+                try {
+                    const headers = {
+                        Authorization: `Bearer ${token}`,
+                    };
 
-                navigate(`/tMenuEmpreNew/${token}`);
-
+                    const estabelecimentoResponse = await agFetch.get('/estabelecimento/prop', { headers });
+                    
+                    if (response.status >= 200 && response.status <= 299) {
+                        const primeiroEstabelecimento = estabelecimentoResponse.data[0];
+                        if (primeiroEstabelecimento) {
+                            //alert("Este usuário já tem um estabelecimento!");
+                            const uIDEst = primeiroEstabelecimento.uid;
+                            navigate(`/tPesqFunc/${uIDEst}`);
+                        } else {
+                            // Nenhum estabelecimento encontrado
+                            alert("Bem-vindo à plataforma, cadastre um novo Estabelecimento!");
+                            navigate(`/tMenuEmpreNew/${token}`);
+                        }
+                    } else {
+                        alert("Houve um problema ao obter o estabelecimento");
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert("Erro ao buscar estabelecimento");
+                }                
             } else if (response.status === 401) {
                 alert("Senha ou email inválido");
             } else {
