@@ -82,7 +82,7 @@ function App() {
             {/*<Route path="/tCategoriaADM" element = {<Categorias />} />*/}
             <Route path="/tServADM" element = {<ServADM />} />
             <Route path="/tPesqFunc/:id" element =  {<PesquisaFunc />} />
-            <Route path="/tCadFunc" element = {<CadastroFunc />} />
+            <Route path="/tCadFunc/:token/:id" element = {<CadastroFunc />} />
             <Route path="/tAgendamentosADM" element = {<Agendamentos />} />
             <Route path="/tPesqCli" element = {<PesquisaCli />} />
 
