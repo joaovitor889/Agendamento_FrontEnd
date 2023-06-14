@@ -6,6 +6,8 @@ import perfil from '../../img/perfil.png';
 
 import { useState, useEffect, useRef } from "react";
 
+import agFetch from '../../axios/config.js';
+
 //import { Link, useNavigate } from "react-router-dom";
 
 
@@ -14,10 +16,20 @@ const TelaAgendarADM = () => {
 
     const uid = "jMQqNo";
 
+    //dados do banco
+    const [categorias, setCategorias] = useState([]);
+    const [servicos, setServicos] = useState([]);
+    const [profissionais, setProfissionais] = useState([]);
+    const [datas, setDatas] = useState([]);
+    const [horarios, setHorarios] = useState([]);
+
+    //dados que serao cadastrados
     const [categoria, setCategoria] = useState();
     const [servico, setServico] = useState();
     const [profissional, setProfissional] = useState();
+    const [diaSemana, setDiaSemana] = useState();
     const [data, setData] = useState();
+    const [horario, setHorario] = useState();
     const [nome, setNome] = useState();
     const [telefone, setTelefone] = useState();
     const [cpf, setCPF] = useState();
@@ -53,9 +65,83 @@ const TelaAgendarADM = () => {
         };
     }, []);
 
+    //pegar os dados do banco
+    async function PegaCategorias() {
+        try {
+            const catResponse = await agFetch.get(`/estabelecimento/todasCat/${uid}`);
+            setCategorias(catResponse.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    PegaCategorias();
+
+    useEffect(() => {
+        async function PegaServicos() {
+            try {
+                if (categoria) {
+                    const srvResponse = await agFetch.get(`/servicos/pegarServCat?id=${categoria}`);
+                    setServicos(srvResponse.data);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaServicos();
+    }, [categoria]);
+
+    useEffect(() => {
+        async function PegaProfissionais() {
+            try {
+                const profResponse = await agFetch.get(`/servicos/pegarFuncionarios?id=${servico}`);
+                setProfissionais(profResponse.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        if (servico) {
+            PegaProfissionais();
+        }
+    }, [servico]);
+
+    useEffect(() => {
+        async function PegarDiaSemana() {
+            try {
+                //pega o dia da semana
+                const novaData = new Date(data);
+                novaData.setDate(novaData.getDate() + 1);
+                const ds = new Date(novaData).toLocaleDateString('pt-BR', { weekday: 'long' }).toLowerCase();
+                setDiaSemana(ds);            
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        if (data && profissional) {
+            PegarDiaSemana();
+        }
+    }, [data, profissional]);
+
+
+
+
+
+    useEffect(() => {
+        async function PegaPreco() {
+            try {
+                const precResponse = await agFetch.get(`/servicos/acharUm/${servico}`);
+                setPreco(precResponse.data.preco);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaPreco();
+    }, [servico])
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert("Teste");
+        //alert(JSON.stringify({categoria, servico, profissional, data, horario, nome, telefone, cpf}));
+        alert(diaSemana);
     }
 
     return (
@@ -102,38 +188,43 @@ const TelaAgendarADM = () => {
                     <form onSubmit={handleSubmit}>
                         <h1>Agendar</h1>
                         <div className={styles.dados}>
-                            <select name="cars" className={styles.texto}>
-                                <option value="corte">Categorias</option>
-                                <option value="corte">Corte</option>
-                                <option value="sombrancelha">Sombrancelha</option>
-                                <option value="manicure">Manicure</option>
-                                <option value="hidratação">hidratação</option>
+                            <select name="categoria" className={styles.texto} required onChange={(e) => setCategoria(e.target.value)}>
+                                <option value="cat">Categorias</option>
+                                {categorias.map(categoria => (
+                                    <option key={categoria.id} value={categoria.id}>
+                                        {categoria.nome}
+                                    </option>
+                                ))}
                             </select>
-                            <select name="cars" className={styles.texto}>
-                                <option value="corte">Serviços</option>
-                                <option value="corte">Corte</option>
-                                <option value="sombrancelha">Sombrancelha</option>
-                                <option value="manicure">Manicure</option>
-                                <option value="hidratação">hidratação</option>
+                            <select name="servico" className={styles.texto} required onChange={(e) => setServico(e.target.value)}>
+                                <option value="serv">Serviços</option>
+                                {categoria !== "cat" && servicos.map(servico => (
+                                    <option key={servico.id} value={servico.id}>
+                                        {servico.nome}
+                                    </option>
+                                ))}
                             </select>
 
-                            <select select name="func" className={styles.texto}>
-                                <option value="corte">Profissional</option>
-                                <option value="corte">João</option>
-                                <option value="corte">Bruno</option>
-                                <option value="sombrancelha">Antônio</option>
-                                <option value="manicure">Guilherme</option>
-                                <option value="hidratação">Jean</option>
+                            <select name="profissional" className={styles.texto} required onChange={(e) => setProfissional(e.target.value)}>
+                                <option value="profis">Profissionais</option>
+                                {categoria !== "serv" && profissionais.map(profissional => (
+                                    <option key={profissional.id} value={profissional.id}>
+                                        {profissional.nome}
+                                    </option>
+                                ))}
                             </select>
                             <div className={styles.dois_campos}>
-                                <input type="date" className={styles.texto} />
-                                <select name="cars" className={styles.texto}>
-                                    <option value="corte">Horários</option>
-                                    <option value="corte">Corte</option>
-                                    <option value="sombrancelha">Sombrancelha</option>
-                                    <option value="manicure">Manicure</option>
-                                    <option value="hidratação">hidratação</option>
+                                <input type="date" className={styles.texto} onChange={(e) => setData(e.target.value)} />
+                                <select name="horario" className={styles.texto} onChange={(e) => setHorario(e.target.value)}>
+                                    <option value="">Horários</option>
+                                    {horarios.map((horario, index) => (
+                                        <option key={index} value={`${horario.inicio} - ${horario.fim}`}>
+                                            {horario.inicio} - {horario.fim}
+                                        </option>
+                                    ))}
                                 </select>
+
+
                             </div>
                         </div>
                         <div className={styles.cliente}>
@@ -169,15 +260,15 @@ const TelaAgendarADM = () => {
                                 onChange={(e) => setCPF(e.target.value)} />
                         </div>
                         <div className={styles.finsh}>
-                            <input type="text" className={styles.texto_demonstrativo} placeholder='Preço (R$)' disabled />
+                            <input type="text" className={styles.texto_demonstrativo} placeholder='Preço (R$)' value={preco} disabled />
                             <br />
                             <input type="submit" name="btnCadastro" value="Agendar" />
                         </div>
                     </form>
                 </div>
-            </main>
+            </main >
             {/*<Modal isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>*/}
-        </div>
+        </div >
     )
 }
 
