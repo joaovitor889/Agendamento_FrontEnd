@@ -80,17 +80,16 @@ function App() {
             <Route path="/tAgendarADM" element = {<AgendarADM />} />
             <Route path="/tCadServico" element = {<CadServicos />} />
             {/*<Route path="/tCategoriaADM" element = {<Categorias />} />*/}
-            <Route path="/tServADM" element = {<ServADM />} />
-            <Route path="/tPesqFunc/:id" element =  {<PesquisaFunc />} />
-            <Route path="/tCadFunc/:token/:id" element = {<CadastroFunc />} />
-            <Route path="/tAgendamentosADM" element = {<Agendamentos />} />
-            <Route path="/tPesqCli" element = {<PesquisaCli />} />
+            <Route path="/tServADM/:uid" element = {<ServADM />} />
+            <Route path="/tPesqFunc/:uid" element =  {<PesquisaFunc />} />
+            <Route path="/tCadFunc/:uid" element = {<CadastroFunc />} />
+            <Route path="/tAgendamentosADM/:token/:uid" element = {<Agendamentos />} />
+            <Route path="/tPesqCli/:uid" element = {<PesquisaCli />} />
 
             {/* Perfil do Administrador */}
             <Route path="/tMenuDBADM" element = {<DadosBasicosAdm />} />
             <Route path="/tMenuEnderecoADM" element = {<EnderecoAdm />} />
             <Route path="/tMenuFotoADM" element = {<FotoADM />} />
-
             
             <Route path="/tNovoEmpreendimento/:token" element = {<NovoEmpreendimento />} />
             

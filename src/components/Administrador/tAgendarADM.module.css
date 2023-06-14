@@ -146,12 +146,19 @@ a{
 .finsh .texto{
     width: 150px;
 }
-.finsh a{
+.finsh input[type="submit"] {
     background-color: #6375D6;
     padding: 0.5rem  1rem;
     border-radius: 15px;
     margin-left: 20px;
     margin-top: 0.5;
+    border-style: none;
+    color: #fff;
+    font-size: 3vw;
+}
+
+.finsh input[type="submit"]:hover {
+    background-color: #0000ff;
 }
 .cliente{
     margin-top: 1rem;
