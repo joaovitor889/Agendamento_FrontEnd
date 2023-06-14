@@ -83,7 +83,7 @@ function App() {
             <Route path="/tServADM/:uid" element = {<ServADM />} />
             <Route path="/tPesqFunc/:uid" element =  {<PesquisaFunc />} />
             <Route path="/tCadFunc/:uid" element = {<CadastroFunc />} />
-            <Route path="/tAgendamentosADM/:uid" element = {<Agendamentos />} />
+            <Route path="/tAgendamentosADM/:token/:uid" element = {<Agendamentos />} />
             <Route path="/tPesqCli/:uid" element = {<PesquisaCli />} />
 
             {/* Perfil do Administrador */}
