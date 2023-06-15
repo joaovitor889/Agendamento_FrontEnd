@@ -20,7 +20,7 @@ const TelaCadFunc = () => {
     document.title = "Cadastrar Funcionário";
 
     const navigate = useNavigate();
-    const uid =  useParams().id;
+    const uid =  useParams().uid;
     const token = useParams().token;
     console.log(uid);
     console.log(token);
@@ -79,7 +79,7 @@ const TelaCadFunc = () => {
 
 
     const handleSubmit = (e) => {
-        // e.preventDefault();
+         e.preventDefault();
 
         if(jsSenha === jsConfSenha){
             

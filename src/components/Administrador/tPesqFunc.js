@@ -6,7 +6,6 @@ import add from '../../img/add-func.png'
 import lixeira from '../../icones/trash-2.png'
 //import logo from '../../img/logo.PNG';
 import React, { useEffect, useState } from 'react';
-import axios from '../../axios/configAuthCli.js';
 import {
     BrowserRouter as Router,
     Switch,
@@ -30,7 +29,7 @@ const TelaPesqFunc = () => {
 
     const navigate = useNavigate();
 
-    axios.get("http://ec2-34-234-67-50.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
+    agFetch.get("http://ec2-34-234-67-50.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
         const nome = response.data.nome; // Declaração do nome da empresa
         var titulo = document.getElementById('emp'); //identifica o titulo da navbar
 
@@ -43,7 +42,7 @@ const TelaPesqFunc = () => {
     })
 
     useEffect(() => {
-        axios.get('http://ec2-34-234-67-50.compute-1.amazonaws.com:4000/estabelecimento/todosFunc/' + uid.id)
+        agFetch.get('http://ec2-34-234-67-50.compute-1.amazonaws.com:4000/estabelecimento/todosFunc/' + uid)
             .then(response => {
                 setElementos(response.data);
             })
