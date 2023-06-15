@@ -1,6 +1,6 @@
 import styles from './tPesqFunc.module.css';
 import menu from '../../img/Menu Rounded.png'
-import perfil from '../../img/perfil.png'
+import perfilF from '../../img/perfil.png'
 import filter from '../../img/filter.png'
 import add from '../../img/add-func.png'
 import lixeira from '../../icones/trash-2.png'
@@ -24,6 +24,7 @@ const TelaPesqFunc = () => {
     document.title = "Funcionários";
 
     const { uid } = useParams();
+    const { token } = useParams();
 
     const [elementos, setElementos] = useState([]);
 
@@ -69,23 +70,29 @@ const TelaPesqFunc = () => {
 
     //navegacao entre as telas que listam dados
     const profissionais = () => {
-        navigate(`/tAgendamentosADM/${uid}`);
+        navigate(`/tPesqFunc/${token}/${uid}`);
     }
     const addFuncionarioNovaAba = (rotaFunc) => {
         window.open(rotaFunc, '_blank');
     }
     const addFuncionario = () => {
-        const rotaFunc = `/tCadFunc/${uid}`; // Substitua pela rota desejada
+        const rotaFunc = `/tCadFunc/${token}/${uid}`; // Substitua pela rota desejada
         addFuncionarioNovaAba(rotaFunc);
     }
     const clientes = () => {
-        navigate(`/tPesqCli/${uid}`);
+        navigate(`/tPesqCli/${token}/${uid}`);
     }
     const agendamentos = () => {
-        navigate(`/tAgendamentosADM/${uid}`);
+        navigate(`/tAgendamentosADM/${token}/${uid}`);
     }
     const servicos = () => {
-        navigate(`/tServADM/${uid}`);
+        navigate(`/tServADM/${token}/${uid}`);
+    }
+    const agendar = () =>{
+        navigate(`/tAgendarADM/${token}/${uid}`)
+    }
+    const perfil = () =>{
+        navigate(`/tMenuDBADM/${token}/${uid}`)
     }
 
     return (
@@ -104,7 +111,7 @@ const TelaPesqFunc = () => {
                 </div>
                 <div className={styles.direita}>
                     <a href="/" className="btn_perfil">
-                        <img src={perfil} alt="perfil" />
+                        <img src={perfilF} alt="perfil" />
                     </a>
                     {/* <a href="/" className="btn_noticia">
                         <img src= {notificar} alt="notificar" />
@@ -117,13 +124,13 @@ const TelaPesqFunc = () => {
                 <p onClick={profissionais}>Profissionais</p>
                 <p onClick={clientes}>Clientes</p>
                 <p onClick={agendamentos}>Agendamentos</p>
-                <a href="/tAgendarADM">Agendar</a>
+                <p onClick={agendar}>Agendar</p>
                 {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
                 <p onClick={servicos}>Serviços</p>
-                <a href="/tMenuDBADM">Perfil</a>
+                <p onClick={perfil}>Perfil</p>
                 <select name='qual empresa?' className={styles.interprise} >
-                    <option value="WLShVu"> <a href="/tPesqFunc/WLShVu">Pepino Legal</a> </option>
-                    <option value="jMQqNo"> <a href="/tPesqFunc/jMQqNo">Pepino legal</a> </option>
+                    <option value="WLShVu"> <a href="/tPesqFunc/WLShVu">Empresa1</a> </option>
+                    <option value="jMQqNo"> <a href="/tPesqFunc/jMQqNo">Empresa2</a> </option>
                 </select>
             </div>
             {/* sidebar  final */}

@@ -254,6 +254,9 @@ img{
     box-sizing: border-box;
     font-size: 1.5rem;
 }
+.sidebar p{
+	color: #fff;
+}
 
 .interprise{
     background: #9B9191;

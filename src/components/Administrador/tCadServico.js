@@ -6,10 +6,20 @@ import { useState, useEffect, useRef } from "react";
 
 import agFetch from '../../axios/config';
 
-import { useNavigate } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useNavigate,
+    useParams
+} from "react-router-dom";
 
 const TelaCadServico = () => {
     document.title = "Cadastrar Serviço";
+
+    const { uid } = useParams();
+    const { token } = useParams();
 
     //Fazer a requisicao do Estabelecimento
     const vUIDEstabelecimento = "jMQqNo";
@@ -118,6 +128,33 @@ const TelaCadServico = () => {
         cadastrarServico(vUIDEstabelecimento, vNome, vPreco, vAtivo, tempo, vDescricao, nomeCategoria, descCat);
     }
 
+
+    const profissionais = () => {
+        navigate(`/tPesqFunc/${token}/${uid}`);
+    }
+    const addFuncionarioNovaAba = (rotaFunc) => {
+        window.open(rotaFunc, '_blank');
+    }
+    const addFuncionario = () => {
+        const rotaFunc = `/tCadFunc/${token}/${uid}`; // Substitua pela rota desejada
+        addFuncionarioNovaAba(rotaFunc);
+    }
+    const clientes = () => {
+        navigate(`/tPesqCli/${token}/${uid}`);
+    }
+    const agendamentos = () => {
+        navigate(`/tAgendamentosADM/${token}/${uid}`);
+    }
+    const servicos = () => {
+        navigate(`/tServADM/${token}/${uid}`);
+    }
+    const agendar = () =>{
+        navigate(`/tAgendarADM/${token}/${uid}`)
+    }
+    const perfil = () =>{
+        navigate(`/tMenuDBADM/${token}/${uid}`)
+    }
+
     return (
         <div className={styles.fCadServico}>
             <input type='checkbox' id={styles["check"]} />
@@ -141,13 +178,13 @@ const TelaCadServico = () => {
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-                <a href="/tPesqFunc">Profissionais</a>
-                <a href="/tPesqCli">Clientes</a>
-                <a href="/tAgendamentosADM">Agendamentos</a>
-                <a href="/tAgendarADM">Agendar</a>
-                {/*<a href="/tCategoriaADM">Categorias</a>*/}
-                <a href="/tServADM">Serviços</a>
-                <a href="/tMenuDBADM">Perfil</a>
+            <p onClick={profissionais}>Profissionais</p>
+                <p onClick={clientes}>Clientes</p>
+                <p onClick={agendamentos}>Agendamentos</p>
+                <p onClick={agendar}>Agendar</p>
+                {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
+                <p onClick={servicos}>Serviços</p>
+                <p onClick={perfil}>Perfil</p>
                 <a href="/">Sair</a>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>
