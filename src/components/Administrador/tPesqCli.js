@@ -1,9 +1,18 @@
 import styles from './tPesqCli.module.css';
 import menu from '../../img/Menu Rounded.png'
-import perfil from  '../../img/perfil.png'
+import perfilF from  '../../img/perfil.png'
 import filter from '../../img/filter.png'
 import add from '../../img/add-func.png'
 import lixeira from '../../icones/trash-2.png'
+import React, { useEffect, useState } from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useNavigate,
+    useParams
+} from "react-router-dom";
 
 //import { useState } from "react";
 
@@ -15,7 +24,39 @@ const TelaPesqCli = () => {
 
    document.title = "Pesquisar Cliente";
 
+    const { uid } = useParams();
+    const { token } = useParams();
+
+    const navigate = useNavigate();
+
    //const [openModalCategoria, setOpenModalCategoria] = useState(false);
+
+   const profissionais = () => {
+        navigate(`/tPesqFunc/${token}/${uid}`);
+    }
+    const addFuncionarioNovaAba = (rotaFunc) => {
+        window.open(rotaFunc, '_blank');
+    }
+    const addFuncionario = () => {
+        const rotaFunc = `/tCadFunc/${token}/${uid}`; // Substitua pela rota desejada
+        addFuncionarioNovaAba(rotaFunc);
+    }
+    const clientes = () => {
+        navigate(`/tPesqCli/${token}/${uid}`);
+    }
+    const agendamentos = () => {
+        navigate(`/tAgendamentosADM/${token}/${uid}`);
+    }
+    const servicos = () => {
+        navigate(`/tServADM/${token}/${uid}`);
+    }
+    const agendar = () =>{
+        navigate(`/tAgendarADM/${token}/${uid}`)
+    }
+    const perfil = () =>{
+        navigate(`/tMenuDBADM/${token}/${uid}`)
+    }
+
 
    return (
         <div className = {styles.fPesqCli}>
@@ -33,7 +74,7 @@ const TelaPesqCli = () => {
                </div>
                <div className={styles.direita}>
                    <a href="/" className="btn_perfil">
-                       <img src= {perfil} alt="notificar" />
+                       <img src= {perfilF} alt="notificar" />
                    </a>
                    <a href="/" className="btn_noticia">
                        {/* <img src= {notificar} alt="notificar" /> */}
@@ -43,13 +84,13 @@ const TelaPesqCli = () => {
            {/* final do header */}
            {/* sidebar começo */}
            <div className={styles.sidebar}>
-                <a href="/tPesqFunc">Profissionais</a>
-                <a href="/tPesqCli">Clientes</a>
-                <a href="/tAgendamentosADM">Agendamentos</a>
-                <a href="/tAgendarADM">Agendar</a>                
+           <p onClick={profissionais}>Profissionais</p>
+                <p onClick={clientes}>Clientes</p>
+                <p onClick={agendamentos}>Agendamentos</p>
+                <p onClick={agendar}>Agendar</p>
                 {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
-                <a href="/tServADM">Serviços</a>
-                <a href="/tMenuDBADM">Perfil</a>
+                <p onClick={servicos}>Serviços</p>
+                <p onClick={perfil}>Perfil</p>
                 <a href="/">Sair</a>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>

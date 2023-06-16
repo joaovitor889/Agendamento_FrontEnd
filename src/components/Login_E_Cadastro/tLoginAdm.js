@@ -43,11 +43,11 @@ const TelaLoginAdm = () => {
                         if (primeiroEstabelecimento) {
                             //alert("Este usuário já tem um estabelecimento!");
                             const uIDEst = primeiroEstabelecimento.uid;
-                            navigate(`/tPesqFunc/${uIDEst}`);
+                            navigate(`/tPesqFunc/${token}/${uIDEst}`);
                         } else {
                             // Nenhum estabelecimento encontrado
                             alert("Bem-vindo à plataforma, cadastre um novo Estabelecimento!");
-                            navigate(`/tMenuEmpreNew/${token}`);
+                            navigate(`/tNovoEmpreendimento/${token}`);
                         }
                     } else {
                         alert("Houve um problema ao obter o estabelecimento");

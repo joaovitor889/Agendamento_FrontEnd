@@ -77,21 +77,22 @@ function App() {
             <Route  path = "/tLoginFunc" element = {<LoginFunc />} />
             
             {/* Telas do Administrador */}
-            <Route path="/tAgendarADM" element = {<AgendarADM />} />
-            <Route path="/tCadServico" element = {<CadServicos />} />
+            <Route path="/tAgendarADM/:token/:uid" element = {<AgendarADM />} />
+            <Route path="/tCadServico/:token/:uid" element = {<CadServicos />} />
             {/*<Route path="/tCategoriaADM" element = {<Categorias />} />*/}
-            <Route path="/tServADM/:uid" element = {<ServADM />} />
-            <Route path="/tPesqFunc/:uid" element =  {<PesquisaFunc />} />
-            <Route path="/tCadFunc/:uid" element = {<CadastroFunc />} />
+            <Route path="/tServADM/:token/:uid" element = {<ServADM />} />
+            <Route path="/tPesqFunc/:token/:uid" element =  {<PesquisaFunc />} />
+            <Route path="/tCadFunc/:token/:uid" element = {<CadastroFunc />} />
             <Route path="/tAgendamentosADM/:token/:uid" element = {<Agendamentos />} />
-            <Route path="/tPesqCli/:uid" element = {<PesquisaCli />} />
+            <Route path="/tPesqCli/:token/:uid" element = {<PesquisaCli />} />
 
             {/* Perfil do Administrador */}
-            <Route path="/tMenuDBADM" element = {<DadosBasicosAdm />} />
-            <Route path="/tMenuEnderecoADM" element = {<EnderecoAdm />} />
-            <Route path="/tMenuFotoADM" element = {<FotoADM />} />
+            <Route path="/tMenuDBADM/:token/:uid" element = {<DadosBasicosAdm />} />
+            <Route path="/tMenuEnderecoADM/:token/:uid" element = {<EnderecoAdm />} />
+            <Route path="/tMenuFotoADM/:token/:uid" element = {<FotoADM />} />
             
             <Route path="/tNovoEmpreendimento/:token" element = {<NovoEmpreendimento />} />
+            <Route path="/tEmpreendimento/:token/:uid" element = {<Empreendimento/>} />
             
 
             {/* Telas do Cliente */}
