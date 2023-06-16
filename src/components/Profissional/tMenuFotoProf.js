@@ -198,7 +198,7 @@ const TelaFotoProfissional = () => {
                         </div>
                     )}
                 </div>*/}
-                <div className={styles.logoMenuFunc}><p></p></div>
+                <div className={styles.logoMenuFunc}><p>Shosners & Shotner</p></div>
                 <div id={styles["voltar"]}><a href="./tMenuProfis" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>
         </div>

@@ -175,10 +175,10 @@ const TelaAgendarCliente = () => {
                             </select>
                         </div>
                     </div>
-                    <select id={styles["empresa"]} required>
+                    {/*<select id={styles["empresa"]} required>
                         <option value="emprs">*Empresa</option>
                         <option value="emp1">Shostners & shostners</option>
-                    </select>
+                    </select>*/}
                     <div id={styles["rodape"]}>
                         <div id={styles["preco"]}>
                             <input type="text" defaultValue={"Preço R$"} disabled />

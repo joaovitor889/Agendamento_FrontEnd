@@ -57,6 +57,10 @@ const TelaPesqCli = () => {
         navigate(`/tMenuDBADM/${token}/${uid}`)
     }
 
+    const adcionar = () => {
+        window.open('/tCadastroCli', '_blank');
+    }
+
 
    return (
         <div className = {styles.fPesqCli}>
@@ -107,7 +111,7 @@ const TelaPesqCli = () => {
                         <button> Pesquisar</button>
                    </div>
                    <div className={styles.funcionarios}> 
-                       <img src={add} alt="" />
+                       <img src={add} alt="" onClick={adcionar}/>
                    </div>
                </div>
                <div className={styles.cards}>

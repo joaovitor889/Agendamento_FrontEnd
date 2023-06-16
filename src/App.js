@@ -91,7 +91,7 @@ function App() {
             <Route path="/tMenuEnderecoADM/:token/:uid" element = {<EnderecoAdm />} />
             <Route path="/tMenuFotoADM/:token/:uid" element = {<FotoADM />} />
             
-            <Route path="/tNovoEmpreendimento/:token" element = {<NovoEmpreendimento />} />
+            <Route path="/tNovoEmpreendimento/:token/:uid" element = {<NovoEmpreendimento />} />
             <Route path="/tEmpreendimento/:token/:uid" element = {<Empreendimento/>} />
             
 
