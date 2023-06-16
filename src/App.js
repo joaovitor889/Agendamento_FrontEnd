@@ -77,7 +77,7 @@ function App() {
             <Route  path = "/tLoginFunc" element = {<LoginFunc />} />
             
             {/* Telas do Administrador */}
-            <Route path="/tAgendarADM/:token/:uid" element = {<AgendarADM />} />
+            <Route path="/tAgendarADM/" element = {<AgendarADM />} />
             <Route path="/tCadServico/:token/:uid" element = {<CadServicos />} />
             {/*<Route path="/tCategoriaADM" element = {<Categorias />} />*/}
             <Route path="/tServADM/:token/:uid" element = {<ServADM />} />

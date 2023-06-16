@@ -435,34 +435,6 @@ const TelaAgendarADM = () => {
         realizarAgendamento(servico, profissional, data, horario, nome, telefone, cpf, preco);
     }
 
-    const navigate = useNavigate();
-
-    const tprofissionais = () => {
-        navigate(`/tPesqFunc/${token}/${uid}`);
-    }
-    const addFuncionarioNovaAba = (rotaFunc) => {
-        window.open(rotaFunc, '_blank');
-    }
-    const addFuncionario = () => {
-        const rotaFunc = `/tCadFunc/${token}/${uid}`; // Substitua pela rota desejada
-        addFuncionarioNovaAba(rotaFunc);
-    }
-    const clientes = () => {
-        navigate(`/tPesqCli/${token}/${uid}`);
-    }
-    const agendamentos = () => {
-        navigate(`/tAgendamentosADM/${token}/${uid}`);
-    }
-    const tservicos = () => {
-        navigate(`/tServADM/${token}/${uid}`);
-    }
-    const agendar = () =>{
-        navigate(`/tAgendarADM/${token}/${uid}`)
-    }
-    const perfil = () =>{
-        navigate(`/tMenuDBADM/${token}/${uid}`)
-    }
-
     return (
         <div className={styles.fAgendar}>
             <input type='checkbox' id={styles["check"]} />
@@ -488,13 +460,13 @@ const TelaAgendarADM = () => {
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-                <p onClick={tprofissionais}>Profissionais</p>
-                <p onClick={clientes}>Clientes</p>
-                <p onClick={agendamentos}>Agendamentos</p>
-                <p onClick={agendar}>Agendar</p>
+                <a href = "/">Profissionais</a>
+                <a href = "/">Clientes</a>
+                <a href = "/">Agendamentos</a>
+                <a href = "/">Agendar</a>
                 {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
-                <p onClick={tservicos}>Serviços</p>
-                <p onClick={perfil}>Perfil</p>
+                <a href = "/">Serviços</a>
+                <a href = "/">Perfil</a>
                 <a href="/">Sair</a>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>
