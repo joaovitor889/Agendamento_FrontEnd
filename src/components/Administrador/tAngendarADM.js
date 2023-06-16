@@ -121,7 +121,7 @@ const TelaAgendarADM = () => {
                 const novaData = new Date(data);
                 novaData.setDate(novaData.getDate() + 1);
                 const ds = new Date(novaData).toLocaleDateString('pt-BR', { weekday: 'long' }).toLowerCase();
-                setDiaSemana(ds);            
+                setDiaSemana(ds);
             } catch (error) {
                 console.log(error);
             }
@@ -175,12 +175,14 @@ const TelaAgendarADM = () => {
     const tservicos = () => {
         navigate(`/tServADM/${token}/${uid}`);
     }
-    const agendar = () =>{
+    const agendar = () => {
         navigate(`/tAgendarADM/${token}/${uid}`)
     }
-    const perfil = () =>{
+    const perfil = () => {
         navigate(`/tMenuDBADM/${token}/${uid}`)
     }
+
+    const hor = ['08:00', '8:30', '09:30', '10:00', '10:30', '11:00', '11:30']
 
     return (
         <div className={styles.fAgendar}>
@@ -255,11 +257,76 @@ const TelaAgendarADM = () => {
                                 <input type="date" className={styles.texto} onChange={(e) => setData(e.target.value)} />
                                 <select name="horario" className={styles.texto} onChange={(e) => setHorario(e.target.value)}>
                                     <option value="">Horários</option>
-                                    {horarios.map((horario, index) => (
+                                    {/*{horarios.map((horario, index) => (
                                         <option key={index} value={`${horario.inicio} - ${horario.fim}`}>
                                             {horario.inicio} - {horario.fim}
-                                        </option>
-                                    ))}
+                                    </option>))}*/}
+
+                                    
+                                        
+                                        
+  <option value="">08:00</option>
+  <option value="08:10">08:10</option>
+  <option value="08:20">08:20</option>
+  <option value="08:30">08:30</option>
+  <option value="08:40">08:40</option>
+  <option value="08:50">08:50</option>
+  <option value="09:00">09:00</option>
+  <option value="09:10">09:10</option>
+  <option value="09:20">09:20</option>
+  <option value="09:30">09:30</option>
+  <option value="09:40">09:40</option>
+  <option value="09:50">09:50</option>
+  <option value="10:00">10:00</option>
+  <option value="10:10">10:10</option>
+  <option value="10:20">10:20</option>
+  <option value="10:30">10:30</option>
+  <option value="10:40">10:40</option>
+  <option value="10:50">10:50</option>
+  <option value="11:00">11:00</option>
+  <option value="11:10">11:10</option>
+  <option value="11:20">11:20</option>
+  <option value="11:30">11:30</option>
+  <option value="11:40">11:40</option>
+  <option value="11:50">11:50</option>
+  <option value="12:00">12:00</option>
+  <option value="12:10">12:10</option>
+  <option value="12:20">12:20</option>
+  <option value="12:30">12:30</option>
+  <option value="12:40">12:40</option>
+  <option value="12:50">12:50</option>
+  <option value="13:00">13:00</option>
+  <option value="13:10">13:10</option>
+  <option value="13:20">13:20</option>
+  <option value="13:30">13:30</option>
+  <option value="13:40">13:40</option>
+  <option value="13:50">13:50</option>
+  <option value="14:00">14:00</option>
+  <option value="14:10">14:10</option>
+  <option value="14:20">14:20</option>
+  <option value="14:30">14:30</option>
+  <option value="14:40">14:40</option>
+  <option value="14:50">14:50</option>
+  <option value="15:00">15:00</option>
+  <option value="15:10">15:10</option>
+  <option value="15:20">15:20</option>
+  <option value="15:30">15:30</option>
+  <option value="15:40">15:40</option>
+  <option value="15:50">15:50</option>
+  <option value="16:00">16:00</option>
+  <option value="16:10">16:10</option>
+  <option value="16:20">16:20</option>
+  <option value="16:30">16:30</option>
+  <option value="16:40">16:40</option>
+  <option value="16:50">16:50</option>
+  <option value="17:00">17:00</option>
+
+
+
+                                    {/* <option value="">-12:00</option>
+                                    <option value="">15:00</option>
+                                    <option value="">16:00</option>
+                                     */}
                                 </select>
 
 

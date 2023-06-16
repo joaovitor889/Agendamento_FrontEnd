@@ -310,23 +310,23 @@ const TelaMenuEmpreendimento = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <Link to="/tMenuDBADM" rel="noreferrer">
+                            <Link to="/tMenuDBADM/:token/:uid" rel="noreferrer">
                                 <li><p>Dados Básicos</p></li>
                             </Link>
 
-                            <Link to="/tMenuEnderecoADM" rel="noreferrer">
+                            <Link to="/tMenuEnderecoADM/:token/:uid" rel="noreferrer">
                                 <li><p>Endereço</p></li>
                             </Link>
 
-                            <Link to="/tMenuFotoADM" rel="noreferrer">
+                            <Link to="/tMenuFotoADM/:token/:uid" rel="noreferrer">
                                 <li><p>Foto</p></li>
                             </Link>
 
-                            <Link to="/tEmpreendimento" rel="noreferrer">
+                            <Link to="/tEmpreendimento/:token/:uid" rel="noreferrer">
                                 <li style={{ color: '#000' }}><p>Empreendimento</p></li>
                             </Link>
 
-                            <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                            <Link to="/tNovoEmpreendimento/:token/:uid" rel="noreferrer">
                                 <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>
