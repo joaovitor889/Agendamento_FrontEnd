@@ -394,11 +394,12 @@ const TelaAgendarADM = () => {
         PegaPreco();
     }, [servico])
 
-    const realizarAgendamento = async (servico, profissional, data, horario, nome, telefone, cpf, preco) => {
+    const realizarAgendamento = async (dataAg, servico, profissional, nome, telefone, cpf) => {
         try {
+            console.log({uid, dataAg, servico, profissional, nome, telefone, cpf});
             const agResponse = await agFetch.post('/agendamento/criarAdm', {
                 UIDEstabelecimento: uid,
-                data_inicio: data,
+                data_inicio: dataAg,
                 servicoId: servico,
                 funcionarioId: profissional,
                 nome: nome,
@@ -407,11 +408,12 @@ const TelaAgendarADM = () => {
             });
             if (agResponse.status >= 200 && agResponse.status <= 299) {
                 alert("Agendamento Realizado com Sucesso!");
-            } else if (agResponse.status === 400) {
+            } 
+        } catch (error) {
+            console.log();
+            if (error.status === 400) {
                 alert("Dados Incorretos!");
             }
-        } catch (error) {
-            console.log(error);
         }
     }
 
@@ -432,7 +434,15 @@ const TelaAgendarADM = () => {
         //alert(horarios);
 
         //logica do envio
-        realizarAgendamento(servico, profissional, data, horario, nome, telefone, cpf, preco);
+        const dataAg = data + "T" + horario + ":00Z";
+
+        const servicoId = parseInt(servico);
+
+        const profId = parseInt(profissional);
+
+        //alert(JSON.stringify({dataAg, servicoId, profId, nome, telefone, cpf}));
+
+        realizarAgendamento(dataAg, servicoId, profId, nome, telefone, cpf);
     }
 
     return (
