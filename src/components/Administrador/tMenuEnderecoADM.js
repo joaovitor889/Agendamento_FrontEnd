@@ -21,9 +21,17 @@ import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
 import FotoMen from './FotoPerfilAdm/fotoAdmMen';
 
+import { decodeToken } from 'react-jwt';
+
 
 const TelaEnderecoCliente = () => {
     document.title = "Endereço do Cliente";
+
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
+
+    const converToken = decodeToken(token);
+
+    const userID = converToken.id;
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -44,116 +52,14 @@ const TelaEnderecoCliente = () => {
         setIsMenuClicked(!isMenuClicked)
     }
 
-    //API do CEP
-    //const { register, setValue } = useForm();
+    const fcep = useRef(null);
+    const fnum = useRef(null);
 
-    //Campos
-    var jscep, jsnum, jscomp;
-    jscep = useRef(null);
-    jsnum = useRef(null);
-    jscomp = useRef(null);
-
-    //Campos da API
-    const [jsrua, setRua] = useState("");
-    const [jsbairro, setBairro] = useState("");
-    const [jscidade, setCidade] = useState("");
-    const [jseuf, setUF] = useState("");
-
-
-    const checkCEP = (e) => {
-        /*const cep = e.target.value.replace(/\D/g, '');
-        //console.log(cep);
-        console.log(jsrua, jsbairro, jscidade, jseuf);
-
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then(res => res.json()).then(data => {
-                //console.log(JSON.stringify(data));                       
-                setValue("rua", data.logradouro);
-                setValue("bairro", data.bairro);
-                setValue("cidade", data.localidade);
-                setValue("uf", data.uf);
-
-                setRua(data.logradouro);
-                setBairro(data.bairro);
-                setCidade(data.localidade);
-                setUF(data.uf);
-            });*/
-    }
-
-    const updateEndereco = (e) => {
-        e.preventDefault();
-
-        const valCep = jscep.current.value;
-        //const valComp = jscomp.current.value;
-        //const valNum = jsnum.current.value;
-
-        //const valRua = jsrua;
-        //const valBairro = jsbairro;
-        //const valCidade = jscidade;
-        //const valUF = jseuf;
-
-        let qtdCep = valCep.length;
-        if (qtdCep < 8) {
-            alert("CEP Inválido!");
-            jscep.current.focus();
-        } else {
-            try {
-                //testar se esta pegando os dados
-                //alert(JSON.stringify({ valCep, valRua, valNum, valComp, valBairro, valCidade, valUF }));
-
-                //logica
-
-
-                //alert("Dados Atualizados!");
-
-            } catch (error) {
-                //coloquei este try catch para parar de reclamar de erro
-            }
-
-            //alert(data.cep, data.rua, data.num, data.comp, data.bairro, data.cidade, data.uf);
-        }
-    }
-
-    //const [userData, setUserData] = useState({});
-
-    //const valToken = localStorage.getItem('user_token');
-    //const JSToken = JSON.parse(valToken);
-
-
-    //var token = JSToken['token'];
-    //var tkEmail = JSToken['email'];
-
-    //alert(JSON.stringify(JSToken['token']));
-    //alert(JSON.stringify(JSToken['email']));
-
-    // Função para obter os dados do usuário
-    const fetchUserData = async () => {
-        /*try {
-            const response = await agFetch.get('/clientes/criar', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            const data = response.data;
-
-            //filtra o objeto
-            var objFiltrado = data.find((item) => item.email === tkEmail);
-            var objF = objFiltrado ? { ...objFiltrado } : null;
-
-            setUserData(objF);
-            //alert(tkEmail);
-            //alert(JSON.stringify(data));
-            //alert(JSON.stringify(objF));
-        } catch (error) {
-            alert(error);
-        }*/
-    };
 
     //bloquear rolagem nos imputs number
     useEffect(() => {
-        const cep = jscep.current;
-        const num = jsnum.current;
+        const cep = fcep.current;
+        const num = fnum.current;
         const bloquearRolagem = (e) => {
             e.preventDefault();
         };
@@ -174,60 +80,118 @@ const TelaEnderecoCliente = () => {
                 num.removeEventListener('wheel', bloquearRolagem);
             }
         };
-    });
+    }, []);
 
-    // Chama a função fetchUserData quando o componente é montado
+    //API do CEP
+    const { register, setValue } = useForm();
+
+    //Campos da API
+    const [jscep, setCEP] = useState("");
+    const [jsrua, setRua] = useState("");
+    const [jsnum, setNum] = useState("");
+    const [jscomp, setComp] = useState("");
+    const [jsbairro, setBairro] = useState("");
+    const [jscidade, setCidade] = useState("");
+    const [jseuf, setUF] = useState("");
+
+
+    const checkCEP = (e) => {
+        const cep = e.target.value.replace(/\D/g, '');
+
+        //console.log(cep);
+        console.log(jsrua, jsbairro, jscidade, jseuf);
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(res => res.json()).then(data => {
+                //console.log(JSON.stringify(data));                       
+                setValue("rua", data.logradouro);
+                setValue("bairro", data.bairro);
+                setValue("cidade", data.localidade);
+                setValue("uf", data.uf);
+
+                setCEP(cep);
+                setRua(data.logradouro);
+                setBairro(data.bairro);
+                setCidade(data.localidade);
+                setUF(data.uf);
+            });
+    }
+
+    //Requisicoes com a API
     useEffect(() => {
-        fetchUserData();
-    });
+        //pegando os dados do usuário
+        async function PegaUser() {
+            try {
+                const userResponse = await agFetch.get(`/proprietarios/pegarUm?id=${userID}`);
+                const cep = userResponse.data.CEP;
+                const rua = userResponse.data.logradouro;
+                const num = userResponse.data.numero;
+                const comp = userResponse.data.complemento;
+                const bairro = userResponse.data.bairro;
+                const cidade = userResponse.data.cidade;
+                const estado = userResponse.data.uf;
 
-    // Extrai as informações necessárias do usuário
-    const nome = "José";
-    const sobrenome = "Luis";
-
-    //const nome = userData.nome;
-    //const sobrenome = userData.sobrenome;
-
-    var pnome = '';
-    var psobrenome = '';
-
-    if (nome && nome.length > 0) {
-        pnome = nome.charAt(0);
-    }
-
-    if (sobrenome && sobrenome.length > 0) {
-        psobrenome = sobrenome.charAt(0);
-    }
-
-    const iniciais = pnome + psobrenome;
+                setCEP(cep);
+                setRua(rua);
+                setNum(num);
+                setComp(comp);
+                setBairro(bairro);
+                setCidade(cidade);
+                setUF(estado);
 
 
+                //alert(JSON.stringify({cep, rua, num, comp, bairro, cidade, estado}));
 
-    //Notificacao
-    const [notifications, setNotifications] = useState([]);
-    const [showNotifications, setShowNotifications] = useState(false);
-    const [newNotification, setNewNotification] = useState(false);
-
-    const fetchNotifications = () => {
-        const fakeNotifications = [
-            { id: 1, title: "Título 1", description: "Notificação 1" },
-            { id: 2, title: "Título 2", description: "Notificação 2" },
-            { id: 3, title: "Título 3", description: "Notificação 3" }
-        ];
-        setNotifications(fakeNotifications);
-    };
-
-    const handleClick = () => {
-        if (!showNotifications) {
-            fetchNotifications();
+            } catch (error) {
+                console.log(error);
+            }
         }
-        setShowNotifications(!showNotifications);
-        setNewNotification(false);
-    };
 
-    const handleListClose = () => {
-        setShowNotifications(false);
-    };
+        PegaUser();
+    }, []);
+
+    const atualizaEndereco = async (jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
+        const convCEP = "" + jscep;        
+        const txtData = {
+            uf: jseuf,
+            cidade: jscidade,
+            bairro: jsbairro,
+            logradouro: jsrua,
+            numero: jsnum,
+            complemento: jscomp,
+            CEP: convCEP
+        }
+
+        try {
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            const updEnerecoAdm = await agFetch.patch('/proprietarios/update', txtData, { headers });
+
+            if (updEnerecoAdm.status >= 200 && updEnerecoAdm.status <= 299) {
+                alert("Dados Atualizados com Sucesso!");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const updateEndereco = (e) => {
+        e.preventDefault();
+
+        const valCep = jscep;
+
+        let qtdCep = valCep.length;
+        if (qtdCep < 8) {
+            alert("CEP Inválido!");
+            fcep.current.focus();
+        } else {
+            atualizaEndereco(jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
+        }
+
+        //alert(JSON.stringify({jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf}));
+    }
 
     return (
         <div className={styles.fDBCliente}>
@@ -245,7 +209,7 @@ const TelaEnderecoCliente = () => {
                             <Link to="/tMenuEnderecoADM/:token/:uid" rel="noreferrer">
                                 <li style={{ color: '#000' }}><p>Endereço</p></li>
                             </Link>
-    
+
                             <Link to="/tMenuFotoADM/:token/:uid" rel="noreferrer">
                                 <li><p>Foto</p></li>
                             </Link>
@@ -278,10 +242,11 @@ const TelaEnderecoCliente = () => {
                                         event.preventDefault();
                                     }
                                 }}
-                                //{...register("cep")}
+                                ref={fcep}
                                 onBlur={checkCEP}
-                                ref={jscep}
-                                required />
+                                onChange={(e) => setCEP(e.target.value)}
+                                required
+                                value={jscep} />
                         </div>
                         <div>
                             <input type="text"
@@ -289,9 +254,10 @@ const TelaEnderecoCliente = () => {
                                 title="Digite a sua Rua"
                                 name="rua" id={styles["rua"]}
                                 className={styles.segColuna}
-                                //{...register("rua")}
+                                {...register("rua")}
                                 onChange={(e) => setRua(e.target.value)}
-                                required />
+                                required
+                                value={jsrua} />
                         </div>
                     </div>
                     <div className={styles.linha}>
@@ -306,8 +272,10 @@ const TelaEnderecoCliente = () => {
                                     }
                                 }}
                                 id={styles["numero"]}
-                                ref={jsnum}
-                                required /> <br></br>
+                                ref={fnum}
+                                onChange={(e) => setNum(e.target.value)}
+                                required
+                                value={jsnum} /> <br></br>
                         </div>
                         <div>
                             <input type="text"
@@ -315,7 +283,8 @@ const TelaEnderecoCliente = () => {
                                 title="Digite o seu Complemento"
                                 name="comp" id={styles["comple"]}
                                 className={styles.segColuna}
-                                ref={jscomp} /> <br></br>
+                                onChange={(e) => setComp(e.target.value)}
+                                value={jscomp} /> <br></br>
                         </div>
                     </div>
                     <div className={styles.linhaUnica}>
@@ -324,25 +293,28 @@ const TelaEnderecoCliente = () => {
                             title="Digite o seu bairro"
                             name="bairro"
                             id={styles["bairro"]}
-                            //{...register("bairro")}   
+                            {...register("bairro")}
                             onChange={(e) => setBairro(e.target.value)}
-                            required />
+                            required
+                            value={jsbairro} />
                         <input type="text"
                             placeholder="Cidade:"
                             title="Digite a sua Cidade"
                             name="cidade"
                             id={styles["cidade"]}
-                            //{...register("cidade")}
+                            {...register("cidade")}
                             onChange={(e) => setCidade(e.target.value)}
-                            required />
+                            required
+                            value={jscidade} />
                         <input type="text"
                             placeholder="Estado:"
                             title="Digite o seu Estado"
                             name="estado"
                             id={styles["estado"]}
-                            //{...register("uf")}
+                            {...register("uf")}
                             onChange={(e) => setUF(e.target.value)}
-                            required />
+                            required
+                            value={jseuf} />
                     </div>
                     <div id="btnDBSalvar">
                         <input type="submit" id={styles["btnSalvarDDB"]} name="btnSalvarDDB" value="Salvar" />
@@ -417,28 +389,8 @@ const TelaEnderecoCliente = () => {
                 </div>
 
                 <FotoHor />
-                <div className={styles.notificacao}>
-                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
-                    {showNotifications && (
-                        <div className={styles.notificationContainer}>
-                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
-                            {newNotification && <p>Nova notificação recebida!</p>}
-                            <ul className={styles.notificationList}>
-                                {notifications.map((notification, index) => (
-                                    <li
-                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
-                                        key={notification.id}
-                                    >
-                                        <p className="notification-title">{notification.title}</p>
-                                        <p className={styles.notificationDescription}>{notification.description}</p>
-                                        <hr></hr>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>
-                <div className={styles.logoMenuCli}><p></p></div>
+
+                <div className={styles.logoMenuCli}><p>Shostners & shostners</p></div>
                 <div id={styles["voltar"]}><a href="/tPesqFunc" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>
         </div>
