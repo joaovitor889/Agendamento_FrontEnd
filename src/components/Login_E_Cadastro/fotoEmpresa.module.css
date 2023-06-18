@@ -1,0 +1,21 @@
+#imagem {
+	margin-top: 5%;
+}
+
+.fotoEmpresa #imagem img {
+	height: 20vh;
+	width: 25vw;
+}
+
+@media only screen and (min-width: 1024px) {
+    #imagem {
+		margin-top: 1%;
+		margin-left: 42%;
+		height: 28%;
+		width: 15%;
+	}
+	.fotoEmpresa #imagem img {
+		width: 100%;
+		height: 190px;
+	}
+}

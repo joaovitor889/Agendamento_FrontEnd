@@ -1,5 +1,4 @@
 import styles from './tLoginCli.css';
-import Logo from '../../img/logo.png';
 
 import { useState, useEffect } from "react";
 
@@ -7,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import authCli from '../../axios/configAuthCli.js';
 
+import FotoEmpresa from './fotoEmpresa';
 
 const TelaLogin = () => {
 
@@ -99,9 +99,7 @@ const TelaLogin = () => {
                 <div className="row">
                     <div className="logoLoginCli"><h1 title="Bem-Vindo!"><center>Shostners & shostners</center></h1></div>
                 </div>
-                <div className="row" id="imagem">
-                    <img src={Logo} alt="Logo" />
-                </div>
+                <FotoEmpresa />
                 <div className={styles.row}>
                     <div className="fundo">
                         <form id={styles["formLogin"]} onSubmit={(e) => loginCli(e)}>
