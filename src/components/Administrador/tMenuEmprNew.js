@@ -194,8 +194,8 @@ const TelaMenuEmpreendimento = () => {
     }
 
     //salvar o empreendimento
-    const cadEstabelecimento = async (selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
-        //alert(JSON.stringify({ selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
+    const cadEstabelecimento = async (selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
+        //alert(JSON.stringify({ selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
 
         //dados do Estabelecimento
         const textData = {
@@ -208,7 +208,7 @@ const TelaMenuEmpreendimento = () => {
             numero: jsnum,
             complemento: jscomp,
             tema: ftema,
-
+            CEP: jscep,
             horarios: [
                 {
                     diaSemana: "segunda",
@@ -282,41 +282,45 @@ const TelaMenuEmpreendimento = () => {
 
             console.log('Resposta de texto:', responseText.data);
 
-            if (responseText.status === 201)
+            if (responseText.status >= 200 && responseText.status <= 299) {
                 alert("Estabelecimento Cadastrado!");
+
+                const ultUid = responseText.data.uid;
+
+                //alert(ultUid);
+
+                //logica da foto
+                if (selectedFile !== null) {
+                    const formData = new FormData();
+                    formData.append('logo', selectedFile);
+                    try {
+                        const multipart = {
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                                Authorization: `Bearer ${token}`
+                            }
+                        };
+                        const response = await agFetch.post(`/estabelecimento/image/${ultUid}`, formData, multipart); 
+                        if (response.status >= 200 && response.status <= 299)
+                            console.log("Foto Enviada!");
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            }
 
         } catch (error) {
             console.error('Erro ao enviar requisições:', error);
             alert("Dados Inválidos!");
-        }
-
-        //logica da foto
-        if (selectedFile !== null) {
-            const formData = new FormData();
-            formData.append('logo', selectedFile);
-            try {
-                const multipart = {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                        Authorization: `Bearer ${token}`
-                    }
-                };
-                const response = await agFetch.post(`/estabelecimento/image/${uid}`, formData, multipart); // Removida a propriedade {brToken}
-                if (response.status >= 200 && response.status <= 299) {
-                    const imgUrl = response.data.imageUrl; // Certifique-se de usar a propriedade correta retornada pela API
-                    console.log("Imagem enviada!");
-                    //const addFoto = await agFetch.patch('/estabelecimento/update?uid=');
-                }
-            } catch (error) {
-                console.log(error);
-            }
         }
     }
 
     const salvarEmpreendimento = (e) => {
         e.preventDefault();
 
-        cadEstabelecimento(selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
+        //alert(JSON.stringify({selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf}));
+
+        cadEstabelecimento(selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
     }
 
 
