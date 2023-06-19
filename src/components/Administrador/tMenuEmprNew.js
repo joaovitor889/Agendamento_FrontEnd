@@ -293,7 +293,7 @@ const TelaMenuEmpreendimento = () => {
         //logica da foto
         if (selectedFile !== null) {
             const formData = new FormData();
-            formData.append('image', selectedFile);
+            formData.append('logo', selectedFile);
             try {
                 const multipart = {
                     headers: {
@@ -303,13 +303,12 @@ const TelaMenuEmpreendimento = () => {
                 };
                 const response = await agFetch.post(`/estabelecimento/image/${uid}`, formData, multipart); // Removida a propriedade {brToken}
                 if (response.status >= 200 && response.status <= 299) {
-                    //const imgUrl = response.data.imageUrl; // Certifique-se de usar a propriedade correta retornada pela API
+                    const imgUrl = response.data.imageUrl; // Certifique-se de usar a propriedade correta retornada pela API
                     console.log("Imagem enviada!");
-                    alert("Imagem enviada!");
+                    //const addFoto = await agFetch.patch('/estabelecimento/update?uid=');
                 }
             } catch (error) {
                 console.log(error);
-                alert(error);
             }
         }
     }
