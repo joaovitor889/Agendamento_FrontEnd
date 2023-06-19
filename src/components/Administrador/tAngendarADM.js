@@ -431,37 +431,8 @@ const TelaAgendarADM = () => {
         //alert(JSON.stringify({ horarioInicioEst, horarioFimEst, intervalo, inicExp, fimExp, agendamentos }));
         //alert(horarios);
 
-<<<<<<< HEAD
-    const navigate = useNavigate();
-
-    const tprofissionais = () => {
-        navigate(`/tPesqFunc/${token}/${uid}`);
-    }
-    const addFuncionarioNovaAba = (rotaFunc) => {
-        window.open(rotaFunc, '_blank');
-    }
-    const addFuncionario = () => {
-        const rotaFunc = `/tCadFunc/${token}/${uid}`; // Substitua pela rota desejada
-        addFuncionarioNovaAba(rotaFunc);
-    }
-    const clientes = () => {
-        navigate(`/tPesqCli/${token}/${uid}`);
-    }
-    const agendamentos = () => {
-        navigate(`/tAgendamentosADM/${token}/${uid}`);
-    }
-    const tservicos = () => {
-        navigate(`/tServADM/${token}/${uid}`);
-    }
-    const agendar = () => {
-        navigate(`/tAgendarADM/${token}/${uid}`)
-    }
-    const perfil = () => {
-        navigate(`/tMenuDBADM/${token}/${uid}`)
-=======
         //logica do envio
         realizarAgendamento(servico, profissional, data, horario, nome, telefone, cpf, preco);
->>>>>>> 42b2bff308a3f47d8e6d6e9d99cb981f7189cb30
     }
 
     const hor = ['08:00', '8:30', '09:30', '10:00', '10:30', '11:00', '11:30']
@@ -538,86 +509,12 @@ const TelaAgendarADM = () => {
                             <div className={styles.dois_campos}>
                                 <input type="date" className={styles.texto} value={data} onChange={(e) => setData(e.target.value)} />
                                 <select name="horario" className={styles.texto} onChange={(e) => setHorario(e.target.value)}>
-<<<<<<< HEAD
-                                    <option value="">Horários</option>
-                                    {/*{horarios.map((horario, index) => (
-                                        <option key={index} value={`${horario.inicio} - ${horario.fim}`}>
-                                            {horario.inicio} - {horario.fim}
-                                    </option>))}*/}
-
-                                    
-                                        
-                                        
-  <option value="">08:00</option>
-  <option value="08:10">08:10</option>
-  <option value="08:20">08:20</option>
-  <option value="08:30">08:30</option>
-  <option value="08:40">08:40</option>
-  <option value="08:50">08:50</option>
-  <option value="09:00">09:00</option>
-  <option value="09:10">09:10</option>
-  <option value="09:20">09:20</option>
-  <option value="09:30">09:30</option>
-  <option value="09:40">09:40</option>
-  <option value="09:50">09:50</option>
-  <option value="10:00">10:00</option>
-  <option value="10:10">10:10</option>
-  <option value="10:20">10:20</option>
-  <option value="10:30">10:30</option>
-  <option value="10:40">10:40</option>
-  <option value="10:50">10:50</option>
-  <option value="11:00">11:00</option>
-  <option value="11:10">11:10</option>
-  <option value="11:20">11:20</option>
-  <option value="11:30">11:30</option>
-  <option value="11:40">11:40</option>
-  <option value="11:50">11:50</option>
-  <option value="12:00">12:00</option>
-  <option value="12:10">12:10</option>
-  <option value="12:20">12:20</option>
-  <option value="12:30">12:30</option>
-  <option value="12:40">12:40</option>
-  <option value="12:50">12:50</option>
-  <option value="13:00">13:00</option>
-  <option value="13:10">13:10</option>
-  <option value="13:20">13:20</option>
-  <option value="13:30">13:30</option>
-  <option value="13:40">13:40</option>
-  <option value="13:50">13:50</option>
-  <option value="14:00">14:00</option>
-  <option value="14:10">14:10</option>
-  <option value="14:20">14:20</option>
-  <option value="14:30">14:30</option>
-  <option value="14:40">14:40</option>
-  <option value="14:50">14:50</option>
-  <option value="15:00">15:00</option>
-  <option value="15:10">15:10</option>
-  <option value="15:20">15:20</option>
-  <option value="15:30">15:30</option>
-  <option value="15:40">15:40</option>
-  <option value="15:50">15:50</option>
-  <option value="16:00">16:00</option>
-  <option value="16:10">16:10</option>
-  <option value="16:20">16:20</option>
-  <option value="16:30">16:30</option>
-  <option value="16:40">16:40</option>
-  <option value="16:50">16:50</option>
-  <option value="17:00">17:00</option>
-
-
-
-                                    {/* <option value="">-12:00</option>
-                                    <option value="">15:00</option>
-                                    <option value="">16:00</option>
-                                     */}
-=======
                                     <option value="hors">Horários</option>
                                     {data !== "" && horarios.map(vHorario => (
                                         <option value={vHorario}>
                                             {vHorario}
                                         </option>
                                     ))}
->>>>>>> 42b2bff308a3f47d8e6d6e9d99cb981f7189cb30
                                 </select>
                             </div>
                         </div>

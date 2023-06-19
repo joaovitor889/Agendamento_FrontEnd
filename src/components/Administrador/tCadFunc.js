@@ -19,6 +19,8 @@ const TelaCadFunc = () => {
 
     document.title = "Cadastrar Funcionário";
 
+    const [jsServico, setServico] = useState('');
+
     const navigate = useNavigate();
     const uid =  useParams().uid;
     const token = useParams().token;
@@ -135,6 +137,32 @@ const TelaCadFunc = () => {
         //signup(nome, telefone, cpf, email, senha);
     };
 
+ 
+
+   
+        const[meuArray, setMeuArray] = useState([]);
+
+        const adicionarItem = (e) => {
+            e.preventDefault();
+
+            if(meuArray.length === 0){
+                const novoArray =  [...meuArray, jsServico];
+                setMeuArray(novoArray)
+            }else{
+                for(var i = 0; i < meuArray.length; i++){
+                    if(meuArray[i] === jsServico){
+                        alert('Serviço já cadastrado!');
+                    }else{
+                        const novoArray =  [...meuArray, jsServico];
+                        setMeuArray(novoArray)
+                    }
+                }
+    
+            }
+ 
+        }
+
+
     return (
         <div className={styles.fCadFunc}>
             <div className={styles.body_header}>
@@ -157,7 +185,7 @@ const TelaCadFunc = () => {
             <div className={styles.Container}>
                 <h2>Cadastro de Funcionário</h2>
                 <br />
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div className={styles.Container_DB}>
                         <input type="text" className={styles.dados_basicos} placeholder='Nome:' id='nomeInput' onChange={(e) => setNome(e.target.value)}/>
                         <input type="text" className={styles.dados_basicos} placeholder='Sobrenome:' id='sobrenomeInput' onChange={(e) => setSobrenome(e.target.value)}/>
@@ -229,22 +257,26 @@ const TelaCadFunc = () => {
                         </div>
                         <div className={styles.funcoes}>
                             <h5>Funções do funcionário</h5>
-                            <select name="cars" className={styles.texto}>
+                            <select name="cars" className={styles.texto} onChange={(e) => setServico(e.target.value)}>
                                 <option value="corte">Serviços</option>
-                                <option value="corte">Corte</option>
-                                <option value="sombrancelha">Sombrancelha</option>
-                                <option value="manicure">Manicure</option>
-                                <option value="hidratação">hidratação</option>
+                                <option value="Corte">Corte</option>
+                                <option value="Sombrancelha">Sombrancelha</option>
+                                <option value="Manicure">Manicure</option>
+                                <option value="Hidratação">Hidratação</option>
                             </select>
-                            <button>Adicionar</button>
-                            <div className={styles.atividades}></div>
+                            <button onClick={adicionarItem}>Adicionar</button>
+                            <div className={styles.atividades}>
+                                {meuArray.map((item, index) => (
+                                    <p key={index}>{item}</p>
+                                ))}
+                            </div>
                         </div>
                         <div className={styles.senhas}>
                             <input type="password" className={styles.senha} placeholder='Senha' id='senhaInput' onChange={(e) => setSenha(e.target.value)} />
                             <input type="password" className={styles.senha} placeholder='Confirmar Senha' id='confSenhaInput' onChange={(e) => setConfSenha(e.target.value)}/>
                         </div>
                     </div>
-                    <button className={styles.cadfunc}>Cadastrar</button>
+                    <button className={styles.cadfunc} onClick={handleSubmit}>Cadastrar</button>
                 </form>
             </div>
 
