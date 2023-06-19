@@ -11,7 +11,7 @@ import agFetch from '../../axios/config.js';
 
 import './menHamburger.css';
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 //import { useState, useEffect, useRef } from "react";
 
@@ -27,11 +27,15 @@ const TelaDadosBasicosCliente = () => {
 
     document.title = "Dados Básicos";
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
+    const { token } = useParams();
+
+    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
 
     const converToken = decodeToken(token);
 
     const userID = converToken.id;
+
+    const { uid } = useParams();
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -132,7 +136,7 @@ const TelaDadosBasicosCliente = () => {
                 alert("Dados Atualizados com Sucesso!");
             }
         } catch (error) {
-            console.log(error);            
+            console.log(error);
         }
     }
 
@@ -151,23 +155,23 @@ const TelaDadosBasicosCliente = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <Link to='/tMenuDBADM' rel="noreferrer">
+                            <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                 <li style={{ color: '#000' }}><p>Dados Básicos</p></li>
                             </Link>
 
                             {/*<Link to='/tMenuEnderecoADM' target = "_blank" rel="noreferrer">*/}
-                            <Link to='/tMenuEnderecoADM/:token/:uid' rel="noreferrer">
+                            <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
                                 <li><p>Endereço</p></li>
                             </Link>
 
-                            <Link to='/tMenuFotoADM/:token/:uid' rel="noreferrer">
+                            <Link to={`/tMenuFotoADM/${token}/${uid}`}>
                                 <li><p>Foto</p></li>
                             </Link>
 
-                            <Link to='/tEmpreendimento/:token/:uid' rel="noreferrer">
+                            <Link to={`/tEmpreendimento/${token}/${uid}`}>
                                 <li><p>Empreendimento</p></li>
                             </Link>
-                            <Link to="/tNovoEmpreendimento/:token/:uid" rel="noreferrer">
+                            <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
                                 <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>
@@ -261,42 +265,42 @@ const TelaDadosBasicosCliente = () => {
                         <ul id="uMenHamburger">
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <Link to="/tMenuDBADM" rel="noreferrer">
+                                    <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                         Dados Básicos
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tMenuEnderecoADM" rel="noreferrer">
+                                    <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
                                         Endereço
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tMenuFotoADM" rel="noreferrer">
+                                    <Link to={`/tMenuFotoADM/${token}/${uid}`}>
                                         Foto
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to='/tEmpreendimento' rel="noreferrer">
+                                    <Link to={`/tEmpreendimento/${token}/${uid}`}>
                                         Empreendimento
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                    <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
                                         Novo Empreendimento
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tPesqFunc" rel="noreferrer">
+                                    <Link to={`/tPesqFunc/${token}/${uid}`}>
                                         Voltar ao Menu
                                     </Link>
                                 </p>
@@ -308,7 +312,7 @@ const TelaDadosBasicosCliente = () => {
 
                 <FotoHor />
                 <div className={styles.logoMenuCli}><p>Shostners & shostners</p></div>
-                <div id={styles["voltar"]}><a href="/tPesqFunc"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
 
         </div>

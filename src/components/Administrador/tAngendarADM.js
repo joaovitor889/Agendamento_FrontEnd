@@ -473,14 +473,14 @@ const TelaAgendarADM = () => {
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-                <a href = "/">Profissionais</a>
-                <a href = "/">Clientes</a>
-                <a href = "/">Agendamentos</a>
-                <a href = "/">Agendar</a>
-                {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
-                <a href = "/">Serviços</a>
-                <a href = "/">Perfil</a>
-                <a href="/">Sair</a>
+            <Link to={`/tPesqFunc/${token}/${uid}`}>Profissionais</Link>
+                    <Link to={`/tPesqCli/${token}/${uid}`}>Clientes</Link>
+                    <Link to={`/tAgendamentosADM/${token}/${uid}`}>Agendamentos</Link>
+                    <Link to={`/tAgendarADM/${token}/${uid}`} style={{ color: '#7c807d' }}>Agendar</Link>
+                    {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
+                    <Link to={`/tServADM/${token}/${uid}`}>Serviços</Link>
+                    <Link to={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
+                    <Link to={`/tLoginAdm`}>Sair</Link>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>
                     <option value="emp2">Show de bola</option>

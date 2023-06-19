@@ -38,6 +38,10 @@ const TelaMenuEmpreendimento = () => {
 
     const { token } = useParams();
 
+    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
+
+    const { uid } = useParams();
+
     //Programação do Menu de Hamburger
     // to change burger classes
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
@@ -312,23 +316,23 @@ const TelaMenuEmpreendimento = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <Link to="/tMenuDBADM/:token/:uid" rel="noreferrer">
+                            <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                 <li><p>Dados Básicos</p></li>
                             </Link>
 
-                            <Link to="/tMenuEnderecoADM/:token/:uid" rel="noreferrer">
+                            {/*<Link to='/tMenuEnderecoADM' target = "_blank" rel="noreferrer">*/}
+                            <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
                                 <li><p>Endereço</p></li>
                             </Link>
 
-                            <Link to="/tMenuFotoADM/:token/:uid" rel="noreferrer">
+                            <Link to={`/tMenuFotoADM/${token}/${uid}`}>
                                 <li><p>Foto</p></li>
                             </Link>
 
-                            <Link to="/tEmpreendimento/:token/:uid" rel="noreferrer">
+                            <Link to={`/tEmpreendimento/${token}/${uid}`}>
                                 <li style={{ color: '#000' }}><p>Empreendimento</p></li>
                             </Link>
-
-                            <Link to="/tNovoEmpreendimento/:token/:uid" rel="noreferrer">
+                            <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
                                 <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>
@@ -454,7 +458,7 @@ const TelaMenuEmpreendimento = () => {
                                         event.preventDefault();
                                     }
                                 }}
-                                ref = {fcep}
+                                ref={fcep}
                                 onBlur={checkCEP}
                                 onChange={(e) => setCEP(e.target.value)}
                                 required />
@@ -552,42 +556,42 @@ const TelaMenuEmpreendimento = () => {
                         <ul id="uMenHamburger">
                             <li>
                                 <p>
-                                    <Link to="/tMenuDBADM" rel="noreferrer">
+                                    <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                         Dados Básicos
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tMenuEnderecoADM" rel="noreferrer">
+                                    <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
                                         Endereço
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tMenuFotoADM" rel="noreferrer">
+                                    <Link to={`/tMenuFotoADM/${token}/${uid}`}>
                                         Foto
                                     </Link>
                                 </p>
                             </li>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <Link to="/tEmpreendimento" rel="noreferrer">
+                                    <Link to={`/tEmpreendimento/${token}/${uid}`}>
                                         Empreendimento
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tNovoEmpreendimento" rel="noreferrer">
-                                        New Empreendimento
+                                    <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
+                                        Novo Empreendimento
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tPesqFunc" rel="noreferrer">
+                                    <Link to={`/tPesqFunc/${token}/${uid}`}>
                                         Voltar ao Menu
                                     </Link>
                                 </p>
@@ -599,7 +603,7 @@ const TelaMenuEmpreendimento = () => {
                 <FotoHor />
 
                 <div className={styles.logoMenuCli}><p>Shostners & Shotners</p></div>
-                <div id={styles["voltar"]}><a href="/tPesqFunc" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>
     )

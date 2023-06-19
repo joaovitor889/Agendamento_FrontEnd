@@ -28,102 +28,74 @@ const TelaAgendamentos = () => {
     const { uid } = useParams();
     const { token } = useParams();
 
-    const navigate = useNavigate();
-
-    const profissionais = () => {
-        navigate(`/tPesqFunc/${token}/${uid}`);
-    }
-    const addFuncionarioNovaAba = (rotaFunc) => {
-        window.open(rotaFunc, '_blank');
-    }
-    const addFuncionario = () => {
-        const rotaFunc = `/tCadFunc/${token}/${uid}`; // Substitua pela rota desejada
-        addFuncionarioNovaAba(rotaFunc);
-    }
-    const clientes = () => {
-        navigate(`/tPesqCli/${token}/${uid}`);
-    }
-    const agendamentos = () => {
-        navigate(`/tAgendamentosADM/${token}/${uid}`);
-    }
-    const servicos = () => {
-        navigate(`/tServADM/${token}/${uid}`);
-    }
-    const agendar = () =>{
-        navigate(`/tAgendarADM/${token}/${uid}`)
-    }
-    const perfil = () =>{
-        navigate(`/tMenuDBADM/${token}/${uid}`)
-    }
-
     return (
         <main>
-        <div className={styles.fAgends}>
-            <input type='checkbox' id={styles["check"]} />
-            <input type='checkbox' id={styles["check_rigth"]} />
-            {/* header  começo */}
-            <header>
-                <div className={styles.esquerda}>
-                    <label htmlFor={styles["check"]}>
-                        <img src={menu} alt="retunr" className='sidebar_btn' />
-                    </label>
-                </div>
-                <div className={styles.Centro}>
-                    <h3>Shostners & Shostners</h3>
-                </div>
-                <div className={styles.direita}>
-                    <a href="/" className="btn_perfil">
-                        <img src={perfilF} alt="notificar" />
-                    </a>
-                    {/* <a href="/" className="btn_noticia">
+            <div className={styles.fAgends}>
+                <input type='checkbox' id={styles["check"]} />
+                <input type='checkbox' id={styles["check_rigth"]} />
+                {/* header  começo */}
+                <header>
+                    <div className={styles.esquerda}>
+                        <label htmlFor={styles["check"]}>
+                            <img src={menu} alt="retunr" className='sidebar_btn' />
+                        </label>
+                    </div>
+                    <div className={styles.Centro}>
+                        <h3>Shostners & Shostners</h3>
+                    </div>
+                    <div className={styles.direita}>
+                        <a href="/" className="btn_perfil">
+                            <img src={perfilF} alt="notificar" />
+                        </a>
+                        {/* <a href="/" className="btn_noticia">
                         <img src={notificar} alt="notificar" />
                     </a> */}
+                    </div>
+                </header>
+                {/* final do header */}
+                {/* sidebar começo */}
+                <div className={styles.sidebar}>
+                    <Link to={`/tPesqFunc/${token}/${uid}`}>Profissionais</Link>
+                    <Link to={`/tPesqCli/${token}/${uid}`}>Clientes</Link>
+                    <Link to={`/tAgendamentosADM/${token}/${uid}`} style={{ color: '#7c807d' }}>Agendamentos</Link>
+                    <Link to={`/tAgendarADM/${token}/${uid}`}>Agendar</Link>
+                    {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
+                    <Link to={`/tServADM/${token}/${uid}`}>Serviços</Link>
+                    <Link to={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
+                    <Link to={`/tLoginAdm`}>Sair</Link>
+                    <select name='qual empresa?' className={styles.interprise}>
+                        <option value="emp1">Shostners and Shostners</option>
+                        <option value="emp2">Show de bola</option>
+                    </select>
                 </div>
-            </header>
-            {/* final do header */}
-            {/* sidebar começo */}
-            <div className={styles.sidebar}>
-                <p onClick={profissionais}>Profissionais</p>
-                <p onClick={clientes}>Clientes</p>
-                <p onClick={agendamentos}>Agendamentos</p>
-                <p onClick={agendar}>Agendar</p>
-                {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
-                <p onClick={servicos}>Serviços</p>
-                <p onClick={perfil}>Perfil</p>
-                <a href="/">Sair</a>
-                <select name='qual empresa?' className={styles.interprise}>
-                    <option value="emp1">Shostners and Shostners</option>
-                    <option value="emp2">Show de bola</option>
-                </select>
-            </div>
-            {/* sidebar  final */}
-            {/* sidebar começo */}
-            <div className={styles.sidebar_rigth}>
-                <h1>Filtros</h1>
-                <br />
-                <p>Nome do cliente</p>
-                <input type="text" placeholder='Ex: Lara' />
-                <br />
-                <p>CPF do Cliente</p>
-                <input type="text" placeholder='CPF:' />
-                <br />
-                <p>Nome do Profissional</p>
-                <select name="func" className={styles.texto}>
-                    <option value="corte">Todos os funcionários</option>
-                    <option value="corte">João</option>
-                    <option value="corte">Bruno</option>
-                    <option value="sombrancelha">Antônio</option>
-                    <option value="manicure">Guilherme</option>
-                    <option value="hidratação">Jean</option>
-                </select>
+                {/* sidebar  final */}
+                {/* sidebar começo */}
+                <div className={styles.sidebar_rigth}>
+                    <h1>Filtros</h1>
+                    <br />
+                    <p>Nome do cliente</p>
+                    <input type="text" placeholder='Ex: Lara' />
+                    <br />
+                    <p>CPF do Cliente</p>
+                    <input type="text" placeholder='CPF:' />
+                    <br />
+                    <p>Nome do Profissional</p>
+                    <select name="func" className={styles.texto}>
+                        <option value="corte">Todos os funcionários</option>
+                        <option value="corte">João</option>
+                        <option value="corte">Bruno</option>
+                        <option value="sombrancelha">Antônio</option>
+                        <option value="manicure">Guilherme</option>
+                        <option value="hidratação">Jean</option>
+                    </select>
 
-                <button className='btn_fill'>Filtrar</button>
-            </div>
-            {/* sidebar  final */}
-            <label htmlFor={styles["check_rigth"]} className={styles.filter}>
+                    <button className='btn_fill'>Filtrar</button>
+                </div>
+                {/* sidebar  final */}
+                <label htmlFor={styles["check_rigth"]} className={styles.filter}>
                     <img src={filtro} alt="filtro" />
                     <h4>Filtro</h4>
-            </label>
+                </label>
                 <div className='calendario'>
                     <div className={styles.rowTop}>
                         <h4>Seg</h4>
@@ -144,117 +116,117 @@ const TelaAgendamentos = () => {
                         <h4>06/03</h4>
                     </div>
                 </div>
-                <a onClick={()=> setOpenModal(true)} className={styles.block}> <img src={block} alt="bloquear" /></a>
-            <div className={styles.Container}>
-                <div className={styles.Card}>
-                    <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
-                        <p>Serviços: cabelereira, manicure</p>
-                    </div>
-                    <div className={styles.Card_Body}>
-                        <h3>14:00 - 16:00</h3>
-                        <div className={styles.Status}>
-                            <h3>Status</h3>
-                            <a href="/">Confirmar</a>
+                <a onClick={() => setOpenModal(true)} className={styles.block}> <img src={block} alt="bloquear" /></a>
+                <div className={styles.Container}>
+                    <div className={styles.Card}>
+                        <div className={styles.Card_Header}>
+                            <h2>Cliente: Ana Catarina</h2>
+                            <p>Serviços: cabelereira, manicure</p>
+                        </div>
+                        <div className={styles.Card_Body}>
+                            <h3>14:00 - 16:00</h3>
+                            <div className={styles.Status}>
+                                <h3>Status</h3>
+                                <a href="/">Confirmar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className={styles.Card}>
-                    <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
-                        <p>Serviços: cabelereira, manicure</p>
-                    </div>
-                    <div className={styles.Card_Body}>
-                        <h3>14:00 - 16:00</h3>
-                        <div className={styles.Status}>
-                            <h3>Status</h3>
-                            <a href="/">Confirmar</a>
+                    <div className={styles.Card}>
+                        <div className={styles.Card_Header}>
+                            <h2>Cliente: Ana Catarina</h2>
+                            <p>Serviços: cabelereira, manicure</p>
+                        </div>
+                        <div className={styles.Card_Body}>
+                            <h3>14:00 - 16:00</h3>
+                            <div className={styles.Status}>
+                                <h3>Status</h3>
+                                <a href="/">Confirmar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className={styles.Card}>
-                    <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
-                        <p>Serviços: cabelereira, manicure</p>
-                    </div>
-                    <div className={styles.Card_Body}>
-                        <h3>14:00 - 16:00</h3>
-                        <div className={styles.Status}>
-                            <h3>Status</h3>
-                            <a href="/">Confirmar</a>
+                    <div className={styles.Card}>
+                        <div className={styles.Card_Header}>
+                            <h2>Cliente: Ana Catarina</h2>
+                            <p>Serviços: cabelereira, manicure</p>
+                        </div>
+                        <div className={styles.Card_Body}>
+                            <h3>14:00 - 16:00</h3>
+                            <div className={styles.Status}>
+                                <h3>Status</h3>
+                                <a href="/">Confirmar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className={styles.Card}>
-                    <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
-                        <p>Serviços: cabelereira, manicure</p>
-                    </div>
-                    <div className={styles.Card_Body}>
-                        <h3>14:00 - 16:00</h3>
-                        <div className={styles.Status}>
-                            <h3>Status</h3>
-                            <a href="/">Confirmar</a>
+                    <div className={styles.Card}>
+                        <div className={styles.Card_Header}>
+                            <h2>Cliente: Ana Catarina</h2>
+                            <p>Serviços: cabelereira, manicure</p>
+                        </div>
+                        <div className={styles.Card_Body}>
+                            <h3>14:00 - 16:00</h3>
+                            <div className={styles.Status}>
+                                <h3>Status</h3>
+                                <a href="/">Confirmar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className={styles.Card}>
-                    <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
-                        <p>Serviços: cabelereira, manicure</p>
-                    </div>
-                    <div className={styles.Card_Body}>
-                        <h3>14:00 - 16:00</h3>
-                        <div className={styles.Status}>
-                            <h3>Status</h3>
-                            <a href="/">Confirmar</a>
+                    <div className={styles.Card}>
+                        <div className={styles.Card_Header}>
+                            <h2>Cliente: Ana Catarina</h2>
+                            <p>Serviços: cabelereira, manicure</p>
+                        </div>
+                        <div className={styles.Card_Body}>
+                            <h3>14:00 - 16:00</h3>
+                            <div className={styles.Status}>
+                                <h3>Status</h3>
+                                <a href="/">Confirmar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className={styles.Card}>
-                    <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
-                        <p>Serviços: cabelereira, manicure</p>
-                    </div>
-                    <div className={styles.Card_Body}>
-                        <h3>14:00 - 16:00</h3>
-                        <div className={styles.Status}>
-                            <h3>Status</h3>
-                            <a href="/">Confirmar</a>
+                    <div className={styles.Card}>
+                        <div className={styles.Card_Header}>
+                            <h2>Cliente: Ana Catarina</h2>
+                            <p>Serviços: cabelereira, manicure</p>
+                        </div>
+                        <div className={styles.Card_Body}>
+                            <h3>14:00 - 16:00</h3>
+                            <div className={styles.Status}>
+                                <h3>Status</h3>
+                                <a href="/">Confirmar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className={styles.Card}>
-                    <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
-                        <p>Serviços: cabelereira, manicure</p>
-                    </div>
-                    <div className={styles.Card_Body}>
-                        <h3>14:00 - 16:00</h3>
-                        <div className={styles.Status}>
-                            <h3>Status</h3>
-                            <a href="/">Confirmar</a>
+                    <div className={styles.Card}>
+                        <div className={styles.Card_Header}>
+                            <h2>Cliente: Ana Catarina</h2>
+                            <p>Serviços: cabelereira, manicure</p>
+                        </div>
+                        <div className={styles.Card_Body}>
+                            <h3>14:00 - 16:00</h3>
+                            <div className={styles.Status}>
+                                <h3>Status</h3>
+                                <a href="/">Confirmar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className={styles.Card}>
-                    <div className={styles.Card_Header}>
-                        <h2>Cliente: Ana Catarina</h2>
-                        <p>Serviços: cabelereira, manicure</p>
-                    </div>
-                    <div className={styles.Card_Body}>
-                        <h3>14:00 - 16:00</h3>
-                        <div className={styles.Status}>
-                            <h3>Status</h3>
-                            <a href="/">Confirmar</a>
+                    <div className={styles.Card}>
+                        <div className={styles.Card_Header}>
+                            <h2>Cliente: Ana Catarina</h2>
+                            <p>Serviços: cabelereira, manicure</p>
+                        </div>
+                        <div className={styles.Card_Body}>
+                            <h3>14:00 - 16:00</h3>
+                            <div className={styles.Status}>
+                                <h3>Status</h3>
+                                <a href="/">Confirmar</a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-                
+
+                <Bloquear isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)} />
             </div>
-                
-            <Bloquear  isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/> 
-        </div>
         </main>
     )
 }

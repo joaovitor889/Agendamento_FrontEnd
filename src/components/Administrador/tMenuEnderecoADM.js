@@ -15,7 +15,7 @@ import agFetch from '../../axios/config.js';
 
 import { useForm } from "react-hook-form";
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
@@ -27,11 +27,15 @@ import { decodeToken } from 'react-jwt';
 const TelaEnderecoCliente = () => {
     document.title = "Endereço do Cliente";
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
+    const { token } = useParams();
+
+    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
 
     const converToken = decodeToken(token);
 
     const userID = converToken.id;
+
+    const { uid } = useParams();
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -151,7 +155,7 @@ const TelaEnderecoCliente = () => {
     }, []);
 
     const atualizaEndereco = async (jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
-        const convCEP = "" + jscep;        
+        const convCEP = "" + jscep;
         const txtData = {
             uf: jseuf,
             cidade: jscidade,
@@ -202,22 +206,23 @@ const TelaEnderecoCliente = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <Link to="/tMenuDBADM/:token/:uid" rel="noreferrer">
+                            <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                 <li><p>Dados Básicos</p></li>
                             </Link>
 
-                            <Link to="/tMenuEnderecoADM/:token/:uid" rel="noreferrer">
+                            {/*<Link to='/tMenuEnderecoADM' target = "_blank" rel="noreferrer">*/}
+                            <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
                                 <li style={{ color: '#000' }}><p>Endereço</p></li>
                             </Link>
 
-                            <Link to="/tMenuFotoADM/:token/:uid" rel="noreferrer">
+                            <Link to={`/tMenuFotoADM/${token}/${uid}`}>
                                 <li><p>Foto</p></li>
                             </Link>
 
-                            <Link to="/tEmpreendimento/:token/:uid" rel="noreferrer">
+                            <Link to={`/tEmpreendimento/${token}/${uid}`}>
                                 <li><p>Empreendimento</p></li>
                             </Link>
-                            <Link to="/tNovoEmpreendimento/:token/:uid" rel="noreferrer">
+                            <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
                                 <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>
@@ -344,42 +349,42 @@ const TelaEnderecoCliente = () => {
                         <ul id="uMenHamburger">
                             <li>
                                 <p>
-                                    <Link to="/tMenuDBCli" rel="noreferrer">
+                                    <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                         Dados Básicos
                                     </Link>
                                 </p>
                             </li>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <Link to="/tMenuEnderecoCli" rel="noreferrer">
+                                    <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
                                         Endereço
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tMenuFotoADM" rel="noreferrer">
+                                    <Link to={`/tMenuFotoADM/${token}/${uid}`}>
                                         Foto
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tEmpreendimento" rel="noreferrer">
+                                    <Link to={`/tEmpreendimento/${token}/${uid}`}>
                                         Empreendimento
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                    <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
                                         Novo Empreendimento
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tPesqFunc" rel="noreferrer">
+                                    <Link to={`/tPesqFunc/${token}/${uid}`}>
                                         Voltar ao Menu
                                     </Link>
                                 </p>
@@ -391,7 +396,7 @@ const TelaEnderecoCliente = () => {
                 <FotoHor />
 
                 <div className={styles.logoMenuCli}><p>Shostners & shostners</p></div>
-                <div id={styles["voltar"]}><a href="/tPesqFunc" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>
     )

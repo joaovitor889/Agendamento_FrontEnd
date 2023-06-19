@@ -68,16 +68,16 @@ function App() {
             <Route path = "/tEsqueceuSenhaAdm" element = {<EsqSenhaAdm />} />
             <Route path = "/tAlterarSenhaAdm" element = {<AltSenhaAdm />} />
             <Route  path = "/tCadastroAdm" element = {<CadastroAdm />} />
-            <Route  path = "/tLoginCli" element = {<LoginCli />} />
+            <Route  path = "/tLoginCli/:uid" element = {<LoginCli />} />
             <Route  path = "/tEsqueceuSenhaCli" element = {<EsqSenhaCli />} />
             <Route  path = "/tAlterarSenhaCli" element = {<AltSenhaCli />} />
             <Route  path = "/tEsqueceuSenhaFunc" element = {<EsqSenhaFunc />} />
             <Route path = "/tAlterarSenhaFunc" element = {<AltSenhaFunc />} />
-            <Route  path = "/tCadastroCli" element = {<CadastroCli />} />
+            <Route  path = "/tCadastroCli/:uid" element = {<CadastroCli />} />
             <Route  path = "/tLoginFunc" element = {<LoginFunc />} />
             
             {/* Telas do Administrador */}
-            <Route path="/tAgendarADM/" element = {<AgendarADM />} />
+            <Route path="/tAgendarADM/:token/:uid" element = {<AgendarADM />} />
             <Route path="/tCadServico/:token/:uid" element = {<CadServicos />} />
             {/*<Route path="/tCategoriaADM" element = {<Categorias />} />*/}
             <Route path="/tServADM/:token/:uid" element = {<ServADM />} />

@@ -45,13 +45,13 @@ const TelaMenuADM = () => {
 
     const handleADD = (e) => {
         e.preventDefault();
-        navigate("/tCadServico");
+        navigate(`/tCadServico/${token}/${uid}`);
     }
 
     useEffect(() => {
         //fazer uma variavel global que pegue o ID do estabelecimento
         const fetchServices = async () => {
-            try {                
+            try {
                 //const response = await agFetch.get('/estabelecimento/todosServ/WLShVu');
                 const response = await agFetch.get('/estabelecimento/todosServ/jMQqNo');
                 setServices(response.data);
@@ -79,30 +79,6 @@ const TelaMenuADM = () => {
         setSelectedCategory(event.target.value);
     };
 
-    
-
-    const tprofissionais = () => {
-        navigate(`/tPesqFunc/${token}/${uid}`);
-    }
-    const addFuncionarioNovaAba = (rotaFunc) => {
-        window.open(rotaFunc, '_blank');
-    }
-    const clientes = () => {
-        navigate(`/tPesqCli/${token}/${uid}`);
-    }
-    const agendamentos = () => {
-        navigate(`/tAgendamentosADM/${token}/${uid}`);
-    }
-    const tservicos = () => {
-        navigate(`/tServADM/${token}/${uid}`);
-    }
-    const agendar = () =>{
-        navigate(`/tAgendarADM/${token}/${uid}`)
-    }
-    const perfil = () =>{
-        navigate(`/tMenuDBADM/${token}/${uid}`)
-    }
-
     return (
         <div className={styles.fMenuADM}>
             <input type='checkbox' id={styles["check"]} />
@@ -128,14 +104,14 @@ const TelaMenuADM = () => {
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-                <p onClick={tprofissionais}>Profissionais</p>
-                <p onClick={clientes}>Clientes</p>
-                <p onClick={agendamentos}>Agendamentos</p>
-                <p onClick={agendar}>Agendar</p>
+                <Link to={`/tPesqFunc/${token}/${uid}`}>Profissionais</Link>
+                <Link to={`/tPesqCli/${token}/${uid}`}>Clientes</Link>
+                <Link to={`/tAgendamentosADM/${token}/${uid}`}>Agendamentos</Link>
+                <Link to={`/tAgendarADM/${token}/${uid}`}>Agendar</Link>
                 {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
-                <p onClick={tservicos}>Serviços</p>
-                <p onClick={perfil}>Perfil</p>
-                <a href="/">Sair</a>
+                <Link to={`/tServADM/${token}/${uid}`} style={{ color: '#7c807d' }}>Serviços</Link>
+                <Link to={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
+                <Link to={`/tLoginAdm`}>Sair</Link>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>
                     <option value="emp2">Show de bola</option>

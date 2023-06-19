@@ -21,9 +21,6 @@ const TelaCadServico = () => {
     const { uid } = useParams();
     const { token } = useParams();
 
-    //Fazer a requisicao do Estabelecimento
-    const vUIDEstabelecimento = "jMQqNo";
-
     const descCat = "";
     const [vNome, setVNome] = useState("");
     const [vPreco, setVPreco] = useState("");
@@ -72,13 +69,13 @@ const TelaCadServico = () => {
 
 
     //Enviar os Dados para a API com o AXIOS
-    const cadastrarServico = async (vUIDEstabelecimento, vNome, vPreco, vAtivo, tempo, vDescricao, nomeCategoria, descCat) => {
+    const cadastrarServico = async (vNome, vPreco, vAtivo, tempo, vDescricao, nomeCategoria, descCat) => {
         try {
             // Converter os valores para números antes de enviar a requisição
             const convertePreco = parseFloat(vPreco);
             const tempoConvertido = parseInt(tempo);
             const novoServico = {
-                UIDEstabelecimento: vUIDEstabelecimento,
+                UIDEstabelecimento: uid,
                 nome: vNome,
                 preco: convertePreco,
                 ativo: vAtivo,
@@ -125,34 +122,7 @@ const TelaCadServico = () => {
 
         //alert(JSON.stringify({ vUIDEstabelecimento, vNome, vPreco, vAtivo, tempo, vDescricao, nomeCategoria, descCat }));
 
-        cadastrarServico(vUIDEstabelecimento, vNome, vPreco, vAtivo, tempo, vDescricao, nomeCategoria, descCat);
-    }
-
-
-    const profissionais = () => {
-        navigate(`/tPesqFunc/${token}/${uid}`);
-    }
-    const addFuncionarioNovaAba = (rotaFunc) => {
-        window.open(rotaFunc, '_blank');
-    }
-    const addFuncionario = () => {
-        const rotaFunc = `/tCadFunc/${token}/${uid}`; // Substitua pela rota desejada
-        addFuncionarioNovaAba(rotaFunc);
-    }
-    const clientes = () => {
-        navigate(`/tPesqCli/${token}/${uid}`);
-    }
-    const agendamentos = () => {
-        navigate(`/tAgendamentosADM/${token}/${uid}`);
-    }
-    const servicos = () => {
-        navigate(`/tServADM/${token}/${uid}`);
-    }
-    const agendar = () =>{
-        navigate(`/tAgendarADM/${token}/${uid}`)
-    }
-    const perfil = () =>{
-        navigate(`/tMenuDBADM/${token}/${uid}`)
+        cadastrarServico(vNome, vPreco, vAtivo, tempo, vDescricao, nomeCategoria, descCat);
     }
 
     return (
@@ -178,14 +148,14 @@ const TelaCadServico = () => {
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-            <p onClick={profissionais}>Profissionais</p>
-                <p onClick={clientes}>Clientes</p>
-                <p onClick={agendamentos}>Agendamentos</p>
-                <p onClick={agendar}>Agendar</p>
+                <Link to={`/tPesqFunc/${token}/${uid}`}>Profissionais</Link>
+                <Link to={`/tPesqCli/${token}/${uid}`}>Clientes</Link>
+                <Link to={`/tAgendamentosADM/${token}/${uid}`}>Agendamentos</Link>
+                <Link to={`/tAgendarADM/${token}/${uid}`}>Agendar</Link>
                 {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
-                <p onClick={servicos}>Serviços</p>
-                <p onClick={perfil}>Perfil</p>
-                <a href="/">Sair</a>
+                <Link to={`/tServADM/${token}/${uid}`}>Serviços</Link>
+                <Link to={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
+                <Link to={`/tLoginAdm`}>Sair</Link>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>
                     <option value="emp2">Show de bola</option>
