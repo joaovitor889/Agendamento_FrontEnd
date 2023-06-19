@@ -32,6 +32,7 @@ import tAmarelo from '../../temas/tema05.png';
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
 import FotoMen from './FotoPerfilAdm/fotoAdmMen';
+import { type } from '@testing-library/user-event/dist/type';
 
 const TelaMenuEmpreendimento = () => {
     document.title = "Novo Empreendimento";
@@ -92,7 +93,7 @@ const TelaMenuEmpreendimento = () => {
     });
 
     //logica do upload da foto
-    const [selectedFile, setSelectedFile] = useState();
+    const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState();
 
 
@@ -196,6 +197,7 @@ const TelaMenuEmpreendimento = () => {
     const cadEstabelecimento = async (selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
         //alert(JSON.stringify({ selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
 
+        //dados do Estabelecimento
         const textData = {
             nome: nomeEst,
             telefone: ftelefone,
@@ -280,25 +282,35 @@ const TelaMenuEmpreendimento = () => {
 
             console.log('Resposta de texto:', responseText.data);
 
-            // Criar um objeto FormData para enviar a foto
-
-            //const formData = new FormData();
-            //formData.append('photo', selectedFile);
-
-            // Fazer upload da foto
-            //const responsePhoto = await agFetch.post('/api/photo-endpoint', formData, {
-            //headers: {
-            //'Content-Type': 'multipart/form-data',
-            //},
-            //});
-            //console.log('Resposta de foto:', responsePhoto.data);
-
             if (responseText.status === 201)
                 alert("Estabelecimento Cadastrado!");
 
         } catch (error) {
             console.error('Erro ao enviar requisições:', error);
             alert("Dados Inválidos!");
+        }
+
+        //logica da foto
+        if (selectedFile !== null) {
+            const formData = new FormData();
+            formData.append('image', selectedFile);
+            try {
+                const multipart = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        Authorization: `Bearer ${token}`
+                    }
+                };
+                const response = await agFetch.post(`/estabelecimento/image/${uid}`, formData, multipart); // Removida a propriedade {brToken}
+                if (response.status >= 200 && response.status <= 299) {
+                    //const imgUrl = response.data.imageUrl; // Certifique-se de usar a propriedade correta retornada pela API
+                    console.log("Imagem enviada!");
+                    alert("Imagem enviada!");
+                }
+            } catch (error) {
+                console.log(error);
+                alert(error);
+            }
         }
     }
 
@@ -318,7 +330,7 @@ const TelaMenuEmpreendimento = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                        <Link to={`/tMenuDBADM/${token}/${uid}`}>
+                            <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                 <li><p>Dados Básicos</p></li>
                             </Link>
 
@@ -425,18 +437,6 @@ const TelaMenuEmpreendimento = () => {
                     </div>
                     <p id={styles["legTema"]}>Escolha o tema de fundo da sua empresa</p><br></br>
                     <div id={styles["temas"]}>
-                        {/*<button>Azul</button>
-                        <button>Vermelho</button>
-                        <button>Verde</button>
-                        <button>Roza</button>
-                        <button>Amarelo</button>*/}
-
-                        {/*<input type="radio" value="azul" name="temas"/>                     
-                        <input type="radio" value="vermelho" name="temas" />                         
-                        <input type="radio" value="verde" name="temas" />                         
-                        <input type="radio" value="roza" name="temas" />                         
-                        <input type="radio" value="amarelo" name="temas" />*/}
-
                         <img src={tAzul} alt="Tema Azul" onClick={() => setTema("#3293CA")} />
                         <img src={tVermelho} alt="Tema Vermelho" onClick={() => setTema("#f02d1f")} />
                         <img src={tVerde} alt="Tema Verde" onClick={() => setTema("#1ff076")} />
@@ -556,7 +556,7 @@ const TelaMenuEmpreendimento = () => {
                         <FotoMen />
 
                         <ul id="uMenHamburger">
-                        <li>
+                            <li>
                                 <p>
                                     <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                         Dados Básicos
