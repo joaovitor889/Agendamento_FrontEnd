@@ -90,7 +90,7 @@
 }
 
 #cabecalho p {
-	margin: 10% 5% 5% 5%;
+	margin: 10% 15% 5% 15%;
 	font-size: 7vw;
 	font-family: 'Merienda', cursive;
 	font-weight: bold;
@@ -175,7 +175,8 @@
 	#cabecalho p {
 		position: absolute;
 		margin-top: 3%;
-		left: 35%;
+		left: 15%;
+		right: 15%;
 		font-size: 100%;
 	}
 	.container {

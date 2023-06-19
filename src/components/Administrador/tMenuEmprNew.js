@@ -32,12 +32,20 @@ import tAmarelo from '../../temas/tema05.png';
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
 import FotoMen from './FotoPerfilAdm/fotoAdmMen';
+<<<<<<< HEAD
 import { toFormData } from 'axios';
+=======
+import { type } from '@testing-library/user-event/dist/type';
+>>>>>>> 5c9e6531e0b93cc29f03b784c846c125084782b0
 
 const TelaMenuEmpreendimento = () => {
-    document.title = "Empreendimento";
+    document.title = "Novo Empreendimento";
 
     const { token } = useParams();
+    const { uid } = useParams();
+
+    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
+
     const { uid } = useParams();
 
     //Programação do Menu de Hamburger
@@ -90,7 +98,7 @@ const TelaMenuEmpreendimento = () => {
     });
 
     //logica do upload da foto
-    const [selectedFile, setSelectedFile] = useState();
+    const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState();
 
 
@@ -191,9 +199,10 @@ const TelaMenuEmpreendimento = () => {
     }
 
     //salvar o empreendimento
-    const cadEstabelecimento = async (selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
-        //alert(JSON.stringify({ selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
+    const cadEstabelecimento = async (selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
+        //alert(JSON.stringify({ selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
 
+        //dados do Estabelecimento
         const textData = {
             nome: nomeEst,
             telefone: ftelefone,
@@ -204,7 +213,7 @@ const TelaMenuEmpreendimento = () => {
             numero: jsnum,
             complemento: jscomp,
             tema: ftema,
-
+            CEP: jscep,
             horarios: [
                 {
                     diaSemana: "segunda",
@@ -278,21 +287,32 @@ const TelaMenuEmpreendimento = () => {
 
             console.log('Resposta de texto:', responseText.data);
 
-            // Criar um objeto FormData para enviar a foto
-
-            //const formData = new FormData();
-            //formData.append('photo', selectedFile);
-
-            // Fazer upload da foto
-            //const responsePhoto = await agFetch.post('/api/photo-endpoint', formData, {
-            //headers: {
-            //'Content-Type': 'multipart/form-data',
-            //},
-            //});
-            //console.log('Resposta de foto:', responsePhoto.data);
-
-            if (responseText.status === 201)
+            if (responseText.status >= 200 && responseText.status <= 299) {
                 alert("Estabelecimento Cadastrado!");
+
+                const ultUid = responseText.data.uid;
+
+                //alert(ultUid);
+
+                //logica da foto
+                if (selectedFile !== null) {
+                    const formData = new FormData();
+                    formData.append('logo', selectedFile);
+                    try {
+                        const multipart = {
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                                Authorization: `Bearer ${token}`
+                            }
+                        };
+                        const response = await agFetch.post(`/estabelecimento/image/${ultUid}`, formData, multipart); 
+                        if (response.status >= 200 && response.status <= 299)
+                            console.log("Foto Enviada!");
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            }
 
         } catch (error) {
             console.error('Erro ao enviar requisições:', error);
@@ -303,7 +323,9 @@ const TelaMenuEmpreendimento = () => {
     const salvarEmpreendimento = (e) => {
         e.preventDefault();
 
-        cadEstabelecimento(selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
+        //alert(JSON.stringify({selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf}));
+
+        cadEstabelecimento(selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
     }
 
     const  tDbAdm = '/tMenuDBADM/'+ token +'/'+ uid;
@@ -321,6 +343,7 @@ const TelaMenuEmpreendimento = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
+<<<<<<< HEAD
                             <Link to={tDbAdm} rel="noreferrer">
                                 <li><p>Dados Básicos</p></li>
                             </Link>
@@ -339,6 +362,26 @@ const TelaMenuEmpreendimento = () => {
 
                             <Link to={tNovoEmpreendimento} rel="noreferrer">
                                 <li><p>New Empreendimento</p></li>
+=======
+                            <Link to={`/tMenuDBADM/${token}/${uid}`}>
+                                <li><p>Dados Básicos</p></li>
+                            </Link>
+
+                            {/*<Link to='/tMenuEnderecoADM' target = "_blank" rel="noreferrer">*/}
+                            <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
+                                <li><p>Endereço</p></li>
+                            </Link>
+
+                            <Link to={`/tMenuFotoADM/${token}/${uid}`}>
+                                <li><p>Foto</p></li>
+                            </Link>
+
+                            <Link to={`/tEmpreendimento/${token}/${uid}`}>
+                                <li><p>Empreendimento</p></li>
+                            </Link>
+                            <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
+                                <li style={{ color: '#000' }}><p>New Empreendimento</p></li>
+>>>>>>> 5c9e6531e0b93cc29f03b784c846c125084782b0
                             </Link>
                         </div>
                     </ul>
@@ -428,18 +471,6 @@ const TelaMenuEmpreendimento = () => {
                     </div>
                     <p id={styles["legTema"]}>Escolha o tema de fundo da sua empresa</p><br></br>
                     <div id={styles["temas"]}>
-                        {/*<button>Azul</button>
-                        <button>Vermelho</button>
-                        <button>Verde</button>
-                        <button>Roza</button>
-                        <button>Amarelo</button>*/}
-
-                        {/*<input type="radio" value="azul" name="temas"/>                     
-                        <input type="radio" value="vermelho" name="temas" />                         
-                        <input type="radio" value="verde" name="temas" />                         
-                        <input type="radio" value="roza" name="temas" />                         
-                        <input type="radio" value="amarelo" name="temas" />*/}
-
                         <img src={tAzul} alt="Tema Azul" onClick={() => setTema("#3293CA")} />
                         <img src={tVermelho} alt="Tema Vermelho" onClick={() => setTema("#f02d1f")} />
                         <img src={tVerde} alt="Tema Verde" onClick={() => setTema("#1ff076")} />
@@ -561,49 +592,42 @@ const TelaMenuEmpreendimento = () => {
                         <ul id="uMenHamburger">
                             <li>
                                 <p>
-                                    <Link to="/tMenuDBADM" rel="noreferrer">
+                                    <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                         Dados Básicos
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tMenuEnderecoADM" rel="noreferrer">
+                                    <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
                                         Endereço
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tMenuFotoADM" rel="noreferrer">
+                                    <Link to={`/tMenuFotoADM/${token}/${uid}`}>
                                         Foto
-                                    </Link>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <Link to="/tEmpreendimento" rel="noreferrer">
-                                        Empreendimento
                                     </Link>
                                 </p>
                             </li>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                                    <Link to={`/tEmpreendimento/${token}/${uid}`}>
+                                        Empreendimento
+                                    </Link>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
                                         Novo Empreendimento
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tNovoEmpreendimento" rel="noreferrer">
-                                        New Empreendimento
-                                    </Link>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <Link to="/tPesqFunc" rel="noreferrer">
+                                    <Link to={`/tPesqFunc/${token}/${uid}`}>
                                         Voltar ao Menu
                                     </Link>
                                 </p>
@@ -615,7 +639,7 @@ const TelaMenuEmpreendimento = () => {
                 <FotoHor />
 
                 <div className={styles.logoMenuCli}><p>Shostners & Shotners</p></div>
-                <div id={styles["voltar"]}><a href="/tPesqFunc" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>
     )

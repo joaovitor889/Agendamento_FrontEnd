@@ -15,6 +15,8 @@ import agFetch from '../../axios/config.js';
 
 import { Link, useParams } from 'react-router-dom';
 
+import { decodeToken } from 'react-jwt';
+
 //import { Link, useNavigate } from "react-router-dom";
 
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
@@ -24,6 +26,16 @@ import FotoMen from './FotoPerfilAdm/fotoAdmMen';
 const TelaFotoCliente = () => {
 
     document.title = "Foto do Cliente";
+
+    const { token } = useParams();
+
+    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
+
+    const converToken = decodeToken(token);
+
+    const userID = converToken.id;
+
+    const { uid } = useParams();
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -122,26 +134,6 @@ const TelaFotoCliente = () => {
         fetchUserData();
     });
 
-    // Extrai as informações necessárias do usuário
-    const nome = "José";
-    const sobrenome = "Luis";
-
-    //const nome = userData.nome;
-    //const sobrenome = userData.sobrenome;
-
-    var pnome = '';
-    var psobrenome = '';
-
-    if (nome && nome.length > 0) {
-        pnome = nome.charAt(0);
-    }
-
-    if (sobrenome && sobrenome.length > 0) {
-        psobrenome = sobrenome.charAt(0);
-    }
-
-    const iniciais = pnome + psobrenome;
-
 
 
     //Notificacao
@@ -188,22 +180,23 @@ const TelaFotoCliente = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <Link to={tDbAdm} rel="noreferrer">
+                            <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                 <li><p>Dados Básicos</p></li>
                             </Link>
 
-                            <Link to={ tEndereco } rel="noreferrer">
+                            {/*<Link to='/tMenuEnderecoADM' target = "_blank" rel="noreferrer">*/}
+                            <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
                                 <li><p>Endereço</p></li>
                             </Link>
 
-                            <Link to={ tFoto } rel="noreferrer">
+                            <Link to={`/tMenuFotoADM/${token}/${uid}`}>
                                 <li style={{ color: '#000' }}><p>Foto</p></li>
                             </Link>
 
-                            <Link to={ tEmpreendimento } rel="noreferrer">
+                            <Link to={`/tEmpreendimento/${token}/${uid}`}>
                                 <li><p>Empreendimento</p></li>
                             </Link>
-                            <Link to={ tNovoEmpreendimento } rel="noreferrer">
+                            <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
                                 <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>
@@ -244,40 +237,44 @@ const TelaFotoCliente = () => {
                         <FotoMen />
 
                         <ul id="uMenHamburger">
-                            <li>
+                        <li>
                                 <p>
-                                    <Link to="/tMenuDBADM" rel="noreferrer">
+                                    <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                         Dados Básicos
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tMenuEnderecoADM" rel="noreferrer">
+                                    <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
                                         Endereço
                                     </Link>
                                 </p>
                             </li>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <Link to="/tMenuFotoADM" rel="noreferrer">
+                                    <Link to={`/tMenuFotoADM/${token}/${uid}`}>
                                         Foto
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to="/tEmpreendimento" rel="noreferrer">
+                                    <Link to={`/tEmpreendimento/${token}/${uid}`}>
                                         Empreendimento
                                     </Link>
                                 </p>
                             </li>
-                            <Link to="/tNovoEmpreendimento" rel="noreferrer">
-                                <li><p>New Empreendimento</p></li>
-                            </Link>
                             <li>
                                 <p>
-                                    <Link to="/tPesqFunc" rel="noreferrer">
+                                    <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
+                                        Novo Empreendimento
+                                    </Link>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <Link to={`/tPesqFunc/${token}/${uid}`}>
                                         Voltar ao Menu
                                     </Link>
                                 </p>
@@ -309,7 +306,7 @@ const TelaFotoCliente = () => {
                     )}
                 </div>
                 <div className={styles.logoMenuCli}><p></p></div>
-                <div id={styles["voltar"]}><a href="/tPesqFunc" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>
     )

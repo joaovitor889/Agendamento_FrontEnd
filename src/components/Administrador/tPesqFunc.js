@@ -68,32 +68,9 @@ const TelaPesqFunc = () => {
         PegaFuncionarios();
     }, []);
 
-    //navegacao entre as telas que listam dados
-    const profissionais = () => {
-        navigate(`/tPesqFunc/${token}/${uid}`);
-    }
-    const addFuncionarioNovaAba = (rotaFunc) => {
-        window.open(rotaFunc, '_blank');
-    }
     const addFuncionario = () => {
-        const rotaFunc = `/tCadFunc/${token}/${uid}`; // Substitua pela rota desejada
-        addFuncionarioNovaAba(rotaFunc);
-    }
-    const clientes = () => {
-        navigate(`/tPesqCli/${token}/${uid}`);
-    }
-    const agendamentos = () => {
-        navigate(`/tAgendamentosADM/${token}/${uid}`);
-    }
-    const servicos = () => {
-        navigate(`/tServADM/${token}/${uid}`);
-    }
-    const agendar = () =>{
-        navigate(`/tAgendarADM/${token}/${uid}`)
-    }
-    const perfil = () =>{
-        navigate(`/tMenuDBADM/${token}/${uid}`)
-    }
+        window.open(`/tCadFunc/${token}/${uid}`, '_blank');
+    }   
 
     return (
         <div className={styles.fPesqFunc} >
@@ -121,13 +98,14 @@ const TelaPesqFunc = () => {
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-                <p onClick={profissionais}>Profissionais</p>
-                <p onClick={clientes}>Clientes</p>
-                <p onClick={agendamentos}>Agendamentos</p>
-                <p onClick={agendar}>Agendar</p>
+                <Link to ={`/tPesqFunc/${token}/${uid}`} style={{color: '#7c807d'}}>Profissionais</Link>
+                <Link to ={`/tPesqCli/${token}/${uid}`}>Clientes</Link>
+                <Link to ={`/tAgendamentosADM/${token}/${uid}`}>Agendamentos</Link>
+                <Link to ={`/tAgendarADM/${token}/${uid}`}>Agendar</Link>
                 {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
-                <p onClick={servicos}>Serviços</p>
-                <p onClick={perfil}>Perfil</p>
+                <Link to ={`/tServADM/${token}/${uid}`}>Serviços</Link>
+                <Link to ={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
+                <Link to={`/tLoginAdm`}>Sair</Link>
                 <select name='qual empresa?' className={styles.interprise} >
                     <option value="WLShVu"> <a href="/tPesqFunc/WLShVu">Empresa1</a> </option>
                     <option value="jMQqNo"> <a href="/tPesqFunc/jMQqNo">Empresa2</a> </option>

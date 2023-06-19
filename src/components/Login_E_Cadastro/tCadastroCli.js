@@ -1,6 +1,6 @@
 import styles from './tCadastroCli.module.css';
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import agFetch from '../../axios/config.js';
 
@@ -12,8 +12,11 @@ const TelaCadastroUsuario = () => {
 
     document.title = "Cadastrar Cliente";
 
-    //Requisicoes com a API
+    const uid = "RAcVaj";
+
     const navigate = useNavigate();
+
+    const [nomeEmpresa, setNomeEmpresa] = useState();
 
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
@@ -25,61 +28,44 @@ const TelaCadastroUsuario = () => {
 
     const [openModalTermosUso, setOpenModalTermosUso] = useState(false);
 
-    const fCPF = useRef(null);
-    const fTelefone = useRef(null);
-    const fEmail = useRef(null);
+    useEffect (() => {
+        async function PegaEmpresa() {
+            try {
+                const empreResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                const nEmpresa = empreResponse.data.nome;
 
-    //bloquear rolagem nos imputs number
-    useEffect(() => {
-        const cpf = fCPF.current;
-        const telefone = fTelefone.current;
-        const bloquearRolagem = (e) => {
-            e.preventDefault();
-        };
-
-        if (cpf) {
-            cpf.addEventListener('wheel', bloquearRolagem);
-        }
-
-        if (telefone) {
-            telefone.addEventListener('wheel', bloquearRolagem);
-        }
-
-        return () => {
-            if (cpf) {
-                cpf.removeEventListener('wheel', bloquearRolagem);
+                setNomeEmpresa(nEmpresa);
+            } catch (error) {
+                console.log(error);
             }
+        }
+        PegaEmpresa();
+    }, [])
 
-            if (telefone) {
-                telefone.removeEventListener('wheel', bloquearRolagem);
-            }
-        };
-    }, []);
-
-    const signup = async (nome, sobrenome, cpf, telefone, email, senha, confSenha) => {
+    //Requisicoes com a API
+    const signup = async (nome, cpf, telefone, email, senha) => {
         //teste se os dados estao sendo enviados
-        //alert(JSON.stringify({ nome, sobrenome, cpf, telefone, email, senha, confSenha }));
+        //alert(JSON.stringify({nome, cpf, telefone, email, senha})); 
 
         //logica
         try {
             // Crie um objeto com os dados do novo usuario
             const novoUsuario = {
-                nome, 
-                sobrenome, 
-                cpf, 
-                telefone, 
-                email, 
-                senha, 
-                confSenha
+                UIDEstabelecimento: uid,
+                nome: nome,
+                email: email,
+                senha: senha,
+                cpf: cpf,
+                telefone: telefone                
             };
 
             // Faça a requisição POST para a API utilizando o Axios
-            const response = await agFetch.post('/clientes/criar', novoUsuario);
+            const response = await agFetch.post('/cliente/criar', novoUsuario);
 
             // Verifique a resposta da API e faça o redirecionamento se necessário
             if (response.status === 200 || response.status === 201) {
                 alert("Dados cadastrados com sucesso!");
-                navigate("/tLoginCli");
+                navigate(`/tLoginCli/${uid}`);
             }
 
             else if (response.status === 400) {
@@ -103,8 +89,8 @@ const TelaCadastroUsuario = () => {
 
             if (valErro === 400 || valErro === 409)
                 alert("Telefone, CPF ou Email já cadastrados!");
-            else 
-                alert("Ocorreu um erro na comunicação com o servidor.");    
+            else
+                alert("Ocorreu um erro na comunicação com o servidor.");
         }
     };
 
@@ -115,17 +101,18 @@ const TelaCadastroUsuario = () => {
             alert('O campo senha e confirmar senha devem ser iguais!');
         }
         else {
-            signup(nome, sobrenome, cpf, telefone, email, senha, confSenha);
-            //console.log("submit", {nome, sobrenome, cpf, telefone, email, senha, confSenha, termos});
-
-        }
+            const compNome = nome + " " + sobrenome;
+            setNome(compNome);
+            //alert(JSON.stringify({nome, cpf, telefone, email, senha}));            
+            signup(nome, cpf, telefone, email, senha);
+        }   
     };
 
     return (
         <div className={styles.fCadCliente}>
             <div className={styles.fCadastro}>
                 <nav id={styles["cabecalho"]}>
-                    <p>Shostners & Shostners</p>
+                    <p>{nomeEmpresa}</p>
                 </nav>
                 <div className={styles.cadCliLogo}>Cadastro de Cliente</div>
                 <div className={styles.container}>
@@ -133,40 +120,63 @@ const TelaCadastroUsuario = () => {
                         <div className={styles.fundo}>
                             <form id={styles["formCadastro"]} onSubmit={(e) => cadCli(e)}>
                                 <div className={styles.entrada}>
-                                    <input type="text" placeholder="*Nome:" title="Digite o seu nome" name="nome" id="nome" required value={nome} onChange={(e) => setNome(e.target.value)} />
+                                    <input type="text" placeholder="*Nome:" title="Digite o seu nome" name="nome" id="nome" required onChange={(e) => setNome(e.target.value)} />
                                     <input type="text" placeholder="*Sobrenome:" title="Digite o seu sobrenome" name="sobrenome" id="sobrenome" value={sobrenome} required onChange={(e) => setSobrenome(e.target.value)} />
-                                    <input type="number"
-                                        ref={fCPF}
+                                    <input type="text"
                                         placeholder="*CPF:"
                                         title="Digite o seu CPF"
                                         name="cpf" id="cpf"
-                                        maxLength="11"
+                                        maxLength="14"
                                         onKeyPress={(event) => {
-                                            if (!/[0-9]/.test(event.key)
-                                                || event.target.value.length > event.target.maxLength - 1) {
+                                            const allowedChars = /[0-9]/;
+                                            const inputValue = event.target.value;
+                                            const key = event.key;
+
+                                            if (!allowedChars.test(key) || inputValue.length >= 14 || key === '.' || key === '-') {
                                                 event.preventDefault();
+                                            } else if (inputValue.length === 3 || inputValue.length === 7) {
+                                                event.target.value = inputValue + ".";
+                                            } else if (inputValue.length === 11) {
+                                                event.target.value = inputValue + "-";
                                             }
                                         }}
+
+
                                         required
                                         value={cpf}
                                         onChange={(e) => setCPF(e.target.value)} />
 
-                                    <input type="number"
-                                        ref={fTelefone}
+                                    <input type="text"
                                         placeholder="Telefone:"
                                         title="Digite o seu Telefone"
                                         name="tel"
                                         id="tel"
-                                        maxLength="11"
+                                        maxLength="15"
                                         onKeyPress={(event) => {
-                                            if (!/[0-9]/.test(event.key)
-                                                || event.target.value.length > event.target.maxLength - 1) {
-                                                event.preventDefault();
+                                            const inputValue = event.target.value + event.key;
+                                            const isValidKey = /\d/.test(event.key);
+                                            const isMaxLengthReached = inputValue.length >= event.target.maxLength;
+                                          
+                                            if (!isValidKey || isMaxLengthReached) {
+                                              event.preventDefault();
                                             }
-                                        }}
-                                        value={telefone}
+                                          
+                                            if (inputValue.length === 1 && isValidKey) {
+                                              event.target.value = `(${inputValue}`;
+                                              event.preventDefault();
+                                            } else if (inputValue.length === 4 && isValidKey) {
+                                              event.target.value = `${event.target.value}) ${inputValue.substr(1)}`;
+                                              event.preventDefault();
+                                            } else if (inputValue.length === 11 && isValidKey) {
+                                              const areaCode = inputValue.substr(1, 2);
+                                              const firstPart = inputValue.substr(5, 4);
+                                              const secondPart = inputValue.substr(10, 4);
+                                              event.target.value = `(${areaCode}) ${firstPart}-${secondPart}`;
+                                              event.preventDefault();
+                                            }
+                                          }}                                          
                                         onChange={(e) => setTelefone(e.target.value)} />
-                                    <input type="email" ref={fEmail} placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                                    <input type="email" placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id="email" required onChange={(e) => setEmail(e.target.value)} />
                                     <div className={styles.senha}>
                                         <input type="password" placeholder="*Senha:" title="Crie uma Senha" name="senha" id="senha" required value={senha} onChange={(e) => setSenha(e.target.value)} />
                                         <input type="password" placeholder="*Confirmar Senha:" title="Confirme sua Senha" name="confSenha" id="confSenha" required value={confSenha} onChange={(e) => setConfSenha(e.target.value)} />
@@ -176,7 +186,7 @@ const TelaCadastroUsuario = () => {
                                 <div className={styles.rodape}>
                                     <span className={styles.condicoes}>
                                         <input type="checkbox" id={styles["termos"]} required />
-                                        <p onClick={() => {setOpenModalTermosUso(true)}}>Aceitar termos</p>
+                                        <p onClick={() => { setOpenModalTermosUso(true) }}>Aceitar termos</p>
                                     </span>
                                     <div className={styles.botoes}>
                                         <input type="submit" id={styles["btnCadastro"]} name="btnCadastro" value="Cadastrar" />
@@ -188,7 +198,7 @@ const TelaCadastroUsuario = () => {
                 </div>
             </div>
             <div className={styles.rodFundo}></div>
-            <TermosUso isOpen={openModalTermosUso} setOpenModalTermosUso={() => setOpenModalTermosUso(!openModalTermosUso)}/>
+            <TermosUso isOpen={openModalTermosUso} setOpenModalTermosUso={() => setOpenModalTermosUso(!openModalTermosUso)} />
         </div>
     )
 }
