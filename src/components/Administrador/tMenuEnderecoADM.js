@@ -15,7 +15,7 @@ import agFetch from '../../axios/config.js';
 
 import { useForm } from "react-hook-form";
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
@@ -27,8 +27,8 @@ import { decodeToken } from 'react-jwt';
 const TelaEnderecoCliente = () => {
     document.title = "Endereço do Cliente";
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
-
+    const {token} = useParams();
+    const { uid } =  useParams();
     const converToken = decodeToken(token);
 
     const userID = converToken.id;
@@ -192,6 +192,13 @@ const TelaEnderecoCliente = () => {
 
         //alert(JSON.stringify({jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf}));
     }
+    const  tDbAdm = '/tMenuDBADM/'+ token +'/'+ uid;
+    const  tEndereco = '/tMenuEnderecoADM/'+ token +'/'+ uid;
+    const  tFoto = '/tMenuFotoADM/'+ token +'/'+ uid;
+    const  tEmpreendimento = '/tEmpreendimento/'+ token +'/'+ uid;
+    const  tNovoEmpreendimento = '/tNovoEmpreendimento/'+ token +'/'+ uid;
+
+
 
     return (
         <div className={styles.fDBCliente}>
@@ -202,22 +209,22 @@ const TelaEnderecoCliente = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <Link to="/tMenuDBADM/:token/:uid" rel="noreferrer">
+                            <Link to={ tDbAdm } rel="noreferrer">
                                 <li><p>Dados Básicos</p></li>
                             </Link>
 
-                            <Link to="/tMenuEnderecoADM/:token/:uid" rel="noreferrer">
+                            <Link to={ tEndereco } rel="noreferrer">
                                 <li style={{ color: '#000' }}><p>Endereço</p></li>
                             </Link>
 
-                            <Link to="/tMenuFotoADM/:token/:uid" rel="noreferrer">
+                            <Link to={ tFoto } rel="noreferrer">
                                 <li><p>Foto</p></li>
                             </Link>
 
-                            <Link to="/tEmpreendimento/:token/:uid" rel="noreferrer">
+                            <Link to={ tEmpreendimento } rel="noreferrer">
                                 <li><p>Empreendimento</p></li>
                             </Link>
-                            <Link to="/tNovoEmpreendimento/:token/:uid" rel="noreferrer">
+                            <Link to={ tNovoEmpreendimento } rel="noreferrer">
                                 <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>

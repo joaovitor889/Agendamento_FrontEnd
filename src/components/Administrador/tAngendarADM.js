@@ -22,7 +22,8 @@ import {
 const TelaAgendarADM = () => {
     document.title = "Agendar";
 
-    const uid = "jMQqNo";
+    // const uid = "jMQqNo";
+    const { uid } = useParams();
 
     const { token } = useParams();
 
@@ -446,8 +447,33 @@ const TelaAgendarADM = () => {
         //alert(JSON.stringify({dataAg, servicoId, profId, nome, telefone, cpf}));
 
         realizarAgendamento(dataAg, servicoId, profId, nome, telefone, cpf);
+
+        
     }	
 
+    const navigate = useNavigate();
+
+    const tprofissionais = () => {
+        navigate(`/tPesqFunc/${token}/${uid}`);
+    }
+    const addFuncionarioNovaAba = (rotaFunc) => {
+        window.open(rotaFunc, '_blank');
+    }
+    const clientes = () => {
+        navigate(`/tPesqCli/${token}/${uid}`);
+    }
+    const tagendamentos = () => {
+        navigate(`/tAgendamentosADM/${token}/${uid}`);
+    }
+    const tservicos = () => {
+        navigate(`/tServADM/${token}/${uid}`);
+    }
+    const agendar = () =>{
+        navigate(`/tAgendarADM/${token}/${uid}`)
+    }
+    const perfil = () =>{
+        navigate(`/tMenuDBADM/${token}/${uid}`)
+    }
     return (
         <div className={styles.fAgendar}>
             <input type='checkbox' id={styles["check"]} />
@@ -473,13 +499,13 @@ const TelaAgendarADM = () => {
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-                <a href = "/">Profissionais</a>
-                <a href = "/">Clientes</a>
-                <a href = "/">Agendamentos</a>
-                <a href = "/">Agendar</a>
+            <p onClick={tprofissionais}>Profissionais</p>
+                <p onClick={clientes}>Clientes</p>
+                <p onClick={tagendamentos}>Agendamentos</p>
+                <p onClick={agendar}>Agendar</p>
                 {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
-                <a href = "/">Serviços</a>
-                <a href = "/">Perfil</a>
+                <p onClick={tservicos}>Serviços</p>
+                <p onClick={perfil}>Perfil</p>
                 <a href="/">Sair</a>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>

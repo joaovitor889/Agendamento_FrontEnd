@@ -32,11 +32,13 @@ import tAmarelo from '../../temas/tema05.png';
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
 import FotoMen from './FotoPerfilAdm/fotoAdmMen';
+import { toFormData } from 'axios';
 
 const TelaMenuEmpreendimento = () => {
     document.title = "Empreendimento";
 
     const { token } = useParams();
+    const { uid } = useParams();
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -304,6 +306,11 @@ const TelaMenuEmpreendimento = () => {
         cadEstabelecimento(selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
     }
 
+    const  tDbAdm = '/tMenuDBADM/'+ token +'/'+ uid;
+    const  tEndereco = '/tMenuEnderecoADM/'+ token +'/'+ uid;
+    const  tFoto = '/tMenuFotoADM/'+ token +'/'+ uid;
+    const  tEmpreendimento = '/tEmpreendimento/'+ token +'/'+ uid;
+    const  tNovoEmpreendimento = '/tNovoEmpreendimento/'+ token +'/'+ uid;
 
     return (
         <div className={styles.fEmpr}>
@@ -314,23 +321,23 @@ const TelaMenuEmpreendimento = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <Link to="/tMenuDBADM" rel="noreferrer">
+                            <Link to={tDbAdm} rel="noreferrer">
                                 <li><p>Dados Básicos</p></li>
                             </Link>
 
-                            <Link to="/tMenuEnderecoADM" rel="noreferrer">
+                            <Link to={tEndereco} rel="noreferrer">
                                 <li><p>Endereço</p></li>
                             </Link>
 
-                            <Link to="/tMenuFotoADM" rel="noreferrer">
+                            <Link to={tFoto} rel="noreferrer">
                                 <li><p>Foto</p></li>
                             </Link>
 
-                            <Link to="/tEmpreendimento" rel="noreferrer">
+                            <Link to={tEmpreendimento} rel="noreferrer">
                                 <li style={{ color: '#000' }}><p>Empreendimento</p></li>
                             </Link>
 
-                            <Link to="/tNovoEmpreendimento" rel="noreferrer">
+                            <Link to={tNovoEmpreendimento} rel="noreferrer">
                                 <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>
