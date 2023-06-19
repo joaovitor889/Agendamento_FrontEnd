@@ -146,13 +146,15 @@ const TelaAgendarADM = () => {
 
     useEffect(() => {
         async function PegaAgendamentos() {
+            //const funcID = 5;
+            
             try {
                 const datas = {
                     data_inicio: data,
                     data_fim: "2050-06-24"
                 }
                 if (data) {
-                    const agendResponse = await agFetch.post('/funcionario/todoAgendamentos?idFunc=5', datas);
+                    const agendResponse = await agFetch.post(`/funcionario/todoAgendamentos?idFunc=${profissional}`, datas);
                     setAgendamentos(agendResponse.data);
                 }
             } catch (error) {
@@ -231,8 +233,8 @@ const TelaAgendarADM = () => {
 
     useEffect(() => {
         async function PegarHorarioExpediente() {
-            const profid = 8;
-            const funcionarioResponse = await agFetch.get(`/funcionario/pegarPorId?id=${profid}`);
+            //const profid = 8;
+            const funcionarioResponse = await agFetch.get(`/funcionario/pegarPorId?id=${profissional}`);
 
             const expedientes = funcionarioResponse.data.expedientes;
 
@@ -394,24 +396,27 @@ const TelaAgendarADM = () => {
         PegaPreco();
     }, [servico])
 
-    const realizarAgendamento = async (servico, profissional, data, horario, nome, telefone, cpf, preco) => {
+    const realizarAgendamento = async (dataAg, servico, profissional, nome, telefone, cpf) => {
+        const txtData = {
+            UIDEstabelecimento: uid,
+            data_inicio: dataAg,
+            servicoId: servico,
+            funcionarioId: profissional,
+            nome: nome,
+            telefone: telefone,
+            cpf: cpf
+        }
+        console.log(txtData);
         try {
-            const agResponse = await agFetch.post('/agendamento/criarAdm', {
-                UIDEstabelecimento: uid,
-                data_inicio: data,
-                servicoId: servico,
-                funcionarioId: profissional,
-                nome: nome,
-                telefone: telefone,
-                cpf: cpf
-            });
+            const agResponse = await agFetch.post('/agendamento/criarAdm', txtData);
             if (agResponse.status >= 200 && agResponse.status <= 299) {
                 alert("Agendamento Realizado com Sucesso!");
-            } else if (agResponse.status === 400) {
-                alert("Dados Incorretos!");
             }
         } catch (error) {
-            console.log(error);
+            console.log();
+            if (error.status === 400) {
+                alert("Dados Incorretos!");
+            }
         }
     }
 
@@ -432,10 +437,16 @@ const TelaAgendarADM = () => {
         //alert(horarios);
 
         //logica do envio
-        realizarAgendamento(servico, profissional, data, horario, nome, telefone, cpf, preco);
-    }
+        const dataAg = data + "T" + horario + ":00Z";
 
-    const hor = ['08:00', '8:30', '09:30', '10:00', '10:30', '11:00', '11:30']
+        const servicoId = parseInt(servico);
+        
+        const profId = parseInt(profissional);
+
+        //alert(JSON.stringify({dataAg, servicoId, profId, nome, telefone, cpf}));
+
+        realizarAgendamento(dataAg, servicoId, profId, nome, telefone, cpf);
+    }	
 
     return (
         <div className={styles.fAgendar}>

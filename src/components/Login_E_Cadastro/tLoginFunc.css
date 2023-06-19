@@ -126,15 +126,6 @@
 	font-family: 'Roboto', sans-serif;
 }
 
-#imagem {
-	margin-top: 5%;
-}
-
-.fLoginFunc #imagem img {
-	height: 20vh;
-	width: 25vw;
-}
-
 #voltFunc button{
 	font-family: "Times New Roman", Times, serif;
 	font-weight: bold;
@@ -186,23 +177,10 @@
 	.fLoginFunc .fundoFunc h1 {
 		font-size: 1.7em;
 	}
-	.fLoginFunc #imagem {
-		margin-top: 3%;
-		margin-left: 42%;
-		height: 28%;
-		width: 15%;
-	}
-	.fLoginFunc #imagem img {
-		width: 100%;
-		height: 100%;
-	}
 
 	#textoLateral {
 		position: absolute;
 		top: 90%;
 		left: 85%;
-	}
-	.fLoginFunc input[type=submit]{
-		margin-left: 30%;
 	}
 }

@@ -57,10 +57,14 @@ const TelaMenuEmpreendimento = () => {
         setIsMenuClicked(!isMenuClicked)
     }
 
+    //Campos
+    const fcep = useRef(null);
+    const fnum = useRef(null);
+
     //bloquear rolagem nos imputs number
     useEffect(() => {
-        const cep = jscep.current;
-        const num = jsnum.current;
+        const cep = fcep.current;
+        const num = fnum.current;
         const bloquearRolagem = (e) => {
             e.preventDefault();
         };
@@ -151,8 +155,6 @@ const TelaMenuEmpreendimento = () => {
 
     //API do CEP
     const { register, setValue } = useForm();
-
-    //Campos
 
     //Campos da API CEP
     const [jscep, setCEP] = useState("");
@@ -452,7 +454,7 @@ const TelaMenuEmpreendimento = () => {
                                         event.preventDefault();
                                     }
                                 }}
-                                //{...register("cep")}
+                                ref = {fcep}
                                 onBlur={checkCEP}
                                 onChange={(e) => setCEP(e.target.value)}
                                 required />
@@ -480,6 +482,7 @@ const TelaMenuEmpreendimento = () => {
                                     }
                                 }}
                                 id={styles["numero"]}
+                                ref={fnum}
                                 onChange={(e) => setNum(e.target.value)}
                                 required /> <br></br>
                         </div>

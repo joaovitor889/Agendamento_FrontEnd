@@ -1,5 +1,6 @@
 import './tLoginFunc.css';
-import Logo from '../../img/logo.png';
+
+import FotoEmpresa from './fotoEmpresa';
 
 //import { useState, useEffect, useRef } from "react";
 
@@ -15,9 +16,7 @@ const TelaLogin = () => {
                 <div className="row">
                     <div className="logo"><h1 title="Bem-Vindo!"><center>Shostners & shostners</center></h1></div>
                 </div>
-                <div className="row" id="imagem">
-                    <img src={Logo} alt="Logo" />
-                </div>
+                <FotoEmpresa />
                 <div className="row">
                     <div className="fundoFunc">
                         <form id="formLogin">
