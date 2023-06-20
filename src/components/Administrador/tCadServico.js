@@ -94,7 +94,7 @@ const TelaCadServico = () => {
             // Verifique a resposta da API e faça o redirecionamento se necessário
             if (response.status === 201) {
                 alert("Dados cadastrados com sucesso!");
-                navigate("/tServADM");
+                navigate(`/tServADM/${token}/${uid}`);
             }
         } catch (error) {
             console.log(error);

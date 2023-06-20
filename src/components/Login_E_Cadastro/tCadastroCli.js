@@ -12,7 +12,7 @@ const TelaCadastroUsuario = () => {
 
     document.title = "Cadastrar Cliente";
 
-    const { uid } =  useParams();
+    const { uid } = useParams();
 
     const navigate = useNavigate();
 
@@ -28,20 +28,18 @@ const TelaCadastroUsuario = () => {
 
     const [openModalTermosUso, setOpenModalTermosUso] = useState(false);
 
-    useEffect (() => {
+    //nome da empresa
+    useEffect(() => {
         async function PegaEmpresa() {
             try {
-                const empreResponse = await agFetch.get(`/estabelecimento/${uid}`);
-                const nEmpresa = empreResponse.data.nome;
-                console.log(empreResponse.data)
-
-                setNomeEmpresa(nEmpresa);
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmpresa(empResponse.data.nome);
             } catch (error) {
                 console.log(error);
             }
         }
         PegaEmpresa();
-    }, [])
+    }, [uid])
 
     //Requisicoes com a API
     const signup = async (nome, cpf, telefone, email, senha) => {
@@ -57,7 +55,7 @@ const TelaCadastroUsuario = () => {
                 email: email,
                 senha: senha,
                 cpf: cpf,
-                telefone: telefone                
+                telefone: telefone
             };
 
             // Faça a requisição POST para a API utilizando o Axios
@@ -106,7 +104,7 @@ const TelaCadastroUsuario = () => {
             setNome(compNome);
             //alert(JSON.stringify({nome, cpf, telefone, email, senha}));            
             signup(nome, cpf, telefone, email, senha);
-        }   
+        }
     };
 
     return (
@@ -141,8 +139,6 @@ const TelaCadastroUsuario = () => {
                                                 event.target.value = inputValue + "-";
                                             }
                                         }}
-
-
                                         required
                                         value={cpf}
                                         onChange={(e) => setCPF(e.target.value)} />
@@ -157,25 +153,25 @@ const TelaCadastroUsuario = () => {
                                             const inputValue = event.target.value + event.key;
                                             const isValidKey = /\d/.test(event.key);
                                             const isMaxLengthReached = inputValue.length >= event.target.maxLength;
-                                          
+
                                             if (!isValidKey || isMaxLengthReached) {
-                                              event.preventDefault();
+                                                event.preventDefault();
                                             }
-                                          
+
                                             if (inputValue.length === 1 && isValidKey) {
-                                              event.target.value = `(${inputValue}`;
-                                              event.preventDefault();
+                                                event.target.value = `(${inputValue}`;
+                                                event.preventDefault();
                                             } else if (inputValue.length === 4 && isValidKey) {
-                                              event.target.value = `${event.target.value}) ${inputValue.substr(1)}`;
-                                              event.preventDefault();
+                                                event.target.value = `${event.target.value}) ${inputValue.substr(1)}`;
+                                                event.preventDefault();
                                             } else if (inputValue.length === 11 && isValidKey) {
-                                              const areaCode = inputValue.substr(1, 2);
-                                              const firstPart = inputValue.substr(5, 4);
-                                              const secondPart = inputValue.substr(10, 4);
-                                              event.target.value = `(${areaCode}) ${firstPart}-${secondPart}`;
-                                              event.preventDefault();
+                                                const areaCode = inputValue.substr(1, 2);
+                                                const firstPart = inputValue.substr(5, 4);
+                                                const secondPart = inputValue.substr(10, 4);
+                                                event.target.value = `(${areaCode}) ${firstPart}-${secondPart}`;
+                                                event.preventDefault();
                                             }
-                                          }}                                          
+                                        }}
                                         onChange={(e) => setTelefone(e.target.value)} />
                                     <input type="email" placeholder="*E-mail:" title="Digite o seu E-mail" name="email" id="email" required onChange={(e) => setEmail(e.target.value)} />
                                     <div className={styles.senha}>

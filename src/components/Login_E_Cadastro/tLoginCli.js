@@ -2,9 +2,11 @@ import styles from './tLoginCli.css';
 
 import { useState, useEffect } from "react";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import authCli from '../../axios/configAuthCli.js';
+
+import agFetch from '../../axios/config.js';
 
 import FotoEmpresa from './fotoEmpresa';
 
@@ -12,11 +14,28 @@ const TelaLogin = () => {
 
     document.title = "Login Cliente";
 
+    const { uid } = useParams();
+
     const [user, setUser] = useState();
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
 
     const navigate = useNavigate();
+
+    const [nomeEmpresa, setNomeEmpresa] = useState();
+
+    //nome da empresa
+    useEffect(() => {
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmpresa(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
 
     //Requisicoes com a API
 
@@ -93,11 +112,13 @@ const TelaLogin = () => {
         signin(email, senha);
     }
 
+    const lnkCad = '/tCadastroCli/' + uid;
+
     return (
         <div className="fLogin">
             <div className={styles.container}>
                 <div className="row">
-                    <div className="logoLoginCli"><h1 title="Bem-Vindo!"><center>Shostners & shostners</center></h1></div>
+                    <div className="logoLoginCli"><h1 title="Bem-Vindo!"><center>{nomeEmpresa}</center></h1></div>
                 </div>
                 <FotoEmpresa />
                 <div className={styles.row}>
@@ -109,7 +130,7 @@ const TelaLogin = () => {
                                 <input type="password" placeholder="Senha" title="Digite sua Senha" id="senha" name="senha" onChange={(e) => setSenha(e.target.value)} required />
                             </div>
                             <div className="links">
-                                <a href="./tCadastroCli">Criar uma conta</a><br></br>
+                                <a href={lnkCad}>Criar uma conta</a><br></br>
                                 <a href="./tEsqueceuSenhaCli">Esqueceu a senha?</a>
                             </div><br></br>
                             <div className="botoesLoginCli">
