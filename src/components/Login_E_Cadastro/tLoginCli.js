@@ -19,9 +19,11 @@ const TelaLogin = () => {
 
     const navigate = useNavigate();
 
-    const [nomeEmpresa, setNomeEmpresa] = useState();
+    //Requisicoes com a API
 
     //nome da empresa
+    const [nomeEmpresa, setNomeEmpresa] = useState();
+
     useEffect(() => {
         async function PegaEmpresa() {
             try {
@@ -34,7 +36,6 @@ const TelaLogin = () => {
         PegaEmpresa();
     }, [uid])
 
-    //Requisicoes com a API
     const signin = async (email, senha) => {
         //alert(JSON.stringify({email, senha}));
         try {

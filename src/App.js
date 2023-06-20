@@ -74,7 +74,7 @@ function App() {
             <Route  path = "/tEsqueceuSenhaFunc" element = {<EsqSenhaFunc />} />
             <Route path = "/tAlterarSenhaFunc" element = {<AltSenhaFunc />} />
             <Route  path = "/tCadastroCli/:uid" element = {<CadastroCli />} />
-            <Route  path = "/tLoginFunc" element = {<LoginFunc />} />
+            <Route  path = "/tLoginFunc/:uid" element = {<LoginFunc />} />
             
             {/* Telas do Administrador */}
             <Route path="/tAgendarADM/:token/:uid" element = {<AgendarADM />} />
@@ -106,13 +106,13 @@ function App() {
 
 
             {/* Telas do Funcionario */}
-            <Route  path = "/tMenuProfis" element = {<MenuProfissional />} />
+            <Route  path = "/tMenuProfis/:token/:uid" element = {<MenuProfissional />} />
             <Route  path = "/tAgendamentoProfis" element = {<AgendamentoProfis />} />
             {/* Perfil do Funcionario */}
             <Route  path = "/tMenuFotoProf" element = {<FotoProfis />} />
           
 
-            <Route  path = "/tLoginAdm" element = {<LoginAdm />} />            
+            <Route  path = "/tLoginAdm/" element = {<LoginAdm />} />            
           </Routes>                
       </header>
     </div>

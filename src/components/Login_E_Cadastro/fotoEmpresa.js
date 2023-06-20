@@ -23,7 +23,7 @@ const FotoEmpresa = () => {
                 const foto = fotoResponse.data.imageUrl;
                 if (foto === null) {
                     console.log("Não há imagem!");
-                    const lFoto = '../../img/logo.png';
+                    const lFoto = 'http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/Estabelicimento/logoEstabelecimento.png';
                     setLnkFoto(lFoto);
                 } else {
                     const lFoto = baseDaUrl + '/Estabelecimento/' + foto;
