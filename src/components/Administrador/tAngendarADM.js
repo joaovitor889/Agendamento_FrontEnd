@@ -78,7 +78,7 @@ const TelaAgendarADM = () => {
             }
         }
         fetchCategorias();
-    }, []);
+    }, [uid]);
 
     useEffect(() => {
         async function PegaServicos() {
