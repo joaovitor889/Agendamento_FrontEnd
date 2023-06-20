@@ -451,29 +451,7 @@ const TelaAgendarADM = () => {
         
     }	
 
-    const navigate = useNavigate();
-
-    const tprofissionais = () => {
-        navigate(`/tPesqFunc/${token}/${uid}`);
-    }
-    const addFuncionarioNovaAba = (rotaFunc) => {
-        window.open(rotaFunc, '_blank');
-    }
-    const clientes = () => {
-        navigate(`/tPesqCli/${token}/${uid}`);
-    }
-    const tagendamentos = () => {
-        navigate(`/tAgendamentosADM/${token}/${uid}`);
-    }
-    const tservicos = () => {
-        navigate(`/tServADM/${token}/${uid}`);
-    }
-    const agendar = () =>{
-        navigate(`/tAgendarADM/${token}/${uid}`)
-    }
-    const perfil = () =>{
-        navigate(`/tMenuDBADM/${token}/${uid}`)
-    }
+    
     return (
         <div className={styles.fAgendar}>
             <input type='checkbox' id={styles["check"]} />
@@ -499,16 +477,6 @@ const TelaAgendarADM = () => {
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-<<<<<<< HEAD
-            <p onClick={tprofissionais}>Profissionais</p>
-                <p onClick={clientes}>Clientes</p>
-                <p onClick={tagendamentos}>Agendamentos</p>
-                <p onClick={agendar}>Agendar</p>
-                {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
-                <p onClick={tservicos}>Serviços</p>
-                <p onClick={perfil}>Perfil</p>
-                <a href="/">Sair</a>
-=======
             <Link to={`/tPesqFunc/${token}/${uid}`}>Profissionais</Link>
                     <Link to={`/tPesqCli/${token}/${uid}`}>Clientes</Link>
                     <Link to={`/tAgendamentosADM/${token}/${uid}`}>Agendamentos</Link>
@@ -517,7 +485,6 @@ const TelaAgendarADM = () => {
                     <Link to={`/tServADM/${token}/${uid}`}>Serviços</Link>
                     <Link to={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
                     <Link to={`/tLoginAdm`}>Sair</Link>
->>>>>>> 5c9e6531e0b93cc29f03b784c846c125084782b0
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>
                     <option value="emp2">Show de bola</option>

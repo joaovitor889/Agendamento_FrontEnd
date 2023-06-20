@@ -32,11 +32,8 @@ import tAmarelo from '../../temas/tema05.png';
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
 import FotoMen from './FotoPerfilAdm/fotoAdmMen';
-<<<<<<< HEAD
 import { toFormData } from 'axios';
-=======
 import { type } from '@testing-library/user-event/dist/type';
->>>>>>> 5c9e6531e0b93cc29f03b784c846c125084782b0
 
 const TelaMenuEmpreendimento = () => {
     document.title = "Novo Empreendimento";
@@ -46,7 +43,7 @@ const TelaMenuEmpreendimento = () => {
 
     //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
 
-    const { uid } = useParams();
+
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -328,12 +325,6 @@ const TelaMenuEmpreendimento = () => {
         cadEstabelecimento(selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
     }
 
-    const  tDbAdm = '/tMenuDBADM/'+ token +'/'+ uid;
-    const  tEndereco = '/tMenuEnderecoADM/'+ token +'/'+ uid;
-    const  tFoto = '/tMenuFotoADM/'+ token +'/'+ uid;
-    const  tEmpreendimento = '/tEmpreendimento/'+ token +'/'+ uid;
-    const  tNovoEmpreendimento = '/tNovoEmpreendimento/'+ token +'/'+ uid;
-
     return (
         <div className={styles.fEmpr}>
             <div id={styles["menuLatCli"]}>
@@ -343,26 +334,6 @@ const TelaMenuEmpreendimento = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-<<<<<<< HEAD
-                            <Link to={tDbAdm} rel="noreferrer">
-                                <li><p>Dados Básicos</p></li>
-                            </Link>
-
-                            <Link to={tEndereco} rel="noreferrer">
-                                <li><p>Endereço</p></li>
-                            </Link>
-
-                            <Link to={tFoto} rel="noreferrer">
-                                <li><p>Foto</p></li>
-                            </Link>
-
-                            <Link to={tEmpreendimento} rel="noreferrer">
-                                <li style={{ color: '#000' }}><p>Empreendimento</p></li>
-                            </Link>
-
-                            <Link to={tNovoEmpreendimento} rel="noreferrer">
-                                <li><p>New Empreendimento</p></li>
-=======
                             <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                 <li><p>Dados Básicos</p></li>
                             </Link>
@@ -381,7 +352,6 @@ const TelaMenuEmpreendimento = () => {
                             </Link>
                             <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
                                 <li style={{ color: '#000' }}><p>New Empreendimento</p></li>
->>>>>>> 5c9e6531e0b93cc29f03b784c846c125084782b0
                             </Link>
                         </div>
                     </ul>

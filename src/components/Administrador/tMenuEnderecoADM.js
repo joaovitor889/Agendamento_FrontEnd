@@ -27,20 +27,12 @@ import { decodeToken } from 'react-jwt';
 const TelaEnderecoCliente = () => {
     document.title = "Endereço do Cliente";
 
-<<<<<<< HEAD
     const {token} = useParams();
     const { uid } =  useParams();
-=======
-    const { token } = useParams();
-
-    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
-
->>>>>>> 5c9e6531e0b93cc29f03b784c846c125084782b0
     const converToken = decodeToken(token);
 
     const userID = converToken.id;
 
-    const { uid } = useParams();
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -201,11 +193,6 @@ const TelaEnderecoCliente = () => {
 
         //alert(JSON.stringify({jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf}));
     }
-    const  tDbAdm = '/tMenuDBADM/'+ token +'/'+ uid;
-    const  tEndereco = '/tMenuEnderecoADM/'+ token +'/'+ uid;
-    const  tFoto = '/tMenuFotoADM/'+ token +'/'+ uid;
-    const  tEmpreendimento = '/tEmpreendimento/'+ token +'/'+ uid;
-    const  tNovoEmpreendimento = '/tNovoEmpreendimento/'+ token +'/'+ uid;
 
 
 
@@ -218,24 +205,6 @@ const TelaEnderecoCliente = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-<<<<<<< HEAD
-                            <Link to={ tDbAdm } rel="noreferrer">
-                                <li><p>Dados Básicos</p></li>
-                            </Link>
-
-                            <Link to={ tEndereco } rel="noreferrer">
-                                <li style={{ color: '#000' }}><p>Endereço</p></li>
-                            </Link>
-
-                            <Link to={ tFoto } rel="noreferrer">
-                                <li><p>Foto</p></li>
-                            </Link>
-
-                            <Link to={ tEmpreendimento } rel="noreferrer">
-                                <li><p>Empreendimento</p></li>
-                            </Link>
-                            <Link to={ tNovoEmpreendimento } rel="noreferrer">
-=======
                             <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                 <li><p>Dados Básicos</p></li>
                             </Link>
@@ -253,7 +222,6 @@ const TelaEnderecoCliente = () => {
                                 <li><p>Empreendimento</p></li>
                             </Link>
                             <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
->>>>>>> 5c9e6531e0b93cc29f03b784c846c125084782b0
                                 <li><p>New Empreendimento</p></li>
                             </Link>
                         </div>

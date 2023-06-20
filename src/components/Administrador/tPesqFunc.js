@@ -4,6 +4,8 @@ import perfilF from '../../img/perfil.png'
 import filter from '../../img/filter.png'
 import add from '../../img/add-func.png'
 import lixeira from '../../icones/trash-2.png'
+
+
 //import logo from '../../img/logo.PNG';
 import React, { useEffect, useState } from 'react';
 import {
@@ -17,20 +19,20 @@ import {
 
 import agFetch from '../../axios/config';
 
+
 //import { useState } from "react";
 
 const TelaPesqFunc = () => {
 
     document.title = "Funcionários";
 
-    const { uid } = useParams();
+    var { uid } = useParams();
     const { token } = useParams();
 
     const [elementos, setElementos] = useState([]);
 
-    const navigate = useNavigate();
 
-    agFetch.get("http://ec2-34-234-67-50.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
+    agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
         const nome = response.data.nome; // Declaração do nome da empresa
         var titulo = document.getElementById('emp'); //identifica o titulo da navbar
 
@@ -43,7 +45,7 @@ const TelaPesqFunc = () => {
     })
 
     useEffect(() => {
-        agFetch.get('http://ec2-34-234-67-50.compute-1.amazonaws.com:4000/estabelecimento/todosFunc/' + uid)
+        agFetch.get('http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/todosFunc/' + uid)
             .then(response => {
                 setElementos(response.data);
             })
@@ -59,7 +61,7 @@ const TelaPesqFunc = () => {
         async function PegaFuncionarios() {
             try {
                 //const funcResonse = await agFetch.get(`/estabelecimento/todosFunc/${uid}`);
-                const funcResonse = await agFetch.get(`/estabelecimento/todosFunc/jMQqNo`);
+                const funcResonse = await agFetch.get(`/estabelecimento/todosFunc/${uid}`);
                 setFuncionarios(funcResonse.data);
             } catch (error) {
                 console.log(error);
@@ -71,6 +73,18 @@ const TelaPesqFunc = () => {
     const addFuncionario = () => {
         window.open(`/tCadFunc/${token}/${uid}`, '_blank');
     }   
+
+    const [selectedValue, setSelectedValue] = useState('');
+    const navegate = useNavigate();
+
+    function handleSelectChange(event) {
+        const value = event.target.value;
+
+        setSelectedValue(value);
+        console.log(value)
+        navegate(`/tPesqFunc/${token}/${value}`)
+    }
+
 
     return (
         <div className={styles.fPesqFunc} >
@@ -106,7 +120,7 @@ const TelaPesqFunc = () => {
                 <Link to ={`/tServADM/${token}/${uid}`}>Serviços</Link>
                 <Link to ={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
                 <Link to={`/tLoginAdm`}>Sair</Link>
-                <select name='qual empresa?' className={styles.interprise} >
+                <select name='qual empresa?' className={styles.interprise} onChange={handleSelectChange}>
                     <option value="WLShVu"> <a href="/tPesqFunc/WLShVu">Empresa1</a> </option>
                     <option value="jMQqNo"> <a href="/tPesqFunc/jMQqNo">Empresa2</a> </option>
                 </select>

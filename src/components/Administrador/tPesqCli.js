@@ -7,6 +7,8 @@ import lixeira from '../../icones/trash-2.png'
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 
+import agFetch from '../../axios/config';
+
 //import { useState } from "react";
 
 //import { Link, useNavigate } from "react-router-dom";
@@ -20,11 +22,34 @@ const TelaPesqCli = () => {
     const { uid } = useParams();
     const { token } = useParams();
 
+    const [elementos, setElementos] = useState([]);
+
     //const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
     const adcionarCli = () => {
         window.open(`/tCadastroCli/${uid}`, '_blank');
     }
+
+    agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
+        const nome = response.data.nome; // Declaração do nome da empresa
+        var titulo = document.getElementById('emp'); //identifica o titulo da navbar
+
+        console.log(response.data.id);
+
+        titulo.innerHTML = nome; // passando o nome da empresas para o titulo
+
+    }).catch(error => {
+        console.log(error);
+    })
+    useEffect(() => {
+        agFetch.get('http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/todosClientes/' + uid)
+            .then(response => {
+                setElementos(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
 
 
     return (
@@ -39,7 +64,7 @@ const TelaPesqCli = () => {
                     </label>
                 </div>
                 <div className={styles.Centro}>
-                    <h3>Shostners & Shostners</h3>
+                    <h3 id='emp'></h3>
                 </div>
                 <div className={styles.direita}>
                     <a href="/" className="btn_perfil">
@@ -80,69 +105,19 @@ const TelaPesqCli = () => {
                     </div>
                 </div>
                 <div className={styles.cards}>
-                    <div className={styles.card}>
-                        <h4>Cliente: Joana Joaquina</h4>
-                        <div className={styles.card_footer}>
-                            <h4>Telefone: (XX) 0000-0000</h4>
-                            <img src={lixeira} alt="" />
+
+                    {elementos.map((elemento, index) => (
+                        <div className={styles.card}>
+                            <h4 key={index} id='nomeCli'>Cliente: {elemento.nome}</h4>
+                            <div className={styles.card_footer}>
+                                <h4 id='teleCli'>{elemento.telefone}</h4>
+                                <img src={lixeira} alt="" />
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles.card}>
-                        <h4>Cliente: Joana Joaquina</h4>
-                        <div className={styles.card_footer}>
-                            <h4>Telefone: (XX) 0000-0000</h4>
-                            <img src={lixeira} alt="" />
-                        </div>
-                    </div>
-                    <div className={styles.card}>
-                        <h4>Cliente: Joana Joaquina</h4>
-                        <div className={styles.card_footer}>
-                            <h4>Telefone: (XX) 0000-0000</h4>
-                            <img src={lixeira} alt="" />
-                        </div>
-                    </div>
-                    <div className={styles.card}>
-                        <h4>Cliente: Joana Joaquina</h4>
-                        <div className={styles.card_footer}>
-                            <h4>Telefone: (XX) 0000-0000</h4>
-                            <img src={lixeira} alt="" />
-                        </div>
-                    </div>
-                    <div className={styles.card}>
-                        <h4>Cliente: Joana Joaquina</h4>
-                        <div className={styles.card_footer}>
-                            <h4>Telefone: (XX) 0000-0000</h4>
-                            <img src={lixeira} alt="" />
-                        </div>
-                    </div>
-                    <div className={styles.card}>
-                        <h4>Cliente: Joana Joaquina</h4>
-                        <div className={styles.card_footer}>
-                            <h4>Telefone: (XX) 0000-0000</h4>
-                            <img src={lixeira} alt="" />
-                        </div>
-                    </div>
-                    <div className={styles.card}>
-                        <h4>Cliente: Joana Joaquina</h4>
-                        <div className={styles.card_footer}>
-                            <h4>Telefone: (XX) 0000-0000</h4>
-                            <img src={lixeira} alt="" />
-                        </div>
-                    </div>
-                    <div className={styles.card}>
-                        <h4>Cliente: Joana Joaquina</h4>
-                        <div className={styles.card_footer}>
-                            <h4>Telefone: (XX) 0000-0000</h4>
-                            <img src={lixeira} alt="" />
-                        </div>
-                    </div>
-                    <div className={styles.card}>
-                        <h4>Cliente: Joana Joaquina</h4>
-                        <div className={styles.card_footer}>
-                            <h4>Telefone: (XX) 0000-0000</h4>
-                            <img src={lixeira} alt="" />
-                        </div>
-                    </div>
+                    ))}
+                    
+                    
+                    
 
                 </div>
 

@@ -35,8 +35,6 @@ const TelaFotoCliente = () => {
 
     const userID = converToken.id;
 
-    const { uid } = useParams();
-
     //Programação do Menu de Hamburger
     // to change burger classes
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
@@ -162,14 +160,7 @@ const TelaFotoCliente = () => {
         setShowNotifications(false);
     };
 
-    const {token} = useParams();
     const { uid } = useParams();
-
-    const  tDbAdm = '/tMenuDBADM/'+ token +'/'+ uid;
-    const  tEndereco = '/tMenuEnderecoADM/'+ token +'/'+ uid;
-    const  tFoto = '/tMenuFotoADM/'+ token +'/'+ uid;
-    const  tEmpreendimento = '/tEmpreendimento/'+ token +'/'+ uid;
-    const  tNovoEmpreendimento = '/tNovoEmpreendimento/'+ token +'/'+ uid;
 
     return (
         <div className={styles.fFotoCliente}>

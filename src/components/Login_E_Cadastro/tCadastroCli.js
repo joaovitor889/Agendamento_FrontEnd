@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 import agFetch from '../../axios/config.js';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import TermosUso from '../modal/tTermosUsoPrivacidade';
 
@@ -12,7 +12,7 @@ const TelaCadastroUsuario = () => {
 
     document.title = "Cadastrar Cliente";
 
-    const uid = "RAcVaj";
+    const { uid } =  useParams();
 
     const navigate = useNavigate();
 
@@ -33,6 +33,7 @@ const TelaCadastroUsuario = () => {
             try {
                 const empreResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 const nEmpresa = empreResponse.data.nome;
+                console.log(empreResponse.data)
 
                 setNomeEmpresa(nEmpresa);
             } catch (error) {
