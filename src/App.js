@@ -96,9 +96,9 @@ function App() {
             
 
             {/* Telas do Cliente */}
-            <Route  path = "/tMenuCli" element = {<MenuCli />} />
-            <Route  path = "/tAgendarCli" element = {<AgendarCli />} />
-            <Route  path = "/tAgendamentoCli" element = {<AgendamentoCli />} />
+            <Route  path = "/tMenuCli/:token/:uid" element = {<MenuCli />} />
+            <Route  path = "/tAgendarCli/:token/:uid" element = {<AgendarCli />} />
+            <Route  path = "/tAgendamentoCli/:token/:uid" element = {<AgendamentoCli />} />
             {/* Perfil do Cliente */}
             <Route  path = "/tMenuDBCli" element = {<DadosBasicoCli />} />
             <Route  path = "/tMenuEnderecoCli" element = {<EnderecoCli />} />
