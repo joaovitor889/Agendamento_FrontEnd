@@ -150,6 +150,29 @@ const TelaMenuEmpreendimento = () => {
     const [selectedFile, setSelectedFile] = useState();
     const [preview, setPreview] = useState();
 
+    //verificar se o estabelecimento tem logo
+    const baseDaUrl = "http://ec2-54-157-10-132.compute-1.amazonaws.com:4000";
+    useEffect(() => {
+        async function PegaFoto() {
+            try {
+                const fotoResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                const foto = fotoResponse.data.imageUrl;
+                if (foto === null) {
+                    console.log("Não há imagem!");
+                    const lFoto = FotoPerfil;
+                    setPreview(lFoto);
+                } else {
+                    const lFoto = baseDaUrl + '/Estabelicimento/' + foto;
+                    console.log(lFoto);
+                    setPreview(lFoto);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaFoto();
+    }, [uid])
+
     //pegar os dados
     useEffect(() => {
         async function PegaEstabelecimento() {
@@ -164,11 +187,6 @@ const TelaMenuEmpreendimento = () => {
                 const numEst = estResponse.data.numero;
                 const compEst = estResponse.data.complemento;
                 const temEst = estResponse.data.tema;
-                const imgEst = estResponse.data.imageUrl;
-
-                if (imgEst !== null) {
-                    setPreview(imgEst);
-                }
 
                 setNomeEst(nomEst);
                 setCEP(cepEst);
@@ -367,7 +385,7 @@ const TelaMenuEmpreendimento = () => {
             return;
         }
 
-        alert(JSON.stringify(textData));
+        //alert(JSON.stringify(textData));
 
         try {
             //alert(token);
@@ -378,12 +396,12 @@ const TelaMenuEmpreendimento = () => {
             };
 
             // Enviar os dados de texto
-            const responseText = await agFetch.patch('/estabelecimento/update', textData, { headers });
+            const responseText = await agFetch.patch(`/estabelecimento/update?uid=${uid}`, textData, { headers });
 
             console.log('Resposta de texto:', responseText.data);
 
             if (responseText.status >= 200 && responseText.status <= 299) {
-                alert("Estabelecimento Cadastrado!");
+                alert("Estabelecimento Atualizado!");
 
                 const ultUid = responseText.data.uid;
 
@@ -391,7 +409,7 @@ const TelaMenuEmpreendimento = () => {
 
                 //logica da foto
                 if (selectedFile !== null) {
-                    alert("Foto Preenchida!!!");
+                    console.log("Foto Preenchida!!!");
                     const formData = new FormData();
                     formData.append('logo', selectedFile);
                     try {
@@ -462,7 +480,7 @@ const TelaMenuEmpreendimento = () => {
             <div id={styles["conteudoCli"]}>
                 <h2><center>Logo</center></h2>
                 <form id={styles["formFoto"]} onSubmit={salvarEmpreendimento}>
-                    <center><img id="fotoDefCli" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
+                    <center><img id="fotoDefCli" className={styles.fotDef} src={preview} alt="Foto Perfil" /></center>
                     <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
                     <div className={styles.legFoto}><p>Adicionar / alterar imagem</p></div>
                     <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" /*required*/ /></center>

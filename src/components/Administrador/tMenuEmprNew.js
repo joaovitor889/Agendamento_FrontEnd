@@ -223,6 +223,7 @@ const TelaMenuEmpreendimento = () => {
             numero: jsnum,
             complemento: jscomp,
             tema: ftema,
+            imageUrl: null,
             CEP: jscep,
             horarios: [
                 {
