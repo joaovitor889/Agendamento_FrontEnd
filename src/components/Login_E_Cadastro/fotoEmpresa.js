@@ -26,7 +26,8 @@ const FotoEmpresa = () => {
                     const lFoto = 'http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/Estabelicimento/logoEstabelecimento.png';
                     setLnkFoto(lFoto);
                 } else {
-                    const lFoto = baseDaUrl + '/Estabelecimento/' + foto;
+                    const lFoto = baseDaUrl + '/Estabelicimento/' + foto;
+                    console.log(lFoto);
                     setLnkFoto(lFoto);
                 }
             } catch (error) {
