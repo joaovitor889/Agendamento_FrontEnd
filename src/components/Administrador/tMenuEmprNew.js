@@ -92,6 +92,21 @@ const TelaMenuEmpreendimento = () => {
         };
     });
 
+    //nome da empresa
+    const [nomeEmp, setNomeEmp] = useState();
+
+    useEffect(() => {
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmp(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
+
     //logica do upload da foto
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState();
@@ -300,7 +315,7 @@ const TelaMenuEmpreendimento = () => {
                                 Authorization: `Bearer ${token}`
                             }
                         };
-                        const response = await agFetch.post(`/estabelecimento/image/${ultUid}`, formData, multipart); 
+                        const response = await agFetch.post(`/estabelecimento/image/${ultUid}`, formData, multipart);
                         if (response.status >= 200 && response.status <= 299)
                             console.log("Foto Enviada!");
                     } catch (error) {
@@ -606,7 +621,7 @@ const TelaMenuEmpreendimento = () => {
 
                 <FotoHor />
 
-                <div className={styles.logoMenuCli}><p>Shostners & Shotners</p></div>
+                <div className={styles.logoMenuCli}><p>{nomeEmp}</p></div>
                 <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>
