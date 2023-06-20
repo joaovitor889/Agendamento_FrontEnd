@@ -55,7 +55,10 @@ const TelaMenuCliente = () => {
         async function PegaCliente() {
             try {
                 const cliResponse = await agFetch.get(`/cliente/pegarPorId?id=${idCli}`);
-                setNomeCli(cliResponse.data.nome);
+                const clNome = cliResponse.data.nome;
+                const firstSpaceIndex = clNome.indexOf(' ');
+                const cmpNome = clNome.substring(0, firstSpaceIndex);
+                setNomeCli(cmpNome);
             } catch (error) {
                 console.log(error);
             }
@@ -71,7 +74,7 @@ const TelaMenuCliente = () => {
         <div className={styles.fMenuCliente}>
             <nav id={styles["cabecalhoMenuCli"]}>
                 <div className={styles.voltar}><Link to={`/tLoginCli/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
-                <div className={styles.logoMenuCli}><p>{nomeEmpresa}</p></div>                               
+                <div className={styles.logoMenuCli}><p>{nomeEmpresa}</p></div>
                 <Foto />
             </nav>
             <div className={styles.fPreto}></div>
