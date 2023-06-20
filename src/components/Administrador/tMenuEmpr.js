@@ -39,7 +39,12 @@ const TelaMenuEmpreendimento = () => {
 
     //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
 
+    const { token } = useParams();
+
     const { uid } = useParams();
+
+    //alert("Token: " + token);
+    //alert("uid: " + uid);
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -90,10 +95,158 @@ const TelaMenuEmpreendimento = () => {
         };
     });
 
+    //nome da empresa
+    const [nomeEmp, setNomeEmp] = useState();
+
+    useEffect(() => {
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmp(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
+
+    //dados do formulario
+    const [nomeEst, setNomeEst] = useState("");
+
+    //API do CEP
+    const { register, setValue } = useForm();
+
+    //Campos da API CEP
+    const [jscep, setCEP] = useState("");
+    const [jsrua, setRua] = useState("");
+    const [jsnum, setNum] = useState("");
+    const [jscomp, setComp] = useState("");
+    const [jsbairro, setBairro] = useState("");
+    const [jscidade, setCidade] = useState("");
+    const [jseuf, setUF] = useState("");
+
+    //horario de funcionamento
+    const [segInic, setSegInic] = useState("");
+    const [terInic, setTerInic] = useState("");
+    const [quaInic, setQuaInic] = useState("");
+    const [quiInic, setQuiInic] = useState("");
+    const [sexInic, setSexInic] = useState("");
+    const [sabInic, setSabInic] = useState("");
+    const [domInic, setDomInic] = useState("");
+
+    const [segFim, setSegFim] = useState("");
+    const [terFim, setTerFim] = useState("");
+    const [quaFim, setQuaFim] = useState("");
+    const [quiFim, setQuiFim] = useState("");
+    const [sexFim, setSexFim] = useState("");
+    const [sabFim, setSabFim] = useState("");
+    const [domFim, setDomFim] = useState("");
+
+    const [ftema, setTema] = useState("");
+
+    const ftelefone = "15 996633179";
+
     //logica do upload da foto
     const [selectedFile, setSelectedFile] = useState();
     const [preview, setPreview] = useState();
 
+    //pegar os dados
+    useEffect(() => {
+        async function PegaEstabelecimento() {
+            try {
+                const estResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                const nomEst = estResponse.data.nome;
+                const cepEst = estResponse.data.CEP;
+                const ufEst = estResponse.data.uf;
+                const cidadeEst = estResponse.data.cidade;
+                const bairroEst = estResponse.data.bairro;
+                const ruaEst = estResponse.data.logradouro;
+                const numEst = estResponse.data.numero;
+                const compEst = estResponse.data.complemento;
+                const temEst = estResponse.data.tema;
+                const imgEst = estResponse.data.imageUrl;
+
+                if (imgEst !== null) {
+                    setPreview(imgEst);
+                }
+
+                setNomeEst(nomEst);
+                setCEP(cepEst);
+                setUF(ufEst);
+                setCidade(cidadeEst);
+                setBairro(bairroEst);
+                setRua(ruaEst);
+                setNum(numEst);
+                setComp(compEst);
+                setTema(temEst);
+                //setSelectedFile(imgEst);
+
+                //horarios
+                const estHorsResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                const horarios = estHorsResponse.data.horarios;
+
+                const horarioSegunda = horarios.find(horario => horario.diaSemana === 'segunda');
+                if (horarioSegunda) {
+                    const horInicSeg = horarioSegunda.inicio;
+                    const horFimSeg = horarioSegunda.fim;
+                    setSegInic(horInicSeg);
+                    setSegFim(horFimSeg);
+                }
+
+                const horarioTerca = horarios.find(horario => horario.diaSemana === 'terça');
+                if (horarioTerca) {
+                    const horInicTer = horarioTerca.inicio;
+                    const horFimTer = horarioTerca.fim;
+                    setTerInic(horInicTer);
+                    setTerFim(horFimTer);
+                }
+
+                const horarioQuarta = horarios.find(horario => horario.diaSemana === 'quarta');
+                if (horarioQuarta) {
+                    const horInicQua = horarioQuarta.inicio;
+                    const horFimQua = horarioQuarta.fim;
+                    setQuaInic(horInicQua);
+                    setQuaFim(horFimQua);
+                }
+
+                const horarioQuinta = horarios.find(horario => horario.diaSemana === 'quinta');
+                if (horarioQuinta) {
+                    const horInicQui = horarioQuinta.inicio;
+                    const horFimQui = horarioQuinta.fim;
+                    setQuiInic(horInicQui);
+                    setQuiFim(horFimQui);
+                }
+
+                const horarioSexta = horarios.find(horario => horario.diaSemana === 'sexta');
+                if (horarioSexta) {
+                    const horInicSex = horarioSexta.inicio;
+                    const horFimSex = horarioSexta.fim;
+                    setSexInic(horInicSex);
+                    setSexFim(horFimSex);
+                }
+
+                const horarioSabado = horarios.find(horario => horario.diaSemana === 'sábado');
+                if (horarioSabado) {
+                    const horInicSab = horarioSabado.inicio;
+                    const horFimSab = horarioSexta.fim;
+                    setSabInic(horInicSab);
+                    setSabFim(horFimSab);
+                }
+
+                const horarioDomingo = horarios.find(horario => horario.diaSemana === 'domingo');
+                if (horarioDomingo) {
+                    const horInicDom = horarioDomingo.inicio;
+                    const horFimDom = horarioDomingo.fim;
+                    setDomInic(horInicDom);
+                    setDomFim(horFimDom);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        PegaEstabelecimento();
+    }, [uid])
 
     useEffect(() => {
         if (!selectedFile) {
@@ -120,55 +273,6 @@ const TelaMenuEmpreendimento = () => {
         setSelectedFile(e.target.files[0]);
     }
 
-    //dados do formulario
-    const [nomeEst, setNomeEst] = useState("");
-
-    //horario de funcionamento
-    const [segInic, setSegInic] = useState("");
-    const [terInic, setTerInic] = useState("");
-    const [quaInic, setQuaInic] = useState("");
-    const [quiInic, setQuiInic] = useState("");
-    const [sexInic, setSexInic] = useState("");
-    const [sabInic, setSabInic] = useState("");
-    const [domInic, setDomInic] = useState("");
-
-    const [segFim, setSegFim] = useState("");
-    const [terFim, setTerFim] = useState("");
-    const [quaFim, setQuaFim] = useState("");
-    const [quiFim, setQuiFim] = useState("");
-    const [sexFim, setSexFim] = useState("");
-    const [sabFim, setSabFim] = useState("");
-    const [domFim, setDomFim] = useState("");
-
-    const [ftema, setTema] = useState("");
-
-    const ftelefone = "15 996633179";
-
-    const [userData, setUserData] = useState({});
-
-    // Função para obter os dados do usuário
-    const fetchUserData = async () => {
-
-    };
-
-    // Chama a função fetchUserData quando o componente é montado
-    useEffect(() => {
-        fetchUserData();
-    });
-
-    //API do CEP
-    const { register, setValue } = useForm();
-
-    //Campos da API CEP
-    const [jscep, setCEP] = useState("");
-    const [jsrua, setRua] = useState("");
-    const [jsnum, setNum] = useState("");
-    const [jscomp, setComp] = useState("");
-    const [jsbairro, setBairro] = useState("");
-    const [jscidade, setCidade] = useState("");
-    const [jseuf, setUF] = useState("");
-
-
     const checkCEP = (e) => {
         const cep = e.target.value.replace(/\D/g, '');
         //console.log(cep);
@@ -190,9 +294,10 @@ const TelaMenuEmpreendimento = () => {
     }
 
     //salvar o empreendimento
-    const cadEstabelecimento = async (selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
-        //alert(JSON.stringify({ selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
+    const cadEstabelecimento = async (selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
+        //alert(JSON.stringify({ selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
 
+        //dados do Estabelecimento
         const textData = {
             nome: nomeEst,
             telefone: ftelefone,
@@ -203,7 +308,7 @@ const TelaMenuEmpreendimento = () => {
             numero: jsnum,
             complemento: jscomp,
             tema: ftema,
-
+            CEP: jscep,
             horarios: [
                 {
                     diaSemana: "segunda",
@@ -262,7 +367,7 @@ const TelaMenuEmpreendimento = () => {
             return;
         }
 
-        console.log(textData);
+        alert(JSON.stringify(textData));
 
         try {
             //alert(token);
@@ -273,39 +378,52 @@ const TelaMenuEmpreendimento = () => {
             };
 
             // Enviar os dados de texto
-            const responseText = await agFetch.post('/estabelecimento/criar', textData, { headers });
+            const responseText = await agFetch.patch('/estabelecimento/update', textData, { headers });
 
             console.log('Resposta de texto:', responseText.data);
 
-            // Criar um objeto FormData para enviar a foto
-
-            //const formData = new FormData();
-            //formData.append('photo', selectedFile);
-
-            // Fazer upload da foto
-            //const responsePhoto = await agFetch.post('/api/photo-endpoint', formData, {
-            //headers: {
-            //'Content-Type': 'multipart/form-data',
-            //},
-            //});
-            //console.log('Resposta de foto:', responsePhoto.data);
-
-            if (responseText.status === 201)
+            if (responseText.status >= 200 && responseText.status <= 299) {
                 alert("Estabelecimento Cadastrado!");
+
+                const ultUid = responseText.data.uid;
+
+                //alert(ultUid);
+
+                //logica da foto
+                if (selectedFile !== null) {
+                    alert("Foto Preenchida!!!");
+                    const formData = new FormData();
+                    formData.append('logo', selectedFile);
+                    try {
+                        const multipart = {
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                                Authorization: `Bearer ${token}`
+                            }
+                        };
+                        const response = await agFetch.post(`/estabelecimento/image/${ultUid}`, formData, multipart);
+                        if (response.status >= 200 && response.status <= 299)
+                            console.log("Foto Enviada!");
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            }
 
         } catch (error) {
             console.error('Erro ao enviar requisições:', error);
-            alert("Dados Inválidos!");
+            alert(error);
+            //alert("Dados Inválidos!");
         }
     }
 
     const salvarEmpreendimento = (e) => {
         e.preventDefault();
 
-        cadEstabelecimento(selectedFile, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
-    }
-    const { token } = useParams();
+        //alert(JSON.stringify({selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf}));
 
+        cadEstabelecimento(selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
+    }
 
     return (
         <div className={styles.fEmpr}>
@@ -348,7 +466,7 @@ const TelaMenuEmpreendimento = () => {
                     <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
                     <div className={styles.legFoto}><p>Adicionar / alterar imagem</p></div>
                     <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" /*required*/ /></center>
-                    <center><input type="text" placeholder='Nome:' name="nome" onChange={(e) => setNomeEst(e.target.value)} required /></center>
+                    <center><input type="text" placeholder='Nome:' name="nome" value={nomeEst} onChange={(e) => setNomeEst(e.target.value)} required /></center>
                     <div id={styles["ptHor"]}>
                         <center>
                             <br></br>
@@ -365,57 +483,57 @@ const TelaMenuEmpreendimento = () => {
                                 <tr>
                                     <td><p>Segunda</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" onChange={(e) => setSegInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" value={segInic} onChange={(e) => setSegInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" onChange={(e) => setSegFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" value={segFim} onChange={(e) => setSegFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Terça</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" onChange={(e) => setTerInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" value={terInic} onChange={(e) => setTerInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" onChange={(e) => setTerFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" value={terFim} onChange={(e) => setTerFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Quarta</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" onChange={(e) => setQuaInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" value={quaInic} onChange={(e) => setQuaInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" onChange={(e) => setQuaFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" value={quaFim} onChange={(e) => setQuaFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Quinta</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" onChange={(e) => setQuiInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" value={quiInic} onChange={(e) => setQuiInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" onChange={(e) => setQuiFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" value={quiFim} onChange={(e) => setQuiFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Sexta</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" onChange={(e) => setSexInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" value={sexInic} onChange={(e) => setSexInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" onChange={(e) => setSexFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" value={sexFim} onChange={(e) => setSexFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Sábado</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" onChange={(e) => setSabInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" value={sabInic} onChange={(e) => setSabInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" onChange={(e) => setSabFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" value={sabFim} onChange={(e) => setSabFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Domingo</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" onChange={(e) => setDomInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" value={domInic} onChange={(e) => setDomInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" onChange={(e) => setDomFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" value={domFim} onChange={(e) => setDomFim(e.target.value)} /></td>
                                 </tr>
                             </table>
                             <br></br>
@@ -458,6 +576,7 @@ const TelaMenuEmpreendimento = () => {
                                         event.preventDefault();
                                     }
                                 }}
+                                value={jscep}
                                 ref={fcep}
                                 onBlur={checkCEP}
                                 onChange={(e) => setCEP(e.target.value)}
@@ -469,6 +588,7 @@ const TelaMenuEmpreendimento = () => {
                                 title="Digite a sua Rua"
                                 name="rua" id={styles["rua"]}
                                 className={styles.segColuna}
+                                value={jsrua}
                                 {...register("rua")}
                                 onChange={(e) => setRua(e.target.value)}
                                 required />
@@ -486,6 +606,7 @@ const TelaMenuEmpreendimento = () => {
                                     }
                                 }}
                                 id={styles["numero"]}
+                                value={jsnum}
                                 ref={fnum}
                                 onChange={(e) => setNum(e.target.value)}
                                 required /> <br></br>
@@ -496,6 +617,7 @@ const TelaMenuEmpreendimento = () => {
                                 title="Digite o seu Complemento"
                                 name="comp" id={styles["comple"]}
                                 className={styles.segColuna}
+                                value={jscomp}
                                 onChange={(e) => setComp(e.target.value)} /> <br></br>
                         </div>
                     </div>
@@ -505,6 +627,7 @@ const TelaMenuEmpreendimento = () => {
                             title="Digite o seu bairro"
                             name="bairro"
                             id={styles["bairro"]}
+                            value={jsbairro}
                             {...register("bairro")}
                             onChange={(e) => setBairro(e.target.value)}
                             required />
@@ -512,6 +635,7 @@ const TelaMenuEmpreendimento = () => {
                             placeholder="Cidade:"
                             title="Digite a sua Cidade"
                             name="cidade"
+                            value={jscidade}
                             id={styles["cidade"]}
                             {...register("cidade")}
                             onChange={(e) => setCidade(e.target.value)}
@@ -520,6 +644,7 @@ const TelaMenuEmpreendimento = () => {
                             placeholder="Estado:"
                             title="Digite o seu Estado"
                             name="estado"
+                            value={jseuf}
                             id={styles["estado"]}
                             {...register("uf")}
                             onChange={(e) => setUF(e.target.value)}
@@ -602,7 +727,7 @@ const TelaMenuEmpreendimento = () => {
 
                 <FotoHor />
 
-                <div className={styles.logoMenuCli}><p>Shostners & Shotners</p></div>
+                <div className={styles.logoMenuCli}><p>{nomeEmp}</p></div>
                 <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>

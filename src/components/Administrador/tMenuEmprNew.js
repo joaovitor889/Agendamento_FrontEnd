@@ -32,8 +32,6 @@ import tAmarelo from '../../temas/tema05.png';
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
 import FotoMen from './FotoPerfilAdm/fotoAdmMen';
-import { toFormData } from 'axios';
-import { type } from '@testing-library/user-event/dist/type';
 
 const TelaMenuEmpreendimento = () => {
     document.title = "Novo Empreendimento";
