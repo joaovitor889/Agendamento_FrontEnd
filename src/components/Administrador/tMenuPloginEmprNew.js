@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 
 import agFetch from '../../axios/config.js';
 
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import tAzul from '../../temas/tema01.png';
 
@@ -37,11 +37,10 @@ const TelaMenuEmpreendimento = () => {
     document.title = "Novo Empreendimento";
 
     const { token } = useParams();
-    const { uid } = useParams();
 
     //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
 
-
+    const navigate = useNavigate();
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -91,21 +90,6 @@ const TelaMenuEmpreendimento = () => {
             }
         };
     });
-
-    //nome da empresa
-    const [nomeEmp, setNomeEmp] = useState();
-
-    useEffect(() => {
-        async function PegaEmpresa() {
-            try {
-                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
-                setNomeEmp(empResponse.data.nome);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        PegaEmpresa();
-    }, [uid])
 
     //logica do upload da foto
     const [selectedFile, setSelectedFile] = useState(null);
@@ -323,6 +307,7 @@ const TelaMenuEmpreendimento = () => {
                         console.log(error);
                     }
                 }
+                navigate("/tLoginAdm");
             }
 
         } catch (error) {
@@ -348,23 +333,7 @@ const TelaMenuEmpreendimento = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <Link to={`/tMenuDBADM/${token}/${uid}`}>
-                                <li><p>Dados Básicos</p></li>
-                            </Link>
-
-                            {/*<Link to='/tMenuEnderecoADM' target = "_blank" rel="noreferrer">*/}
-                            <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
-                                <li><p>Endereço</p></li>
-                            </Link>
-
-                            <Link to={`/tMenuFotoADM/${token}/${uid}`}>
-                                <li><p>Foto</p></li>
-                            </Link>
-
-                            <Link to={`/tEmpreendimento/${token}/${uid}`}>
-                                <li><p>Empreendimento</p></li>
-                            </Link>
-                            <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
+                            <Link to={`/tMenuPLogin/${token}`}>
                                 <li style={{ color: '#000' }}><p>New Empreendimento</p></li>
                             </Link>
                         </div>
@@ -579,45 +548,17 @@ const TelaMenuEmpreendimento = () => {
                             <br></br>
                             <br></br>
                             <br></br>
-                            <li>
-                                <p>
-                                    <Link to={`/tMenuDBADM/${token}/${uid}`}>
-                                        Dados Básicos
-                                    </Link>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
-                                        Endereço
-                                    </Link>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <Link to={`/tMenuFotoADM/${token}/${uid}`}>
-                                        Foto
-                                    </Link>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <Link to={`/tEmpreendimento/${token}/${uid}`}>
-                                        Empreendimento
-                                    </Link>
-                                </p>
-                            </li>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
+                                    <Link to={`/tMenuPLogin/${token}`}>
                                         Novo Empreendimento
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to={`/tPesqFunc/${token}/${uid}`}>
-                                        Voltar ao Menu
+                                    <Link to={'/tLoginAdm'}>
+                                        Voltar
                                     </Link>
                                 </p>
                             </li>
@@ -627,8 +568,8 @@ const TelaMenuEmpreendimento = () => {
 
                 <FotoHor />
 
-                <div className={styles.logoMenuCli}><p>{nomeEmp}</p></div>
-                <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
+                <div className={styles.logoMenuCli}><p>Cadastrar Empresa</p></div>
+                <div id={styles["voltar"]}><Link to={'/tLoginAdm'}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>
     )

@@ -49,6 +49,7 @@ import Agendamentos from './components/Administrador/tAgendamentos.js';
 import DadosBasicosAdm from './components/Administrador/tMenuDBADM.js';
 import EnderecoAdm from './components/Administrador/tMenuEnderecoADM.js';
 import FotoADM from './components/Administrador/tMenuFotoADM.js';
+import PrimeiroLogin from './components/Administrador/tMenuPloginEmprNew.js';
 import Empreendimento from './components/Administrador/tMenuEmpr.js';
 import NovoEmpreendimento from './components/Administrador/tMenuEmprNew.js';
 
@@ -91,6 +92,7 @@ function App() {
             <Route path="/tMenuEnderecoADM/:token/:uid" element = {<EnderecoAdm />} />
             <Route path="/tMenuFotoADM/:token/:uid" element = {<FotoADM />} />
             
+            <Route path="/tMenuPLogin/:token" element = {<PrimeiroLogin />} />
             <Route path="/tNovoEmpreendimento/:token/:uid" element = {<NovoEmpreendimento />} />
             <Route path="/tEmpreendimento/:token/:uid" element = {<Empreendimento/>} />
             

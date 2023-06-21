@@ -1,31 +1,51 @@
 .perfil {
-    background-color: #000;
-    color: #fff;
-    width: 12vw;
-    height: 13vw;
+    position: absolute;
+    left: 90%;
+    top: 15%;
     border-radius: 50%;
-    margin-left: auto;
+    width: 8%;
+    height: 70%;
 }
 
-.perfil p {
-    font-size: 6vw;
-    line-height: 10%;
+.fundo {
+    background-color: #000;
+    border-radius: 50%;
 }
 
 .perfil img {
-    margin: 10%;
-    width: 80%;
-    height: 80%;
+    position: absolute;
+    top: 1%;
+    left: 5%;
+    border-radius: 50%;
+    width: 100%;
+    height: 90%;
+    line-height: 75%;
 }
 
-@media screen and (min-width: 1024px) {
-    .perfil {
-        width: 50px;
-        height: 50px;
+.perfil p {
+	font-size: 6vw;
+	line-height: 70%;
+    margin-top: 25%;
+    color: #fff;
+}
+
+@media only screen and (min-width: 1024px) {
+	.perfil {
+        width: 3vw;
+        height: 3vw;
+        border-radius: 50%;
+        margin-left: 5%;
     }
 
-    .perfil p {
-        font-size: 2vw;
-        line-height: 10%;
+    .perfil img {
+        margin: 10%;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
     }
+    .perfil p {
+		font-size: 2vw;
+        margin-top: 20%;
+		line-height: 75%;
+	}
 }

@@ -34,8 +34,6 @@ const TelaDadosBasicosCliente = () => {
 
     const userID = converToken.id;
 
-
-
     //Programação do Menu de Hamburger
     // to change burger classes
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
@@ -60,6 +58,20 @@ const TelaDadosBasicosCliente = () => {
     const [telefone, setTelefone] = useState();
     const [email, setEmail] = useState();
 
+    //nome da empresa
+    const [nomeEmp, setNomeEmp] = useState();
+
+    useEffect(() => {
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmp(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
 
     const cmpCPF = useRef(null);
     const cmpTelefone = useRef(null);
@@ -261,9 +273,15 @@ const TelaDadosBasicosCliente = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <FotoMen />
-
                         <ul id="uMenHamburger">
+                            <FotoMen />
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
                                     <Link to={`/tMenuDBADM/${token}/${uid}`}>
@@ -312,7 +330,7 @@ const TelaDadosBasicosCliente = () => {
                 </div>
 
                 <FotoHor />
-                <div className={styles.logoMenuCli}><p>Shostners & shostners</p></div>
+                <div className={styles.logoMenuCli}><p>{nomeEmp}</p></div>
                 <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
 

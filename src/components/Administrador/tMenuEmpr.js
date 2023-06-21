@@ -694,9 +694,15 @@ const TelaMenuEmpreendimento = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <FotoMen />
-
                         <ul id="uMenHamburger">
+                            <FotoMen />
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                             <li>
                                 <p>
                                     <Link to={`/tMenuDBADM/${token}/${uid}`}>

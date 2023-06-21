@@ -103,7 +103,7 @@
 
 /*fundo*/
 #perfilHamburger {
-	background-color: #000;
+    position: relative;
 	color: #fff;
 	width: 40vw;
   	height: 30vh;
@@ -113,9 +113,17 @@
 	margin-left: 30%;
 }
 
+.fundo {
+    background-color: #000;
+    border-radius: 50%;
+    height: 95%;
+}
+
 #perfilHamburger img {
+    margin-top: 95%;
     width: 90%;
     height: 90%;
+    border-radius: 50%;
 }
 
 #perfilHamburger p {
