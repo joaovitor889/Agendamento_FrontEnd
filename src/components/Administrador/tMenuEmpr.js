@@ -143,6 +143,7 @@ const TelaMenuEmpreendimento = () => {
     const [domFim, setDomFim] = useState("");
 
     const [ftema, setTema] = useState("");
+    const [imagemSelecionada, setImagemSelecionada] = useState(null);
 
     const ftelefone = "15 996633179";
 
@@ -173,6 +174,13 @@ const TelaMenuEmpreendimento = () => {
         PegaFoto();
     }, [uid])
 
+    //variaveis de cor
+    const [imagemSelecionadaAzul, setImagemSelecionadaAzul] = useState(false);
+    const [imagemSelecionadaVermelho, setImagemSelecionadaVermelho] = useState(false);
+    const [imagemSelecionadaVerde, setImagemSelecionadaVerde] = useState(false);
+    const [imagemSelecionadaRoza, setImagemSelecionadaRoza] = useState(false);
+    const [imagemSelecionadaAmarelo, setImagemSelecionadaAmarelo] = useState(false);
+
     //pegar os dados
     useEffect(() => {
         async function PegaEstabelecimento() {
@@ -187,6 +195,20 @@ const TelaMenuEmpreendimento = () => {
                 const numEst = estResponse.data.numero;
                 const compEst = estResponse.data.complemento;
                 const temEst = estResponse.data.tema;
+
+                if (temEst) {
+                    if (temEst === "#3293CA") {
+                        setImagemSelecionadaAzul(true);
+                    } else if (temEst === "#f02d1f") {
+                        setImagemSelecionadaVermelho(true);
+                    } else if (temEst === "#1ff076") {
+                        setImagemSelecionadaVerde(true);
+                    } else if (temEst === "#f01fbf") {
+                        setImagemSelecionadaRoza(true);
+                    } else if (temEst === "#dbd51d") {
+                        setImagemSelecionadaAmarelo(true);
+                    }
+                }
 
                 setNomeEst(nomEst);
                 setCEP(cepEst);
@@ -310,6 +332,11 @@ const TelaMenuEmpreendimento = () => {
                 setUF(data.uf);
             });
     }
+
+    const handleTemaClick = (cor) => {
+        setTema(cor);
+        setImagemSelecionada(cor);
+    };
 
     //salvar o empreendimento
     const cadEstabelecimento = async (selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
@@ -558,24 +585,79 @@ const TelaMenuEmpreendimento = () => {
                         </div>
                     </div>
                     <p id={styles["legTema"]}>Escolha o tema de fundo da sua empresa</p><br></br>
-                    <div id={styles["temas"]}>
-                        {/*<button>Azul</button>
-                        <button>Vermelho</button>
-                        <button>Verde</button>
-                        <button>Roza</button>
-                        <button>Amarelo</button>*/}
-
-                        {/*<input type="radio" value="azul" name="temas"/>                     
-                        <input type="radio" value="vermelho" name="temas" />                         
-                        <input type="radio" value="verde" name="temas" />                         
-                        <input type="radio" value="roza" name="temas" />                         
-                        <input type="radio" value="amarelo" name="temas" />*/}
-
+                    {/*<div id={styles["temas"]}>
                         <img src={tAzul} alt="Tema Azul" onClick={() => setTema("#3293CA")} />
                         <img src={tVermelho} alt="Tema Vermelho" onClick={() => setTema("#f02d1f")} />
                         <img src={tVerde} alt="Tema Verde" onClick={() => setTema("#1ff076")} />
                         <img src={tRoza} alt="Tema Roza" onClick={() => setTema("#f01fbf")} />
                         <img src={tAmarelo} alt="Tema Amarelo" onClick={() => setTema("#dbd51d")} />
+                    </div>*/}
+                    <div id={styles["temas"]}>
+                        <img
+                            src={tAzul}
+                            alt="Tema Azul"
+                            onClick={() => {
+                                setTema("#3293CA");
+                                setImagemSelecionadaAzul(true);
+                                setImagemSelecionadaVermelho(false);
+                                setImagemSelecionadaVerde(false);
+                                setImagemSelecionadaRoza(false);
+                                setImagemSelecionadaAmarelo(false);
+                            }}
+                            className={imagemSelecionadaAzul ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tVermelho}
+                            alt="Tema Vermelho"
+                            onClick={() => {
+                                setTema("#f02d1f");
+                                setImagemSelecionadaAzul(false);
+                                setImagemSelecionadaVermelho(true);
+                                setImagemSelecionadaVerde(false);
+                                setImagemSelecionadaRoza(false);
+                                setImagemSelecionadaAmarelo(false);
+                            }}
+                            className={imagemSelecionadaVermelho ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tVerde}
+                            alt="Tema Verde"
+                            onClick={() => {
+                                setTema("#1ff076");
+                                setImagemSelecionadaAzul(false);
+                                setImagemSelecionadaVermelho(false);
+                                setImagemSelecionadaVerde(true);
+                                setImagemSelecionadaRoza(false);
+                                setImagemSelecionadaAmarelo(false);
+                            }}
+                            className={imagemSelecionadaVerde ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tRoza}
+                            alt="Tema Roza"
+                            onClick={() => {
+                                setTema("#f01fbf");
+                                setImagemSelecionadaAzul(false);
+                                setImagemSelecionadaVermelho(false);
+                                setImagemSelecionadaVerde(false);
+                                setImagemSelecionadaRoza(true);
+                                setImagemSelecionadaAmarelo(false);
+                            }}
+                            className={imagemSelecionadaRoza ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tAmarelo}
+                            alt="Tema Amarelo"
+                            onClick={() => {
+                                setTema("#dbd51d");
+                                setImagemSelecionadaAzul(false);
+                                setImagemSelecionadaVermelho(false);
+                                setImagemSelecionadaVerde(false);
+                                setImagemSelecionadaRoza(false);
+                                setImagemSelecionadaAmarelo(true);
+                            }}
+                            className={imagemSelecionadaAmarelo ? styles["descolorida"] : ""}
+                        />
                     </div>
                     <br></br>
                     <br></br>

@@ -158,20 +158,9 @@ const TelaMenuEmpreendimento = () => {
     const [domFim, setDomFim] = useState("");
 
     const [ftema, setTema] = useState("");
+    const [imagemSelecionada, setImagemSelecionada] = useState(null);
 
     const ftelefone = "15 996633179";
-
-    const [userData, setUserData] = useState({});
-
-    // Função para obter os dados do usuário
-    const fetchUserData = async () => {
-
-    };
-
-    // Chama a função fetchUserData quando o componente é montado
-    useEffect(() => {
-        fetchUserData();
-    });
 
     //API do CEP
     const { register, setValue } = useForm();
@@ -207,6 +196,11 @@ const TelaMenuEmpreendimento = () => {
                 setUF(data.uf);
             });
     }
+
+    const handleTemaClick = (cor) => {
+        setTema(cor);
+        setImagemSelecionada(cor);
+    };
 
     //salvar o empreendimento
     const cadEstabelecimento = async (selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
@@ -454,12 +448,44 @@ const TelaMenuEmpreendimento = () => {
                         </div>
                     </div>
                     <p id={styles["legTema"]}>Escolha o tema de fundo da sua empresa</p><br></br>
-                    <div id={styles["temas"]}>
+                    {/*<div id={styles["temas"]}>
                         <img src={tAzul} alt="Tema Azul" onClick={() => setTema("#3293CA")} />
                         <img src={tVermelho} alt="Tema Vermelho" onClick={() => setTema("#f02d1f")} />
                         <img src={tVerde} alt="Tema Verde" onClick={() => setTema("#1ff076")} />
                         <img src={tRoza} alt="Tema Roza" onClick={() => setTema("#f01fbf")} />
                         <img src={tAmarelo} alt="Tema Amarelo" onClick={() => setTema("#dbd51d")} />
+                    </div>*/}
+                    <div id={styles["temas"]}>
+                        <img
+                            src={tAzul}
+                            alt="Tema Azul"
+                            onClick={() => handleTemaClick("#3293CA")}
+                            className={imagemSelecionada === "#3293CA" ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tVermelho}
+                            alt="Tema Vermelho"
+                            onClick={() => handleTemaClick("#f02d1f")}
+                            className={imagemSelecionada === "#f02d1f" ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tVerde}
+                            alt="Tema Verde"
+                            onClick={() => handleTemaClick("#1ff076")}
+                            className={imagemSelecionada === "#1ff076" ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tRoza}
+                            alt="Tema Roza"
+                            onClick={() => handleTemaClick("#f01fbf")}
+                            className={imagemSelecionada === "#f01fbf" ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tAmarelo}
+                            alt="Tema Amarelo"
+                            onClick={() => handleTemaClick("#dbd51d")}
+                            className={imagemSelecionada === "#dbd51d" ? styles["descolorida"] : ""}
+                        />
                     </div>
                     <br></br>
                     <br></br>

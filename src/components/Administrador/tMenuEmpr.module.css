@@ -357,11 +357,11 @@ h2 {
     max-height: 65px;
 }
 
-.linha { 
+.linha {
     width: 100%;
     display: table;
     margin-left: -3%;
-}	
+}
 
 .linha div {
     display: table-cell;
@@ -380,6 +380,10 @@ h2 {
     font-family: 'Times New Roman', Times, serif;
     color: #fff;
     text-align: left;
+}
+
+.descolorida {
+    filter: grayscale(100%);
 }
 
 @media only screen and (min-width: 1024px) {
@@ -636,21 +640,21 @@ h2 {
         margin-top: -3%;
     }
 
-    #formFoto .linha { 
+    #formFoto .linha {
         width: 100%;
         display: table;
         margin-left: 6%;
-    }	
-    
+    }
+
     .linha div {
         display: table-cell;
     }
-    
+
     .linhaUnica {
         margin-left: -5%;
         width: 105%;
     }
-    
+
     #formFoto .segColuna {
         margin-left: 15%;
     }
@@ -662,6 +666,7 @@ h2 {
     #conteudoCli #btnExcluir {
         margin-left: -30%;
     }
+
     #conteudoCli #btnSalvarFoto {
         margin-left: 67%;
     }
