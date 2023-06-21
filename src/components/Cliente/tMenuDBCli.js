@@ -125,7 +125,7 @@ const TelaDadosBasicosCliente = () => {
 
             const updCliResponse = await agFetch.patch('/cliente/update', txtData, { headers });
 
-            if (updCliResponse.status === 200) {
+            if (updCliResponse.status >= 200 && updCliResponse.status <= 299) {
                 alert("Dados Atualizados com Sucesso!");
             }
         } catch (error) {
