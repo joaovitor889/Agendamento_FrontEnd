@@ -78,7 +78,7 @@ const TelaFotoCliente = () => {
             try {
                 const fotoResponse = await agFetch.get(`/proprietarios/pegarUm?id=${userID}`);
                 const foto = fotoResponse.data.urlFoto;
-                if (foto === null) {
+                if (foto === null || foto === "propAvatar.png") {
                     console.log("Não há imagem!");
                     const lFoto = FotoPerfil;
                     setPreview(lFoto);

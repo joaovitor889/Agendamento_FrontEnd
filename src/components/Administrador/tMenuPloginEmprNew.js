@@ -30,8 +30,8 @@ import tAmarelo from '../../temas/tema05.png';
 //import { Link, useNavigate } from "react-router-dom";
 
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
-import FotoLat from './FotoPerfilAdm/fotoAdmLat';
-import FotoMen from './FotoPerfilAdm/fotoAdmMen';
+import FotoLat from './FotoPerfilAdm/fotoAdmPLat';
+import FotoMen from './FotoPerfilAdm/fotoAdmPMen';
 
 const TelaMenuEmpreendimento = () => {
     document.title = "Novo Empreendimento";

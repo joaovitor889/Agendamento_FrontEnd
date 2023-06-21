@@ -7,7 +7,7 @@ import Doc from '../../img/Profiles.png';
 import Email from '../../img/Mail.png';
 import Senha from '../../img/Lock.png';
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -24,9 +24,6 @@ const TelaCadastroAdm = () => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [confSenha, setConfSenha] = useState("");
-
-    const fCPF = useRef(null);
-    const fTelefone = useRef(null);
 
     const navigate = useNavigate();
 
@@ -93,22 +90,6 @@ const TelaCadastroAdm = () => {
         signup(nome, telefone, cpf, email, senha);
     };
 
-    const handleChange = (e) => {
-        const { value } = e.target;
-
-        // Remove todos os caracteres não numéricos
-        const telefoneFormatado = value.replace(/\D/g, '');
-
-        // Formata o telefone com a máscara
-        const telefoneMascarado = telefoneFormatado
-            //.replace(/(\d{2})(\d)/, '($1) $2')
-            //.replace(/(\d{5})(\d)/, '$1-$2');
-
-            .replace(/^(\d{2})(\d{1,9})$/, '$1 $2');
-
-        setTelefone(telefoneMascarado);
-    };
-
     return (
         <div className="fCadastroAdm">
             <div className='container'>
@@ -161,7 +142,7 @@ const TelaCadastroAdm = () => {
                                             event.preventDefault();
                                         }
                                     }}
-                                    onChange={handleChange}
+                                    onChange={(e) => setTelefone(e.target.value)}
                                     required
                                 />
                             </div>
