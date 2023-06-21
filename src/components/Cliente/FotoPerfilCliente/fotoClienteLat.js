@@ -1,47 +1,70 @@
-//Este tipo de arquivo e salvo com a extensao .js ou .jsx
-
 import styles from './fotoClienteLat.module.css';
+import { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import { decodeToken } from 'react-jwt';
+import agFetch from '../../../axios/config.js';
 
-//import { useState, useEffect, useRef } from "react";
+const FotoAdmLat = () => {
+    const { token } = useParams();
+    const cvToken = decodeToken(token);
+    const userID = cvToken.id;
+    const [fotoContent, setFotoContent] = useState();
+    const [iniciais, setIniciais] = useState();
 
-//import { useNavigate } from 'react-router-dom';
+    const baseDaUrl = "http://ec2-54-157-10-132.compute-1.amazonaws.com:4000";
 
-//import { Link } from "react-router-dom";
+    useEffect(() => {
+        async function PegaFoto() {
+            try {
+                const usResponse = await agFetch.get(`/cliente/pegarPorId?id=${userID}`);
+                const fotoAvatar = usResponse.data.urlFoto;
 
-const FotoClienteLat = () => {
+                console.log(fotoAvatar);
 
-    //variaveis
+                if (fotoAvatar === "propAvatar.png" || fotoAvatar === null) {
+                    // Lógica das iniciais
+                    const nomeCompleto = usResponse.data.nome;
 
+                    if (nomeCompleto.includes(' ')) {
+                        const primeiroEspaco = nomeCompleto.indexOf(' ');
+                        const ultimoEspaco = nomeCompleto.lastIndexOf(' ');
 
-    //funcoes
+                        const nome = nomeCompleto.substring(0, primeiroEspaco);
+                        const sobrenome = nomeCompleto.substring(ultimoEspaco + 1);
 
-    // Extrai as informações necessárias do usuário
-    const nome = "José";
-    const sobrenome = "Luis";
+                        const pNome = nome.charAt(0).toUpperCase();
+                        const sNome = sobrenome.charAt(0).toUpperCase();
 
-    //const nome = userData.nome;
-    //const sobrenome = userData.sobrenome;
+                        const inic = pNome + sNome;
+                        setIniciais(inic);
+                    } else {
+                        const inic = nomeCompleto.slice(0, 2).toUpperCase();
+                        setIniciais(inic);
+                    }
+                } else {
+                    const lFoto = baseDaUrl + '/Cliente/' + fotoAvatar;
+                    setFotoContent(lFoto);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
-    var pnome = '';
-    var psobrenome = '';
+        PegaFoto();
+    }, [userID]);
 
-    if (nome && nome.length > 0) {
-        pnome = nome.charAt(0);
-    }
-
-    if (sobrenome && sobrenome.length > 0) {
-        psobrenome = sobrenome.charAt(0);
-    }
-
-    const iniciais = pnome + psobrenome;
-
-    //conteudo HTML
+    // Conteúdo HTML
     return (
         <div id={styles["perfilLateral"]}>
-            {/*<img src={Perfil} alt="perfil" />*/}
-            <p>{iniciais}</p>
+            {fotoContent ? (
+                <img src={fotoContent} alt="Foto de perfil" />
+            ) : (
+                <div className={styles.fundo}>
+                    <p>{iniciais}</p>
+                </div>
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default FotoClienteLat                        
+export default FotoAdmLat;

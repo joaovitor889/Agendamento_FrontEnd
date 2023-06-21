@@ -233,7 +233,7 @@ const TelaEnderecoCliente = () => {
             </div>
 
             <div id={styles["conteudoCli"]}>
-                <h2><center>Endereço (ADM)</center></h2>
+                <h2><center>Endereço (Cliente)</center></h2>
                 <form id={styles["formEN"]} onSubmit={(e) => updateEndereco(e)}>
                     <div className={styles.linha}>
                         <div>
@@ -378,7 +378,7 @@ const TelaEnderecoCliente = () => {
                             </li>
                             <li>
                                 <p>
-                                    <Link to={`/tLoginCli/${uid}`}>
+                                    <Link to={`/tMenuCli/${token}/${uid}`}>
                                         Voltar ao Menu
                                     </Link>
                                 </p>
@@ -390,7 +390,7 @@ const TelaEnderecoCliente = () => {
                 <FotoHor />
 
                 <div className={styles.logoMenuCli}><p>{nomeEmp}</p></div>
-                <div id={styles["voltar"]}><a href="/tMenuCli"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div id={styles["voltar"]}><Link to={`/tMenuCli/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>
     )

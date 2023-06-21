@@ -23,9 +23,9 @@ import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
 import FotoMen from './FotoPerfilAdm/fotoAdmMen';
 
-const TelaFotoCliente = () => {
+const TelaFotoADM = () => {
 
-    document.title = "Foto do Cliente";
+    document.title = "Foto do Adm";
 
     const { token } = useParams();
 
@@ -139,8 +139,10 @@ const TelaFotoCliente = () => {
                     }
                 };
                 const response = await agFetch.post('/proprietarios/image/', formData, multipart);
-                if (response.status >= 200 && response.status <= 299)
+                if (response.status >= 200 && response.status <= 299) {
                     alert("Foto de Perfil Atualizada!");
+                    window.location.reload();
+                }
             } catch (error) {
                 console.log(error);
                 alert("Não foi possível enviar a imagem!");
@@ -150,7 +152,7 @@ const TelaFotoCliente = () => {
 
     //atualiza foto de perfil
     const updateFoto = (e) => {
-        //e.preventDefault();
+        e.preventDefault();
 
         EnvFoto(selectedFile);
     }
@@ -283,4 +285,4 @@ const TelaFotoCliente = () => {
     )
 }
 
-export default TelaFotoCliente
+export default TelaFotoADM

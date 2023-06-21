@@ -56,6 +56,8 @@ const TelaDadosBasicosCliente = () => {
     const [telefone, setTelefone] = useState();
     const [email, setEmail] = useState();
 
+    console.log(compNome);
+
     //nome da empresa
     const [nomeEmpresa, setNomeEmpresa] = useState();
 
@@ -282,9 +284,15 @@ const TelaDadosBasicosCliente = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <FotoMen />
-
                         <ul id="uMenHamburger">
+                            <FotoMen />
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
                                     <Link to={`/tMenuDBCli/${token}/${uid}`}>
@@ -308,7 +316,7 @@ const TelaDadosBasicosCliente = () => {
                             </li>
                             <li>
                                 <p>
-                                    <Link to={`/tLoginCli/${uid}`}>
+                                    <Link to={`/tMenuCli/${token}/${uid}`}>
                                         Voltar ao Menu
                                     </Link>
                                 </p>
@@ -319,7 +327,7 @@ const TelaDadosBasicosCliente = () => {
 
                 <FotoHor />
                 <div className={styles.logoMenuCli}><p>{nomeEmpresa}</p></div>
-                <div id={styles["voltar"]}><a href="/tMenuCli"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div id={styles["voltar"]}><Link to={`/tMenuCli/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
 
         </div>
