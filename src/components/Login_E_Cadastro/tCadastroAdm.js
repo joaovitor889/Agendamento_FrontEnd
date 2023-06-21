@@ -32,33 +32,6 @@ const TelaCadastroAdm = () => {
 
     const [openModalTermosUso, setOpenModalTermosUso] = useState(false);
 
-    //bloquear rolagem nos imputs number
-    useEffect(() => {
-        const cpf = fCPF.current;
-        const telefone = fTelefone.current;
-        const bloquearRolagem = (e) => {
-            e.preventDefault();
-        };
-
-        if (cpf) {
-            cpf.addEventListener('wheel', bloquearRolagem);
-        }
-
-        if (telefone) {
-            telefone.addEventListener('wheel', bloquearRolagem);
-        }
-
-        return () => {
-            if (cpf) {
-                cpf.removeEventListener('wheel', bloquearRolagem);
-            }
-
-            if (telefone) {
-                telefone.removeEventListener('wheel', bloquearRolagem);
-            }
-        };
-    }, []);
-
     const signup = async (nome, telefone, cpf, email, senha) => {
         //teste se os dados estao sendo enviados
         //alert(JSON.stringify({ nome, telefone, cpf, email, senha }));
@@ -98,7 +71,7 @@ const TelaCadastroAdm = () => {
                 alert(textoFormatado);
             }
         }
-    }    
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -143,7 +116,7 @@ const TelaCadastroAdm = () => {
                     <br />
                     <br />
                     <br />
-                    <img src={Logo} alt="Logo do site"  className={styles.Logo}/>
+                    <img src={Logo} alt="Logo do site" className={styles.Logo} />
                 </div>
                 <div className='campo-de-Cadastro'>
                     <div className='butoes'>
@@ -159,19 +132,32 @@ const TelaCadastroAdm = () => {
                             <div className='Telefone'>
                                 <img src={Telefone} alt="" />
                                 <input
-                                    type="number"
-                                    ref={fTelefone}
+                                    type="text"
                                     placeholder="Telefone:"
                                     title="Digite o seu Telefone"
                                     name="tel"
                                     id="tel"
-                                    maxLength="11"
+                                    maxLength="15"
                                     onKeyPress={(event) => {
-                                        if (
-                                            !/[0-9]/.test(event.key) ||
-                                            event.target.value.length >
-                                            event.target.maxLength - 1
-                                        ) {
+                                        const inputValue = event.target.value + event.key;
+                                        const isValidKey = /\d/.test(event.key);
+                                        const isMaxLengthReached = inputValue.length >= event.target.maxLength;
+
+                                        if (!isValidKey || isMaxLengthReached) {
+                                            event.preventDefault();
+                                        }
+
+                                        if (inputValue.length === 1 && isValidKey) {
+                                            event.target.value = `(${inputValue}`;
+                                            event.preventDefault();
+                                        } else if (inputValue.length === 4 && isValidKey) {
+                                            event.target.value = `${event.target.value}) ${inputValue.substr(1)}`;
+                                            event.preventDefault();
+                                        } else if (inputValue.length === 11 && isValidKey) {
+                                            const areaCode = inputValue.substr(1, 2);
+                                            const firstPart = inputValue.substr(5, 4);
+                                            const secondPart = inputValue.substr(10, 4);
+                                            event.target.value = `(${areaCode}) ${firstPart}-${secondPart}`;
                                             event.preventDefault();
                                         }
                                     }}
@@ -181,20 +167,23 @@ const TelaCadastroAdm = () => {
                             </div>
                             <div className='Documento'>
                                 <img src={Doc} alt="" />
-                                <input type="number"
-                                    ref={fCPF}
+                                <input type="text"
                                     placeholder="CPF:"
                                     title="Digite o seu CPF"
                                     name="cpf"
                                     id="cpf"
-                                    maxLength="11"
+                                    maxLength="14"
                                     onKeyPress={(event) => {
-                                        if (
-                                            !/[0-9]/.test(event.key) ||
-                                            event.target.value.length >
-                                            event.target.maxLength - 1
-                                        ) {
+                                        const allowedChars = /[0-9]/;
+                                        const inputValue = event.target.value;
+                                        const key = event.key;
+
+                                        if (!allowedChars.test(key) || inputValue.length >= 14 || key === '.' || key === '-') {
                                             event.preventDefault();
+                                        } else if (inputValue.length === 3 || inputValue.length === 7) {
+                                            event.target.value = inputValue + ".";
+                                        } else if (inputValue.length === 11) {
+                                            event.target.value = inputValue + "-";
                                         }
                                     }}
                                     required
@@ -216,14 +205,14 @@ const TelaCadastroAdm = () => {
                             </div>
                             <div className='termosADM'>
                                 <input type="checkbox" name="termos" required />
-                                <p onClick={() => {setOpenModalTermosUso(true)}}>Aceitar termos</p>
+                                <p onClick={() => { setOpenModalTermosUso(true) }}>Aceitar termos</p>
                             </div>
                             <input type="submit" id="btnCadastroADM" name="btnLogin" value="Cadastrar" />
                         </form>
                     </div>
                 </div>
             </div>
-            <TermosUso isOpen={openModalTermosUso} setOpenModalTermosUso={() => setOpenModalTermosUso(!openModalTermosUso)}/>
+            <TermosUso isOpen={openModalTermosUso} setOpenModalTermosUso={() => setOpenModalTermosUso(!openModalTermosUso)} />
         </div>
     )
 }
