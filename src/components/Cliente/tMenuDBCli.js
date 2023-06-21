@@ -1,15 +1,10 @@
 import styles from './tMenuDBCli.module.css';
-//import logo from '../../img/logo.PNG';
 
 import React, { useState, useEffect } from "react";
 
 import { Link, useParams } from 'react-router-dom';
 
 import Voltar from '../../icones/chevron-left.png';
-
-//import Notificacao from '../../icones/Doorbell.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 import agFetch from '../../axios/config.js';
 

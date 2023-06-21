@@ -1,11 +1,6 @@
 import styles from './tMenuFotoCli.module.css';
-//import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
-
-import Notificacao from '../../icones/Doorbell.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 //foto de perfil
 import FotoHor from './FotoPerfilCliente/fotoClienteHor';
@@ -18,10 +13,22 @@ import React, { useState, useEffect } from "react";
 
 import agFetch from '../../axios/config.js';
 
+import { Link, useParams } from 'react-router-dom';
+
+import { decodeToken } from 'react-jwt';
+
 
 const TelaFotoCliente = () => {
 
     document.title = "Foto do Cliente";
+
+    const token = useParams().token;
+
+    const cvToken = decodeToken(token);
+
+    const userID = cvToken.id;
+
+    const uid = useParams().uid;
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -79,95 +86,6 @@ const TelaFotoCliente = () => {
         alert('Dados Salvos!');
     }
 
-    const [userData, setUserData] = useState({});
-
-    //const valToken = localStorage.getItem('user_token');
-    //const JSToken = JSON.parse(valToken);
-
-
-    //var token = JSToken['token'];
-    //var tkEmail = JSToken['email'];
-
-    //alert(JSON.stringify(JSToken['token']));
-    //alert(JSON.stringify(JSToken['email']));
-
-    // Função para obter os dados do usuário
-    const fetchUserData = async () => {
-        /*try {
-            const response = await agFetch.get('/clientes/criar', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            const data = response.data;
-
-            //filtra o objeto
-            var objFiltrado = data.find((item) => item.email === tkEmail);
-            var objF = objFiltrado ? { ...objFiltrado } : null;
-
-            setUserData(objF);
-            //alert(tkEmail);
-            //alert(JSON.stringify(data));
-            //alert(JSON.stringify(objF));
-        } catch (error) {
-            alert(error);
-        }*/
-    };
-
-    // Chama a função fetchUserData quando o componente é montado
-    useEffect(() => {
-        fetchUserData();
-    });
-
-    // Extrai as informações necessárias do usuário
-    const nome = "José";
-    const sobrenome = "Luis";
-
-    //const nome = userData.nome;
-    //const sobrenome = userData.sobrenome;
-
-    var pnome = '';
-    var psobrenome = '';
-
-    if (nome && nome.length > 0) {
-        pnome = nome.charAt(0);
-    }
-
-    if (sobrenome && sobrenome.length > 0) {
-        psobrenome = sobrenome.charAt(0);
-    }
-
-    const iniciais = pnome + psobrenome;
-
-
-
-    //Notificacao
-    const [notifications, setNotifications] = useState([]);
-    const [showNotifications, setShowNotifications] = useState(false);
-    const [newNotification, setNewNotification] = useState(false);
-
-    const fetchNotifications = () => {
-        const fakeNotifications = [
-            { id: 1, title: "Título 1", description: "Notificação 1" },
-            { id: 2, title: "Título 2", description: "Notificação 2" },
-            { id: 3, title: "Título 3", description: "Notificação 3" }
-        ];
-        setNotifications(fakeNotifications);
-    };
-
-    const handleClick = () => {
-        if (!showNotifications) {
-            fetchNotifications();
-        }
-        setShowNotifications(!showNotifications);
-        setNewNotification(false);
-    };
-
-    const handleListClose = () => {
-        setShowNotifications(false);
-    };
-
     return (
         <div className={styles.fFotoCliente}>
             <div id={styles["menuLatCli"]}>
@@ -177,17 +95,17 @@ const TelaFotoCliente = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <a href="./tMenuDBCli" rel="noreferrer">
+                            <Link to={`/tMenuDBCli/${token}/${uid}`}>
                                 <li><p>Dados Básicos</p></li>
-                            </a>
+                            </Link>
 
-                            <a href="./tMenuEnderecoCli" rel="noreferrer">
+                            <Link to={`/tMenuEnderecoCli/${token}/${uid}`}>
                                 <li><p>Endereço</p></li>
-                            </a>
+                            </Link>
 
-                            <a href="./tMenuFotoCli" rel="noreferrer">
+                            <Link to={`/tMenuFotoCli/${token}/${uid}`}>
                                 <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Foto</p></li>
-                            </a>
+                            </Link>
                         </div>
                     </ul>
                 </div>
@@ -228,58 +146,36 @@ const TelaFotoCliente = () => {
                         <ul id="uMenHamburger">
                             <li>
                                 <p>
-                                    <a href="./tMenuDBCli" rel="noreferrer">
+                                    <Link to={`/tMenuDBCli/${token}/${uid}`}>
                                         Dados Básicos
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuEnderecoCli" rel="noreferrer">
+                                    <Link to={`/tMenuEnderecoCli/${token}/${uid}`}>
                                         Endereço
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <a href="./tMenuFotoCli" rel="noreferrer">
+                                    <Link to={`/tMenuFotoCli/${token}/${uid}`}>
                                         Foto
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuCli" rel="noreferrer">
+                                    <Link to={`/tLoginCli/${uid}`}>
                                         Voltar ao Menu
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                         </ul>
                     </div>
                 </div>
-
-                <FotoHor />
-                {/*<div className={styles.notificacao}>
-                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
-                    {showNotifications && (
-                        <div className={styles.notificationContainer}>
-                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
-                            {newNotification && <p>Nova notificação recebida!</p>}
-                            <ul className={styles.notificationList}>
-                                {notifications.map((notification, index) => (
-                                    <li
-                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
-                                        key={notification.id}
-                                    >
-                                        <p className="notification-title">{notification.title}</p>
-                                        <p className={styles.notificationDescription}>{notification.description}</p>
-                                        <hr></hr>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>*/}
+                <FotoHor />                
                 <div className={styles.logoMenuCli}><p></p></div>
                 <div id={styles["voltar"]}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>

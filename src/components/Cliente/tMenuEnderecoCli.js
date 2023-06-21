@@ -1,11 +1,6 @@
 import styles from './tMenuEnderecoCli.module.css';
-//import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
-
-import Notificacao from '../../icones/Doorbell.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 //foto de perfil
 import FotoHor from './FotoPerfilCliente/fotoClienteHor';
@@ -20,9 +15,20 @@ import agFetch from '../../axios/config.js';
 
 import { useForm } from "react-hook-form";
 
+import { Link, useParams } from 'react-router-dom';
+
+import { decodeToken } from 'react-jwt';
 
 const TelaEnderecoCliente = () => {
     document.title = "Endereço do Cliente";
+
+    const token = useParams().token;
+
+    const cvToken = decodeToken(token);
+
+    const userID = cvToken.id;
+
+    const uid = useParams().uid;
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -45,6 +51,7 @@ const TelaEnderecoCliente = () => {
 
     //API do CEP
     const { register, setValue } = useForm();
+    console.log(register);
 
     //Campos
     var jscep, jsnum, jscomp;
@@ -137,17 +144,17 @@ const TelaEnderecoCliente = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <a href="./tMenuDBCli" rel="noreferrer">
+                            <Link to={`/tMenuDBCli/${token}/${uid}`}>
                                 <li><p>Dados Básicos</p></li>
-                            </a>
+                            </Link>
 
-                            <a href="./tMenuEnderecoCli" rel="noreferrer">
+                            <Link to={`/tMenuEnderecoCli/${token}/${uid}`}>
                                 <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Endereço</p></li>
-                            </a>
+                            </Link>
 
-                            <a href="./tMenuFotoCli" rel="noreferrer">
+                            <Link to={`/tMenuFotoCli/${token}/${uid}`}>
                                 <li><p>Foto</p></li>
-                            </a>
+                            </Link>
                         </div>
                     </ul>
                 </div>
@@ -264,30 +271,30 @@ const TelaEnderecoCliente = () => {
                         <ul id="uMenHamburger">
                             <li>
                                 <p>
-                                    <a href="./tMenuDBCli" rel="noreferrer">
+                                    <Link to={`/tMenuDBCli/${token}/${uid}`}>
                                         Dados Básicos
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <a href="./tMenuEnderecoCli" rel="noreferrer">
+                                    <Link to={`/tMenuEnderecoCli/${token}/${uid}`}>
                                         Endereço
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuFotoCli" rel="noreferrer">
+                                    <Link to={`/tMenuFotoCli/${token}/${uid}`}>
                                         Foto
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuCli" rel="noreferrer">
+                                    <Link to={`/tLoginCli/${uid}`}>
                                         Voltar ao Menu
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                         </ul>
