@@ -84,7 +84,7 @@ const TelaLoginAdm = () => {
                 </div>
                 <div className='campo-de-login'>
                     <div className='butoes'>
-                        <a href="./tLoginAdm" className='Login'>Login</a>
+                        <a href="./tLoginAdm" className='Login' style = {{color: '#fff'}}>Login</a>
                         <a href="./tCadastroAdm" className='Cadastro'>Cadastro</a>
                     </div>
                     <div className='formulario'>
