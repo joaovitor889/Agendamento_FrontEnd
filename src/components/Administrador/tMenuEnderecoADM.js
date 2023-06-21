@@ -24,8 +24,8 @@ import FotoMen from './FotoPerfilAdm/fotoAdmMen';
 import { decodeToken } from 'react-jwt';
 
 
-const TelaEnderecoCliente = () => {
-    document.title = "Endereço do Cliente";
+const TelaEnderecoADM = () => {
+    document.title = "Endereço do Adm";
 
     const { token } = useParams();
     const { uid } = useParams();
@@ -422,4 +422,4 @@ const TelaEnderecoCliente = () => {
     )
 }
 
-export default TelaEnderecoCliente
+export default TelaEnderecoADM
