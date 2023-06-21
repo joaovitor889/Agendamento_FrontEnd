@@ -1,11 +1,6 @@
 import styles from './tMenuEmpr.module.css';
-//import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
-
-import Notificacao from '../../icones/Doorbell.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
@@ -143,7 +138,6 @@ const TelaMenuEmpreendimento = () => {
     const [domFim, setDomFim] = useState("");
 
     const [ftema, setTema] = useState("");
-    const [imagemSelecionada, setImagemSelecionada] = useState(null);
 
     const ftelefone = "15 996633179";
 
@@ -332,11 +326,6 @@ const TelaMenuEmpreendimento = () => {
                 setUF(data.uf);
             });
     }
-
-    const handleTemaClick = (cor) => {
-        setTema(cor);
-        setImagemSelecionada(cor);
-    };
 
     //salvar o empreendimento
     const cadEstabelecimento = async (selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {

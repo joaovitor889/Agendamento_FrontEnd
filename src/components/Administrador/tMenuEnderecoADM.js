@@ -1,11 +1,6 @@
 import styles from './tMenuEnderecoADM.module.css';
-//import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
-
-import Notificacao from '../../icones/Doorbell.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 import './menHamburger.css';
 
@@ -164,7 +159,7 @@ const TelaEnderecoADM = () => {
         }
 
         PegaUser();
-    }, []);
+    }, [userID]);
 
     const atualizaEndereco = async (jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
         const convCEP = "" + jscep;

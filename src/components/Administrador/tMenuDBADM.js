@@ -1,21 +1,14 @@
 import styles from './tMenuDBADM.module.css';
-//import logo from '../../img/logo.PNG';
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import Voltar from '../../icones/chevron-left.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 import agFetch from '../../axios/config.js';
 
 import './menHamburger.css';
 
 import { Link, useParams } from 'react-router-dom';
-
-//import { useState, useEffect, useRef } from "react";
-
-//import { Link, useNavigate } from "react-router-dom";
 
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
@@ -95,7 +88,7 @@ const TelaDadosBasicosCliente = () => {
         }
 
         PegaUser();
-    }, []);
+    }, [userID]);
 
     const atualizarAdm = async (nome, telefone) => {
         const tel = "" + telefone;

@@ -1,11 +1,6 @@
 import styles from './tMenuEmpr.module.css';
-//import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
-
-import Notificacao from '../../icones/Doorbell.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
