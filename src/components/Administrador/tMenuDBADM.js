@@ -73,36 +73,6 @@ const TelaDadosBasicosCliente = () => {
         PegaEmpresa();
     }, [uid])
 
-    const cmpCPF = useRef(null);
-    const cmpTelefone = useRef(null);
-
-    //bloquear rolagem nos imputs number
-    useEffect(() => {
-        const cpf = cmpCPF.current;
-        const telefone = cmpTelefone.current;
-        const bloquearRolagem = (e) => {
-            e.preventDefault();
-        };
-
-        if (cpf) {
-            cpf.addEventListener('wheel', bloquearRolagem);
-        }
-
-        if (telefone) {
-            telefone.addEventListener('wheel', bloquearRolagem);
-        }
-
-        return () => {
-            if (cpf) {
-                cpf.removeEventListener('wheel', bloquearRolagem);
-            }
-
-            if (telefone) {
-                telefone.removeEventListener('wheel', bloquearRolagem);
-            }
-        };
-    }, []);
-
     //Requisicoes com a API
     useEffect(() => {
         //pegando os dados do usuário
@@ -221,7 +191,6 @@ const TelaDadosBasicosCliente = () => {
                                 event.target.value = inputValue + "-";
                             }
                         }}
-                        ref={cmpCPF}
                         required
                         value={cpf}
                         disabled
@@ -255,7 +224,6 @@ const TelaDadosBasicosCliente = () => {
                                 event.preventDefault();
                             }
                         }}
-                        ref={cmpTelefone}
                         value={telefone}
                         onChange={(e) => setTelefone(e.target.value)}
                     />

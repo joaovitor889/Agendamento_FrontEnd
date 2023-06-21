@@ -44,7 +44,7 @@ const TelaEnderecoCliente = () => {
     }
 
     //API do CEP
-    //const { register, setValue } = useForm();
+    const { register, setValue } = useForm();
 
     //Campos
     var jscep, jsnum, jscomp;
@@ -60,7 +60,7 @@ const TelaEnderecoCliente = () => {
 
 
     const checkCEP = (e) => {
-        /*const cep = e.target.value.replace(/\D/g, '');
+        const cep = e.target.value.replace(/\D/g, '');
         //console.log(cep);
         console.log(jsrua, jsbairro, jscidade, jseuf);
 
@@ -76,7 +76,7 @@ const TelaEnderecoCliente = () => {
                 setBairro(data.bairro);
                 setCidade(data.localidade);
                 setUF(data.uf);
-            });*/
+            });
     }
 
     const updateEndereco = (e) => {
@@ -96,58 +96,11 @@ const TelaEnderecoCliente = () => {
             alert("CEP Inválido!");
             jscep.current.focus();
         } else {
-            try {
-                //testar se esta pegando os dados
-                //alert(JSON.stringify({ valCep, valRua, valNum, valComp, valBairro, valCidade, valUF }));
 
-                //logica
-
-
-                //alert("Dados Atualizados!");
-
-            } catch (error) {
-                //coloquei este try catch para parar de reclamar de erro
-            }
-
-            //alert(data.cep, data.rua, data.num, data.comp, data.bairro, data.cidade, data.uf);
         }
     }
 
-    //const [userData, setUserData] = useState({});
 
-    //const valToken = localStorage.getItem('user_token');
-    //const JSToken = JSON.parse(valToken);
-
-
-    //var token = JSToken['token'];
-    //var tkEmail = JSToken['email'];
-
-    //alert(JSON.stringify(JSToken['token']));
-    //alert(JSON.stringify(JSToken['email']));
-
-    // Função para obter os dados do usuário
-    const fetchUserData = async () => {
-        /*try {
-            const response = await agFetch.get('/clientes/criar', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            const data = response.data;
-
-            //filtra o objeto
-            var objFiltrado = data.find((item) => item.email === tkEmail);
-            var objF = objFiltrado ? { ...objFiltrado } : null;
-
-            setUserData(objF);
-            //alert(tkEmail);
-            //alert(JSON.stringify(data));
-            //alert(JSON.stringify(objF));
-        } catch (error) {
-            alert(error);
-        }*/
-    };
 
     //bloquear rolagem nos imputs number
     useEffect(() => {
@@ -174,38 +127,6 @@ const TelaEnderecoCliente = () => {
             }
         };
     });
-
-    // Chama a função fetchUserData quando o componente é montado
-    useEffect(() => {
-        fetchUserData();
-    });
-
-
-    //Notificacao
-    const [notifications, setNotifications] = useState([]);
-    const [showNotifications, setShowNotifications] = useState(false);
-    const [newNotification, setNewNotification] = useState(false);
-
-    const fetchNotifications = () => {
-        const fakeNotifications = [
-            { id: 1, title: "Título 1", description: "Notificação 1" },
-            { id: 2, title: "Título 2", description: "Notificação 2" },
-            { id: 3, title: "Título 3", description: "Notificação 3" }
-        ];
-        setNotifications(fakeNotifications);
-    };
-
-    const handleClick = () => {
-        if (!showNotifications) {
-            fetchNotifications();
-        }
-        setShowNotifications(!showNotifications);
-        setNewNotification(false);
-    };
-
-    const handleListClose = () => {
-        setShowNotifications(false);
-    };
 
     return (
         <div className={styles.fDBCliente}>
@@ -372,29 +293,7 @@ const TelaEnderecoCliente = () => {
                         </ul>
                     </div>
                 </div>
-
                 <FotoHor />
-                {/*<div className={styles.notificacao}>
-                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
-                    {showNotifications && (
-                        <div className={styles.notificationContainer}>
-                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
-                            {newNotification && <p>Nova notificação recebida!</p>}
-                            <ul className={styles.notificationList}>
-                                {notifications.map((notification, index) => (
-                                    <li
-                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
-                                        key={notification.id}
-                                    >
-                                        <p className="notification-title">{notification.title}</p>
-                                        <p className={styles.notificationDescription}>{notification.description}</p>
-                                        <hr></hr>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>*/}
                 <div className={styles.logoMenuCli}><p></p></div>
                 <div id={styles["voltar"]}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
             </div>

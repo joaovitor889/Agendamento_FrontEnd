@@ -102,9 +102,9 @@ function App() {
             <Route  path = "/tAgendarCli/:token/:uid" element = {<AgendarCli />} />
             <Route  path = "/tAgendamentoCli/:token/:uid" element = {<AgendamentoCli />} />
             {/* Perfil do Cliente */}
-            <Route  path = "/tMenuDBCli" element = {<DadosBasicoCli />} />
-            <Route  path = "/tMenuEnderecoCli" element = {<EnderecoCli />} />
-            <Route  path = "/tMenuFotoCli" element = {<FotoCli />} />
+            <Route  path = "/tMenuDBCli/:token/:uid" element = {<DadosBasicoCli />} />
+            <Route  path = "/tMenuEnderecoCli/:token/:uid" element = {<EnderecoCli />} />
+            <Route  path = "/tMenuFotoCli/:token/:uid" element = {<FotoCli />} />
 
 
             {/* Telas do Funcionario */}

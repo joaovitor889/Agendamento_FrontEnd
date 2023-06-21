@@ -20,6 +20,7 @@ const TelaCadastroUsuario = () => {
 
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
+    const [compNome, setCompNome] = useState("");
     const [cpf, setCPF] = useState("");
     const [telefone, setTelefone] = useState("");
     const [email, setEmail] = useState("");
@@ -96,14 +97,15 @@ const TelaCadastroUsuario = () => {
     const cadCli = async (e) => {
         e.preventDefault();
 
+        const cmpNome = `${nome} ${sobrenome}`;
+        setCompNome(cmpNome);
+
         if (senha !== confSenha) {
             alert('O campo senha e confirmar senha devem ser iguais!');
         }
         else {
-            const compNome = nome + " " + sobrenome;
-            setNome(compNome);
-            //alert(JSON.stringify({nome, cpf, telefone, email, senha}));            
-            signup(nome, cpf, telefone, email, senha);
+            //alert(JSON.stringify({compNome, cpf, telefone, email, senha}));            
+            signup(compNome, cpf, telefone, email, senha);
         }
     };
 
@@ -120,7 +122,7 @@ const TelaCadastroUsuario = () => {
                             <form id={styles["formCadastro"]} onSubmit={(e) => cadCli(e)}>
                                 <div className={styles.entrada}>
                                     <input type="text" placeholder="*Nome:" title="Digite o seu nome" name="nome" id="nome" required onChange={(e) => setNome(e.target.value)} />
-                                    <input type="text" placeholder="*Sobrenome:" title="Digite o seu sobrenome" name="sobrenome" id="sobrenome" value={sobrenome} required onChange={(e) => setSobrenome(e.target.value)} />
+                                    <input type="text" placeholder="*Sobrenome:" title="Digite o seu sobrenome" name="sobrenome" id="sobrenome" required onChange={(e) => setSobrenome(e.target.value)} />
                                     <input type="text"
                                         placeholder="*CPF:"
                                         title="Digite o seu CPF"

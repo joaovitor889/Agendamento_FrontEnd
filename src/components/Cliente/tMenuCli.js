@@ -70,6 +70,14 @@ const TelaMenuCliente = () => {
         navigate(`/tAgendarCli/${token}/${uid}`);
     }
 
+    const TAgendamentos = () => {
+        navigate(`/tAgendamentoCli/${token}/${uid}`);
+    }
+
+    const TPerfil = () => {
+        navigate(`/tMenuDBCli/${token}/${uid}`);
+    }
+
     return (
         <div className={styles.fMenuCliente}>
             <nav id={styles["cabecalhoMenuCli"]}>
@@ -86,18 +94,11 @@ const TelaMenuCliente = () => {
                 </div>
                 <div className={styles.linha}>
                     <img src={Agenda} alt="agenda" />
-                    <button type="button" className={styles.btn} onClick={(e) => {
-                        e.preventDefault();
-                        window.location.href = './tAgendamentoCli'
-                    }}><p>Meus Agendamentos</p></button>
+                    <button type="button" className={styles.btn} onClick={TAgendamentos}><p>Meus Agendamentos</p></button>
                 </div>
                 <div className={styles.linha}>
                     <img src={Perfil} alt="perfil" />
-                    <button type="button" className={styles.btn} onClick={(e) => {
-                        e.preventDefault();
-                        //localStorage.removeItem("user_token");
-                        window.location.href = './tMenuDBCli'
-                    }}><p>Perfil</p></button>
+                    <button type="button" className={styles.btn} onClick={TPerfil}><p>Perfil</p></button>
                 </div>
             </div>
         </div>
