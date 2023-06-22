@@ -59,11 +59,6 @@ const TelaCadFunc = () => {
     const [domFim, setDomFim] = useState('');
 
 
-
-
-    /*const signup = async (nome, telefone, cpf, email, senha) => {
-        navigate("/tLoginFunc");
-    }*/
     const cadFuncionario = async (funcionarioFile) => {
 
         try {
@@ -124,7 +119,9 @@ const TelaCadFunc = () => {
 
 
 
-            alert("Executa a função de cadastro e vai para a tela de Login");
+            //alert("Executa a função de cadastro e vai para a tela de Login");
+
+            navigate(`/tLoginFunc/${uid}`);
 
         } else (
             alert("Senhas diferentes!")
