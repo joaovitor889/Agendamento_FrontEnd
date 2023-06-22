@@ -82,7 +82,7 @@ const TelaMenuProfissional = () => {
     return (
         <div className={styles.fMenuProfissional}>
             <nav id={styles["cabecalhoMenuCli"]}>
-                <div className={styles.voltar}><Link to={`/ tLoginFunc / ${ uid }`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
+                <div className={styles.voltar}><Link to={`/tLoginFunc/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
                 <div className={styles.logoMenuCli}><p>{nomeEmpresa}</p></div>
                 <Foto />
             </nav>
