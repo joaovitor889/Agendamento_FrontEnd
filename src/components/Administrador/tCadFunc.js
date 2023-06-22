@@ -83,7 +83,11 @@ const TelaCadFunc = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (jsSenha === jsConfSenha) {
+        if (arrayIds.length === 0) {
+            alert("Selecione um Serviço!");
+        }
+        
+        else if (jsSenha === jsConfSenha) {
 
 
             var jsHorarios = [
@@ -308,7 +312,7 @@ const TelaCadFunc = () => {
                     <div className={styles.Container_DB}>
                         <input type="text" className={styles.dados_basicos} placeholder='Nome:' id='nomeInput' onChange={(e) => setNome(e.target.value)} required />
                         <input type="text" className={styles.dados_basicos} placeholder='Sobrenome:' id='sobrenomeInput' onChange={(e) => setSobrenome(e.target.value)} required />
-                        <input type="email" className={styles.dados_basicos} placeholder='E-mail:' id='emailInput' onChange={(e) => setEmail(e.target.value)} required />                    
+                        <input type="email" className={styles.dados_basicos} placeholder='E-mail:' id='emailInput' onChange={(e) => setEmail(e.target.value)} required />
                         <input type="text"
                             placeholder="Telefone:"
                             title="Digite o seu Telefone"
@@ -458,7 +462,7 @@ const TelaCadFunc = () => {
                             <input type="password" className={styles.senha} placeholder='Confirmar Senha' id='confSenhaInput' onChange={(e) => setConfSenha(e.target.value)} />
                         </div>
                     </div>
-                    <input type = "submit" className={styles.cadfunc} value="Cadastrar"/>
+                    <input type="submit" className={styles.cadfunc} value="Cadastrar" />
                 </form>
             </div>
 
