@@ -68,8 +68,10 @@ const TelaCadFunc = () => {
 
             const responseText = await agFetch.post('/funcionario/criar', funcionarioFile, { headers });
             console.log('Resposta de Texto:', responseText.data)
-            if (responseText.status === 201)
-                alert("Estabelecimento Cadastrado!");
+            if (responseText.status >= 200 && responseText.status <= 299) {
+                alert("Funcionário Cadastrado!");
+                navigate(`/tLoginFunc/${uid}`);
+            }
 
         } catch (error) {
             console.error('Erro ao enviar requisições:', error);
@@ -120,9 +122,6 @@ const TelaCadFunc = () => {
 
 
             //alert("Executa a função de cadastro e vai para a tela de Login");
-
-            navigate(`/tLoginFunc/${uid}`);
-
         } else (
             alert("Senhas diferentes!")
         )
