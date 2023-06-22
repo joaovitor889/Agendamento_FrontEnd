@@ -150,14 +150,14 @@ const TelaCadFunc = () => {
             console.log(jsServicoId);
 
             if(meuArray.length === 0){
-                const novoArray =  [...meuArray, jsServicoId];
+                const novoArray =  [...meuArray, jsServico];
                 setMeuArray(novoArray)
             }else{
                 for(var i = 0; i < meuArray.length; i++){
-                    if(meuArray[i] === jsServicoId){
+                    if(meuArray[i] === jsServico){
                         alert('Serviço já cadastrado!');
                     }else{
-                        const novoArray =  [...meuArray, jsServicoId];
+                        const novoArray =  [...meuArray, jsServico];
                         setMeuArray(novoArray);
                     }
                 }
@@ -180,12 +180,22 @@ const TelaCadFunc = () => {
  
         }
         console.log(arrayIds)
-        const servicoCompleto = (e) =>{
-            setServicoId(e.target.value);
-            console.log(jsServicoId);
-        }
+        
 
-        const [categories, setCategories] = useState([])
+          //Buscando nome do serviço atraves do id do serviço
+            const procuraServiço = async () => {
+                try{
+                    console.log(jsServicoId)
+                    const response = await agFetch.get(`/servicos/acharUm/${jsServicoId}`);
+                    setServico(response.data.nome) // Setando nome do serviço
+                    console.log(response.data.nome)
+                }catch (error){
+                    console.log(error)
+                }
+            };
+
+            procuraServiço();
+
 
         useEffect(() => {
             //fazer uma variavel global que pegue o ID do estabelecimento
@@ -200,18 +210,8 @@ const TelaCadFunc = () => {
             };
     
             fetchServices();
-    
-            const fetchCategories = async () => {
-                try {
-                    //const response = await agFetch.get('/estabelecimento/todasCat/WLShVu');
-                    const response = await agFetch.get(`/estabelecimento/todasCat/${uid}`);
-                    setCategories(response.data);
-                } catch (error) {
-                    console.log(error);
-                }
-            };
-    
-            fetchCategories();
+
+            
         }, []);
 
         console.log(arrayIds);
@@ -310,7 +310,7 @@ const TelaCadFunc = () => {
                         </div>
                         <div className={styles.funcoes}>
                             <h5>Funções do funcionário</h5>
-                            <select name="cars" className={styles.texto} onChange={servicoCompleto}>
+                            <select name="cars" className={styles.texto} onChange={(e) => setServicoId(e.target.value)}>
                                 <option value="">Serviços</option>
                                 {services.map(service => (
                                     <option key={service.id} value={service.id}>{service.nome}</option>

@@ -153,6 +153,7 @@ const TelaMenuEmpreendimento = () => {
     const [domFim, setDomFim] = useState("");
 
     const [ftema, setTema] = useState("");
+
     const [imagemSelecionada, setImagemSelecionada] = useState(null);
     console.log(ftema)
 
