@@ -56,9 +56,14 @@ const TelaMenuCliente = () => {
             try {
                 const cliResponse = await agFetch.get(`/cliente/pegarPorId?id=${idCli}`);
                 const clNome = cliResponse.data.nome;
-                const firstSpaceIndex = clNome.indexOf(' ');
-                const cmpNome = clNome.substring(0, firstSpaceIndex);
-                setNomeCli(cmpNome);
+
+                if (clNome.includes(' ')) {
+                    const firstSpaceIndex = clNome.indexOf(' ');
+                    const cmpNome = clNome.substring(0, firstSpaceIndex);
+                    setNomeCli(cmpNome);
+                } else {
+                    setNomeCli(clNome);
+                }
             } catch (error) {
                 console.log(error);
             }

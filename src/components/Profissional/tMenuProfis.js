@@ -62,10 +62,15 @@ const TelaMenuProfissional = () => {
         async function PegaFuncionario() {
             try {
                 const funcResponse = await agFetch.get(`/funcionario/pegarPorId?id=${userID}`);
-                const clNome = funcResponse.data.nome;
-                const firstSpaceIndex = clNome.indexOf(' ');
-                const cmpNome = clNome.substring(0, firstSpaceIndex);
-                setNomeFunc(cmpNome);
+                const funNome = funcResponse.data.nome;
+
+                if (funNome.includes(' ')) {
+                    const firstSpaceIndex = funNome.indexOf(' ');
+                    const cmpNome = funNome.substring(0, firstSpaceIndex);
+                    setNomeFunc(cmpNome);
+                } else {
+                    setNomeFunc(funNome);
+                }
             } catch (error) {
                 console.log(error);
             }
@@ -77,7 +82,7 @@ const TelaMenuProfissional = () => {
     return (
         <div className={styles.fMenuProfissional}>
             <nav id={styles["cabecalhoMenuCli"]}>
-                <div className={styles.voltar}><Link to={`/tLoginFunc/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
+                <div className={styles.voltar}><Link to={`/ tLoginFunc / ${ uid }`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
                 <div className={styles.logoMenuCli}><p>{nomeEmpresa}</p></div>
                 <Foto />
             </nav>
