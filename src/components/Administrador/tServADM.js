@@ -88,7 +88,7 @@ const TelaMenuADM = () => {
         };
 
         fetchCategories();
-    }, []);
+    }, [uid]);
 
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);
