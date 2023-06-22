@@ -106,6 +106,7 @@ const TelaDadosBasicosCliente = () => {
 
             if (updAdmResponse.status >= 200 && updAdmResponse.status <= 299) {
                 alert("Dados Atualizados com Sucesso!");
+                window.location.reload();
             }
         } catch (error) {
             console.log(error);

@@ -62,8 +62,10 @@ a{
 	height: 2.5rem;
 }
 
-.direita  img{
-    height: 3rem;
+.direita {
+    position: relative;
+    top: -45%;
+    left: -20%;
 }
 
 .sidebar{
@@ -189,7 +191,7 @@ a{
     cursor: pointer;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
 
     .body_header{
         padding: 0 1rem;
@@ -198,9 +200,9 @@ a{
     .Centro{
         width: 200px;
     }
-
-    .direita  img{
-        height: 2.5rem;
-        margin: 0;
+    .direita {
+        position: relative;
+        top: -45%;
+        left: -20%;
     }
 }

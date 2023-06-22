@@ -18,6 +18,8 @@ import {
 
 //import { Link, useNavigate } from "react-router-dom";
 
+import FotoAdm from './FotoPerfilAdm/fotoAdm';
+
 
 const TelaAgendarADM = () => {
     document.title = "Agendar";    
@@ -452,14 +454,7 @@ const TelaAgendarADM = () => {
                 <div className={styles.Centro}>
                     <h3>{nomeEmp}</h3>
                 </div>
-                <div className={styles.direita}>
-                    <a href="/" className="btn_perfil">
-                        <img src={perfilF} alt="perfil" />
-                    </a>
-                    {/* <a href="/" className="btn_noticia">
-                        <img src= {notificar} alt="notificar" />
-                    </a> */}
-                </div>
+                <FotoAdm />              
             </div>
             {/* final do header */}
             {/* sidebar começo */}

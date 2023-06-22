@@ -124,6 +124,7 @@ const TelaDadosBasicosCliente = () => {
 
             if (updCliResponse.status >= 200 && updCliResponse.status <= 299) {
                 alert("Dados Atualizados com Sucesso!");
+                window.location.reload();
             }
         } catch (error) {
             console.log(error);
