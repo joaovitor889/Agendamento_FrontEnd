@@ -153,11 +153,8 @@ const TelaMenuEmpreendimento = () => {
     const [domFim, setDomFim] = useState("");
 
     const [ftema, setTema] = useState("");
-<<<<<<< HEAD
     console.log(ftema)
-=======
     const [imagemSelecionada, setImagemSelecionada] = useState(null);
->>>>>>> f2ff53dc6be295cef3401baa1325a9a34d88820a
 
     const ftelefone = "15 996633179";
 
