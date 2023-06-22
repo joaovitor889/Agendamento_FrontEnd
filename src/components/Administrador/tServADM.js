@@ -53,7 +53,7 @@ const TelaMenuADM = () => {
         const fetchServices = async () => {
             try {
                 //const response = await agFetch.get('/estabelecimento/todosServ/WLShVu');
-                const response = await agFetch.get('/estabelecimento/todosServ/jMQqNo');
+                const response = await agFetch.get(`/estabelecimento/todosServ/${uid}`);
                 setServices(response.data);
             } catch (error) {
                 console.log(error);
@@ -65,7 +65,7 @@ const TelaMenuADM = () => {
         const fetchCategories = async () => {
             try {
                 //const response = await agFetch.get('/estabelecimento/todasCat/WLShVu');
-                const response = await agFetch.get('/estabelecimento/todasCat/jMQqNo');
+                const response = await agFetch.get(`/estabelecimento/todasCat/${uid}`);
                 setCategories(response.data);
             } catch (error) {
                 console.log(error);
@@ -78,6 +78,13 @@ const TelaMenuADM = () => {
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);
     };
+
+    console.log(services);
+
+    const clickServ = (e)  =>{
+        setOpenModal(true);
+        
+    }
 
     return (
         <div className={styles.fMenuADM}>
@@ -150,8 +157,8 @@ const TelaMenuADM = () => {
                         </div>
                     </div>*/}
 
-                    {services.map((service) => (
-                        <div key={service.id} className={styles.card} onClick={() => setOpenModal(true)}>
+                    {services.map((service, index) => (
+                        <div key={index} className={styles.card} onClick={() => setOpenModal(true)}>
                             <h4 className={styles.card_header}>{service.nome}</h4>
                             <p className={styles.card_body}>{service.descricao}</p>
                             <div className={styles.card_footer}>
@@ -165,7 +172,7 @@ const TelaMenuADM = () => {
                     <br />
                     <br />
 
-                    <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)} />
+                    <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)} categori={services}  nome="corte no degrau" descricao="Corte degrade na zero"/>
                     {/*<Categoria isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>*/}
                 </div>
             </main>

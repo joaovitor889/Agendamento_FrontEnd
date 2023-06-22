@@ -26,23 +26,22 @@ const TelaPesqFunc = () => {
 
     document.title = "Funcionários";
 
-    var { uid } = useParams();
+    const { uid } = useParams();
     const { token } = useParams();
 
     const [elementos, setElementos] = useState([]);
+    const [nomeEmp, setNomeEmp] = useState();
+ 
+    const CarregamentoInicial = (e) =>{
+        agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
+            setNomeEmp(response.data.nome); // Declaração do nome da empresa
 
+        }).catch(error => {
+            console.log(error);
+        })
+    }
 
-    agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
-        const nome = response.data.nome; // Declaração do nome da empresa
-        var titulo = document.getElementById('emp'); //identifica o titulo da navbar
-
-        console.log(response.data.id);
-
-        titulo.innerHTML = nome; // passando o nome da empresas para o titulo
-
-    }).catch(error => {
-        console.log(error);
-    })
+    
 
     useEffect(() => {
         agFetch.get('http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/todosFunc/' + uid)
@@ -53,6 +52,23 @@ const TelaPesqFunc = () => {
                 console.error(error);
             });
     }, []);
+    const [empresas, setEmpresas] = useState([]);
+    useEffect(()=> {
+        async function PegaEmpresas(){
+            try{
+                const headers = {
+                    Authorization: `Bearer ${token}`,
+                };
+
+                const funcResonse = await agFetch.get(`/estabelecimento/prop/`, {headers});
+                setEmpresas(funcResonse.data);
+            }
+            catch(error){
+                console.log(error)
+            }
+        }
+        PegaEmpresas();
+    })
 
     //Pegar funcionarios
     const [funcionarios, setFuncionarios] = useState([]);
@@ -81,13 +97,40 @@ const TelaPesqFunc = () => {
         const value = event.target.value;
 
         setSelectedValue(value);
-        console.log(value)
-        navegate(`/tPesqFunc/${token}/${value}`)
+        console.log(value);
+
+        renderContent(value);
+
     }
+
+    
+  const renderContent = (value) => {
+
+        agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + value).then(response => {
+            setNomeEmp(response.data.nome); // Declaração do nome da empresa
+
+        }).catch(error => {
+            console.log(error);
+        })
+
+    
+        agFetch.get('http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/todosFunc/' + value)
+            .then(response => {
+                setElementos(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+            console.log("CHAMAAAAA!!!");
+            
+            
+    
+  };
 
 
     return (
-        <div className={styles.fPesqFunc} >
+        <div className={styles.fPesqFunc} onLoad={CarregamentoInicial}>
             <input type='checkbox' id={styles["check"]} />
 
             {/* header  começo */}
@@ -98,7 +141,7 @@ const TelaPesqFunc = () => {
                     </label>
                 </div>
                 <div className={styles.Centro}>
-                    <h3 id='emp'></h3>
+                    <h3 id='emp'>{nomeEmp}</h3>
                 </div>
                 <div className={styles.direita}>
                     <a href="/" className="btn_perfil">
@@ -121,8 +164,12 @@ const TelaPesqFunc = () => {
                 <Link to ={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
                 <Link to={`/tLoginAdm`}>Sair</Link>
                 <select name='qual empresa?' className={styles.interprise} onChange={handleSelectChange}>
-                    <option value="WLShVu"> <a href="/tPesqFunc/WLShVu">Empresa1</a> </option>
-                    <option value="jMQqNo"> <a href="/tPesqFunc/jMQqNo">Empresa2</a> </option>
+                    <option value="">Escolha a empresa</option>
+                    {empresas.map(empresa => (
+                        <option key={empresa.id} value={empresa.uid}>
+                            {empresa.nome}
+                        </option>
+                    ))}
                 </select>
             </div>
             {/* sidebar  final */}
@@ -158,7 +205,7 @@ const TelaPesqFunc = () => {
                         </div>
                     ))}
 
-
+                   {/* {renderContent()} */}
                 </div>
 
             </div>

@@ -145,6 +145,7 @@ const TelaMenuEmpreendimento = () => {
     const [domFim, setDomFim] = useState("");
 
     const [ftema, setTema] = useState("");
+    console.log(ftema)
 
     const ftelefone = "15 996633179";
 
@@ -194,6 +195,10 @@ const TelaMenuEmpreendimento = () => {
                 setUF(data.uf);
             });
     }
+    if (ftema === ""){
+        setTema('#0000');
+    }
+
 
     //salvar o empreendimento
     const cadEstabelecimento = async (selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
@@ -322,7 +327,7 @@ const TelaMenuEmpreendimento = () => {
 
         //alert(JSON.stringify({selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf}));
 
-        cadEstabelecimento(selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
+        cadEstabelecimento(selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
     }
 
     return (

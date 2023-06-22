@@ -78,7 +78,9 @@ const TEXT_SHORT_STYLE={
     border: '1px solid #000',
 }
 
-export default function Modal({isOpen, setModalOpen, children }) {
+export default function Modal({isOpen, setModalOpen, children, categori, nome, descricao, index }) {
+
+    console.log(index);
 
     if(isOpen){
         return(
@@ -88,18 +90,17 @@ export default function Modal({isOpen, setModalOpen, children }) {
                     <br/>
                     <label>Selecione a categoria desse serviço</label>
                         <select name="cars" style={TEXT_STYLE}>
-                                <option value="corte">Categorias</option>
-                                <option value="corte">Corte</option>
+                                <option value={categori[0].nome}>{categori[0].nome}</option>
                                 <option value="sombrancelha">Sombrancelha</option>
                                 <option value="manicure">Manicure</option>
                                 <option value="hidratação">hidratação</option>
                         </select>
                     <br/>
                     <label>Nome</label>
-                    <input style={TEXT_STYLE}></input>
+                    <input style={TEXT_STYLE} placeholder={nome}></input>
                     <br/>
                     <label>Descrição</label>
-                    <textarea cols="30" rows="5" style={AREA_STYLE} placeholder="Digite a descrição"></textarea>
+                    <textarea cols="30" rows="5" style={AREA_STYLE} placeholder={descricao}></textarea>
                     <br/>
                     <div style={FINALIZACAO_STYLE}>
                         <div style = {FINAL_STYLE}>

@@ -13,19 +13,20 @@ import {
     Link,
     useParams
   } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const TelaCadFunc = () => {
 
     document.title = "Cadastrar Funcionário";
 
     const [jsServico, setServico] = useState('');
+    const [services, setServices] = useState([]);
+    const [jsServicoId, setServicoId] =  useState('');
 
     const navigate = useNavigate();
     const uid =  useParams().uid;
     const token = useParams().token;
-    console.log(uid);
-    console.log(token);
+    
 
     const [jsNome, setNome] = useState('');
     const [jsEmail, setEmail] = useState('');
@@ -112,13 +113,13 @@ const TelaCadFunc = () => {
                 complemento: "",
     
                 horarios: jsHorarios,
-                servicoIds: [10, 2]
+                servicoIds: arrayIds
                 
             }
 
             cadFuncionario(funcionario);
     
-            console.log(funcionario);
+            
         
 
             alert("Executa a função de cadastro e vai para a tela de Login");
@@ -141,27 +142,79 @@ const TelaCadFunc = () => {
 
    
         const[meuArray, setMeuArray] = useState([]);
+        const[arrayIds, setArrayIds] = useState([]);
 
         const adicionarItem = (e) => {
             e.preventDefault();
 
+            console.log(jsServicoId);
+
             if(meuArray.length === 0){
-                const novoArray =  [...meuArray, jsServico];
+                const novoArray =  [...meuArray, jsServicoId];
                 setMeuArray(novoArray)
             }else{
                 for(var i = 0; i < meuArray.length; i++){
-                    if(meuArray[i] === jsServico){
+                    if(meuArray[i] === jsServicoId){
                         alert('Serviço já cadastrado!');
                     }else{
-                        const novoArray =  [...meuArray, jsServico];
-                        setMeuArray(novoArray)
+                        const novoArray =  [...meuArray, jsServicoId];
+                        setMeuArray(novoArray);
                     }
                 }
     
             }
+
+            if(arrayIds.length === 0){
+                const newArray = [...arrayIds, parseInt(jsServicoId)];
+                setArrayIds(newArray);
+            }else{
+                for(var i = 0; i < arrayIds.length; i++){
+                    if(arrayIds[i] === jsServicoId){
+                        console.log("Serviço já cadastrado!");
+                    }else{
+                        const newArray =  [...arrayIds, parseInt(jsServicoId)];
+                        setArrayIds(newArray);
+                    }
+                }
+            }
  
         }
+        console.log(arrayIds)
+        const servicoCompleto = (e) =>{
+            setServicoId(e.target.value);
+            console.log(jsServicoId);
+        }
 
+        const [categories, setCategories] = useState([])
+
+        useEffect(() => {
+            //fazer uma variavel global que pegue o ID do estabelecimento
+            const fetchServices = async () => {
+                try {
+                    //const response = await agFetch.get('/estabelecimento/todosServ/WLShVu');
+                    const response = await agFetch.get(`/estabelecimento/todosServ/${uid}`);
+                    setServices(response.data);
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+    
+            fetchServices();
+    
+            const fetchCategories = async () => {
+                try {
+                    //const response = await agFetch.get('/estabelecimento/todasCat/WLShVu');
+                    const response = await agFetch.get(`/estabelecimento/todasCat/${uid}`);
+                    setCategories(response.data);
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+    
+            fetchCategories();
+        }, []);
+
+        console.log(arrayIds);
 
     return (
         <div className={styles.fCadFunc}>
@@ -257,12 +310,11 @@ const TelaCadFunc = () => {
                         </div>
                         <div className={styles.funcoes}>
                             <h5>Funções do funcionário</h5>
-                            <select name="cars" className={styles.texto} onChange={(e) => setServico(e.target.value)}>
-                                <option value="corte">Serviços</option>
-                                <option value="Corte">Corte</option>
-                                <option value="Sombrancelha">Sombrancelha</option>
-                                <option value="Manicure">Manicure</option>
-                                <option value="Hidratação">Hidratação</option>
+                            <select name="cars" className={styles.texto} onChange={servicoCompleto}>
+                                <option value="">Serviços</option>
+                                {services.map(service => (
+                                    <option key={service.id} value={service.id}>{service.nome}</option>
+                                ))}
                             </select>
                             <button onClick={adicionarItem}>Adicionar</button>
                             <div className={styles.atividades}>
