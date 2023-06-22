@@ -51,8 +51,10 @@
 	height: 5%;
 	border-radius: 25px;
 	background-color: #fff;
+	font-family: 'Merienda', cursive;
+	font-weight: bold;
 	margin-right: auto;
-	margin-left: 20%;
+	margin-left: -10%;
 }
 
 .notificacao .btnNot button {
@@ -251,7 +253,7 @@
 	.logoMenuCli {
 		width: 20%;
 		height: 5%;
-		margin-left: 10%;		
+		margin-left: -10%;		
 	}
 	.logoMenuFunc p {
 		font-family: 'Merienda', cursive;

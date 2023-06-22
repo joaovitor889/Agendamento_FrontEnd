@@ -1,161 +1,96 @@
 import styles from './tMenuProfis.module.css';
-//import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
-import Notificacao from '../../icones/Doorbell.png';
+
 import Agenda from '../../icones/Tear-Off Calendar.png';
+
 import Perfil from '../../icones/perfilCliente.png';
 
 import Foto from './FotoPerfilFunc/fotoFunc';
 
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import { useState, useEffect } from 'react';
 
-//import { useState, useEffect, useRef } from "react";
+import agFetch from '../../axios/config';
 
-//import { Link, useNavigate } from "react-router-dom";
+import { decodeToken } from 'react-jwt';
 
 const TelaMenuProfissional = () => {
 
     document.title = "Menu Profissional";
 
-        //Requisicoes com a API
-    // Estado para armazenar os dados do usuário
-    const [userData, setUserData] = useState({});
+    const token = useParams().token;
 
-    //const valToken = localStorage.getItem('user_token');
-    //const JSToken = JSON.parse(valToken);
+    const cvToken = decodeToken(token);
 
+    const userID = cvToken.id;
 
-    //var token = JSToken['token'];
-    //var tkEmail = JSToken['email'];
+    const { uid } = useParams();
 
-    //alert(JSON.stringify(JSToken['token']));
-    //alert(JSON.stringify(JSToken['email']));
+    const navigate = useNavigate();
 
-    // Função para obter os dados do usuário
-    const fetchUserData = async () => {
-        /*try {
-            const response = await agFetch.get('/clientes/criar', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+    const AgendamentosFunc = () => {
+        navigate(`/tAgendamentoProfis/${token}/${uid}`);
+    }
 
-            const data = response.data;
-
-            //filtra o objeto
-            var objFiltrado = data.find((item) => item.email === tkEmail);
-            var objF = objFiltrado ? { ...objFiltrado } : null;
-
-            setUserData(objF);
-            //alert(tkEmail);
-            //alert(JSON.stringify(data));
-            //alert(JSON.stringify(objF));
-        } catch (error) {
-            alert(error);
-        }*/
-    };
+    const PefilFunc = () => {
+        navigate(`/tMenuFotoProf/${token}/${uid}`);
+    }
 
 
-    //alert(JSON.stringify(userData));
+    //Requisicoes com a API
+    //nome da empresa
+    const [nomeEmpresa, setNomeEmpresa] = useState();
 
-    // Chama a função fetchUserData quando o componente é montado
     useEffect(() => {
-        fetchUserData();
-    });
-
-    // Extrai as informações necessárias do usuário
-    const nome = "José";
-    const sobrenome = "Luis";
-
-    //const nome = userData.nome;
-    //const sobrenome = userData.sobrenome;
-
-    var pnome = '';
-    var psobrenome = '';
-
-    if (nome && nome.length > 0) {
-        pnome = nome.charAt(0);
-    }
-
-    if (sobrenome && sobrenome.length > 0) {
-        psobrenome = sobrenome.charAt(0);
-    }
-
-    const iniciais = pnome + psobrenome;
-
-    //Notificacao
-    const [notifications, setNotifications] = useState([]);
-    const [showNotifications, setShowNotifications] = useState(false);
-    const [newNotification, setNewNotification] = useState(false);
-
-    const fetchNotifications = () => {
-        const fakeNotifications = [
-            { id: 1, title: "Título 1", description: "Notificação 1" },
-            { id: 2, title: "Título 2", description: "Notificação 2" },
-            { id: 3, title: "Título 3", description: "Notificação 3" }
-        ];
-        setNotifications(fakeNotifications);
-    };
-
-    const handleClick = () => {
-        if (!showNotifications) {
-            fetchNotifications();
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmpresa(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
         }
-        setShowNotifications(!showNotifications);
-        setNewNotification(false);
-    };
+        PegaEmpresa();
+    }, [uid])
 
-    const handleListClose = () => {
-        setShowNotifications(false);
-    };
+    //nome do funcionario
+    const [nomeFunc, setNomeFunc] = useState();
+
+    useEffect(() => {
+        async function PegaFuncionario() {
+            try {
+                const funcResponse = await agFetch.get(`/funcionario/pegarPorId?id=${userID}`);
+                const clNome = funcResponse.data.nome;
+                const firstSpaceIndex = clNome.indexOf(' ');
+                const cmpNome = clNome.substring(0, firstSpaceIndex);
+                setNomeFunc(cmpNome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaFuncionario();
+    }, [userID])
+
 
     return (
         <div className={styles.fMenuProfissional}>
             <nav id={styles["cabecalhoMenuCli"]}>
-                <div className={styles.voltar}><Link to="../../tLoginFunc"><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
-                <div className={styles.logoMenuCli}><p>Shosners & Shosners</p></div>
-                {/*<div className={styles.notificacao}>
-                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
-                    {showNotifications && (
-                        <div className={styles.notificationContainer}>
-                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
-                            {newNotification && <p>Nova notificação recebida!</p>}
-                            <ul className={styles.notificationList}>
-                                {notifications.map((notification, index) => (
-                                    <li
-                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
-                                        key={notification.id}
-                                    >
-                                        <p className="notification-title">{notification.title}</p>
-                                        <p className={styles.notificationDescription}>{notification.description}</p>
-                                        <hr></hr>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>*/}
+                <div className={styles.voltar}><Link to={`/tLoginFunc/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
+                <div className={styles.logoMenuCli}><p>{nomeEmpresa}</p></div>
                 <Foto />
             </nav>
             <div className={styles.fPreto}></div>
-            <div className={styles.texto}>Bem-Vindo(a)<br></br>Profissional<br></br><div className={styles.nome}>{nome}</div></div>
+            <div className={styles.texto}>Bem-Vindo(a)<br></br>Profissional<br></br><div className={styles.nome}>{nomeFunc}</div></div>
             <div className={styles.botoes}>
                 <div className={styles.linha}>
                     <img src={Agenda} alt="agenda" />
-                    <button type="button" className={styles.btn} onClick={(e) => {
-                        e.preventDefault();
-                        window.location.href = './tAgendamentoProfis'
-                    }}><p>Meus Agendamentos</p></button>
+                    <button type="button" className={styles.btn} onClick={AgendamentosFunc}><p>Meus Agendamentos</p></button>
                 </div>
                 <div className={styles.linha}>
                     <img src={Perfil} alt="perfil" />
-                    <button type="button" className={styles.btn} onClick={(e) => {
-                        e.preventDefault();
-                        window.location.href = './tMenuFotoProf'
-                    }}><p>Perfil</p></button>
+                    <button type="button" className={styles.btn} onClick={PefilFunc}><p>Perfil</p></button>
                 </div>
             </div>
         </div>

@@ -109,9 +109,9 @@ function App() {
 
             {/* Telas do Funcionario */}
             <Route  path = "/tMenuProfis/:token/:uid" element = {<MenuProfissional />} />
-            <Route  path = "/tAgendamentoProfis" element = {<AgendamentoProfis />} />
+            <Route  path = "/tAgendamentoProfis/:token/:uid" element = {<AgendamentoProfis />} />
             {/* Perfil do Funcionario */}
-            <Route  path = "/tMenuFotoProf" element = {<FotoProfis />} />
+            <Route  path = "/tMenuFotoProf/:token/:uid" element = {<FotoProfis />} />
           
 
             <Route  path = "/tLoginAdm/" element = {<LoginAdm />} />            

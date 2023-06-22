@@ -31,6 +31,8 @@
     background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
     top: 10.4%;
     left: 0%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #menuHorFunc nav {
@@ -40,8 +42,8 @@
 .logoMenuFunc {
     position: absolute;
     width: 20%;
-    height: 7vh;
-    top: 8%;
+    height: 10px;
+    top: 5%;
     left: 43%;
     font-family: 'Merienda', cursive;
     font-weight: bold;
@@ -53,7 +55,6 @@
 .logoMenuFunc p {
 	font-family: 'Merienda', cursive;
 	font-weight: bold;
-    margin-top: 25%;
 	font-size: 85%;
 }
 
