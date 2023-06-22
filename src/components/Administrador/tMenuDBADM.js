@@ -1,21 +1,14 @@
 import styles from './tMenuDBADM.module.css';
-//import logo from '../../img/logo.PNG';
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import Voltar from '../../icones/chevron-left.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 import agFetch from '../../axios/config.js';
 
 import './menHamburger.css';
 
 import { Link, useParams } from 'react-router-dom';
-
-//import { useState, useEffect, useRef } from "react";
-
-//import { Link, useNavigate } from "react-router-dom";
 
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
@@ -33,8 +26,6 @@ const TelaDadosBasicosCliente = () => {
     const converToken = decodeToken(token);
 
     const userID = converToken.id;
-
-
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -60,36 +51,20 @@ const TelaDadosBasicosCliente = () => {
     const [telefone, setTelefone] = useState();
     const [email, setEmail] = useState();
 
+    //nome da empresa
+    const [nomeEmp, setNomeEmp] = useState();
 
-    const cmpCPF = useRef(null);
-    const cmpTelefone = useRef(null);
-
-    //bloquear rolagem nos imputs number
     useEffect(() => {
-        const cpf = cmpCPF.current;
-        const telefone = cmpTelefone.current;
-        const bloquearRolagem = (e) => {
-            e.preventDefault();
-        };
-
-        if (cpf) {
-            cpf.addEventListener('wheel', bloquearRolagem);
-        }
-
-        if (telefone) {
-            telefone.addEventListener('wheel', bloquearRolagem);
-        }
-
-        return () => {
-            if (cpf) {
-                cpf.removeEventListener('wheel', bloquearRolagem);
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmp(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
             }
-
-            if (telefone) {
-                telefone.removeEventListener('wheel', bloquearRolagem);
-            }
-        };
-    }, []);
+        }
+        PegaEmpresa();
+    }, [uid])
 
     //Requisicoes com a API
     useEffect(() => {
@@ -100,14 +75,12 @@ const TelaDadosBasicosCliente = () => {
                 const nome = userResponse.data.nome;
                 const cpf = userResponse.data.cpf;
                 const telefone = userResponse.data.telefone;
-                var remSimb = telefone.replace(/[\(\)\-\s]/g, '');
-                const telNum = parseInt(remSimb);
                 const email = userResponse.data.email;
 
                 //alert(JSON.stringify({nome, cpf, telNum, email}));
                 setNome(nome);
                 setCPF(cpf);
-                setTelefone(telNum);
+                setTelefone(telefone);
                 setEmail(email);
             } catch (error) {
                 console.log(error);
@@ -115,7 +88,7 @@ const TelaDadosBasicosCliente = () => {
         }
 
         PegaUser();
-    }, []);
+    }, [userID]);
 
     const atualizarAdm = async (nome, telefone) => {
         const tel = "" + telefone;
@@ -193,35 +166,57 @@ const TelaDadosBasicosCliente = () => {
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
                     /> <br></br>
-                    <input type="number"
+                    <input type="text"
                         placeholder="*CPF:"
                         title="Digite o seu CPF"
                         name="cpf" id={styles["cpf"]}
-                        maxLength="11"
+                        maxLength="14"
                         onKeyPress={(event) => {
-                            if (!/[0-9]/.test(event.key)
-                                || event.target.value.length > event.target.maxLength - 1) {
+                            const allowedChars = /[0-9]/;
+                            const inputValue = event.target.value;
+                            const key = event.key;
+
+                            if (!allowedChars.test(key) || inputValue.length >= 14 || key === '.' || key === '-') {
                                 event.preventDefault();
+                            } else if (inputValue.length === 3 || inputValue.length === 7) {
+                                event.target.value = inputValue + ".";
+                            } else if (inputValue.length === 11) {
+                                event.target.value = inputValue + "-";
                             }
                         }}
-                        ref={cmpCPF}
                         required
                         value={cpf}
                         disabled
                     />
 
-                    <input type="number"
+                    <input type="text"
                         placeholder="*Telefone:"
                         title="Digite o seu Telefone"
                         name="tel" id={styles["tel"]}
-                        maxLength="11"
+                        maxLength="15"
                         onKeyPress={(event) => {
-                            if (!/[0-9]/.test(event.key)
-                                || event.target.value.length > event.target.maxLength - 1) {
+                            const inputValue = event.target.value + event.key;
+                            const isValidKey = /\d/.test(event.key);
+                            const isMaxLengthReached = inputValue.length >= event.target.maxLength;
+
+                            if (!isValidKey || isMaxLengthReached) {
+                                event.preventDefault();
+                            }
+
+                            if (inputValue.length === 1 && isValidKey) {
+                                event.target.value = `(${inputValue}`;
+                                event.preventDefault();
+                            } else if (inputValue.length === 4 && isValidKey) {
+                                event.target.value = `${event.target.value}) ${inputValue.substr(1)}`;
+                                event.preventDefault();
+                            } else if (inputValue.length === 11 && isValidKey) {
+                                const areaCode = inputValue.substr(1, 2);
+                                const firstPart = inputValue.substr(5, 4);
+                                const secondPart = inputValue.substr(10, 4);
+                                event.target.value = `(${areaCode}) ${firstPart}-${secondPart}`;
                                 event.preventDefault();
                             }
                         }}
-                        ref={cmpTelefone}
                         value={telefone}
                         onChange={(e) => setTelefone(e.target.value)}
                     />
@@ -261,9 +256,15 @@ const TelaDadosBasicosCliente = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <FotoMen />
-
                         <ul id="uMenHamburger">
+                            <FotoMen />
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
                                     <Link to={`/tMenuDBADM/${token}/${uid}`}>
@@ -312,7 +313,7 @@ const TelaDadosBasicosCliente = () => {
                 </div>
 
                 <FotoHor />
-                <div className={styles.logoMenuCli}><p>Shostners & shostners</p></div>
+                <div className={styles.logoMenuCli}><p>{nomeEmp}</p></div>
                 <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
 

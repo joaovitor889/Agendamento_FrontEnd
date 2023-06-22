@@ -20,12 +20,15 @@ import {
 
 
 const TelaAgendarADM = () => {
-    document.title = "Agendar";
+    document.title = "Agendar";    
 
-    // const uid = "jMQqNo";
-    const { uid } = useParams();
+    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODQ3MDg0NTcsImV4cCI6OTMzMTIwMDAwMDE2ODQ3MDAwMDB9.1C8kf7GvIDT1GbbpMPScTcwy19CvgHOUkGtxuXFwV9I";
 
+    //const uid = "jMQqNo";
+    
     const { token } = useParams();
+
+    const { uid } = useParams();
 
     //dados do banco
     const [categorias, setCategorias] = useState([]);
@@ -45,40 +48,24 @@ const TelaAgendarADM = () => {
     const [horarioFimEst, setHorarioFimEst] = useState([]);
     const [inicExp, setInicExp] = useState();
     const [fimExp, setFimExp] = useState();
+    const [nomeEmp, setNomeEmp] = useState();
     const [nome, setNome] = useState();
     const [telefone, setTelefone] = useState();
     const [cpf, setCPF] = useState();
     const [preco, setPreco] = useState();
 
-    const fCPF = useRef(null);
-    const fTelefone = useRef(null);
-
-    //bloquear rolagem nos imputs number
+    //nome da empresa
     useEffect(() => {
-        const cpf = fCPF.current;
-        const telefone = fTelefone.current;
-        const bloquearRolagem = (e) => {
-            e.preventDefault();
-        };
-
-        if (cpf) {
-            cpf.addEventListener('wheel', bloquearRolagem);
-        }
-
-        if (telefone) {
-            telefone.addEventListener('wheel', bloquearRolagem);
-        }
-
-        return () => {
-            if (cpf) {
-                cpf.removeEventListener('wheel', bloquearRolagem);
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmp(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
             }
-
-            if (telefone) {
-                telefone.removeEventListener('wheel', bloquearRolagem);
-            }
-        };
-    }, []);
+        }
+        PegaEmpresa();
+    }, [uid])
 
     //pegar os dados do banco
     useEffect(() => {
@@ -91,7 +78,7 @@ const TelaAgendarADM = () => {
             }
         }
         fetchCategorias();
-    }, []);
+    }, [uid]);
 
     useEffect(() => {
         async function PegaServicos() {
@@ -148,7 +135,7 @@ const TelaAgendarADM = () => {
     useEffect(() => {
         async function PegaAgendamentos() {
             //const funcID = 5;
-            
+
             try {
                 const datas = {
                     data_inicio: data,
@@ -166,10 +153,6 @@ const TelaAgendarADM = () => {
 
         PegaAgendamentos();
     }, [data, dtfim]);
-
-
-
-
 
 
     useEffect(() => {
@@ -382,14 +365,15 @@ const TelaAgendarADM = () => {
     }, [horarioInicioEst, horarioFimEst, intervalo, inicExp, fimExp, agendamentos]);
 
 
-
-
-
     useEffect(() => {
         async function PegaPreco() {
             try {
                 const precResponse = await agFetch.get(`/servicos/acharUm/${servico}`);
-                setPreco(precResponse.data.preco);
+                const precoEmReal = precResponse.data.preco.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  });
+                  setPreco(precoEmReal);
             } catch (error) {
                 console.log(error);
             }
@@ -408,8 +392,11 @@ const TelaAgendarADM = () => {
             cpf: cpf
         }
         console.log(txtData);
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
         try {
-            const agResponse = await agFetch.post('/agendamento/criarAdm', txtData);
+            const agResponse = await agFetch.post('/agendamento/criarAdm', txtData, {headers});
             if (agResponse.status >= 200 && agResponse.status <= 299) {
                 alert("Agendamento Realizado com Sucesso!");
             }
@@ -441,17 +428,17 @@ const TelaAgendarADM = () => {
         const dataAg = data + "T" + horario + ":00Z";
 
         const servicoId = parseInt(servico);
-        
+
         const profId = parseInt(profissional);
 
         //alert(JSON.stringify({dataAg, servicoId, profId, nome, telefone, cpf}));
 
         realizarAgendamento(dataAg, servicoId, profId, nome, telefone, cpf);
 
-        
-    }	
 
-    
+    }
+
+
     return (
         <div className={styles.fAgendar}>
             <input type='checkbox' id={styles["check"]} />
@@ -463,7 +450,7 @@ const TelaAgendarADM = () => {
                     </label>
                 </div>
                 <div className={styles.Centro}>
-                    <h3>Shostners & Shostners</h3>
+                    <h3>{nomeEmp}</h3>
                 </div>
                 <div className={styles.direita}>
                     <a href="/" className="btn_perfil">
@@ -477,14 +464,14 @@ const TelaAgendarADM = () => {
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-            <Link to={`/tPesqFunc/${token}/${uid}`}>Profissionais</Link>
-                    <Link to={`/tPesqCli/${token}/${uid}`}>Clientes</Link>
-                    <Link to={`/tAgendamentosADM/${token}/${uid}`}>Agendamentos</Link>
-                    <Link to={`/tAgendarADM/${token}/${uid}`} style={{ color: '#7c807d' }}>Agendar</Link>
-                    {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
-                    <Link to={`/tServADM/${token}/${uid}`}>Serviços</Link>
-                    <Link to={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
-                    <Link to={`/tLoginAdm`}>Sair</Link>
+                <Link to={`/tPesqFunc/${token}/${uid}`}>Profissionais</Link>
+                <Link to={`/tPesqCli/${token}/${uid}`}>Clientes</Link>
+                <Link to={`/tAgendamentosADM/${token}/${uid}`}>Agendamentos</Link>
+                <Link to={`/tAgendarADM/${token}/${uid}`} style={{ color: '#7c807d' }}>Agendar</Link>
+                {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
+                <Link to={`/tServADM/${token}/${uid}`}>Serviços</Link>
+                <Link to={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
+                <Link to={`/tLoginAdm`}>Sair</Link>
                 <select name='qual empresa?' className={styles.interprise}>
                     <option value="emp1">Shostners and Shostners</option>
                     <option value="emp2">Show de bola</option>
@@ -535,30 +522,54 @@ const TelaAgendarADM = () => {
                         </div>
                         <div className={styles.cliente}>
                             <input type="text" className={styles.texto} placeholder='Nome do Cliente' onChange={(e) => setNome(e.target.value)} />
-                            <input type="number"
-                                ref={fTelefone}
-                                placeholder="Telefone"
+                            <input type="text"
+                                placeholder="Telefone:"
                                 title="Digite o seu Telefone"
+                                name="tel"
+                                id="tel"
                                 className={styles.texto}
-                                maxLength="11"
+                                maxLength="15"
                                 onKeyPress={(event) => {
-                                    if (!/[0-9]/.test(event.key)
-                                        || event.target.value.length > event.target.maxLength - 1) {
+                                    const inputValue = event.target.value + event.key;
+                                    const isValidKey = /\d/.test(event.key);
+                                    const isMaxLengthReached = inputValue.length >= event.target.maxLength;
+
+                                    if (!isValidKey || isMaxLengthReached) {
+                                        event.preventDefault();
+                                    }
+
+                                    if (inputValue.length === 1 && isValidKey) {
+                                        event.target.value = `(${inputValue}`;
+                                        event.preventDefault();
+                                    } else if (inputValue.length === 4 && isValidKey) {
+                                        event.target.value = `${event.target.value}) ${inputValue.substr(1)}`;
+                                        event.preventDefault();
+                                    } else if (inputValue.length === 11 && isValidKey) {
+                                        const areaCode = inputValue.substr(1, 2);
+                                        const firstPart = inputValue.substr(5, 4);
+                                        const secondPart = inputValue.substr(10, 4);
+                                        event.target.value = `(${areaCode}) ${firstPart}-${secondPart}`;
                                         event.preventDefault();
                                     }
                                 }}
-                                value={telefone}
                                 onChange={(e) => setTelefone(e.target.value)} />
-                            <input type="number"
-                                ref={fCPF}
-                                placeholder="CPF"
+                            <input type="text"
+                                placeholder="*CPF:"
                                 title="Digite o seu CPF"
+                                name="cpf" id="cpf"
                                 className={styles.texto}
-                                maxLength="11"
+                                maxLength="14"
                                 onKeyPress={(event) => {
-                                    if (!/[0-9]/.test(event.key)
-                                        || event.target.value.length > event.target.maxLength - 1) {
+                                    const allowedChars = /[0-9]/;
+                                    const inputValue = event.target.value;
+                                    const key = event.key;
+
+                                    if (!allowedChars.test(key) || inputValue.length >= 14 || key === '.' || key === '-') {
                                         event.preventDefault();
+                                    } else if (inputValue.length === 3 || inputValue.length === 7) {
+                                        event.target.value = inputValue + ".";
+                                    } else if (inputValue.length === 11) {
+                                        event.target.value = inputValue + "-";
                                     }
                                 }}
                                 required

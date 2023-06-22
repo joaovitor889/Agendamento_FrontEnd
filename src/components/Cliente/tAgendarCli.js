@@ -2,132 +2,46 @@ import styles from './tAgendarCli.module.css';
 //import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
-import Notificacao from '../../icones/Doorbell.png';
-import Perfil from '../../icones/perfilCliente.png';
+
+import FotoCliente from './FotoPerfilCliente/fotoCliente';
 
 import React, { useState, useEffect } from "react";
+
+import agFetch from '../../axios/config';
+
+import { useParams } from 'react-router-dom';
 
 const TelaAgendarCliente = () => {
 
     document.title = "Agendar Cliente";
 
-    const [userData, setUserData] = useState({});
+    const token = useParams().token;
 
-    //const valToken = localStorage.getItem('user_token');
-    //const JSToken = JSON.parse(valToken);
+    const uid = useParams().uid;
 
+    const voltaMenu = "/tMenuCli/" + token + "/" + uid;
 
-    //var token = JSToken['token'];
-    //var tkEmail = JSToken['email'];
+    //nome da empresa
+    const [nomeEmpresa, setNomeEmpresa] = useState();
 
-    //alert(JSON.stringify(JSToken['token']));
-    //alert(JSON.stringify(JSToken['email']));
-
-    // Função para obter os dados do usuário
-    const fetchUserData = async () => {
-        /*try {
-            const response = await agFetch.get('/clientes/criar', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            const data = response.data;
-
-            //filtra o objeto
-            var objFiltrado = data.find((item) => item.email === tkEmail);
-            var objF = objFiltrado ? { ...objFiltrado } : null;
-
-            setUserData(objF);
-            //alert(tkEmail);
-            //alert(JSON.stringify(data));
-            //alert(JSON.stringify(objF));
-        } catch (error) {
-            alert(error);
-        }*/
-    };
-
-    // Chama a função fetchUserData quando o componente é montado
     useEffect(() => {
-        fetchUserData();
-    });
-
-    // Extrai as informações necessárias do usuário
-    const nome = "José";
-    const sobrenome = "Luis";
-
-    //const nome = userData.nome;
-    //const sobrenome = userData.sobrenome;
-
-    var pnome = '';
-    var psobrenome = '';
-
-    if (nome && nome.length > 0) {
-        pnome = nome.charAt(0);
-    }
-
-    if (sobrenome && sobrenome.length > 0) {
-        psobrenome = sobrenome.charAt(0);
-    }
-
-    const iniciais = pnome + psobrenome;
-
-    //Notificacao
-    const [notifications, setNotifications] = useState([]);
-    const [showNotifications, setShowNotifications] = useState(false);
-    const [newNotification, setNewNotification] = useState(false);
-
-    const fetchNotifications = () => {
-        const fakeNotifications = [
-            { id: 1, title: "Título 1", description: "Notificação 1" },
-            { id: 2, title: "Título 2", description: "Notificação 2" },
-            { id: 3, title: "Título 3", description: "Notificação 3" }
-        ];
-        setNotifications(fakeNotifications);
-    };
-
-    const handleClick = () => {
-        if (!showNotifications) {
-            fetchNotifications();
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmpresa(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
         }
-        setShowNotifications(!showNotifications);
-        setNewNotification(false);
-    };
-
-    const handleListClose = () => {
-        setShowNotifications(false);
-    };
+        PegaEmpresa();
+    }, [uid])
 
     return (
         <div className={styles.fAgendarCliente}>
             <nav id={styles["cabecalhoMenuCli"]}>
-                <div className={styles.voltar}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
-                <div className={styles.logoMenuCli}><p>Shostners & shostners</p></div>
-                {/*<div className={styles.notificacao}>
-                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
-                    {showNotifications && (
-                        <div className={styles.notificationContainer}>
-                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
-                            {newNotification && <p>Nova notificação recebida!</p>}
-                            <ul className={styles.notificationList}>
-                                {notifications.map((notification, index) => (
-                                    <li
-                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
-                                        key={notification.id}
-                                    >
-                                        <p className="notification-title">{notification.title}</p>
-                                        <p className={styles.notificationDescription}>{notification.description}</p>
-                                        <hr></hr>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>*/}
-                <div className={styles.perfil}>
-                    {/*<img src={Perfil} alt="perfil" />*/}
-                    <p>{iniciais}</p>
-                </div>
+                <div className={styles.voltar}><a href={voltaMenu}><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div className={styles.logoMenuCli}><p>{nomeEmpresa}</p></div>                
+                <FotoCliente />
             </nav>
             <br></br>
             <br></br>
@@ -175,10 +89,7 @@ const TelaAgendarCliente = () => {
                             </select>
                         </div>
                     </div>
-                    {/*<select id={styles["empresa"]} required>
-                        <option value="emprs">*Empresa</option>
-                        <option value="emp1">Shostners & shostners</option>
-                    </select>*/}
+
                     <div id={styles["rodape"]}>
                         <div id={styles["preco"]}>
                             <input type="text" defaultValue={"Preço R$"} disabled />

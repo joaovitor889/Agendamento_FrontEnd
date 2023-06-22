@@ -49,6 +49,7 @@ import Agendamentos from './components/Administrador/tAgendamentos.js';
 import DadosBasicosAdm from './components/Administrador/tMenuDBADM.js';
 import EnderecoAdm from './components/Administrador/tMenuEnderecoADM.js';
 import FotoADM from './components/Administrador/tMenuFotoADM.js';
+import PrimeiroLogin from './components/Administrador/tMenuPloginEmprNew.js';
 import Empreendimento from './components/Administrador/tMenuEmpr.js';
 import NovoEmpreendimento from './components/Administrador/tMenuEmprNew.js';
 
@@ -74,7 +75,7 @@ function App() {
             <Route  path = "/tEsqueceuSenhaFunc" element = {<EsqSenhaFunc />} />
             <Route path = "/tAlterarSenhaFunc" element = {<AltSenhaFunc />} />
             <Route  path = "/tCadastroCli/:uid" element = {<CadastroCli />} />
-            <Route  path = "/tLoginFunc" element = {<LoginFunc />} />
+            <Route  path = "/tLoginFunc/:uid" element = {<LoginFunc />} />
             
             {/* Telas do Administrador */}
             <Route path="/tAgendarADM/:token/:uid" element = {<AgendarADM />} />
@@ -91,28 +92,29 @@ function App() {
             <Route path="/tMenuEnderecoADM/:token/:uid" element = {<EnderecoAdm />} />
             <Route path="/tMenuFotoADM/:token/:uid" element = {<FotoADM />} />
             
+            <Route path="/tMenuPLogin/:token" element = {<PrimeiroLogin />} />
             <Route path="/tNovoEmpreendimento/:token/:uid" element = {<NovoEmpreendimento />} />
             <Route path="/tEmpreendimento/:token/:uid" element = {<Empreendimento/>} />
             
 
             {/* Telas do Cliente */}
-            <Route  path = "/tMenuCli" element = {<MenuCli />} />
-            <Route  path = "/tAgendarCli" element = {<AgendarCli />} />
-            <Route  path = "/tAgendamentoCli" element = {<AgendamentoCli />} />
+            <Route  path = "/tMenuCli/:token/:uid" element = {<MenuCli />} />
+            <Route  path = "/tAgendarCli/:token/:uid" element = {<AgendarCli />} />
+            <Route  path = "/tAgendamentoCli/:token/:uid" element = {<AgendamentoCli />} />
             {/* Perfil do Cliente */}
-            <Route  path = "/tMenuDBCli" element = {<DadosBasicoCli />} />
-            <Route  path = "/tMenuEnderecoCli" element = {<EnderecoCli />} />
-            <Route  path = "/tMenuFotoCli" element = {<FotoCli />} />
+            <Route  path = "/tMenuDBCli/:token/:uid" element = {<DadosBasicoCli />} />
+            <Route  path = "/tMenuEnderecoCli/:token/:uid" element = {<EnderecoCli />} />
+            <Route  path = "/tMenuFotoCli/:token/:uid" element = {<FotoCli />} />
 
 
             {/* Telas do Funcionario */}
-            <Route  path = "/tMenuProfis" element = {<MenuProfissional />} />
+            <Route  path = "/tMenuProfis/:token/:uid" element = {<MenuProfissional />} />
             <Route  path = "/tAgendamentoProfis" element = {<AgendamentoProfis />} />
             {/* Perfil do Funcionario */}
             <Route  path = "/tMenuFotoProf" element = {<FotoProfis />} />
           
 
-            <Route  path = "/tLoginAdm" element = {<LoginAdm />} />            
+            <Route  path = "/tLoginAdm/" element = {<LoginAdm />} />            
           </Routes>                
       </header>
     </div>

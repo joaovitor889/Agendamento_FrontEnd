@@ -1,13 +1,10 @@
 import styles from './tMenuDBCli.module.css';
-//import logo from '../../img/logo.PNG';
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+
+import { Link, useParams } from 'react-router-dom';
 
 import Voltar from '../../icones/chevron-left.png';
-
-//import Notificacao from '../../icones/Doorbell.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 import agFetch from '../../axios/config.js';
 
@@ -18,9 +15,19 @@ import FotoMen from './FotoPerfilCliente/fotoClienteMen';
 
 import './menHamburger.css';
 
+import { decodeToken } from 'react-jwt';
+
 const TelaDadosBasicosCliente = () => {
 
     document.title = "Dados Básicos";
+
+    const token = useParams().token;
+
+    const cvToken = decodeToken(token);
+
+    const userID = cvToken.id;
+
+    const uid = useParams().uid;
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -42,194 +49,101 @@ const TelaDadosBasicosCliente = () => {
     }
 
     //Requisicoes com a API
-    // Estado para armazenar os dados do usuário
-    const [userData, setUserData] = useState({});
+    const [nome, setNome] = useState();
+    const [sobrenome, setSobrenome] = useState();
+    const [compNome, setCompNome] = useState();
+    const [cpf, setCPF] = useState();
+    const [telefone, setTelefone] = useState();
+    const [email, setEmail] = useState();
 
-    //const valToken = localStorage.getItem('user_token');
-    //const JSToken = JSON.parse(valToken);
+    console.log(compNome);
 
+    //nome da empresa
+    const [nomeEmpresa, setNomeEmpresa] = useState();
 
-    //var token = JSToken['token'];
-    //var tkEmail = JSToken['email'];
-
-    //alert(JSON.stringify(JSToken['token']));
-    //alert(JSON.stringify(JSToken['email']));
-
-    // Função para obter os dados do usuário
-    const fetchUserData = async () => {
-        /*try {
-            const response = await agFetch.get('/clientes/criar', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            const data = response.data;
-
-            //filtra o objeto
-            var objFiltrado = data.find((item) => item.email === tkEmail);
-            var objF = objFiltrado ? { ...objFiltrado } : null;
-
-            setUserData(objF);
-            //alert(tkEmail);
-            //alert(JSON.stringify(data));
-            //alert(JSON.stringify(objF));
-        } catch (error) {
-            alert(error);
-        }*/
-    };
-
-
-    //alert(JSON.stringify(userData));
-
-    // Chama a função fetchUserData quando o componente é montado
     useEffect(() => {
-        fetchUserData();
-    });
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmpresa(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
 
-    //bloquear rolagem nos imputs number
+    //Requisicoes com a API
     useEffect(() => {
-        const cpf = cmpCPF.current;
-        const telefone = cmpTelefone.current;
-        const bloquearRolagem = (e) => {
-            e.preventDefault();
-        };
+        //pegando os dados do usuário
+        async function PegaUser() {
+            try {
+                const userResponse = await agFetch.get(`/cliente/pegarPorId?id=${userID}`);
+                const nomeCompleto = userResponse.data.nome;
+                const cpf = userResponse.data.cpf;
+                const telefone = userResponse.data.telefone;
+                const email = userResponse.data.email;
 
-        if (cpf) {
-            cpf.addEventListener('wheel', bloquearRolagem);
+                //alert(JSON.stringify({nome, cpf, telNum, email}));
+                if (nomeCompleto.includes(' ')) {
+                    const primeiroEspaco = nomeCompleto.indexOf(' ');
+                    const ultimoEspaco = nomeCompleto.lastIndexOf(' ');
+
+                    const nome = nomeCompleto.substring(0, primeiroEspaco);
+                    const sobrenome = nomeCompleto.substring(ultimoEspaco + 1);
+
+                    setNome(nome);
+                    setSobrenome(sobrenome);
+                } else {
+                    setNome(nomeCompleto);
+                }
+                setCPF(cpf);
+                setTelefone(telefone);
+                setEmail(email);
+            } catch (error) {
+                console.log(error);
+            }
         }
 
-        if (telefone) {
-            telefone.addEventListener('wheel', bloquearRolagem);
+        PegaUser();
+    }, [userID]);
+
+    const atualizarCli = async (nome, telefone) => {
+        const tel = "" + telefone;
+        const txtData = {
+            nome: nome,
+            telefone: tel
         }
 
-        return () => {
-            if (cpf) {
-                cpf.removeEventListener('wheel', bloquearRolagem);
+        try {
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            const updCliResponse = await agFetch.patch('/cliente/update', txtData, { headers });
+
+            if (updCliResponse.status >= 200 && updCliResponse.status <= 299) {
+                alert("Dados Atualizados com Sucesso!");
             }
-
-            if (telefone) {
-                telefone.removeEventListener('wheel', bloquearRolagem);
-            }
-        };
-    }, []);
-
-    //Campos
-    //const cmpNome = useRef(userData.nome);
-    //const cmpSobrenome = useRef(userData.sobrenome);
-    //const cmpCPF = useRef(userData.cpf);
-    //const cmpTelefone = useRef(userData.telefone);
-    //const cmpEmail = useRef(userData.email);
-
-    const cmpNome = useRef("AAA");
-    const cmpSobrenome = useRef("AAA");
-    const cmpCPF = useRef("111");
-    const cmpTelefone = useRef("111");
-    const cmpEmail = useRef("aaa@gmail.com");
-
-    //Atualizacao dos dados
-    const updateData = async (userData) => {
-        /*try {
-            await agFetch.put(`/clientes/criar/${userData.email}`, {
-                nome: cmpNome.current.value,
-                sobrenome: cmpSobrenome.current.value,
-                cpf: cmpCPF.current.value,
-                telefone: cmpTelefone.current.value,
-                email: cmpEmail.current.value,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            //const updatedUserData = response.data;
-
-            //setUserData(updatedUserData);
         } catch (error) {
-            throw new Error("Ocorreu um erro ao atualizar os dados do cliente na API.");
-        }*/
-    };
-
+            console.log(error);
+            alert("Não foi possível atualizar os Dados!");
+        }
+    }
 
     const updateCli = async (e) => {
         e.preventDefault();
+        if (nome !== null && sobrenome !== null) {
+            const cmpNome = `${nome} ${sobrenome}`;
+            setCompNome(cmpNome);
+            //alert(JSON.stringify({ cmpNome, telefone }))
+            
+            atualizarCli(cmpNome, telefone);
+        } else {
+            //alert(JSON.stringify({ nome, telefone }))
 
-        /*try {
-            const response = await agFetch.get("/clientes/criar");
-            const data = response.data;
-            const jsonData = data;
-
-            if (jsonData.some((item) => item.cpf === cmpCPF.current.value && item.cpf !== userData.cpf)) {
-                alert("CPF já cadastrado.");
-                cmpCPF.current.focus();
-                return;
-            }
-
-            if (jsonData.some((item) => item.telefone === cmpTelefone.current.value && item.telefone !== userData.telefone)) {
-                alert("Telefone já cadastrado.");
-                cmpTelefone.current.focus();
-                return;
-            }
-
-            if (jsonData.some((item) => item.email === cmpEmail.current.value && item.email !== userData.email)) {
-                alert("E-mail já cadastrado.");
-                cmpEmail.current.focus();
-                return;
-            }
-
-            // Encontrar o objeto do usuário atual pelo email
-            const userObject = jsonData.find((item) => item.email === userData.email);
-
-            // Atualizar os campos necessários
-            userObject.nome = cmpNome.current.value;
-            userObject.sobrenome = cmpSobrenome.current.value;
-            userObject.cpf = cmpCPF.current.value;
-            userObject.telefone = cmpTelefone.current.value;
-            userObject.email = cmpEmail.current.value;
-
-            // Verificar se o email foi alterado
-            if (cmpEmail.current.value !== userData.email) {
-                // Atualizar o email no token
-                const userToken = JSON.parse(localStorage.getItem("user_token"));
-                userToken.email = cmpEmail.current.value;
-                localStorage.setItem("user_token", JSON.stringify(userToken));
-            }
-
-            // Chamar a função de atualização dos dados
-            await updateData(userObject);
-
-            // Dados atualizados com sucesso
-            alert("Dados atualizados com sucesso.");
-        } catch (error) {
-            alert("Ocorreu um erro ao atualizar os dados do cliente. Erro: " + error.message);
-        }*/
-    };
-
-
-    //Notificacao
-    const [notifications, setNotifications] = useState([]);
-    const [showNotifications, setShowNotifications] = useState(false);
-    const [newNotification, setNewNotification] = useState(false);
-
-    const fetchNotifications = () => {
-        const fakeNotifications = [
-            { id: 1, title: "Título 1", description: "Notificação 1" },
-            { id: 2, title: "Título 2", description: "Notificação 2" },
-            { id: 3, title: "Título 3", description: "Notificação 3" }
-        ];
-        setNotifications(fakeNotifications);
-    };
-
-    const handleClick = () => {
-        if (!showNotifications) {
-            fetchNotifications();
+            atualizarCli(nome, telefone);
         }
-        setShowNotifications(!showNotifications);
-        setNewNotification(false);
-    };
-
-    const handleListClose = () => {
-        setShowNotifications(false);
     };
 
     return (
@@ -241,17 +155,17 @@ const TelaDadosBasicosCliente = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <a href='./tMenuDBCli' rel="noreferrer">
+                            <Link to={`/tMenuDBCli/${token}/${uid}`}>
                                 <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Dados Básicos</p></li>
-                            </a>
+                            </Link>
 
-                            <a href='./tMenuEnderecoCli' rel="noreferrer">
+                            <Link to={`/tMenuEnderecoCli/${token}/${uid}`}>
                                 <li><p>Endereço</p></li>
-                            </a>
+                            </Link>
 
-                            <a href='./tMenuFotoCli' rel="noreferrer">
+                            <Link to={`/tMenuFotoCli/${token}/${uid}`}>
                                 <li><p>Foto</p></li>
-                            </a>
+                            </Link>
                         </div>
                     </ul>
                 </div>
@@ -260,51 +174,79 @@ const TelaDadosBasicosCliente = () => {
             <div id={styles["conteudoCli"]}>
                 <h2><center>Dados Básicos (Cliente)</center></h2>
                 <form id={styles["formDB"]} onSubmit={(e) => updateCli(e)}>
-                    <input type="text"
+                    <input
+                        type="text"
                         placeholder="*Nome:"
                         title="Digite o seu nome"
                         name="nome"
                         id={styles["nome"]}
                         required
-                        defaultValue={userData.nome || ""}
-                        ref={cmpNome}
-                        /*onChange={(e) => setCmpNome(e.target.value)}*/ /> <br></br>
-                    <input type="text"
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
+                    /> <br></br>
+                    <input
+                        type="text"
                         placeholder="*Sobrenome:"
                         title="Digite o seu sobrenome"
                         name="sobrenome"
                         id={styles["sobrenome"]}
                         required
-                        defaultValue={userData.sobrenome || ""}
-                        ref={cmpSobrenome} /> <br></br>
-                    <input type="number"
+                        value={sobrenome}
+                        onChange={(e) => setSobrenome(e.target.value)}
+                    /> <br></br>
+                    <input type="text"
                         placeholder="*CPF:"
                         title="Digite o seu CPF"
                         name="cpf" id={styles["cpf"]}
-                        maxLength="11"
+                        maxLength="14"
                         onKeyPress={(event) => {
-                            if (!/[0-9]/.test(event.key)
-                                || event.target.value.length > event.target.maxLength - 1) {
+                            const allowedChars = /[0-9]/;
+                            const inputValue = event.target.value;
+                            const key = event.key;
+
+                            if (!allowedChars.test(key) || inputValue.length >= 14 || key === '.' || key === '-') {
                                 event.preventDefault();
+                            } else if (inputValue.length === 3 || inputValue.length === 7) {
+                                event.target.value = inputValue + ".";
+                            } else if (inputValue.length === 11) {
+                                event.target.value = inputValue + "-";
                             }
                         }}
                         required
-                        defaultValue={userData.cpf || ""}
-                        ref={cmpCPF} />
+                        value={cpf}
+                        disabled
+                    />
 
-                    <input type="number"
-                        placeholder="Telefone:"
+                    <input type="text"
+                        placeholder="*Telefone:"
                         title="Digite o seu Telefone"
                         name="tel" id={styles["tel"]}
-                        maxLength="11"
+                        maxLength="15"
                         onKeyPress={(event) => {
-                            if (!/[0-9]/.test(event.key)
-                                || event.target.value.length > event.target.maxLength - 1) {
+                            const inputValue = event.target.value + event.key;
+                            const isValidKey = /\d/.test(event.key);
+                            const isMaxLengthReached = inputValue.length >= event.target.maxLength;
+
+                            if (!isValidKey || isMaxLengthReached) {
+                                event.preventDefault();
+                            }
+
+                            if (inputValue.length === 1 && isValidKey) {
+                                event.target.value = `(${inputValue}`;
+                                event.preventDefault();
+                            } else if (inputValue.length === 4 && isValidKey) {
+                                event.target.value = `${event.target.value}) ${inputValue.substr(1)}`;
+                                event.preventDefault();
+                            } else if (inputValue.length === 11 && isValidKey) {
+                                const areaCode = inputValue.substr(1, 2);
+                                const firstPart = inputValue.substr(5, 4);
+                                const secondPart = inputValue.substr(10, 4);
+                                event.target.value = `(${areaCode}) ${firstPart}-${secondPart}`;
                                 event.preventDefault();
                             }
                         }}
-                        defaultValue={userData.telefone || ""}
-                        ref={cmpTelefone}
+                        value={telefone}
+                        onChange={(e) => setTelefone(e.target.value)}
                     />
 
                     <input type="email"
@@ -312,11 +254,11 @@ const TelaDadosBasicosCliente = () => {
                         title="Digite o seu E-mail"
                         name="email"
                         id={styles["email"]}
-                        required /*disabled*/
-                        defaultValue={userData.email || ""}
-                        ref={cmpEmail}
-                        //style={{ display: 'none' }}
-                        //disabled
+                        required
+                        value={email}
+                        disabled
+                    //style={{ display: 'none' }}
+                    //disabled
                     /> <br></br>
                     <div id="btnDBSalvar">
                         <input type="submit" id={styles["btnSalvarDDB"]} name="btnSalvarDDB" value="Salvar" />
@@ -342,35 +284,41 @@ const TelaDadosBasicosCliente = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <FotoMen />
-
                         <ul id="uMenHamburger">
+                            <FotoMen />
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <a href="./tMenuDBCli" rel="noreferrer">
+                                    <Link to={`/tMenuDBCli/${token}/${uid}`}>
                                         Dados Básicos
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuEnderecoCli" rel="noreferrer">
+                                    <Link to={`/tMenuEnderecoCli/${token}/${uid}`}>
                                         Endereço
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuFotoCli" rel="noreferrer">
+                                    <Link to={`/tMenuFotoCli/${token}/${uid}`}>
                                         Foto
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuCli" rel="noreferrer">
+                                    <Link to={`/tMenuCli/${token}/${uid}`}>
                                         Voltar ao Menu
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                         </ul>
@@ -378,29 +326,8 @@ const TelaDadosBasicosCliente = () => {
                 </div>
 
                 <FotoHor />
-                {/*<div className={styles.notificacao}>
-                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
-                    {showNotifications && (
-                        <div className={styles.notificationContainer}>
-                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
-                            {newNotification && <p>Nova notificação recebida!</p>}
-                            <ul className={styles.notificationList}>
-                                {notifications.map((notification, index) => (
-                                    <li
-                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
-                                        key={notification.id}
-                                    >
-                                        <p className="notification-title">{notification.title}</p>
-                                        <p className={styles.notificationDescription}>{notification.description}</p>
-                                        <hr></hr>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                    </div>*/}
-                <div className={styles.logoMenuCli}><p></p></div>
-                <div id={styles["voltar"]}><a href="/tMenuCli"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div className={styles.logoMenuCli}><p>{nomeEmpresa}</p></div>
+                <div id={styles["voltar"]}><Link to={`/tMenuCli/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
 
         </div>

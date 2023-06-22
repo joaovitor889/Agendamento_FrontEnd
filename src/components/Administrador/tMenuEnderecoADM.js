@@ -1,11 +1,6 @@
 import styles from './tMenuEnderecoADM.module.css';
-//import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
-
-import Notificacao from '../../icones/Doorbell.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 import './menHamburger.css';
 
@@ -24,11 +19,11 @@ import FotoMen from './FotoPerfilAdm/fotoAdmMen';
 import { decodeToken } from 'react-jwt';
 
 
-const TelaEnderecoCliente = () => {
-    document.title = "Endereço do Cliente";
+const TelaEnderecoADM = () => {
+    document.title = "Endereço do Adm";
 
-    const {token} = useParams();
-    const { uid } =  useParams();
+    const { token } = useParams();
+    const { uid } = useParams();
     const converToken = decodeToken(token);
 
     const userID = converToken.id;
@@ -52,6 +47,21 @@ const TelaEnderecoCliente = () => {
         }
         setIsMenuClicked(!isMenuClicked)
     }
+
+    //nome da empresa
+    const [nomeEmp, setNomeEmp] = useState();
+
+    useEffect(() => {
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmp(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
 
     const fcep = useRef(null);
     const fnum = useRef(null);
@@ -149,7 +159,7 @@ const TelaEnderecoCliente = () => {
         }
 
         PegaUser();
-    }, []);
+    }, [userID]);
 
     const atualizaEndereco = async (jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
         const convCEP = "" + jscep;
@@ -343,9 +353,15 @@ const TelaEnderecoCliente = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <FotoMen />
-
                         <ul id="uMenHamburger">
+                            <FotoMen />
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                             <li>
                                 <p>
                                     <Link to={`/tMenuDBADM/${token}/${uid}`}>
@@ -394,11 +410,11 @@ const TelaEnderecoCliente = () => {
 
                 <FotoHor />
 
-                <div className={styles.logoMenuCli}><p>Shostners & shostners</p></div>
+                <div className={styles.logoMenuCli}><p>{nomeEmp}</p></div>
                 <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>
     )
 }
 
-export default TelaEnderecoCliente
+export default TelaEnderecoADM

@@ -30,8 +30,8 @@ const TelaMenuADM = () => {
 
     document.title = "Serviços";
 
-    const { uid } = useParams();
     const { token } = useParams();
+    const { uid } = useParams();
 
     const [openModal, setOpenModal] = useState(false);
     const [services, setServices] = useState([]);
@@ -47,6 +47,21 @@ const TelaMenuADM = () => {
         e.preventDefault();
         navigate(`/tCadServico/${token}/${uid}`);
     }
+
+    const [nomeEmp, setNomeEmp] = useState();
+
+    //nome da empresa
+    useEffect(() => {
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmp(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
 
     useEffect(() => {
         //fazer uma variavel global que pegue o ID do estabelecimento
@@ -97,7 +112,7 @@ const TelaMenuADM = () => {
                     </label>
                 </div>
                 <div className={styles.Centro}>
-                    <h3>Shostners & Shostners</h3>
+                    <h3>{nomeEmp}</h3>
                 </div>
                 <div className={styles.direita}>
                     <a href="/" className="btn_perfil">

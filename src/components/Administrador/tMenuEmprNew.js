@@ -1,11 +1,6 @@
 import styles from './tMenuEmpr.module.css';
-//import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
-
-import Notificacao from '../../icones/Doorbell.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
@@ -32,8 +27,6 @@ import tAmarelo from '../../temas/tema05.png';
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
 import FotoMen from './FotoPerfilAdm/fotoAdmMen';
-import { toFormData } from 'axios';
-import { type } from '@testing-library/user-event/dist/type';
 
 const TelaMenuEmpreendimento = () => {
     document.title = "Novo Empreendimento";
@@ -94,6 +87,21 @@ const TelaMenuEmpreendimento = () => {
         };
     });
 
+    //nome da empresa
+    const [nomeEmp, setNomeEmp] = useState();
+
+    useEffect(() => {
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmp(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
+
     //logica do upload da foto
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState();
@@ -145,21 +153,13 @@ const TelaMenuEmpreendimento = () => {
     const [domFim, setDomFim] = useState("");
 
     const [ftema, setTema] = useState("");
+<<<<<<< HEAD
     console.log(ftema)
+=======
+    const [imagemSelecionada, setImagemSelecionada] = useState(null);
+>>>>>>> f2ff53dc6be295cef3401baa1325a9a34d88820a
 
     const ftelefone = "15 996633179";
-
-    const [userData, setUserData] = useState({});
-
-    // Função para obter os dados do usuário
-    const fetchUserData = async () => {
-
-    };
-
-    // Chama a função fetchUserData quando o componente é montado
-    useEffect(() => {
-        fetchUserData();
-    });
 
     //API do CEP
     const { register, setValue } = useForm();
@@ -200,6 +200,11 @@ const TelaMenuEmpreendimento = () => {
     }
 
 
+    const handleTemaClick = (cor) => {
+        setTema(cor);
+        setImagemSelecionada(cor);
+    };
+
     //salvar o empreendimento
     const cadEstabelecimento = async (selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
         //alert(JSON.stringify({ selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
@@ -215,6 +220,7 @@ const TelaMenuEmpreendimento = () => {
             numero: jsnum,
             complemento: jscomp,
             tema: ftema,
+            imageUrl: null,
             CEP: jscep,
             horarios: [
                 {
@@ -307,7 +313,7 @@ const TelaMenuEmpreendimento = () => {
                                 Authorization: `Bearer ${token}`
                             }
                         };
-                        const response = await agFetch.post(`/estabelecimento/image/${ultUid}`, formData, multipart); 
+                        const response = await agFetch.post(`/estabelecimento/image/${ultUid}`, formData, multipart);
                         if (response.status >= 200 && response.status <= 299)
                             console.log("Foto Enviada!");
                     } catch (error) {
@@ -445,12 +451,44 @@ const TelaMenuEmpreendimento = () => {
                         </div>
                     </div>
                     <p id={styles["legTema"]}>Escolha o tema de fundo da sua empresa</p><br></br>
-                    <div id={styles["temas"]}>
+                    {/*<div id={styles["temas"]}>
                         <img src={tAzul} alt="Tema Azul" onClick={() => setTema("#3293CA")} />
                         <img src={tVermelho} alt="Tema Vermelho" onClick={() => setTema("#f02d1f")} />
                         <img src={tVerde} alt="Tema Verde" onClick={() => setTema("#1ff076")} />
                         <img src={tRoza} alt="Tema Roza" onClick={() => setTema("#f01fbf")} />
                         <img src={tAmarelo} alt="Tema Amarelo" onClick={() => setTema("#dbd51d")} />
+                    </div>*/}
+                    <div id={styles["temas"]}>
+                        <img
+                            src={tAzul}
+                            alt="Tema Azul"
+                            onClick={() => handleTemaClick("#3293CA")}
+                            className={imagemSelecionada === "#3293CA" ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tVermelho}
+                            alt="Tema Vermelho"
+                            onClick={() => handleTemaClick("#f02d1f")}
+                            className={imagemSelecionada === "#f02d1f" ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tVerde}
+                            alt="Tema Verde"
+                            onClick={() => handleTemaClick("#1ff076")}
+                            className={imagemSelecionada === "#1ff076" ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tRoza}
+                            alt="Tema Roza"
+                            onClick={() => handleTemaClick("#f01fbf")}
+                            className={imagemSelecionada === "#f01fbf" ? styles["descolorida"] : ""}
+                        />
+                        <img
+                            src={tAmarelo}
+                            alt="Tema Amarelo"
+                            onClick={() => handleTemaClick("#dbd51d")}
+                            className={imagemSelecionada === "#dbd51d" ? styles["descolorida"] : ""}
+                        />
                     </div>
                     <br></br>
                     <br></br>
@@ -538,7 +576,6 @@ const TelaMenuEmpreendimento = () => {
                     </div>
 
                     <div id={styles["fbtnSalvarotoCli"]}>
-                        <button id={styles["btnExcluir"]}>Excluir</button>
                         <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" value="Salvar" />
                     </div>
                 </form>
@@ -562,9 +599,15 @@ const TelaMenuEmpreendimento = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <FotoMen />
-
                         <ul id="uMenHamburger">
+                            <FotoMen />
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                             <li>
                                 <p>
                                     <Link to={`/tMenuDBADM/${token}/${uid}`}>
@@ -586,14 +629,14 @@ const TelaMenuEmpreendimento = () => {
                                     </Link>
                                 </p>
                             </li>
-                            <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
+                            <li>
                                 <p>
                                     <Link to={`/tEmpreendimento/${token}/${uid}`}>
                                         Empreendimento
                                     </Link>
                                 </p>
                             </li>
-                            <li>
+                            <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
                                     <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
                                         Novo Empreendimento
@@ -613,7 +656,7 @@ const TelaMenuEmpreendimento = () => {
 
                 <FotoHor />
 
-                <div className={styles.logoMenuCli}><p>Shostners & Shotners</p></div>
+                <div className={styles.logoMenuCli}><p>{nomeEmp}</p></div>
                 <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>

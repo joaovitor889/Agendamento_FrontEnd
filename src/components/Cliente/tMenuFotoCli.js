@@ -1,16 +1,6 @@
 import styles from './tMenuFotoCli.module.css';
-//import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
-
-import Notificacao from '../../icones/Doorbell.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
-
-//foto de perfil
-import FotoHor from './FotoPerfilCliente/fotoClienteHor';
-import FotoLat from './FotoPerfilCliente/fotoClienteLat';
-import FotoMen from './FotoPerfilCliente/fotoClienteMen';
 
 import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
@@ -18,10 +8,28 @@ import React, { useState, useEffect } from "react";
 
 import agFetch from '../../axios/config.js';
 
+import { Link, useParams } from 'react-router-dom';
+
+import { decodeToken } from 'react-jwt';
+
+//foto de perfil
+import FotoHor from './FotoPerfilCliente/fotoClienteHor';
+import FotoLat from './FotoPerfilCliente/fotoClienteLat';
+import FotoMen from './FotoPerfilCliente/fotoClienteMen';
 
 const TelaFotoCliente = () => {
 
     document.title = "Foto do Cliente";
+
+    const { token } = useParams();
+
+    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
+
+    const converToken = decodeToken(token);
+
+    const userID = converToken.id;
+
+    const { uid } = useParams();
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -41,6 +49,44 @@ const TelaFotoCliente = () => {
         }
         setIsMenuClicked(!isMenuClicked)
     }
+
+    //nome da empresa
+    const [nomeEmp, setNomeEmp] = useState();
+
+    useEffect(() => {
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmp(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
+
+    //verificar se o usuario tem foto
+    const baseDaUrl = "http://ec2-54-157-10-132.compute-1.amazonaws.com:4000";
+    useEffect(() => {
+        async function PegaFoto() {
+            try {
+                const fotoResponse = await agFetch.get(`/cliente/pegarPorId?id=${userID}`);
+                const foto = fotoResponse.data.urlFoto;
+                if (foto === null || foto === "propAvatar.png" || foto === "userAvatar.png") {
+                    console.log("Não há imagem!");
+                    const lFoto = FotoPerfil;
+                    setPreview(lFoto);
+                } else {
+                    const lFoto = baseDaUrl + '/Cliente/' + foto;
+                    console.log(lFoto);
+                    setPreview(lFoto);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaFoto();
+    }, [userID])
 
     //logica do upload da foto
     const [selectedFile, setSelectedFile] = useState();
@@ -72,101 +118,38 @@ const TelaFotoCliente = () => {
         setSelectedFile(e.target.files[0]);
     }
 
+    //logica do envio de foto
+    const EnvFoto = async (selectedFile) => {
+        //logica da foto
+        if (selectedFile !== null) {
+            console.log("Foto Preenchida!!!");
+            const formData = new FormData();
+            formData.append('avatar', selectedFile);
+            try {
+                const multipart = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        Authorization: `Bearer ${token}`
+                    }
+                };
+                const response = await agFetch.post('/cliente/image', formData, multipart);
+                if (response.status >= 200 && response.status <= 299) {
+                    alert("Foto de Perfil Atualizada!");
+                    window.location.reload();
+                }
+            } catch (error) {
+                console.log(error);
+                alert("Não foi possível enviar a imagem!");
+            }
+        }
+    }
+
     //atualiza foto de perfil
     const updateFoto = (e) => {
         e.preventDefault();
 
-        alert('Dados Salvos!');
+        EnvFoto(selectedFile);
     }
-
-    const [userData, setUserData] = useState({});
-
-    //const valToken = localStorage.getItem('user_token');
-    //const JSToken = JSON.parse(valToken);
-
-
-    //var token = JSToken['token'];
-    //var tkEmail = JSToken['email'];
-
-    //alert(JSON.stringify(JSToken['token']));
-    //alert(JSON.stringify(JSToken['email']));
-
-    // Função para obter os dados do usuário
-    const fetchUserData = async () => {
-        /*try {
-            const response = await agFetch.get('/clientes/criar', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            const data = response.data;
-
-            //filtra o objeto
-            var objFiltrado = data.find((item) => item.email === tkEmail);
-            var objF = objFiltrado ? { ...objFiltrado } : null;
-
-            setUserData(objF);
-            //alert(tkEmail);
-            //alert(JSON.stringify(data));
-            //alert(JSON.stringify(objF));
-        } catch (error) {
-            alert(error);
-        }*/
-    };
-
-    // Chama a função fetchUserData quando o componente é montado
-    useEffect(() => {
-        fetchUserData();
-    });
-
-    // Extrai as informações necessárias do usuário
-    const nome = "José";
-    const sobrenome = "Luis";
-
-    //const nome = userData.nome;
-    //const sobrenome = userData.sobrenome;
-
-    var pnome = '';
-    var psobrenome = '';
-
-    if (nome && nome.length > 0) {
-        pnome = nome.charAt(0);
-    }
-
-    if (sobrenome && sobrenome.length > 0) {
-        psobrenome = sobrenome.charAt(0);
-    }
-
-    const iniciais = pnome + psobrenome;
-
-
-
-    //Notificacao
-    const [notifications, setNotifications] = useState([]);
-    const [showNotifications, setShowNotifications] = useState(false);
-    const [newNotification, setNewNotification] = useState(false);
-
-    const fetchNotifications = () => {
-        const fakeNotifications = [
-            { id: 1, title: "Título 1", description: "Notificação 1" },
-            { id: 2, title: "Título 2", description: "Notificação 2" },
-            { id: 3, title: "Título 3", description: "Notificação 3" }
-        ];
-        setNotifications(fakeNotifications);
-    };
-
-    const handleClick = () => {
-        if (!showNotifications) {
-            fetchNotifications();
-        }
-        setShowNotifications(!showNotifications);
-        setNewNotification(false);
-    };
-
-    const handleListClose = () => {
-        setShowNotifications(false);
-    };
 
     return (
         <div className={styles.fFotoCliente}>
@@ -177,17 +160,17 @@ const TelaFotoCliente = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <a href="./tMenuDBCli" rel="noreferrer">
+                            <Link to={`/tMenuDBCli/${token}/${uid}`}>
                                 <li><p>Dados Básicos</p></li>
-                            </a>
+                            </Link>
 
-                            <a href="./tMenuEnderecoCli" rel="noreferrer">
+                            <Link to={`/tMenuEnderecoCli/${token}/${uid}`}>
                                 <li><p>Endereço</p></li>
-                            </a>
+                            </Link>
 
-                            <a href="./tMenuFotoCli" rel="noreferrer">
+                            <Link to={`/tMenuFotoCli/${token}/${uid}`}>
                                 <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}><p>Foto</p></li>
-                            </a>
+                            </Link>
                         </div>
                     </ul>
                 </div>
@@ -196,13 +179,15 @@ const TelaFotoCliente = () => {
             <div id={styles["conteudoCli"]}>
                 <h2><center>Foto (Cliente)</center></h2>
                 <form id={styles["formFoto"]} onSubmit={updateFoto}>
-                    <center><img id="fotoDefCli" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
+                    <center><img id="fotoDefCli" className={styles.fotDef} src={preview} alt="Foto Perfil" /></center>
                     <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
                     <div className={styles.legFoto}><p>Adicionar / alterar imagem</p></div>
                     <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" required /></center>
                     <div id={styles["fbtnSalvarotoCli"]}>
                         <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" value="Salvar" />
                     </div>
+                    < br />
+                    < br />
                 </form>
             </div>
 
@@ -223,35 +208,41 @@ const TelaFotoCliente = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <FotoMen />
-
                         <ul id="uMenHamburger">
+                            <FotoMen />
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                             <li>
                                 <p>
-                                    <a href="./tMenuDBCli" rel="noreferrer">
+                                    <Link to={`/tMenuDBCli/${token}/${uid}`}>
                                         Dados Básicos
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuEnderecoCli" rel="noreferrer">
+                                    <Link to={`/tMenuEnderecoCli/${token}/${uid}`}>
                                         Endereço
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <a href="./tMenuFotoCli" rel="noreferrer">
+                                    <Link to={`/tMenuFotoCli/${token}/${uid}`}>
                                         Foto
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a href="./tMenuCli" rel="noreferrer">
+                                    <Link to={`/tMenuCli/${token}/${uid}`}>
                                         Voltar ao Menu
-                                    </a>
+                                    </Link>
                                 </p>
                             </li>
                         </ul>
@@ -259,29 +250,8 @@ const TelaFotoCliente = () => {
                 </div>
 
                 <FotoHor />
-                {/*<div className={styles.notificacao}>
-                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
-                    {showNotifications && (
-                        <div className={styles.notificationContainer}>
-                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
-                            {newNotification && <p>Nova notificação recebida!</p>}
-                            <ul className={styles.notificationList}>
-                                {notifications.map((notification, index) => (
-                                    <li
-                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
-                                        key={notification.id}
-                                    >
-                                        <p className="notification-title">{notification.title}</p>
-                                        <p className={styles.notificationDescription}>{notification.description}</p>
-                                        <hr></hr>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>*/}
-                <div className={styles.logoMenuCli}><p></p></div>
-                <div id={styles["voltar"]}><a href="./tMenuCli" rel="noreferrer"><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
+                <div className={styles.logoMenuCli}><p>{nomeEmp}</p></div>
+                <div id={styles["voltar"]}><Link to={`/tMenuCli/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>
     )

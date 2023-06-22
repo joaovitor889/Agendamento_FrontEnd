@@ -50,7 +50,7 @@
 	border-radius: 25px;
 	background-color: #fff;
 	margin-right: auto;
-	margin-left: 20%;
+	margin-left: -10%;
 }
 
 .logoMenuCli p {
@@ -237,7 +237,7 @@
 	.logoMenuCli {
 		width: 20%;
 		height: 5%;
-		margin-left: 10%;
+		margin-left: -10%;
 	}
 
 	.logoMenuCli p::before {

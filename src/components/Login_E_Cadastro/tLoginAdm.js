@@ -47,7 +47,7 @@ const TelaLoginAdm = () => {
                         } else {
                             // Nenhum estabelecimento encontrado
                             alert("Bem-vindo à plataforma, cadastre um novo Estabelecimento!");
-                            navigate(`/tNovoEmpreendimento/${token}`);
+                            navigate(`/tMenuPLogin/${token}`);
                         }
                     } else {
                         alert("Houve um problema ao obter o estabelecimento");
@@ -84,7 +84,7 @@ const TelaLoginAdm = () => {
                 </div>
                 <div className='campo-de-login'>
                     <div className='butoes'>
-                        <a href="./tLoginAdm" className='Login'>Login</a>
+                        <a href="./tLoginAdm" className='Login' style = {{color: '#fff'}}>Login</a>
                         <a href="./tCadastroAdm" className='Cadastro'>Cadastro</a>
                     </div>
                     <div className='formulario'>

@@ -1,10 +1,10 @@
-import styles from './fotoAdm.module.css';
+import styles from './fotoAdmPLat.module.css';
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { decodeToken } from 'react-jwt';
 import agFetch from '../../../axios/config.js';
 
-const FotoAdm = () => {
+const FotoAdmLat = () => {
     const { token } = useParams();
     const cvToken = decodeToken(token);
     const userID = cvToken.id;
@@ -55,7 +55,7 @@ const FotoAdm = () => {
 
     // Conteúdo HTML
     return (
-        <div className={styles.perfil}>
+        <div id={styles["perfilLateral"]}>
             {fotoContent ? (
                 <img src={fotoContent} alt="Foto de perfil" />
             ) : (
@@ -67,4 +67,4 @@ const FotoAdm = () => {
     );
 };
 
-export default FotoAdm;
+export default FotoAdmLat;

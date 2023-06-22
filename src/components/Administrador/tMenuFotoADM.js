@@ -1,11 +1,6 @@
 import styles from './tMenuFotoADM.module.css';
-//import logo from '../../img/logo.PNG';
 
 import Voltar from '../../icones/chevron-left.png';
-
-import Notificacao from '../../icones/Doorbell.png';
-
-//import Perfil from '../../icones/perfilCliente.png';
 
 import FotoPerfil from '../../icones/UparAlterarPerfilCli.png';
 
@@ -17,15 +12,13 @@ import { Link, useParams } from 'react-router-dom';
 
 import { decodeToken } from 'react-jwt';
 
-//import { Link, useNavigate } from "react-router-dom";
-
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
 import FotoLat from './FotoPerfilAdm/fotoAdmLat';
 import FotoMen from './FotoPerfilAdm/fotoAdmMen';
 
-const TelaFotoCliente = () => {
+const TelaFotoADM = () => {
 
-    document.title = "Foto do Cliente";
+    document.title = "Foto do Adm";
 
     const { token } = useParams();
 
@@ -34,6 +27,8 @@ const TelaFotoCliente = () => {
     const converToken = decodeToken(token);
 
     const userID = converToken.id;
+
+    const { uid } = useParams();
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -53,6 +48,44 @@ const TelaFotoCliente = () => {
         }
         setIsMenuClicked(!isMenuClicked)
     }
+
+    //nome da empresa
+    const [nomeEmp, setNomeEmp] = useState();
+
+    useEffect(() => {
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmp(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
+
+    //verificar se o usuario tem foto
+    const baseDaUrl = "http://ec2-54-157-10-132.compute-1.amazonaws.com:4000";
+    useEffect(() => {
+        async function PegaFoto() {
+            try {
+                const fotoResponse = await agFetch.get(`/proprietarios/pegarUm?id=${userID}`);
+                const foto = fotoResponse.data.urlFoto;
+                if (foto === null || foto === "propAvatar.png") {
+                    console.log("Não há imagem!");
+                    const lFoto = FotoPerfil;
+                    setPreview(lFoto);
+                } else {
+                    const lFoto = baseDaUrl + '/Proprietario/' + foto;
+                    console.log(lFoto);
+                    setPreview(lFoto);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaFoto();
+    }, [userID])
 
     //logica do upload da foto
     const [selectedFile, setSelectedFile] = useState();
@@ -84,83 +117,38 @@ const TelaFotoCliente = () => {
         setSelectedFile(e.target.files[0]);
     }
 
+    //logica do envio de foto
+    const EnvFoto = async (selectedFile) => {
+        //logica da foto
+        if (selectedFile !== null) {
+            console.log("Foto Preenchida!!!");
+            const formData = new FormData();
+            formData.append('avatar', selectedFile);
+            try {
+                const multipart = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        Authorization: `Bearer ${token}`
+                    }
+                };
+                const response = await agFetch.post('/proprietarios/image/', formData, multipart);
+                if (response.status >= 200 && response.status <= 299) {
+                    alert("Foto de Perfil Atualizada!");
+                    window.location.reload();
+                }
+            } catch (error) {
+                console.log(error);
+                alert("Não foi possível enviar a imagem!");
+            }
+        }
+    }
+
     //atualiza foto de perfil
     const updateFoto = (e) => {
         e.preventDefault();
 
-        alert('Dados Salvos!');
+        EnvFoto(selectedFile);
     }
-
-    const [userData, setUserData] = useState({});
-
-    //const valToken = localStorage.getItem('user_token');
-    //const JSToken = JSON.parse(valToken);
-
-
-    //var token = JSToken['token'];
-    //var tkEmail = JSToken['email'];
-
-    //alert(JSON.stringify(JSToken['token']));
-    //alert(JSON.stringify(JSToken['email']));
-
-    // Função para obter os dados do usuário
-    const fetchUserData = async () => {
-        /*try {
-            const response = await agFetch.get('/clientes/criar', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            const data = response.data;
-
-            //filtra o objeto
-            var objFiltrado = data.find((item) => item.email === tkEmail);
-            var objF = objFiltrado ? { ...objFiltrado } : null;
-
-            setUserData(objF);
-            //alert(tkEmail);
-            //alert(JSON.stringify(data));
-            //alert(JSON.stringify(objF));
-        } catch (error) {
-            alert(error);
-        }*/
-    };
-
-    // Chama a função fetchUserData quando o componente é montado
-    useEffect(() => {
-        fetchUserData();
-    });
-
-
-
-    //Notificacao
-    const [notifications, setNotifications] = useState([]);
-    const [showNotifications, setShowNotifications] = useState(false);
-    const [newNotification, setNewNotification] = useState(false);
-
-    const fetchNotifications = () => {
-        const fakeNotifications = [
-            { id: 1, title: "Título 1", description: "Notificação 1" },
-            { id: 2, title: "Título 2", description: "Notificação 2" },
-            { id: 3, title: "Título 3", description: "Notificação 3" }
-        ];
-        setNotifications(fakeNotifications);
-    };
-
-    const handleClick = () => {
-        if (!showNotifications) {
-            fetchNotifications();
-        }
-        setShowNotifications(!showNotifications);
-        setNewNotification(false);
-    };
-
-    const handleListClose = () => {
-        setShowNotifications(false);
-    };
-
-    const { uid } = useParams();
 
     return (
         <div className={styles.fFotoCliente}>
@@ -198,13 +186,15 @@ const TelaFotoCliente = () => {
             <div id={styles["conteudoCli"]}>
                 <h2><center>Foto (ADM)</center></h2>
                 <form id={styles["formFoto"]} onSubmit={updateFoto}>
-                    <center><img id="fotoDefCli" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
+                    <center><img id="fotoDefCli" className={styles.fotDef} src={preview} alt="Foto Perfil" /></center>
                     <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
                     <div className={styles.legFoto}><p>Adicionar / alterar imagem</p></div>
                     <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" required /></center>
                     <div id={styles["fbtnSalvarotoCli"]}>
                         <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" value="Salvar" />
                     </div>
+                    < br />
+                    < br />
                 </form>
             </div>
 
@@ -225,10 +215,16 @@ const TelaFotoCliente = () => {
                         <br></br>
                         <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
 
-                        <FotoMen />
-
                         <ul id="uMenHamburger">
-                        <li>
+                            <FotoMen />
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <li>
                                 <p>
                                     <Link to={`/tMenuDBADM/${token}/${uid}`}>
                                         Dados Básicos
@@ -275,32 +271,11 @@ const TelaFotoCliente = () => {
                 </div>
 
                 <FotoHor />
-                <div className={styles.notificacao}>
-                    <div className={styles.btnNot}><button onClick={handleClick}><img src={Notificacao} alt="notificacao" /></button></div>
-                    {showNotifications && (
-                        <div className={styles.notificationContainer}>
-                            <button className={styles.closeButton} onClick={handleListClose}>X</button>
-                            {newNotification && <p>Nova notificação recebida!</p>}
-                            <ul className={styles.notificationList}>
-                                {notifications.map((notification, index) => (
-                                    <li
-                                        className={`notification-item ${index === 0 ? "first-notification" : ""}`}
-                                        key={notification.id}
-                                    >
-                                        <p className="notification-title">{notification.title}</p>
-                                        <p className={styles.notificationDescription}>{notification.description}</p>
-                                        <hr></hr>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>
-                <div className={styles.logoMenuCli}><p></p></div>
+                <div className={styles.logoMenuCli}><p>{nomeEmp}</p></div>
                 <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>
     )
 }
 
-export default TelaFotoCliente
+export default TelaFotoADM

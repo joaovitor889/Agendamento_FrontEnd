@@ -2,9 +2,9 @@ import styles from './tLoginCli.css';
 
 import { useState, useEffect } from "react";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import authCli from '../../axios/configAuthCli.js';
+import agFetch from '../../axios/config.js';
 
 import FotoEmpresa from './fotoEmpresa';
 
@@ -12,7 +12,8 @@ const TelaLogin = () => {
 
     document.title = "Login Cliente";
 
-    const [user, setUser] = useState();
+    const { uid } = useParams();
+
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
 
@@ -20,84 +21,67 @@ const TelaLogin = () => {
 
     //Requisicoes com a API
 
+    //nome da empresa
+    const [nomeEmpresa, setNomeEmpresa] = useState();
+
     useEffect(() => {
-        const userToken = localStorage.getItem('user_token');
-        const usersStorage = localStorage.getItem('users_bd');
-
-
-        if (userToken && usersStorage) {
-            const hasUser = JSON.parse(usersStorage)?.filter(
-                (user) => user.email === JSON.parse(userToken).email
-            );
-
-            if (hasUser) {
-                setUser(hasUser[0]);
-                console.log(user);
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmpresa(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
             }
         }
-
-        const cameFromMenu = localStorage.getItem('came_from_menu');
-        if (cameFromMenu) {
-            localStorage.removeItem('user_token');
-            localStorage.removeItem('came_from_menu');
-        }
-        // Após a linha 39, adicione o seguinte código para executar o método delete
-        authCli.delete('/auth/cliente')
-            .then((response) => {
-                console.log(response.data);
-                // Faça o tratamento necessário após a exclusão dos dados authProp
-            })
-            .catch((error) => {
-                console.error(error);
-                //alert('Erro ao excluir os dados authProp!');
-            });
-
-    }, [user]);
+        PegaEmpresa();
+    }, [uid])
 
     const signin = async (email, senha) => {
-        //teste se os dados estao sendo enviados
-        //alert(JSON.stringify({ email, senha }));
+        //alert(JSON.stringify({email, senha}));
+        try {
+            const response = await agFetch.post('/auth/cliente', {
+                email: email,
+                senha: senha,
+                estabeUID: uid
+            });
 
-        const data = require('../../clientes/criar.json');
+            if (response.status >= 200 && response.status <= 299) {
+                const token = response.data.token;
+                console.log("Logou no Cliente" + token);
 
-        // Verifique se há um objeto com o mesmo email e senha
-        const user = data.find((obj) => obj.email === email && obj.senha === senha);
-
-        if (user) {
-            // Crie um token contendo o email e a senha do usuário
-            //const token = Math.random().toString(36).substring(2);
-            //const userToken = { token, email, senha };            
-
-            // Faça uma requisição POST para gerar o token no servidor
-            try {
-                const token = Math.random().toString(36).substring(2);
-                await authCli.post('/auth/cliente', { token, email, senha });
-                // Armazene o token no localStorage
-                localStorage.setItem('user_token', JSON.stringify({ token, email, senha }));
-
-                navigate('/tMenuCli');
-            } catch (error) {
-                console.error(error);
-                alert('Erro ao fazer login!');
+                try {
+                    if (response.status >= 200 && response.status <= 299) {
+                        navigate(`/tMenuCli/${token}/${uid}`);
+                    } else {
+                        alert("Houve um problema ao obter o cliente");
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert("Erro ao buscar cliente");
+                }
+            } else if (response.status === 401) {
+                alert("Senha ou email inválido");
+            } else {
+                alert("Houve um problema ao logar, tente novamente mais tarde");
             }
-        } else {
-            // Se os dados forem inválidas, exiba uma mensagem de erro 
-            alert('Dados Inválidos!');
-            return;
+        } catch (error) {
+            console.error(error);
+            alert("Dados incorretos!");
         }
     };
 
     const loginCli = async (e) => {
         e.preventDefault();
-        localStorage.setItem('came_from_menu', 'true');
         signin(email, senha);
     }
+
+    const lnkCad = '/tCadastroCli/' + uid;
 
     return (
         <div className="fLogin">
             <div className={styles.container}>
                 <div className="row">
-                    <div className="logoLoginCli"><h1 title="Bem-Vindo!"><center>Shostners & shostners</center></h1></div>
+                    <div className="logoLoginCli"><h1 title="Bem-Vindo!"><center>{nomeEmpresa}</center></h1></div>
                 </div>
                 <FotoEmpresa />
                 <div className={styles.row}>
@@ -109,7 +93,7 @@ const TelaLogin = () => {
                                 <input type="password" placeholder="Senha" title="Digite sua Senha" id="senha" name="senha" onChange={(e) => setSenha(e.target.value)} required />
                             </div>
                             <div className="links">
-                                <a href="./tCadastroCli">Criar uma conta</a><br></br>
+                                <a href={lnkCad}>Criar uma conta</a><br></br>
                                 <a href="./tEsqueceuSenhaCli">Esqueceu a senha?</a>
                             </div><br></br>
                             <div className="botoesLoginCli">

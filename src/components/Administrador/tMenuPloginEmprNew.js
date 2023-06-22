@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 
 import agFetch from '../../axios/config.js';
 
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import tAzul from '../../temas/tema01.png';
 
@@ -25,21 +25,17 @@ import tAmarelo from '../../temas/tema05.png';
 //import { Link, useNavigate } from "react-router-dom";
 
 import FotoHor from './FotoPerfilAdm/fotoAdmHor';
-import FotoLat from './FotoPerfilAdm/fotoAdmLat';
-import FotoMen from './FotoPerfilAdm/fotoAdmMen';
+import FotoLat from './FotoPerfilAdm/fotoAdmPLat';
+import FotoMen from './FotoPerfilAdm/fotoAdmPMen';
 
 const TelaMenuEmpreendimento = () => {
-    document.title = "Empreendimento";
-
-
-    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
+    document.title = "Novo Empreendimento";
 
     const { token } = useParams();
 
-    const { uid } = useParams();
+    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODM4NDQ0NjcsImV4cCI6OTMzMTIwMDAwMDE2ODM4NTAwMDB9.Zr0_085Qp3mtxiapPztbt_YtzSUyiie7rjnB_ubEAm4";
 
-    //alert("Token: " + token);
-    //alert("uid: " + uid);
+    const navigate = useNavigate();
 
     //Programação do Menu de Hamburger
     // to change burger classes
@@ -90,197 +86,10 @@ const TelaMenuEmpreendimento = () => {
         };
     });
 
-    //nome da empresa
-    const [nomeEmp, setNomeEmp] = useState();
-
-    useEffect(() => {
-        async function PegaEmpresa() {
-            try {
-                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
-                setNomeEmp(empResponse.data.nome);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        PegaEmpresa();
-    }, [uid])
-
-    //dados do formulario
-    const [nomeEst, setNomeEst] = useState("");
-
-    //API do CEP
-    const { register, setValue } = useForm();
-
-    //Campos da API CEP
-    const [jscep, setCEP] = useState("");
-    const [jsrua, setRua] = useState("");
-    const [jsnum, setNum] = useState("");
-    const [jscomp, setComp] = useState("");
-    const [jsbairro, setBairro] = useState("");
-    const [jscidade, setCidade] = useState("");
-    const [jseuf, setUF] = useState("");
-
-    //horario de funcionamento
-    const [segInic, setSegInic] = useState("");
-    const [terInic, setTerInic] = useState("");
-    const [quaInic, setQuaInic] = useState("");
-    const [quiInic, setQuiInic] = useState("");
-    const [sexInic, setSexInic] = useState("");
-    const [sabInic, setSabInic] = useState("");
-    const [domInic, setDomInic] = useState("");
-
-    const [segFim, setSegFim] = useState("");
-    const [terFim, setTerFim] = useState("");
-    const [quaFim, setQuaFim] = useState("");
-    const [quiFim, setQuiFim] = useState("");
-    const [sexFim, setSexFim] = useState("");
-    const [sabFim, setSabFim] = useState("");
-    const [domFim, setDomFim] = useState("");
-
-    const [ftema, setTema] = useState("");
-
-    const ftelefone = "15 996633179";
-
     //logica do upload da foto
-    const [selectedFile, setSelectedFile] = useState();
+    const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState();
 
-    //verificar se o estabelecimento tem logo
-    const baseDaUrl = "http://ec2-54-157-10-132.compute-1.amazonaws.com:4000";
-    useEffect(() => {
-        async function PegaFoto() {
-            try {
-                const fotoResponse = await agFetch.get(`/estabelecimento/${uid}`);
-                const foto = fotoResponse.data.imageUrl;
-                if (foto === null) {
-                    console.log("Não há imagem!");
-                    const lFoto = FotoPerfil;
-                    setPreview(lFoto);
-                } else {
-                    const lFoto = baseDaUrl + '/Estabelicimento/' + foto;
-                    console.log(lFoto);
-                    setPreview(lFoto);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        PegaFoto();
-    }, [uid])
-
-    //variaveis de cor
-    const [imagemSelecionadaAzul, setImagemSelecionadaAzul] = useState(false);
-    const [imagemSelecionadaVermelho, setImagemSelecionadaVermelho] = useState(false);
-    const [imagemSelecionadaVerde, setImagemSelecionadaVerde] = useState(false);
-    const [imagemSelecionadaRoza, setImagemSelecionadaRoza] = useState(false);
-    const [imagemSelecionadaAmarelo, setImagemSelecionadaAmarelo] = useState(false);
-
-    //pegar os dados
-    useEffect(() => {
-        async function PegaEstabelecimento() {
-            try {
-                const estResponse = await agFetch.get(`/estabelecimento/${uid}`);
-                const nomEst = estResponse.data.nome;
-                const cepEst = estResponse.data.CEP;
-                const ufEst = estResponse.data.uf;
-                const cidadeEst = estResponse.data.cidade;
-                const bairroEst = estResponse.data.bairro;
-                const ruaEst = estResponse.data.logradouro;
-                const numEst = estResponse.data.numero;
-                const compEst = estResponse.data.complemento;
-                const temEst = estResponse.data.tema;
-
-                if (temEst) {
-                    if (temEst === "#3293CA") {
-                        setImagemSelecionadaAzul(true);
-                    } else if (temEst === "#f02d1f") {
-                        setImagemSelecionadaVermelho(true);
-                    } else if (temEst === "#1ff076") {
-                        setImagemSelecionadaVerde(true);
-                    } else if (temEst === "#f01fbf") {
-                        setImagemSelecionadaRoza(true);
-                    } else if (temEst === "#dbd51d") {
-                        setImagemSelecionadaAmarelo(true);
-                    }
-                }
-
-                setNomeEst(nomEst);
-                setCEP(cepEst);
-                setUF(ufEst);
-                setCidade(cidadeEst);
-                setBairro(bairroEst);
-                setRua(ruaEst);
-                setNum(numEst);
-                setComp(compEst);
-                setTema(temEst);
-                //setSelectedFile(imgEst);
-
-                //horarios
-                const estHorsResponse = await agFetch.get(`/estabelecimento/${uid}`);
-                const horarios = estHorsResponse.data.horarios;
-
-                const horarioSegunda = horarios.find(horario => horario.diaSemana === 'segunda');
-                if (horarioSegunda) {
-                    const horInicSeg = horarioSegunda.inicio;
-                    const horFimSeg = horarioSegunda.fim;
-                    setSegInic(horInicSeg);
-                    setSegFim(horFimSeg);
-                }
-
-                const horarioTerca = horarios.find(horario => horario.diaSemana === 'terça');
-                if (horarioTerca) {
-                    const horInicTer = horarioTerca.inicio;
-                    const horFimTer = horarioTerca.fim;
-                    setTerInic(horInicTer);
-                    setTerFim(horFimTer);
-                }
-
-                const horarioQuarta = horarios.find(horario => horario.diaSemana === 'quarta');
-                if (horarioQuarta) {
-                    const horInicQua = horarioQuarta.inicio;
-                    const horFimQua = horarioQuarta.fim;
-                    setQuaInic(horInicQua);
-                    setQuaFim(horFimQua);
-                }
-
-                const horarioQuinta = horarios.find(horario => horario.diaSemana === 'quinta');
-                if (horarioQuinta) {
-                    const horInicQui = horarioQuinta.inicio;
-                    const horFimQui = horarioQuinta.fim;
-                    setQuiInic(horInicQui);
-                    setQuiFim(horFimQui);
-                }
-
-                const horarioSexta = horarios.find(horario => horario.diaSemana === 'sexta');
-                if (horarioSexta) {
-                    const horInicSex = horarioSexta.inicio;
-                    const horFimSex = horarioSexta.fim;
-                    setSexInic(horInicSex);
-                    setSexFim(horFimSex);
-                }
-
-                const horarioSabado = horarios.find(horario => horario.diaSemana === 'sábado');
-                if (horarioSabado) {
-                    const horInicSab = horarioSabado.inicio;
-                    const horFimSab = horarioSexta.fim;
-                    setSabInic(horInicSab);
-                    setSabFim(horFimSab);
-                }
-
-                const horarioDomingo = horarios.find(horario => horario.diaSemana === 'domingo');
-                if (horarioDomingo) {
-                    const horInicDom = horarioDomingo.inicio;
-                    const horFimDom = horarioDomingo.fim;
-                    setDomInic(horInicDom);
-                    setDomFim(horFimDom);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-        PegaEstabelecimento();
-    }, [uid])
 
     useEffect(() => {
         if (!selectedFile) {
@@ -307,6 +116,44 @@ const TelaMenuEmpreendimento = () => {
         setSelectedFile(e.target.files[0]);
     }
 
+    //dados do formulario
+    const [nomeEst, setNomeEst] = useState("");
+
+    //horario de funcionamento
+    const [segInic, setSegInic] = useState("");
+    const [terInic, setTerInic] = useState("");
+    const [quaInic, setQuaInic] = useState("");
+    const [quiInic, setQuiInic] = useState("");
+    const [sexInic, setSexInic] = useState("");
+    const [sabInic, setSabInic] = useState("");
+    const [domInic, setDomInic] = useState("");
+
+    const [segFim, setSegFim] = useState("");
+    const [terFim, setTerFim] = useState("");
+    const [quaFim, setQuaFim] = useState("");
+    const [quiFim, setQuiFim] = useState("");
+    const [sexFim, setSexFim] = useState("");
+    const [sabFim, setSabFim] = useState("");
+    const [domFim, setDomFim] = useState("");
+
+    const [ftema, setTema] = useState("");
+    const [imagemSelecionada, setImagemSelecionada] = useState(null);
+
+    const ftelefone = "15 996633179";
+
+    //API do CEP
+    const { register, setValue } = useForm();
+
+    //Campos da API CEP
+    const [jscep, setCEP] = useState("");
+    const [jsrua, setRua] = useState("");
+    const [jsnum, setNum] = useState("");
+    const [jscomp, setComp] = useState("");
+    const [jsbairro, setBairro] = useState("");
+    const [jscidade, setCidade] = useState("");
+    const [jseuf, setUF] = useState("");
+
+
     const checkCEP = (e) => {
         const cep = e.target.value.replace(/\D/g, '');
         //console.log(cep);
@@ -327,6 +174,11 @@ const TelaMenuEmpreendimento = () => {
             });
     }
 
+    const handleTemaClick = (cor) => {
+        setTema(cor);
+        setImagemSelecionada(cor);
+    };
+
     //salvar o empreendimento
     const cadEstabelecimento = async (selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
         //alert(JSON.stringify({ selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
@@ -342,6 +194,7 @@ const TelaMenuEmpreendimento = () => {
             numero: jsnum,
             complemento: jscomp,
             tema: ftema,
+            imageUrl: null,
             CEP: jscep,
             horarios: [
                 {
@@ -401,7 +254,7 @@ const TelaMenuEmpreendimento = () => {
             return;
         }
 
-        //alert(JSON.stringify(textData));
+        console.log(textData);
 
         try {
             //alert(token);
@@ -412,12 +265,12 @@ const TelaMenuEmpreendimento = () => {
             };
 
             // Enviar os dados de texto
-            const responseText = await agFetch.patch(`/estabelecimento/update?uid=${uid}`, textData, { headers });
+            const responseText = await agFetch.post('/estabelecimento/criar', textData, { headers });
 
             console.log('Resposta de texto:', responseText.data);
 
             if (responseText.status >= 200 && responseText.status <= 299) {
-                alert("Estabelecimento Atualizado!");
+                alert("Estabelecimento Cadastrado!");
 
                 const ultUid = responseText.data.uid;
 
@@ -425,7 +278,6 @@ const TelaMenuEmpreendimento = () => {
 
                 //logica da foto
                 if (selectedFile !== null) {
-                    console.log("Foto Preenchida!!!");
                     const formData = new FormData();
                     formData.append('logo', selectedFile);
                     try {
@@ -442,12 +294,12 @@ const TelaMenuEmpreendimento = () => {
                         console.log(error);
                     }
                 }
+                navigate("/tLoginAdm");
             }
 
         } catch (error) {
             console.error('Erro ao enviar requisições:', error);
-            alert(error);
-            //alert("Dados Inválidos!");
+            alert("Dados Inválidos!");
         }
     }
 
@@ -468,24 +320,8 @@ const TelaMenuEmpreendimento = () => {
                         <br></br>
                         <FotoLat />
                         <div id={styles["textoLL"]}>
-                            <Link to={`/tMenuDBADM/${token}/${uid}`}>
-                                <li><p>Dados Básicos</p></li>
-                            </Link>
-
-                            {/*<Link to='/tMenuEnderecoADM' target = "_blank" rel="noreferrer">*/}
-                            <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
-                                <li><p>Endereço</p></li>
-                            </Link>
-
-                            <Link to={`/tMenuFotoADM/${token}/${uid}`}>
-                                <li><p>Foto</p></li>
-                            </Link>
-
-                            <Link to={`/tEmpreendimento/${token}/${uid}`}>
-                                <li style={{ color: '#000' }}><p>Empreendimento</p></li>
-                            </Link>
-                            <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
-                                <li><p>New Empreendimento</p></li>
+                            <Link to={`/tMenuPLogin/${token}`}>
+                                <li style={{ color: '#000' }}><p>New Empreendimento</p></li>
                             </Link>
                         </div>
                     </ul>
@@ -496,11 +332,11 @@ const TelaMenuEmpreendimento = () => {
             <div id={styles["conteudoCli"]}>
                 <h2><center>Logo</center></h2>
                 <form id={styles["formFoto"]} onSubmit={salvarEmpreendimento}>
-                    <center><img id="fotoDefCli" className={styles.fotDef} src={preview} alt="Foto Perfil" /></center>
+                    <center><img id="fotoDefCli" className={styles.fotDef} src={FotoPerfil} alt="Foto Perfil" /></center>
                     <center>{selectedFile && <img src={preview} alt="Foto Perfil" />}</center>
                     <div className={styles.legFoto}><p>Adicionar / alterar imagem</p></div>
                     <center><input type="file" id={styles["fotoCli"]} name="fotoCli" onChange={onSelectFile} accept="image/jpeg, image/jpg, image/png" /*required*/ /></center>
-                    <center><input type="text" placeholder='Nome:' name="nome" value={nomeEst} onChange={(e) => setNomeEst(e.target.value)} required /></center>
+                    <center><input type="text" placeholder='Nome:' name="nome" onChange={(e) => setNomeEst(e.target.value)} required /></center>
                     <div id={styles["ptHor"]}>
                         <center>
                             <br></br>
@@ -517,57 +353,57 @@ const TelaMenuEmpreendimento = () => {
                                 <tr>
                                     <td><p>Segunda</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" value={segInic} onChange={(e) => setSegInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setSegInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" value={segFim} onChange={(e) => setSegFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setSegFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Terça</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" value={terInic} onChange={(e) => setTerInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setTerInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" value={terFim} onChange={(e) => setTerFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setTerFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Quarta</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" value={quaInic} onChange={(e) => setQuaInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setQuaInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" value={quaFim} onChange={(e) => setQuaFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setQuaFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Quinta</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" value={quiInic} onChange={(e) => setQuiInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setQuiInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" value={quiFim} onChange={(e) => setQuiFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setQuiFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Sexta</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" value={sexInic} onChange={(e) => setSexInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setSexInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" value={sexFim} onChange={(e) => setSexFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setSexFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Sábado</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" value={sabInic} onChange={(e) => setSabInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setSabInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" value={sabFim} onChange={(e) => setSabFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setSabFim(e.target.value)} /></td>
                                 </tr>
 
                                 <tr>
                                     <td><p>Domingo</p></td>
                                     <td><p>Início</p></td>
-                                    <td><input type="time" name="horInicio" value={domInic} onChange={(e) => setDomInic(e.target.value)} /></td>
+                                    <td><input type="time" name="horInicio" onChange={(e) => setDomInic(e.target.value)} /></td>
                                     <td><p>Fim</p></td>
-                                    <td><input type="time" name="horFinal" value={domFim} onChange={(e) => setDomFim(e.target.value)} /></td>
+                                    <td><input type="time" name="horFinal" onChange={(e) => setDomFim(e.target.value)} /></td>
                                 </tr>
                             </table>
                             <br></br>
@@ -585,67 +421,32 @@ const TelaMenuEmpreendimento = () => {
                         <img
                             src={tAzul}
                             alt="Tema Azul"
-                            onClick={() => {
-                                setTema("#3293CA");
-                                setImagemSelecionadaAzul(true);
-                                setImagemSelecionadaVermelho(false);
-                                setImagemSelecionadaVerde(false);
-                                setImagemSelecionadaRoza(false);
-                                setImagemSelecionadaAmarelo(false);
-                            }}
-                            className={imagemSelecionadaAzul ? styles["descolorida"] : ""}
+                            onClick={() => handleTemaClick("#3293CA")}
+                            className={imagemSelecionada === "#3293CA" ? styles["descolorida"] : ""}
                         />
                         <img
                             src={tVermelho}
                             alt="Tema Vermelho"
-                            onClick={() => {
-                                setTema("#f02d1f");
-                                setImagemSelecionadaAzul(false);
-                                setImagemSelecionadaVermelho(true);
-                                setImagemSelecionadaVerde(false);
-                                setImagemSelecionadaRoza(false);
-                                setImagemSelecionadaAmarelo(false);
-                            }}
-                            className={imagemSelecionadaVermelho ? styles["descolorida"] : ""}
+                            onClick={() => handleTemaClick("#f02d1f")}
+                            className={imagemSelecionada === "#f02d1f" ? styles["descolorida"] : ""}
                         />
                         <img
                             src={tVerde}
                             alt="Tema Verde"
-                            onClick={() => {
-                                setTema("#1ff076");
-                                setImagemSelecionadaAzul(false);
-                                setImagemSelecionadaVermelho(false);
-                                setImagemSelecionadaVerde(true);
-                                setImagemSelecionadaRoza(false);
-                                setImagemSelecionadaAmarelo(false);
-                            }}
-                            className={imagemSelecionadaVerde ? styles["descolorida"] : ""}
+                            onClick={() => handleTemaClick("#1ff076")}
+                            className={imagemSelecionada === "#1ff076" ? styles["descolorida"] : ""}
                         />
                         <img
                             src={tRoza}
                             alt="Tema Roza"
-                            onClick={() => {
-                                setTema("#f01fbf");
-                                setImagemSelecionadaAzul(false);
-                                setImagemSelecionadaVermelho(false);
-                                setImagemSelecionadaVerde(false);
-                                setImagemSelecionadaRoza(true);
-                                setImagemSelecionadaAmarelo(false);
-                            }}
-                            className={imagemSelecionadaRoza ? styles["descolorida"] : ""}
+                            onClick={() => handleTemaClick("#f01fbf")}
+                            className={imagemSelecionada === "#f01fbf" ? styles["descolorida"] : ""}
                         />
                         <img
                             src={tAmarelo}
                             alt="Tema Amarelo"
-                            onClick={() => {
-                                setTema("#dbd51d");
-                                setImagemSelecionadaAzul(false);
-                                setImagemSelecionadaVermelho(false);
-                                setImagemSelecionadaVerde(false);
-                                setImagemSelecionadaRoza(false);
-                                setImagemSelecionadaAmarelo(true);
-                            }}
-                            className={imagemSelecionadaAmarelo ? styles["descolorida"] : ""}
+                            onClick={() => handleTemaClick("#dbd51d")}
+                            className={imagemSelecionada === "#dbd51d" ? styles["descolorida"] : ""}
                         />
                     </div>
                     <br></br>
@@ -665,7 +466,6 @@ const TelaMenuEmpreendimento = () => {
                                         event.preventDefault();
                                     }
                                 }}
-                                value={jscep}
                                 ref={fcep}
                                 onBlur={checkCEP}
                                 onChange={(e) => setCEP(e.target.value)}
@@ -677,7 +477,6 @@ const TelaMenuEmpreendimento = () => {
                                 title="Digite a sua Rua"
                                 name="rua" id={styles["rua"]}
                                 className={styles.segColuna}
-                                value={jsrua}
                                 {...register("rua")}
                                 onChange={(e) => setRua(e.target.value)}
                                 required />
@@ -695,7 +494,6 @@ const TelaMenuEmpreendimento = () => {
                                     }
                                 }}
                                 id={styles["numero"]}
-                                value={jsnum}
                                 ref={fnum}
                                 onChange={(e) => setNum(e.target.value)}
                                 required /> <br></br>
@@ -706,7 +504,6 @@ const TelaMenuEmpreendimento = () => {
                                 title="Digite o seu Complemento"
                                 name="comp" id={styles["comple"]}
                                 className={styles.segColuna}
-                                value={jscomp}
                                 onChange={(e) => setComp(e.target.value)} /> <br></br>
                         </div>
                     </div>
@@ -716,7 +513,6 @@ const TelaMenuEmpreendimento = () => {
                             title="Digite o seu bairro"
                             name="bairro"
                             id={styles["bairro"]}
-                            value={jsbairro}
                             {...register("bairro")}
                             onChange={(e) => setBairro(e.target.value)}
                             required />
@@ -724,7 +520,6 @@ const TelaMenuEmpreendimento = () => {
                             placeholder="Cidade:"
                             title="Digite a sua Cidade"
                             name="cidade"
-                            value={jscidade}
                             id={styles["cidade"]}
                             {...register("cidade")}
                             onChange={(e) => setCidade(e.target.value)}
@@ -733,7 +528,6 @@ const TelaMenuEmpreendimento = () => {
                             placeholder="Estado:"
                             title="Digite o seu Estado"
                             name="estado"
-                            value={jseuf}
                             id={styles["estado"]}
                             {...register("uf")}
                             onChange={(e) => setUF(e.target.value)}
@@ -741,7 +535,6 @@ const TelaMenuEmpreendimento = () => {
                     </div>
 
                     <div id={styles["fbtnSalvarotoCli"]}>
-                        <button id={styles["btnExcluir"]}>Excluir</button>
                         <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" value="Salvar" />
                     </div>
                 </form>
@@ -774,45 +567,17 @@ const TelaMenuEmpreendimento = () => {
                             <br></br>
                             <br></br>
                             <br></br>
-                            <li>
-                                <p>
-                                    <Link to={`/tMenuDBADM/${token}/${uid}`}>
-                                        Dados Básicos
-                                    </Link>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <Link to={`/tMenuEnderecoADM/${token}/${uid}`}>
-                                        Endereço
-                                    </Link>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <Link to={`/tMenuFotoADM/${token}/${uid}`}>
-                                        Foto
-                                    </Link>
-                                </p>
-                            </li>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <Link to={`/tEmpreendimento/${token}/${uid}`}>
-                                        Empreendimento
-                                    </Link>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <Link to={`/tNovoEmpreendimento/${token}/${uid}`}>
+                                    <Link to={`/tMenuPLogin/${token}`}>
                                         Novo Empreendimento
                                     </Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to={`/tPesqFunc/${token}/${uid}`}>
-                                        Voltar ao Menu
+                                    <Link to={'/tLoginAdm'}>
+                                        Voltar
                                     </Link>
                                 </p>
                             </li>
@@ -822,8 +587,8 @@ const TelaMenuEmpreendimento = () => {
 
                 <FotoHor />
 
-                <div className={styles.logoMenuCli}><p>{nomeEmp}</p></div>
-                <div id={styles["voltar"]}><Link to={`/tPesqFunc/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
+                <div className={styles.logoMenuCli}><p>Cadastrar Empresa</p></div>
+                <div id={styles["voltar"]}><Link to={'/tLoginAdm'}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
             </div>
         </div>
     )
