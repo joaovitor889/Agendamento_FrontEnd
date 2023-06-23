@@ -90,10 +90,9 @@ export default function Modal({isOpen, setModalOpen, children, categori, nome, d
                     <br/>
                     <label>Selecione a categoria desse serviço</label>
                         <select name="cars" style={TEXT_STYLE}>
-                                <option value={categori[0].nome}>{categori[0].nome}</option>
-                                <option value="sombrancelha">Sombrancelha</option>
-                                <option value="manicure">Manicure</option>
-                                <option value="hidratação">hidratação</option>
+                                <option value={categori[0].categoria.nome}>{categori[0].categoria.nome}</option>
+                                <option value={categori[1].categoria.nome}>{categori[1].categoria.nome}</option>
+                                <option value={categori[2].categoria.nome}>{categori[2].categoria.nome}</option>
                         </select>
                     <br/>
                     <label>Nome</label>
@@ -105,11 +104,11 @@ export default function Modal({isOpen, setModalOpen, children, categori, nome, d
                     <div style={FINALIZACAO_STYLE}>
                         <div style = {FINAL_STYLE}>
                             <label>Tempo</label>
-                            <input type="time" placeholder="00:00" style={TEXT_SHORT_STYLE}/>
+                            <input type="time" placeholder={categori[0].tempoMedioMin}style={TEXT_SHORT_STYLE}/>
                         </div>
                         <div style={FINAL_STYLE}>
                             <label>Preço</label>
-                            <input type="text" placeholder="R$: 00,00" style={TEXT_SHORT_STYLE}/>
+                            <input type="text" placeholder={categori[0].preco} style={TEXT_SHORT_STYLE}/>
                         </div>
                     </div>
 

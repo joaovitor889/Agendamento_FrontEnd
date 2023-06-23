@@ -156,6 +156,10 @@ a{
     text-align: justify;
 }
 
+.card span{
+    display: none;
+}
+
 .card_footer{
     display: flex;
     justify-content: space-between;

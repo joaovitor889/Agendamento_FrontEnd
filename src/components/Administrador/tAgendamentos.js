@@ -5,6 +5,7 @@ import block from '../../img/block-func.png';
 import filtro from '../../img/filter.png';
 
 import Bloquear from '../modal/Bloquear';
+import DetalhesAge from '../modal/DetalhesAge';
 import React, { useEffect, useState } from 'react';
 import {
     BrowserRouter as Router,
@@ -24,6 +25,7 @@ const TelaAgendamentos = () => {
     document.title = "Agendamentos";
 
     const [openModal, setOpenModal] = useState(false)
+    const [openAgeda, setDetalheOpen] = useState(false)
 
     const { uid } = useParams();
     const { token } = useParams();
@@ -118,7 +120,7 @@ const TelaAgendamentos = () => {
                 </div>
                 <a onClick={() => setOpenModal(true)} className={styles.block}> <img src={block} alt="bloquear" /></a>
                 <div className={styles.Container}>
-                    <div className={styles.Card}>
+                    <div onClick={() => setDetalheOpen(true)} className={styles.Card}>
                         <div className={styles.Card_Header}>
                             <h2>Cliente: Ana Catarina</h2>
                             <p>Serviços: cabelereira, manicure</p>
@@ -226,6 +228,7 @@ const TelaAgendamentos = () => {
                 </div>
 
                 <Bloquear isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)} />
+                <DetalhesAge isOpen={openAgeda}  setDetalheOpen={() => setDetalheOpen(!openAgeda)} />
             </div>
         </main>
     )

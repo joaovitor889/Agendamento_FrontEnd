@@ -216,6 +216,7 @@ const TelaCadFunc = () => {
 
         console.log(arrayIds);
 
+
     return (
         <div className={styles.fCadFunc}>
             <div className={styles.body_header}>

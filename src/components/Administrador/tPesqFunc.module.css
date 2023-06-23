@@ -172,6 +172,9 @@ a{
 	margin: 5px 0;
     font-family: 'Roboto';
 }
+.card span{
+    display: none;
+}
 .card_footer{
     display: flex;
     justify-content: space-between;

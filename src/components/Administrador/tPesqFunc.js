@@ -39,6 +39,8 @@ const TelaPesqFunc = () => {
         }).catch(error => {
             console.log(error);
         })
+
+        carregarServicos();
     }
 
     
@@ -128,6 +130,29 @@ const TelaPesqFunc = () => {
     
   };
 
+  
+
+  function carregarServicos (){
+    var nomesServ = []
+    var IdsFunc = []
+    for(var i = 0; i < elementos.length; i++){
+        IdsFunc[i] = elementos[i].id;
+        console.log(IdsFunc[i])
+        agFetch.get(`http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/funcionario/servicos/19`).then(
+            response => {
+                console.log(response.data)
+                for(var x = 0; x < response.data.length; x++){
+                    nomesServ[0] =  response.data[x].nome;
+                }
+            }
+        )
+    }
+    console.log(nomesServ[0]);
+  }
+
+
+    
+
 
     return (
         <div className={styles.fPesqFunc} onLoad={CarregamentoInicial}>
@@ -198,6 +223,7 @@ const TelaPesqFunc = () => {
                         <div className={styles.card}>
                             <h4 key={index} id='nomeFunc'>{elemento.nome}</h4>
                             <p id='servFunc'>Serviços: cabelereira, manicure</p>
+                            <span >{elemento.id}</span>
                             <div className={styles.card_footer}>
                                 <h4 id='ganhosFunc'>Faturamento Mensal: R$ 400,00</h4>
                                 <img src={lixeira} alt="" />

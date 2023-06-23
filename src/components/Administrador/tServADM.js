@@ -101,6 +101,34 @@ const TelaMenuADM = () => {
         
     }
 
+    function BloueioServ (id, nome, preco, ativo, tempo, descricao, categoria) {
+        
+        var service = {
+            UIDEstabelecimento: uid,
+            nome: nome,
+            preco: preco,
+            ativo: !(ativo),
+            tempoMedioMin: tempo,
+            descricao: descricao,
+            categoria: categoria
+        }
+
+
+        const blockServ = async () => {
+            try {
+                //const response = await agFetch.get('/estabelecimento/todasCat/WLShVu');
+                const response = await agFetch.patch(`/servicos/${id}`, service);
+                alert('serviço bloqueado')
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        blockServ();
+
+        
+        
+    }
+
     return (
         <div className={styles.fMenuADM}>
             <input type='checkbox' id={styles["check"]} />
@@ -173,12 +201,13 @@ const TelaMenuADM = () => {
                     </div>*/}
 
                     {services.map((service, index) => (
-                        <div key={index} className={styles.card} onClick={() => setOpenModal(true)}>
-                            <h4 className={styles.card_header}>{service.nome}</h4>
+                        <div key={index} className={styles.card} >
+                            <h4 className={styles.card_header} onClick={() => setOpenModal(true)}>{service.nome}</h4>
                             <p className={styles.card_body}>{service.descricao}</p>
+                            <span >{service.id}</span>
                             <div className={styles.card_footer}>
                                 <h4>Preço: {service.preco.toLocaleString('pt-BR')}</h4>
-                                <img src={lixeira} alt="" />
+                                <img src={lixeira} alt="" onClick={() => BloueioServ(service.id, service.nome, service.preco, service.ativo, service.tempoMedioMin, service.descricao, service.categoria)}/>
                             </div>
                         </div>
                     ))}
