@@ -14,11 +14,12 @@
     background-color: #000;
     border-radius: 50%;
     height: 8vh;
-    width: 4vw;
+    width: 9vw;
 }
 
 .fundo p {
     font-size: 6vw;
+    position: relative;
     line-height: 70%;
     color: #fff;
     margin-top: 10%;
@@ -37,7 +38,7 @@
 .perfil p {
 	font-size: 6vw;
 	line-height: 70%;
-    top: 65%;
+    top: 20%;
     color: #fff;
 }
 
@@ -49,6 +50,11 @@
         margin-left: 5%;
     }
 
+    .fundo {
+        height: 8vh;
+        width: 4vw;
+    }
+
     .perfil img {
         margin: 10%;
         width: 100%;
@@ -57,7 +63,7 @@
     }
     .perfil p {
 		font-size: 2vw;
-        margin-top: 40%;
+        margin-top: 20%;
 		line-height: 75%;
 	}
 }

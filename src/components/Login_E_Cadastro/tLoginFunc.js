@@ -95,7 +95,7 @@ const TelaLogin = () => {
                                 <a href="./tEsqueceuSenhaFunc" rel="noreferrer">Esqueceu a senha?</a>
                             </div><br></br>
                             <div className="botoes">
-                                <input type="submit" id="btnLoginFunc" name="btnLogin" onClick={() => alert('Entra na sua conta se os dados estiverem corretos!')} value="Login" /><br></br>
+                                <input type="submit" id="btnLoginFunc" name="btnLogin" value="Login" /><br></br>
                                 {/*<center><div id="voltFunc"><button type="button"
                                     onClick={(e) => {
                                         e.preventDefault();

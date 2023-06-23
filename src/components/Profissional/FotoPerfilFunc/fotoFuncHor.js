@@ -1,47 +1,70 @@
-//Este tipo de arquivo e salvo com a extensao .js ou .jsx
-
 import styles from './fotoFuncHor.module.css';
-
-//import { useState, useEffect, useRef } from "react";
-
-//import { useNavigate } from 'react-router-dom';
-
-//import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import { decodeToken } from 'react-jwt';
+import agFetch from '../../../axios/config.js';
 
 const FotoFuncHor = () => {
+    const { token } = useParams();
+    const cvToken = decodeToken(token);
+    const userID = cvToken.id;
+    const [fotoContent, setFotoContent] = useState();
+    const [iniciais, setIniciais] = useState();
 
-    //variaveis
+    const baseDaUrl = "http://ec2-54-157-10-132.compute-1.amazonaws.com:4000";
 
+    useEffect(() => {
+        async function PegaFoto() {
+            try {
+                const usResponse = await agFetch.get(`/funcionario/pegarPorId?id=${userID}`);
+                const fotoAvatar = usResponse.data.urlFoto;
 
-    //funcoes
+                console.log(fotoAvatar);
 
-    // Extrai as informações necessárias do usuário
-    const nome = "José";
-    const sobrenome = "Luis";
+                if (fotoAvatar === "funcAvatar.png" || fotoAvatar === null) {
+                    // Lógica das iniciais
+                    const nomeCompleto = usResponse.data.nome;
 
-    //const nome = userData.nome;
-    //const sobrenome = userData.sobrenome;
+                    if (nomeCompleto.includes(' ')) {
+                        const primeiroEspaco = nomeCompleto.indexOf(' ');
+                        const ultimoEspaco = nomeCompleto.lastIndexOf(' ');
 
-    var pnome = '';
-    var psobrenome = '';
+                        const nome = nomeCompleto.substring(0, primeiroEspaco);
+                        const sobrenome = nomeCompleto.substring(ultimoEspaco + 1);
 
-    if (nome && nome.length > 0) {
-        pnome = nome.charAt(0);
-    }
+                        const pNome = nome.charAt(0).toUpperCase();
+                        const sNome = sobrenome.charAt(0).toUpperCase();
 
-    if (sobrenome && sobrenome.length > 0) {
-        psobrenome = sobrenome.charAt(0);
-    }
+                        const inic = pNome + sNome;
+                        setIniciais(inic);
+                    } else {
+                        const inic = nomeCompleto.slice(0, 2).toUpperCase();
+                        setIniciais(inic);
+                    }
+                } else {
+                    const lFoto = baseDaUrl + '/Funcionario/' + fotoAvatar;
+                    setFotoContent(lFoto);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
-    const iniciais = pnome + psobrenome;
+        PegaFoto();
+    }, [userID]);
 
-    //conteudo HTML
+    // Conteúdo HTML
     return (
         <div className={styles.perfil}>
-            {/*<img src={Perfil} alt="perfil" />*/}
-            <p>{iniciais}</p>
+            {fotoContent ? (
+                <img src={fotoContent} alt="Foto de perfil" />
+            ) : (
+                <div className={styles.fundo}>
+                    <p>{iniciais}</p>
+                </div>
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default FotoFuncHor
+export default FotoFuncHor;

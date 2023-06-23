@@ -129,7 +129,8 @@
 #perfilHamburger p {
     color: #fff;    
     margin-top: 89%;
-    font-size: 30vw;
+    line-height: 175%;
+    font-size: 20vw;
     font-family: 'Times New Roman', Times, serif;
 }
 

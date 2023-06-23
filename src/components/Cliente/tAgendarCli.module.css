@@ -3,15 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 .fAgendarCliente {
-    position: fixed;
+	position: fixed;
 	width: 100%;
 	height: 100%;
-    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
-    color: #000;
+	background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
+	color: #000;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-    font-family: 'Times New Roman', Times, serif;
+	font-family: 'Times New Roman', Times, serif;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -23,7 +23,7 @@
 	top: 1%;
 	margin: 1.5%;
 	display: flex;
-	flex-direction: row;	
+	flex-direction: row;
 }
 
 .voltar {
@@ -32,7 +32,7 @@
 	margin-right: auto;
 }
 
-.voltar img{
+.voltar img {
 	width: 45%;
 	height: 45%;
 }
@@ -43,7 +43,9 @@
 	border-radius: 25px;
 	background-color: #fff;
 	margin-right: auto;
-	margin-left: 20%;
+	margin-left: -10%;
+	font-family: 'Merienda', cursive;
+	font-weight: bold;
 }
 
 .logoMenuCli p::before {
@@ -51,21 +53,22 @@
 	font-size: 7vw;
 	font-family: 'Merienda', cursive;
 	font-weight: bold;
-	color: #000;	
+	color: #000;
 	display: inline-block;
-    vertical-align: middle;
+	vertical-align: middle;
 	line-height: 1%;
 }
 
 .notificacao .btnNot button {
-	width: 9vw; /* Largura responsiva */
+	width: 9vw;
+	/* Largura responsiva */
 	height: 8vh;
 	border-style: none;
 	background-color: #000;
 	border-radius: 100%;
-    position: absolute;
+	position: absolute;
 	margin-left: -1%;
-    margin-top: 1.5%;
+	margin-top: 1.5%;
 }
 
 .notificacao .btnNot button:hover {
@@ -80,7 +83,7 @@
 .notificationContainer {
 	position: absolute;
 	margin-left: -40%;
-    margin-top: 15%;
+	margin-top: 15%;
 	z-index: 3;
 	width: 50%;
 	height: 40vh;
@@ -89,7 +92,7 @@
 	background-color: white;
 	border: 1px solid black;
 	overflow-y: auto;
-    color: #000;
+	color: #000;
 }
 
 .notificationList {
@@ -133,12 +136,13 @@
 	border: none;
 	cursor: pointer;
 }
+
 .perfil {
 	background-color: #000;
 	color: #fff;
 	width: 10vw;
-  	height: 12vw;
-  	border-radius: 50%;
+	height: 12vw;
+	border-radius: 50%;
 	margin-left: auto;
 }
 
@@ -147,7 +151,7 @@
 	font-size: 5vw;
 }
 
-.perfil  img{
+.perfil img {
 	margin: 10%;
 	width: 80%;
 	height: 80%;
@@ -172,24 +176,25 @@
 	font-size: 2em;
 }
 
-.fAgendarCliente select, .fAgendarCliente input {
-    width: 80%;
-    font-family: "Times New Roman", Times, serif;
-    font-weight: bold;
-    font-size: 25px;
-    background-color: #d9d9d9;
-    border-style: none;
-    text-indent: 10px;
-    border-radius: 25px;
-    position: relative;
-    height: 40px;
-    margin-top: 2%;
-    margin-left: 50%;
-    transform: translate(-50%, -50%);
+.fAgendarCliente select,
+.fAgendarCliente input {
+	width: 80%;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	font-size: 25px;
+	background-color: #d9d9d9;
+	border-style: none;
+	text-indent: 10px;
+	border-radius: 25px;
+	position: relative;
+	height: 40px;
+	margin-top: 2%;
+	margin-left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .fAgendarCliente input:focus {
-    background-color: #fff;
+	background-color: #fff;
 }
 
 #linha {
@@ -219,10 +224,11 @@
 	margin-top: 2%;
 }
 
-#preco p, input[type="text"][disabled] {
+#preco p,
+input[type="text"][disabled] {
 	background-color: #8AFFEA;
 	text-align: left;
-	width: 58%;
+	width: 38%;
 	height: 40px;
 }
 
@@ -237,10 +243,10 @@
 }
 
 #rodape #btnAgendarCli {
-    font-size: 1em;
-    background-color: #6375D6;
+	font-size: 1em;
+	background-color: #6375D6;
 	color: #fff;
-    text-align: center;
+	text-align: center;
 	width: 25vw;
 	height: 6.3vh;
 	position: relative;
@@ -250,6 +256,80 @@
 #rodape #btnAgendarCli:hover {
 	background-color: #0000ff;
 	color: #000;
+}
+
+#customDatePicker {
+	cursor: pointer;
+	width: 140px;
+	margin-left: 80%;
+}
+
+#customDatePicker[disabled] {
+	background-color: #909e9c;
+	margin-left: 100%;
+}
+
+#cmpTxtAgADM[disabled] {
+	background-color: #909e9c;
+	text-align: left;
+	width: 100%;
+	height: 40px;
+}
+
+.texto {
+	width: 200px;
+	margin-right: 10px;
+}
+
+#txtHors {
+	width: 200px;
+}
+
+.dois_campos {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.texto {
+	width: 160px;
+	margin-right: 10px;
+}
+
+.finsh {
+	margin-top: 0.5rem;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.finsh .texto {
+	width: 150px;
+}
+
+.finsh input[type="submit"] {
+	background-color: #6375D6;
+	border-radius: 15px;
+	margin-left: 20px;
+	margin-top: 0.5;
+	border-style: none;
+	color: #fff;
+	font-size: 3vw;
+	width: 100%;
+	height: 55px;
+}
+
+.finsh input[type="submit"]:hover {
+	background-color: #0000ff;
+}
+
+.dir {
+	margin-left: 25%;
+}
+
+.esq {
+	margin-left: -13%;
+	width: 65%;
 }
 
 @media screen and (max-width: 380px) and (max-height: 750px) {
@@ -263,30 +343,33 @@
 	.logoMenuCli {
 		width: 20%;
 		height: 5%;
-		margin-left: 10%;		
+		margin-left: -10%;
 	}
+
 	.logoMenuCli p::before {
 		font-size: 1.6vw;
 		margin-top: 2%;
 		font-weight: bold;
 	}
+
 	.notificacao {
 		width: 3.5%;
 		height: 2%;
-        position: absolute;
+		position: absolute;
 		margin-left: 90%;
-        margin-top: 0.5%;
+		margin-top: 0.5%;
 	}
 
-    .notificacao .btnNot button {
-        width: 4vw; /* Largura responsiva */
-        height: 8vh;
-        border-style: none;
-        background-color: #000;
-        border-radius: 100%;
-        position: absolute;
-        margin-left: -50%;
-        margin-top: -15%
+	.notificacao .btnNot button {
+		width: 4vw;
+		/* Largura responsiva */
+		height: 8vh;
+		border-style: none;
+		background-color: #000;
+		border-radius: 100%;
+		position: absolute;
+		margin-left: -50%;
+		margin-top: -15%
 	}
 
 	.notificationContainer {
@@ -299,24 +382,27 @@
 		overflow-y: auto;
 		position: relative;
 		margin-left: -300%;
-        margin-top: 95%;
-        color: #000;
+		margin-top: 95%;
+		color: #000;
 	}
+
 	.perfil {
 		width: 50px;
 		height: 50px;
 	}
+
 	.perfil p {
 		font-size: 2vw;
 		line-height: 50%;
 	}
+
 	.voltar {
 		width: 15%;
 		height: 15%;
 		margin-right: auto;
 	}
-	
-	.voltar img{
+
+	.voltar img {
 		width: 25%;
 		height: 25%;
 	}
@@ -330,13 +416,16 @@
 		width: 25%;
 		height: 80px;
 	}
+
 	.tituloAgendar p {
 		line-height: 170%;
 		color: #3293CA;
 	}
+
 	#preco {
 		width: 58%;
 	}
+
 	#rodape #btnAgendarCli {
 		width: 15vw;
 		height: 6.3vh;
@@ -346,5 +435,31 @@
 
 	#horAtend {
 		font-size: 100%;
+	}
+
+	#customDatePicker {
+		cursor: pointer;
+		margin-left: 110%;
+		margin-top: 10%;
+	}
+
+	.esq {
+		margin-left: -11%;
+		width: 65%;
+	}
+
+	#customDatePicker[disabled] {
+		background-color: #909e9c;
+		margin-left: 100%;
+	}
+
+	#customDatePicker {
+		cursor: pointer;
+		margin-left: 110%;
+		margin-top: 10%;
+		width: 140px;
+	}
+	#txtHors {
+		margin-left: 61%;
 	}
 }

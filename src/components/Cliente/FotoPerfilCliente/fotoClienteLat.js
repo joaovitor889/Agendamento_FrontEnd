@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { decodeToken } from 'react-jwt';
 import agFetch from '../../../axios/config.js';
 
-const FotoAdmLat = () => {
+const FotoCliLat = () => {
     const { token } = useParams();
     const cvToken = decodeToken(token);
     const userID = cvToken.id;
@@ -21,7 +21,7 @@ const FotoAdmLat = () => {
 
                 console.log(fotoAvatar);
 
-                if (fotoAvatar === "propAvatar.png" || fotoAvatar === null) {
+                if (fotoAvatar === "userAvatar.png" || fotoAvatar === null) {
                     // Lógica das iniciais
                     const nomeCompleto = usResponse.data.nome;
 
@@ -67,4 +67,4 @@ const FotoAdmLat = () => {
     );
 };
 
-export default FotoAdmLat;
+export default FotoCliLat;

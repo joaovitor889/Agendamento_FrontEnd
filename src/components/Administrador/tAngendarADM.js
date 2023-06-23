@@ -13,22 +13,31 @@ import {
     Route,
     Link,
     useNavigate,
-    useParams
+    useParams,
+    Navigate
 } from "react-router-dom";
 
 //import { Link, useNavigate } from "react-router-dom";
 
+import FotoAdm from './FotoPerfilAdm/fotoAdm';
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
+import ptBR from 'date-fns/locale/pt-BR';
 
 const TelaAgendarADM = () => {
-    document.title = "Agendar";    
+    document.title = "Agendar";
 
     //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplYW5AZXhhbXBsZS5jb20iLCJpZCI6Miwicm9sZSI6IlByb3AiLCJpYXQiOjE2ODQ3MDg0NTcsImV4cCI6OTMzMTIwMDAwMDE2ODQ3MDAwMDB9.1C8kf7GvIDT1GbbpMPScTcwy19CvgHOUkGtxuXFwV9I";
 
     //const uid = "jMQqNo";
-    
+
     const { token } = useParams();
 
     const { uid } = useParams();
+
+    const navigate = useNavigate();
 
     //dados do banco
     const [categorias, setCategorias] = useState([]);
@@ -53,6 +62,11 @@ const TelaAgendarADM = () => {
     const [telefone, setTelefone] = useState();
     const [cpf, setCPF] = useState();
     const [preco, setPreco] = useState();
+
+    // Lógica para habilitar o select de horários
+    const isDataSelected = Boolean(data);
+    const isProfissionalSelected = profissional !== "profis";
+    const isHorarioSelectDisabled = !isDataSelected || !isProfissionalSelected;
 
     //nome da empresa
     useEffect(() => {
@@ -154,35 +168,51 @@ const TelaAgendarADM = () => {
         PegaAgendamentos();
     }, [data, dtfim]);
 
+    // Obtém a data atual
+    const today = new Date();
+
+    const formatDateForDisplay = (dateString) => {
+        if (!dateString) return '';
+
+        const [year, month, day] = dateString.split('-');
+        return `${day}/${month}/${year}`;
+    };
 
     useEffect(() => {
-        async function PegarDiaSemana() {
+        function PegarDiaSemana() {
             try {
-                //pega o dia da semana
-                const novaData = new Date(data);
-                novaData.setDate(novaData.getDate() + 1);
-                const ds = new Date(novaData).toLocaleDateString('pt-BR', { weekday: 'long' }).toLowerCase();
-                setDiaSemana(ds);
+                // pega o dia da semana
+                if (data) {
+                    const novaData = new Date(data);
+                    novaData.setDate(novaData.getDate() + 1);
+                    const ds = new Date(novaData).toLocaleDateString('pt-BR', {
+                        weekday: 'long'
+                    }).toLowerCase();
+
+                    // Substituir os valores específicos
+                    let diaTexto = ds;
+                    if (ds === 'segunda-feira') {
+                        diaTexto = 'segunda';
+                    } else if (ds === 'terça-feira') {
+                        diaTexto = 'terça';
+                    } else if (ds === 'quarta-feira') {
+                        diaTexto = 'quarta';
+                    } else if (ds === 'quinta-feira') {
+                        diaTexto = 'quinta';
+                    } else if (ds === 'sexta-feira') {
+                        diaTexto = 'sexta';
+                    }
+
+                    setDiaSemana(diaTexto);
+                }
             } catch (error) {
                 console.log(error);
             }
         }
 
-        if (data && profissional) {
-            PegarDiaSemana();
-        }
-    }, [data, profissional]);
+        PegarDiaSemana();
+    }, [data]);
 
-    if (diaSemana === "segunda-feira")
-        setDiaSemana("segunda");
-    else if (diaSemana === "terça-feira")
-        setDiaSemana("terça");
-    else if (diaSemana === "quarta-feira")
-        setDiaSemana("quarta");
-    else if (diaSemana === "quinta-feira")
-        setDiaSemana("quinta");
-    else if (diaSemana === "sexta-feira")
-        setDiaSemana("sexta");
 
     //horario do estabelecimento        
     useEffect(() => {
@@ -211,7 +241,6 @@ const TelaAgendarADM = () => {
     }, [diaSemana]);
 
 
-
     //horario do expediente do funcionario        
     // Importe as bibliotecas necessárias e defina as constantes necessárias
 
@@ -236,7 +265,7 @@ const TelaAgendarADM = () => {
         }
 
         PegarHorarioExpediente();
-    }, [diaSemana]);
+    }, [profissionais, diaSemana]);
 
 
     //logica do horario
@@ -372,8 +401,8 @@ const TelaAgendarADM = () => {
                 const precoEmReal = precResponse.data.preco.toLocaleString('pt-BR', {
                     style: 'currency',
                     currency: 'BRL',
-                  });
-                  setPreco(precoEmReal);
+                });
+                setPreco(precoEmReal);
             } catch (error) {
                 console.log(error);
             }
@@ -396,9 +425,11 @@ const TelaAgendarADM = () => {
             Authorization: `Bearer ${token}`,
         };
         try {
-            const agResponse = await agFetch.post('/agendamento/criarAdm', txtData, {headers});
+            const agResponse = await agFetch.post('/agendamento/criarAdm', txtData, { headers });
             if (agResponse.status >= 200 && agResponse.status <= 299) {
                 alert("Agendamento Realizado com Sucesso!");
+                navigate(`/tAgendamentosADM/${token}/${uid}`);
+                //navigate(`/tPesqFunc/${token}/${uid}`);
             }
         } catch (error) {
             console.log();
@@ -433,11 +464,13 @@ const TelaAgendarADM = () => {
 
         //alert(JSON.stringify({dataAg, servicoId, profId, nome, telefone, cpf}));
 
-        realizarAgendamento(dataAg, servicoId, profId, nome, telefone, cpf);
-
-
+        if (horario === undefined || data === undefined) {
+            alert("Preencha todos os campos!");
+        }
+        else {
+            realizarAgendamento(dataAg, servicoId, profId, nome, telefone, cpf);
+        }
     }
-
 
     return (
         <div className={styles.fAgendar}>
@@ -452,14 +485,7 @@ const TelaAgendarADM = () => {
                 <div className={styles.Centro}>
                     <h3>{nomeEmp}</h3>
                 </div>
-                <div className={styles.direita}>
-                    <a href="/" className="btn_perfil">
-                        <img src={perfilF} alt="perfil" />
-                    </a>
-                    {/* <a href="/" className="btn_noticia">
-                        <img src= {notificar} alt="notificar" />
-                    </a> */}
-                </div>
+                <FotoAdm />
             </div>
             {/* final do header */}
             {/* sidebar começo */}
@@ -509,8 +535,20 @@ const TelaAgendarADM = () => {
                                 ))}
                             </select>
                             <div className={styles.dois_campos}>
-                                <input type="date" className={styles.texto} value={data} onChange={(e) => setData(e.target.value)} />
-                                <select name="horario" className={styles.texto} onChange={(e) => setHorario(e.target.value)}>
+                                {/*<input type="date" className={styles.texto} value={data} onChange={(e) => setData(e.target.value)} />*/}
+                                <DatePicker
+                                    id={styles["customDatePicker"]}
+                                    className={styles.texto}
+                                    selected={data ? new Date(data + 'T00:00:00') : null}
+                                    onChange={(date) => setData(date.toISOString().split('T')[0])}
+                                    dateFormat="yyyy-MM-dd"
+                                    value={formatDateForDisplay(data)}
+                                    placeholderText="dd/mm/aaaa"
+                                    minDate={today}
+                                    locale={ptBR}
+                                    disabled={profissional === undefined}
+                                />
+                                <select name="horario" className={styles.texto} onChange={(e) => setHorario(e.target.value)} disabled={isHorarioSelectDisabled}>
                                     <option value="hors">Horários</option>
                                     {data !== "" && horarios.map(vHorario => (
                                         <option value={vHorario}>
@@ -521,12 +559,12 @@ const TelaAgendarADM = () => {
                             </div>
                         </div>
                         <div className={styles.cliente}>
-                            <input type="text" className={styles.texto} placeholder='Nome do Cliente' onChange={(e) => setNome(e.target.value)} />
+                            <input type="text" className={styles.texto} id={styles["cmpTxtAgADM"]} placeholder='Nome do Cliente' onChange={(e) => setNome(e.target.value)} required disabled={horario === undefined} />
                             <input type="text"
                                 placeholder="Telefone:"
                                 title="Digite o seu Telefone"
                                 name="tel"
-                                id="tel"
+                                id={styles["cmpTxtAgADM"]}
                                 className={styles.texto}
                                 maxLength="15"
                                 onKeyPress={(event) => {
@@ -552,11 +590,13 @@ const TelaAgendarADM = () => {
                                         event.preventDefault();
                                     }
                                 }}
-                                onChange={(e) => setTelefone(e.target.value)} />
+                                onChange={(e) => setTelefone(e.target.value)}
+                                required
+                                disabled={horario === undefined} />
                             <input type="text"
                                 placeholder="*CPF:"
                                 title="Digite o seu CPF"
-                                name="cpf" id="cpf"
+                                name="cpf" id={styles["cmpTxtAgADM"]}
                                 className={styles.texto}
                                 maxLength="14"
                                 onKeyPress={(event) => {
@@ -574,7 +614,8 @@ const TelaAgendarADM = () => {
                                 }}
                                 required
                                 value={cpf}
-                                onChange={(e) => setCPF(e.target.value)} />
+                                onChange={(e) => setCPF(e.target.value)}
+                                disabled={horario === undefined} />
                         </div>
                         <div className={styles.finsh}>
                             <input type="text" className={styles.texto_demonstrativo} placeholder='Preço (R$)' value={preco} disabled />
