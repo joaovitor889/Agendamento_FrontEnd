@@ -82,7 +82,7 @@ const TelaLandPage = () => {
             <div className='segFundo'></div>
 
             <div className='botaoPlay'>
-                <a href='./Landpage.js' target="_blank" rel="noreferrer"><img src={Botao} alt='Botao' /></a><br></br>
+                <a href='https://www.youtube.com/watch?v=-0-KdU4PVj8' target="_blank" rel="noreferrer"><img src={Botao} alt='Botao' /></a><br></br>
                 <center>Venha conhcer a nossa plataforma</center>
             </div>
 
