@@ -519,7 +519,7 @@ const TelaAgendarCliente = () => {
                                 locale={ptBR}
                                 disabled={profissional === undefined}
                             />
-                            <select name="horario" className={styles.texto} onChange={(e) => setHorario(e.target.value)} disabled={isHorarioSelectDisabled}>
+                            <select name="horario" className={styles.texto} id = {styles["txtHors"]} onChange={(e) => setHorario(e.target.value)} disabled={isHorarioSelectDisabled}>
                                 <option value="hors">Horários</option>
                                 {data !== "" && horarios.map(vHorario => (
                                     <option value={vHorario}>
