@@ -85,14 +85,20 @@ const TelaAgendarADM = () => {
     useEffect(() => {
         async function fetchCategorias() {
             try {
-                const catResponse = await agFetch.get(`/estabelecimento/todasCat/${uid}`);
-                setCategorias(catResponse.data);
+                const catResponse = await agFetch.get(`/estabelecimento/todosServ/${uid}`);
+                const data = catResponse.data;
+                const catArray = data.map(item => item.categoria);
+                setCategorias(catArray);
             } catch (error) {
                 console.log(error);
             }
         }
-        fetchCategorias();
+
+        if (uid) {
+            fetchCategorias();
+        }
     }, [uid]);
+
 
     useEffect(() => {
         async function PegaServicos() {
