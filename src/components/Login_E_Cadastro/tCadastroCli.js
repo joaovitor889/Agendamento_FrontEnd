@@ -105,7 +105,7 @@ const TelaCadastroUsuario = () => {
         }
         else {
             //alert(JSON.stringify({compNome, cpf, telefone, email, senha}));            
-            signup(compNome, cpf, telefone, email, senha);
+            signup(cmpNome, cpf, telefone, email, senha);
         }
     };
 
