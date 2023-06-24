@@ -78,9 +78,10 @@ const TEXT_SHORT_STYLE={
     border: '1px solid #000',
 }
 
-export default function Modal({isOpen, setModalOpen, children, categori, nome, descricao, index }) {
+export default function Modal({isOpen, setModalOpen, children, categori, index }) {
 
     console.log(index);
+    console.log(categori[index])
 
     if(isOpen){
         return(
@@ -90,25 +91,26 @@ export default function Modal({isOpen, setModalOpen, children, categori, nome, d
                     <br/>
                     <label>Selecione a categoria desse serviço</label>
                         <select name="cars" style={TEXT_STYLE}>
-                                <option value={categori[0].categoria.nome}>{categori[0].categoria.nome}</option>
-                                <option value={categori[1].categoria.nome}>{categori[1].categoria.nome}</option>
-                                <option value={categori[2].categoria.nome}>{categori[2].categoria.nome}</option>
+                                <option value={categori[index].categoria.nome}>{categori[0].categoria.nome}</option>
+                                {categori.map((catego, index) =>(
+                                    <option value={categori[index].categoria.nome}>{catego.categoria.nome}</option>
+                                ))}
                         </select>
                     <br/>
                     <label>Nome</label>
-                    <input style={TEXT_STYLE} placeholder={nome}></input>
+                    <input style={TEXT_STYLE} placeholder={categori[index].nome}></input>
                     <br/>
                     <label>Descrição</label>
-                    <textarea cols="30" rows="5" style={AREA_STYLE} placeholder={descricao}></textarea>
+                    <textarea cols="30" rows="5" style={AREA_STYLE} placeholder={categori[index].descricao}></textarea>
                     <br/>
                     <div style={FINALIZACAO_STYLE}>
                         <div style = {FINAL_STYLE}>
                             <label>Tempo</label>
-                            <input type="time" placeholder={categori[0].tempoMedioMin}style={TEXT_SHORT_STYLE}/>
+                            <input type="time" value={categori[index].tempoMedioMin}style={TEXT_SHORT_STYLE}/>
                         </div>
                         <div style={FINAL_STYLE}>
                             <label>Preço</label>
-                            <input type="text" placeholder={categori[0].preco} style={TEXT_SHORT_STYLE}/>
+                            <input type="text" placeholder={categori[index].preco} style={TEXT_SHORT_STYLE}/>
                         </div>
                     </div>
 

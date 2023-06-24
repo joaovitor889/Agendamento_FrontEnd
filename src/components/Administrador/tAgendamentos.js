@@ -15,6 +15,8 @@ import {
     useNavigate,
     useParams
 } from "react-router-dom";
+import { arEG } from 'date-fns/locale';
+import agFetch from '../../axios/config';
 
 //import { useState, useEffect, useRef } from "react";
 
@@ -29,6 +31,56 @@ const TelaAgendamentos = () => {
 
     const { uid } = useParams();
     const { token } = useParams();
+
+    const [agendamentos, setAgendamentos] = useState([]);
+    const [index, setIndex] = useState('');
+;
+    const [periodo, setPeriodo] = useState({
+        data_inicio: "2023-06-26T00:00:00.000Z",
+        data_fim: "2023-06-26T23:00:00.000Z"
+      });
+    
+      const setDataInicio = (dataInicio) => {
+        setPeriodo(prevPeriodo => ({
+          ...prevPeriodo,
+          data_inicio: dataInicio + 'T00:00:00.000Z'
+        }));
+      };
+    
+      const setDataFim = (dataFim) => {
+        setPeriodo(prevPeriodo => ({
+          ...prevPeriodo,
+          data_fim: dataFim + 'T23:00:00.000Z'
+        }));
+      };
+
+      useEffect(() => {
+        const fetchAgendamentos = async () => {
+          try {
+            const response = await agFetch.post(
+              `/estabelecimento/todosAgendamentos/${uid}`,
+              periodo
+            );
+            setAgendamentos(response.data);
+            console.log(response.data)
+            console.log(periodo)
+            console.log(uid)
+
+          } catch (error) {
+            console.log(error);
+          }
+        };
+      
+        fetchAgendamentos();
+      }, [periodo.data_inicio, periodo.data_fim]);
+
+    const handleDataClick = (dataValue) => {
+        setDataInicio(dataValue);
+        setDataFim(dataValue);
+      };
+    
+
+    
 
     return (
         <main>
@@ -109,126 +161,37 @@ const TelaAgendamentos = () => {
                         <h4>Dom</h4>
                     </div>
                     <div className={styles.rowBotton}>
-                        <h4>28/02</h4>
-                        <h4>01/03</h4>
-                        <h4>02/03</h4>
-                        <h4>03/03</h4>
-                        <h4>04/03</h4>
-                        <h4>05/03</h4>
-                        <h4>06/03</h4>
+                    <h4 data-value="2023-06-26" onClick={() => handleDataClick("2023-06-26")}>26/06</h4>
+                    <h4 data-value="2023-06-27" onClick={() => handleDataClick("2023-06-27")}>27/06</h4>
+                        <h4 data-value="2023-06-28" onClick={(e) => {setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value'));}}>28/06</h4>
+                        <h4 data-value="2023-06-29" onClick={(e) => {setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value'));}}>29/06</h4>
+                        <h4 data-value="2023-06-30" onClick={(e) => {setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value'));}}>30/06</h4>
+                        <h4 data-value="2023-07-02" onClick={(e) => {setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value'));}}>01/07</h4>
+                        <h4 data-value="2023-07-02" onClick={(e) => {setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value'));}}>02/07</h4>
                     </div>
                 </div>
                 <a onClick={() => setOpenModal(true)} className={styles.block}> <img src={block} alt="bloquear" /></a>
                 <div className={styles.Container}>
-                    <div onClick={() => setDetalheOpen(true)} className={styles.Card}>
-                        <div className={styles.Card_Header}>
-                            <h2>Cliente: Ana Catarina</h2>
-                            <p>Serviços: cabelereira, manicure</p>
-                        </div>
-                        <div className={styles.Card_Body}>
-                            <h3>14:00 - 16:00</h3>
-                            <div className={styles.Status}>
-                                <h3>Status</h3>
-                                <a href="/">Confirmar</a>
+                    {agendamentos.map((age, index) => (
+                        <div key={index} onClick={() => {setDetalheOpen(true);setIndex(index)}} className={styles.Card}>
+                            <div className={styles.Card_Header}>
+                                <h2>Cliente: {age.cliente.nome}</h2>
+                                <p>Serviço: {age.servico.nome}</p>
+                            </div>
+                            <div className={styles.Card_Body}>
+                                <h3>14:00 - 16:00</h3>
+                                <div className={styles.Status}>
+                                    <h3>Status</h3>
+                                    <a href="/">{age.status}</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={styles.Card}>
-                        <div className={styles.Card_Header}>
-                            <h2>Cliente: Ana Catarina</h2>
-                            <p>Serviços: cabelereira, manicure</p>
-                        </div>
-                        <div className={styles.Card_Body}>
-                            <h3>14:00 - 16:00</h3>
-                            <div className={styles.Status}>
-                                <h3>Status</h3>
-                                <a href="/">Confirmar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.Card}>
-                        <div className={styles.Card_Header}>
-                            <h2>Cliente: Ana Catarina</h2>
-                            <p>Serviços: cabelereira, manicure</p>
-                        </div>
-                        <div className={styles.Card_Body}>
-                            <h3>14:00 - 16:00</h3>
-                            <div className={styles.Status}>
-                                <h3>Status</h3>
-                                <a href="/">Confirmar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.Card}>
-                        <div className={styles.Card_Header}>
-                            <h2>Cliente: Ana Catarina</h2>
-                            <p>Serviços: cabelereira, manicure</p>
-                        </div>
-                        <div className={styles.Card_Body}>
-                            <h3>14:00 - 16:00</h3>
-                            <div className={styles.Status}>
-                                <h3>Status</h3>
-                                <a href="/">Confirmar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.Card}>
-                        <div className={styles.Card_Header}>
-                            <h2>Cliente: Ana Catarina</h2>
-                            <p>Serviços: cabelereira, manicure</p>
-                        </div>
-                        <div className={styles.Card_Body}>
-                            <h3>14:00 - 16:00</h3>
-                            <div className={styles.Status}>
-                                <h3>Status</h3>
-                                <a href="/">Confirmar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.Card}>
-                        <div className={styles.Card_Header}>
-                            <h2>Cliente: Ana Catarina</h2>
-                            <p>Serviços: cabelereira, manicure</p>
-                        </div>
-                        <div className={styles.Card_Body}>
-                            <h3>14:00 - 16:00</h3>
-                            <div className={styles.Status}>
-                                <h3>Status</h3>
-                                <a href="/">Confirmar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.Card}>
-                        <div className={styles.Card_Header}>
-                            <h2>Cliente: Ana Catarina</h2>
-                            <p>Serviços: cabelereira, manicure</p>
-                        </div>
-                        <div className={styles.Card_Body}>
-                            <h3>14:00 - 16:00</h3>
-                            <div className={styles.Status}>
-                                <h3>Status</h3>
-                                <a href="/">Confirmar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.Card}>
-                        <div className={styles.Card_Header}>
-                            <h2>Cliente: Ana Catarina</h2>
-                            <p>Serviços: cabelereira, manicure</p>
-                        </div>
-                        <div className={styles.Card_Body}>
-                            <h3>14:00 - 16:00</h3>
-                            <div className={styles.Status}>
-                                <h3>Status</h3>
-                                <a href="/">Confirmar</a>
-                            </div>
-                        </div>
-                    </div>
-
+                    ))}
+                    
                 </div>
 
                 <Bloquear isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)} />
-                <DetalhesAge isOpen={openAgeda}  setDetalheOpen={() => setDetalheOpen(!openAgeda)} />
+                <DetalhesAge isOpen={openAgeda}  setDetalheOpen={() => setDetalheOpen(!openAgeda)} agendamento={agendamentos} index = {index}/>
             </div>
         </main>
     )

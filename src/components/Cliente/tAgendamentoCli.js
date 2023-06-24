@@ -13,6 +13,7 @@ import filtro from '../../img/filter.png'
 const TelaAgendamento = () => {
 
    document.title = "Agendamento";
+   
     
    return (
         <div className={styles.fAgendamento}>

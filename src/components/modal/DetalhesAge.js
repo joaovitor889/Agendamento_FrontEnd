@@ -72,7 +72,7 @@ const INFOS_STYLE ={
     margin: '1rem'
 }
 
-export default function Modal({isOpen, setDetalheOpen, children }) {
+export default function Modal({isOpen, setDetalheOpen, children, agendamento, index }) {
 
     if(isOpen){
         return(
@@ -80,9 +80,9 @@ export default function Modal({isOpen, setDetalheOpen, children }) {
                 <div style={MODAL_STYLE}>
                     <h3 style={HEADER_STYLE}>Detalhes do Agendamento</h3>
                     <div style={INFOS_STYLE}>
-                        <p style={INFO_STYLE}>Cod. XXX</p>
-                        <p style={INFO_STYLE}>Cliente: Ana Catarina</p>
-                        <p style={INFO_STYLE}>funcionario: Ana Catarina</p>
+                        <p style={INFO_STYLE}>Cod. {agendamento[index].id}</p>
+                        <p style={INFO_STYLE}>Cliente: {agendamento[index].cliente.nome}</p>
+                        <p style={INFO_STYLE}>funcionario: {agendamento[index].funcionario.nome}</p>
                         <br/>
                         <p style={INFO_STYLE}>09/05/2023 - 14:00 até as 16:00</p>
                     </div>
@@ -90,14 +90,16 @@ export default function Modal({isOpen, setDetalheOpen, children }) {
                     <br/>
                     <h3 style={HEADER_STYLE}>Serviços</h3>
                     <div style={INFOS_STYLE}>
-                        <p style={INFO_STYLE}>Categorias: Corte de cabelo</p>
-                        <p style={INFO_STYLE}>Serviços: Corte de cabelo chanel</p>
+                        <p style={INFO_STYLE}>Serviços: {agendamento[index].servico.nome}</p>
                     </div>
                     
                     <div style={DOIS_STYLE}>
                         <h4 style={TEXT_STATUS_STYLE}>Status: </h4>
                         <select style={STATUS_STYLE}>
-                            <option value="" key="">Confirmar</option>
+                            <option value="Confirmado" key="">{agendamento[index].status}</option>
+                            <option value="Confirmado" key="">Confirmado</option>
+                            <option value="Finalizado" key="">Finalizado</option>
+                            <option value="Pendente" key="">Pendente</option>
                         </select>
                     </div>                   
                     <button onClick={setDetalheOpen} style={BTN_STYLE}>Fechar</button>

@@ -38,6 +38,7 @@ const TelaMenuADM = () => {
 
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [index, setIndex] = useState('');
 
     //const [openModalCategoria, setOpenModalCategoria] = useState(false);
 
@@ -126,7 +127,7 @@ const TelaMenuADM = () => {
         blockServ();
 
         
-        
+
     }
 
     return (
@@ -202,7 +203,7 @@ const TelaMenuADM = () => {
 
                     {services.map((service, index) => (
                         <div key={index} className={styles.card} >
-                            <h4 className={styles.card_header} onClick={() => setOpenModal(true)}>{service.nome}</h4>
+                            <h4 data-value = {index} className={styles.card_header} onClick={() => {setOpenModal(true); setIndex(index)}}>{service.nome}</h4>
                             <p className={styles.card_body}>{service.descricao}</p>
                             <span >{service.id}</span>
                             <div className={styles.card_footer}>
@@ -216,7 +217,7 @@ const TelaMenuADM = () => {
                     <br />
                     <br />
 
-                    <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)} categori={services}  nome="corte no degrau" descricao="Corte degrade na zero"/>
+                    <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)} categori={services} index={index} />
                     {/*<Categoria isOpen={openModalCategoria} setOpenModalCategoria={() => setOpenModalCategoria(!openModalCategoria)}/>*/}
                 </div>
             </main>
