@@ -15,6 +15,8 @@ import {
     useParams
 } from "react-router-dom";
 
+import FotoAdm from './FotoPerfilAdm/fotoAdm';
+
 const TelaCadServico = () => {
     document.title = "Cadastrar Serviço";
 
@@ -28,6 +30,20 @@ const TelaCadServico = () => {
     const [tempo, setTempo] = useState("");
     const [nomeCategoria, setNomeCategoria] = useState("");
     const [vDescricao, setVDescricao] = useState("");
+
+    //nome da empresa
+    const [nomeEmp, setNomeEmp] = useState();
+    useEffect(() => {
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmp(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
 
     const fTempo = useRef(null);
     const fPreco = useRef(null);
@@ -136,14 +152,9 @@ const TelaCadServico = () => {
                     </label>
                 </div>
                 <div className={styles.Centro}>
-                    <h3>Shostners & Shostners</h3>
+                    <h3>{nomeEmp}</h3>
                 </div>
-                <div className={styles.direita}>
-                    <a href="/" className="btn_perfil">
-                        <img src={perfil} alt="notificar" />
-                    </a>
-
-                </div>
+                <FotoAdm />
             </header>
             {/* final do header */}
             {/* sidebar começo */}
