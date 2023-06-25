@@ -59,6 +59,10 @@ const TelaEnderecoCliente = () => {
                 const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 setNomeEmp(empResponse.data.nome);
                 setBackgroundColor(empResponse.data.tema);
+                const divLat = document.getElementById(styles.menuLatCli)
+                if(divLat) {
+                    divLat.style.backgroundColor = empResponse.data.tema;
+                }
             } catch (error) {
                 console.log(error);
             }
@@ -211,7 +215,7 @@ const TelaEnderecoCliente = () => {
 
     return (
         <div className={styles.fDBCliente} style={{backgroundColor}}>
-            <div id={styles["menuLatCli"]}>
+            <div id={styles.menuLatCli}>
                 <div id={styles["menuDesk"]}>
                     <ul id={styles["ulDesk"]}>
                         <br></br>
