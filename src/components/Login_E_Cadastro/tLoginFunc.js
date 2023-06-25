@@ -94,7 +94,7 @@ const TelaLogin = () => {
                             </div>
                             <div className="links">
                                 {/*<a href = "./tLogin.js">Criar uma conta</a><br></br>*/}
-                                <a href="./tEsqueceuSenhaFunc" rel="noreferrer">Esqueceu a senha?</a>
+                                {/*<a href="./tEsqueceuSenhaFunc" rel="noreferrer">Esqueceu a senha?</a>*/}
                             </div><br></br>
                             <div className="botoes">
                                 <input type="submit" id="btnLoginFunc" name="btnLogin" value="Login" /><br></br>

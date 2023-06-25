@@ -7,7 +7,8 @@ import { useState } from "react";
 
 import { useNavigate } from 'react-router-dom';
 
-//import agFetch from '../../axios/config.js';
+import agFetch from '../../axios/config.js';
+import { tr } from 'date-fns/locale';
 
 const EsqSenhaAdm = () => {
     document.title = "Esqueceu a Senha";
@@ -17,10 +18,34 @@ const EsqSenhaAdm = () => {
     const navigate = useNavigate();
 
     const envEmail = async (email) => {
-        alert(email);
-
+        //alert(email);
+        const txtData = {
+            email: email
+        }
         //logica para verificar se o email existe no banco de dados
-        navigate("/tAlterarSenhaAdm");
+        try {
+            const envEmailResponse = await agFetch.post('/auth/proprietario/recuperarSenha', txtData);
+            if (envEmailResponse.status >= 200 && envEmailResponse.status <= 201) {
+                try {
+                    const token = envEmailResponse.data;
+                    console.log("Logou no Proprietário " + token);
+                    const vrfToken = await agFetch.get(`/auth/proprietario/verificarToken/${token}`);
+                    if (vrfToken.status >= 200 && vrfToken.status <= 299) {
+                        navigate(`/tAlterarSenhaAdm/${token}`);
+                    }
+                } catch (error) {
+                    console.log(error);
+                    if (error.response && error.response.status === 403) {
+                        alert("Email não encontrado!");
+                    }
+                }
+            }
+        } catch (error) {
+            console.log(error);
+            if (error.response && error.response.status === 404) {
+                alert("Email não encontrado!");
+            }
+        }
     }
 
     const handleSubmit = (e) => {

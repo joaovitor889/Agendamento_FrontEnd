@@ -1,7 +1,7 @@
 import styles from './tCadFunc.module.css';
 import agFetch from '../../axios/config.js';
 //import menu from '../../icones/chevron-left.png';
-import perfil from '../../img/perfil.png';
+//import perfil from '../../img/perfil.png';
 
 //import { useState, useEffect, useRef } from "react";
 
@@ -16,6 +16,8 @@ import {
 import { useState, useEffect, useRef } from 'react';
 
 import { useForm } from "react-hook-form";
+
+import FotoAdm from './FotoPerfilAdm/fotoAdm';
 
 const TelaCadFunc = () => {
 
@@ -296,14 +298,7 @@ const TelaCadFunc = () => {
                 <div className={styles.Centro}>
                     <h3>{nomeEmp}</h3>
                 </div>
-                <div className={styles.direita}>
-                    <a href="/" className="btn_perfil">
-                        <img src={perfil} alt="notificar" />
-                    </a>
-                    {/* <a href="/" className="btn_noticia">
-                        <img src= {notificar} alt="notificar" />
-                    </a> */}
-                </div>
+                <FotoAdm />
             </div>
             {/* final do header */}
             <div className={styles.Container}>
