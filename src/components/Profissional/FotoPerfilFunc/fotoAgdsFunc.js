@@ -67,4 +67,4 @@ const FotoAgdsFunc = () => {
     );
 };
 
-export default FotoAgdsCli;
+export default FotoAgdsFunc;
