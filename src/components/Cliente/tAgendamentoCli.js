@@ -157,7 +157,7 @@ const TelaAgendamento = () => {
         ))}
 
       </div>
-      <DetalhesAge isOpen={openAgeda} setDetalheOpen={() => setDetalheOpen(!openAgeda)} agendamento={agendamentos} index={index} />
+      <DetalhesAge isOpen={openAgeda} setDetalheOpen={() => setDetalheOpen(!openAgeda)} agendamento={agendamentos} index={index} token={token}/>
     </div>
   )
 }

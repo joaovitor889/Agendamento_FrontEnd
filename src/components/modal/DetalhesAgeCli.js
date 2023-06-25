@@ -75,7 +75,7 @@ const INFOS_STYLE ={
 }
 
 
-export default function Modal({isOpen, setDetalheOpen, children, agendamento, index }) {
+export default function Modal({isOpen, setDetalheOpen, children, agendamento, index, token}) {
 
     const [status, setStatus] = useState('Confirmado');
 
@@ -93,6 +93,18 @@ export default function Modal({isOpen, setDetalheOpen, children, agendamento, in
         })
         setDetalheOpen();
       };
+    //   const [nomeFunc, setNomeFunc] = useState('');
+    //   const headers = {
+    //     Authorization: `Bearer ${token}`,
+    //   };
+
+    //   axios.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/cliente/perfil", {headers}).then(response => {
+    //     setNomeFunc(response.data.nome)
+
+    //     }).catch(error => {
+    //         console.log(error);
+    //     })
+    //     setDetalheOpen();
 
     if(isOpen){
         return(
@@ -101,7 +113,7 @@ export default function Modal({isOpen, setDetalheOpen, children, agendamento, in
                     <h3 style={HEADER_STYLE}>Detalhes do Agendamento</h3>
                     <div style={INFOS_STYLE}>
                         <p style={INFO_STYLE}>Cod. {agendamento[index].id}</p>
-                        <p style={INFO_STYLE}>Cliente: {agendamento[index].cliente.nome}</p>
+                        {/* <p style={INFO_STYLE}>Cliente: {nomeFunc}</p> */}
                         <p style={INFO_STYLE}>funcionario: {agendamento[index].funcionario.nome}</p>
                         <br/>
                         <p style={INFO_STYLE}>09/05/2023 - 14:00 até as 16:00</p>
