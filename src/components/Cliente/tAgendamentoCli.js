@@ -100,6 +100,14 @@ const TelaAgendamento = () => {
 
   const voltar = '/tMenuCli/' + token + '/' + uid;
 
+  function getFormattedTime(dateTimeString) {
+    const dateObj = new Date(dateTimeString);
+    const hour = dateObj.getHours();
+    const minutes = dateObj.getMinutes();
+    const formattedTime = `${hour.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    return formattedTime;
+}
+
   return (
     <div className={styles.fAgendamento} onLoad={CarregamentoInicial} style={{ backgroundColor }}>
       <input type="checkbox" id={styles["check"]} />
@@ -150,7 +158,7 @@ const TelaAgendamento = () => {
               <p>Serviço: {age.servico.nome}</p>
             </div>
             <div className={styles.Card_Body}>
-              <h3>14:00 - 16:00</h3>
+              <h3>{getFormattedTime(age.data_inicio)} - {getFormattedTime(age.data_fim)}</h3>
               <div className={styles.Status}>
                 <h3>Status</h3>
                 <a href="/">{age.status}</a>
