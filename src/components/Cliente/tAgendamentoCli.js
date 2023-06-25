@@ -90,6 +90,8 @@ const TelaAgendamento = () => {
      const headers = {
         Authorization: `Bearer ${token}`,
     };
+
+    const voltar = '/tMenuCli/' + token + '/' + uid;
     
    return (
         <div className={styles.fAgendamento} onLoad={CarregamentoInicial}>
@@ -97,7 +99,7 @@ const TelaAgendamento = () => {
             {/* header  começo */}
             <header>
                 <div className={styles.esquerda}>
-                    <a href='./tMenuCli'>
+                    <a href={voltar}>
                         <img src={menu} alt="retunr" className='sidebar_btn' />
                     </a>
                 </div>
