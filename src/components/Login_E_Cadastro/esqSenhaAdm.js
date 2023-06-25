@@ -25,8 +25,8 @@ const EsqSenhaAdm = () => {
         try {
             const envEmailResponse = await agFetch.post('/auth/proprietario/recuperarSenha', txtData);
             if (envEmailResponse.status >= 200 && envEmailResponse.status <= 201) {
-                const token = envEmailResponse.data.token;
-                console.log("Logou no Proprietário" + token);
+                const token = envEmailResponse.data;
+                console.log("Logou no Proprietário " + token);
                 navigate(`/tAlterarSenhaAdm/${token}`);
             }
         } catch (error) {
