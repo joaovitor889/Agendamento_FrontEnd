@@ -21,7 +21,7 @@ const FotoAgdsFunc = () => {
 
                 console.log(fotoAvatar);
 
-                if (fotoAvatar === "propAvatar.png" || fotoAvatar === null) {
+                if (fotoAvatar === "funcAvatar.png" || fotoAvatar === null) {
                     // Lógica das iniciais
                     const nomeCompleto = usResponse.data.nome;
 

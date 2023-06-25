@@ -5,7 +5,7 @@ import notificar from '../../img/Component 24.png'
 import block from '../../img/block-func.png'
 import filtro from '../../img/filter.png'
 //import logo from '../../img/logo.PNG';
-import FotoCliente from './FotoPerfilCliente/fotoCliente';
+import FotoCliente from './FotoPerfilCliente/fotoAgdsCli';
 
 //import { useState, useEffect, useRef } from "react";
 

@@ -21,7 +21,7 @@ const FotoAgdsCli = () => {
 
                 console.log(fotoAvatar);
 
-                if (fotoAvatar === "propAvatar.png" || fotoAvatar === null) {
+                if (fotoAvatar === "userAvatar.png" || fotoAvatar === null) {
                     // Lógica das iniciais
                     const nomeCompleto = usResponse.data.nome;
 
