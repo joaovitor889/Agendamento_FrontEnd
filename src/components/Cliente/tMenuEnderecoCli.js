@@ -2,7 +2,7 @@ import styles from './tMenuEnderecoCli.module.css';
 
 import Voltar from '../../icones/chevron-left.png';
 
-import './menHamburger.css';
+import menStyle from './menHamburgerCli.module.css';
 
 import React, { useState, useEffect, useRef } from "react";
 
@@ -29,26 +29,35 @@ const TelaEnderecoCliente = () => {
 
     const userID = converToken.id;
 
-
-    //Programação do Menu de Hamburger
-    // to change burger classes
-    const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
-    const [menu_class, setMenuClass] = useState("menu hidden")
-    const [isMenuClicked, setIsMenuClicked] = useState(false)
     const [backgroundColor, setBackgroundColor] = useState('');
 
-    // toggle burger menu change
+    // Programação do Menu de Hamburger
+    const [burgerClass, setBurgerClass] = useState('burger-bar');
+    const [menuClass, setMenuClass] = useState('menu hidden');
+    const [isMenuClicked, setIsMenuClicked] = useState(false);
+
     const updateMenu = () => {
         if (!isMenuClicked) {
-            setBurgerClass("burger-bar clicked")
-            setMenuClass("menu visible")
+            setBurgerClass('burger-bar clicked');
+            setMenuClass('menu visible');
+        } else {
+            setBurgerClass('burger-bar');
+            setMenuClass('menu hidden');
         }
-        else {
-            setBurgerClass("burger-bar unclicked")
-            setMenuClass("menu hidden")
-        }
-        setIsMenuClicked(!isMenuClicked)
-    }
+        setIsMenuClicked(!isMenuClicked);
+    };
+
+    useEffect(() => {
+        setBurgerClass('burger-bar');
+        setMenuClass('menuHidden');
+        setIsMenuClicked(false);
+    }, [])
+
+    const closeMenu = () => {
+        setBurgerClass('burger-bar');
+        setMenuClass('menuHidden');
+        setIsMenuClicked(false);
+    };
 
     //nome da empresa
     const [nomeEmp, setNomeEmp] = useState();
@@ -59,9 +68,14 @@ const TelaEnderecoCliente = () => {
                 const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 setNomeEmp(empResponse.data.nome);
                 setBackgroundColor(empResponse.data.tema);
-                const divLat = document.getElementById(styles.menuLatCli)
-                if(divLat) {
+                const divLat = document.getElementById(styles.menuLatCli);
+                if (divLat) {
                     divLat.style.backgroundColor = empResponse.data.tema;
+                }
+                const divMen = document.getElementsByClassName(menStyle.menu);
+
+                if (divMen.length > 0) {
+                    divMen[0].style.backgroundColor = empResponse.data.tema;
                 }
             } catch (error) {
                 console.log(error);
@@ -214,7 +228,7 @@ const TelaEnderecoCliente = () => {
 
 
     return (
-        <div className={styles.fDBCliente} style={{backgroundColor}}>
+        <div className={styles.fDBCliente} style={{ backgroundColor }}>
             <div id={styles.menuLatCli}>
                 <div id={styles["menuDesk"]}>
                     <ul id={styles["ulDesk"]}>
@@ -238,7 +252,7 @@ const TelaEnderecoCliente = () => {
                 </div>
             </div>
 
-            <div id={styles["conteudoCli"]} style={{backgroundColor}}>
+            <div id={styles["conteudoCli"]} style={{ backgroundColor }}>
                 <h2><center>Endereço (Cliente)</center></h2>
                 <form id={styles["formEN"]} onSubmit={(e) => updateEndereco(e)}>
                     <div className={styles.linha}>
@@ -335,58 +349,52 @@ const TelaEnderecoCliente = () => {
                 </form>
             </div>
 
-            <div id={styles["menuHorCli"]} style={{backgroundColor}}>
+            <div id={styles["menuHorCli"]} style={{ backgroundColor }}>
                 {/*Menu Mobile*/}
-                <div className="menHamburger">
-                    <div className="burger-menu" onClick={updateMenu}>
-                        <div className={burger_class} ></div>
-                        <div className={burger_class} ></div>
-                        <div className={burger_class} ></div>
+                <div className={menStyle.menHamburger}>
+                    <div className={menStyle['burger-menu']} onClick={updateMenu}>
+                        <div className={menStyle['burger-bar']}></div>
+                        <div className={menStyle['burger-bar']}></div>
+                        <div className={menStyle['burger-bar']}></div>
                     </div>
-                    <div className={menu_class} >
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <div onClick={updateMenu} className="fechaMenu"><p>+</p></div>
+                    <div className={`${menStyle.menu} ${menStyle[menuClass]}`}>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div onClick={closeMenu} className={menStyle.fechaMenu}>
+                            <p>+</p>
+                        </div>
 
                         <ul id="uMenHamburger">
                             <FotoMen />
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
                             <li>
                                 <p>
-                                    <Link to={`/tMenuDBCli/${token}/${uid}`}>
-                                        Dados Básicos
-                                    </Link>
+                                    <Link to={`/tMenuDBCli/${token}/${uid}`}>Dados Básicos</Link>
                                 </p>
                             </li>
                             <li style={{ backgroundColor: 'rgba(80, 80, 80, 0.5)' }}>
                                 <p>
-                                    <Link to={`/tMenuEnderecoCli/${token}/${uid}`}>
-                                        Endereço
-                                    </Link>
+                                    <Link to={`/tMenuEnderecoCli/${token}/${uid}`}>Endereço</Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to={`/tMenuFotoCli/${token}/${uid}`}>
-                                        Foto
-                                    </Link>
+                                    <Link to={`/tMenuFotoCli/${token}/${uid}`}>Foto</Link>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <Link to={`/tMenuCli/${token}/${uid}`}>
-                                        Voltar ao Menu
-                                    </Link>
+                                    <Link to={`/tMenuCli/${token}/${uid}`}>Voltar ao Menu</Link>
                                 </p>
                             </li>
                         </ul>
