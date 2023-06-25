@@ -152,7 +152,11 @@ const TelaMenuEmpreendimento = () => {
     const [sabFim, setSabFim] = useState("");
     const [domFim, setDomFim] = useState("");
 
-    const [ftema, setTema] = useState("#3293CA");
+    const [ftema, setTema] = useState("");
+
+    useEffect(() => {
+        setTema('#3293CA');
+    }, [])
 
     const [imagemSelecionada, setImagemSelecionada] = useState(null);
     console.log(ftema)
@@ -193,7 +197,7 @@ const TelaMenuEmpreendimento = () => {
                 setUF(data.uf);
             });
     }
-    if (ftema === ""){
+    if (ftema === "") {
         setTema('#0000');
     }
 
@@ -205,7 +209,7 @@ const TelaMenuEmpreendimento = () => {
 
     //salvar o empreendimento
     const cadEstabelecimento = async (selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
-        //alert(JSON.stringify({ selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
+        //alert(JSON.stringify({ selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
 
         //dados do Estabelecimento
         const textData = {
@@ -331,7 +335,7 @@ const TelaMenuEmpreendimento = () => {
 
         //alert(JSON.stringify({selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf}));
 
-        cadEstabelecimento(selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
+        cadEstabelecimento(selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
     }
 
     return (

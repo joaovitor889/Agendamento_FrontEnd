@@ -136,7 +136,10 @@ const TelaMenuEmpreendimento = () => {
     const [sabFim, setSabFim] = useState("");
     const [domFim, setDomFim] = useState("");
 
-    const [ftema, setTema] = useState("#3293CA");
+    const [ftema, setTema] = useState("");
+    useEffect(() => {
+        setTema('#3293CA');
+    }, [])
     const [imagemSelecionada, setImagemSelecionada] = useState(null);
 
     const ftelefone = "15 996633179";
@@ -181,7 +184,7 @@ const TelaMenuEmpreendimento = () => {
 
     //salvar o empreendimento
     const cadEstabelecimento = async (selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf) => {
-        //alert(JSON.stringify({ selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jscep, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
+        //alert(JSON.stringify({ selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf }));
 
         //dados do Estabelecimento
         const textData = {
@@ -293,10 +296,9 @@ const TelaMenuEmpreendimento = () => {
                     } catch (error) {
                         console.log(error);
                     }
+                    navigate("tLoginAdm");
                 }
-                navigate("/tLoginAdm");
             }
-
         } catch (error) {
             console.error('Erro ao enviar requisições:', error);
             alert("Dados Inválidos!");
