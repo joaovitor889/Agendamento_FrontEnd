@@ -45,7 +45,7 @@ const TelaPesqFunc = () => {
             console.log(error);
         })
 
-        carregarServicos();
+        // carregarServicos();
     }
 
     
@@ -100,29 +100,31 @@ const TelaPesqFunc = () => {
     const [selectedValue, setSelectedValue] = useState('');
     const navegate = useNavigate();
 
-    function handleSelectChange(event) {
+    useEffect(() => {
+        renderContent(novoUID); // Executa o código relevante quando novoUID for atualizado
+        renderFuncionarios(novoUID);
+      }, [novoUID]);
+      
+      const handleSelectChange = (event) => {
         const value = event.target.value;
-
         setSelectedValue(value);
-        console.log(value);
-
-        renderContent(value);
-
-    }
-
-    
-  const renderContent = (value) => {
-
-        setNovoUID(value);
-
-        agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + value).then(response => {
-            setNomeEmp(response.data.nome); // Declaração do nome da empresa
-
-        }).catch(error => {
+        setNovoUID(value); // Atualiza o estado de novoUID
+      
+        // Não é necessário chamar renderContent aqui
+      };
+      
+      const renderContent = (value) => {
+        agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + value)
+          .then(response => {
+            setNomeEmp(response.data.nome);
+            // Outro código relevante aqui
+          })
+          .catch(error => {
             console.log(error);
-        })
+          });
+      };
 
-    
+      const renderFuncionarios = (value) => {
         agFetch.get('http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/todosFunc/' + value)
             .then(response => {
                 setElementos(response.data);
@@ -130,32 +132,28 @@ const TelaPesqFunc = () => {
             .catch(error => {
                 console.error(error);
             });
-
-            console.log("CHAMAAAAA!!!");
-            
-            
-    
-  };
+      }
+        
 
   
 
-  function carregarServicos (){
-    var nomesServ = []
-    var IdsFunc = []
-    for(var i = 0; i < elementos.length; i++){
-        IdsFunc[i] = elementos[i].id;
-        console.log(IdsFunc[i])
-        agFetch.get(`http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/funcionario/servicos/19`).then(
-            response => {
-                console.log(response.data)
-                for(var x = 0; x < response.data.length; x++){
-                    nomesServ[0] =  response.data[x].nome;
-                }
-            }
-        )
-    }
-    console.log(nomesServ[0]);
-  }
+//   function carregarServicos (){
+//     var nomesServ = []
+//     var IdsFunc = []
+//     for(var i = 0; i < elementos.length; i++){
+//         IdsFunc[i] = elementos[i].id;
+//         console.log(IdsFunc[i])
+//         agFetch.get(`http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/funcionario/servicos/19`).then(
+//             response => {
+//                 console.log(response.data)
+//                 for(var x = 0; x < response.data.length; x++){
+//                     nomesServ[0] =  response.data[x].nome;
+//                 }
+//             }
+//         )
+//     }
+//     console.log(nomesServ[0]);
+//   }
 
 
     

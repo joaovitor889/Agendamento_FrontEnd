@@ -99,7 +99,9 @@ const TelaCalendarioProfissional = () => {
             <header>
                 <div className={styles.esquerda}>
                     <label htmlFor={styles["check"]}>
+                    <Link to={`/tMenuProfis/${token}/${uid}`}>
                         <img src={menu} alt="retunr" className='sidebar_btn' />
+                    </Link>
                     </label>
                 </div>
                 <div className={styles.Centro}>
