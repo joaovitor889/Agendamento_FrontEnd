@@ -4,7 +4,7 @@ import perfil from '../../img/perfil.png'
 import notificar from '../../img/notificar.png'
 import block from '../../img/block-func.png'
 import filtro from '../../img/filter.png'
-import Foto from './FotoPerfilFunc/fotoFunc';
+import Foto from './FotoPerfilFunc/fotoAgdsFunc';
 //import logo from '../../img/logo.PNG';
 
 //import { useState, useEffect, useRef } from "react";
