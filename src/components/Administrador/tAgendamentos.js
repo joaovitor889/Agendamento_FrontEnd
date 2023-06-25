@@ -19,6 +19,8 @@ import {
 import { arEG } from 'date-fns/locale';
 import agFetch from '../../axios/config';
 
+import FotoADM from './FotoPerfilAdm/fotoAdm.js';
+
 //import { useState, useEffect, useRef } from "react";
 
 //import { Link, useNavigate } from "react-router-dom";
@@ -49,49 +51,62 @@ const TelaAgendamentos = () => {
     const [periodo, setPeriodo] = useState({
         data_inicio: "2023-06-26T00:00:00.000Z",
         data_fim: "2023-06-26T23:00:00.000Z"
-      });
-    
-      const setDataInicio = (dataInicio) => {
-        setPeriodo(prevPeriodo => ({
-          ...prevPeriodo,
-          data_inicio: dataInicio + 'T00:00:00.000Z'
-        }));
-      };
-    
-      const setDataFim = (dataFim) => {
-        setPeriodo(prevPeriodo => ({
-          ...prevPeriodo,
-          data_fim: dataFim + 'T23:00:00.000Z'
-        }));
-      };
+    });
 
-      useEffect(() => {
+    const setDataInicio = (dataInicio) => {
+        setPeriodo(prevPeriodo => ({
+            ...prevPeriodo,
+            data_inicio: dataInicio + 'T00:00:00.000Z'
+        }));
+    };
+
+    const setDataFim = (dataFim) => {
+        setPeriodo(prevPeriodo => ({
+            ...prevPeriodo,
+            data_fim: dataFim + 'T23:00:00.000Z'
+        }));
+    };
+
+    useEffect(() => {
         const fetchAgendamentos = async () => {
-          try {
-            const response = await agFetch.post(
-              `/estabelecimento/todosAgendamentos/${uid}`,
-              periodo
-            );
-            setAgendamentos(response.data);
-            console.log(response.data)
-            console.log(periodo)
-            console.log(uid)
+            try {
+                const response = await agFetch.post(
+                    `/estabelecimento/todosAgendamentos/${uid}`,
+                    periodo
+                );
+                setAgendamentos(response.data);
+                console.log(response.data)
+                console.log(periodo)
+                console.log(uid)
 
-          } catch (error) {
-            console.log(error);
-          }
+            } catch (error) {
+                console.log(error);
+            }
         };
-      
+
         fetchAgendamentos();
-      }, [periodo.data_inicio, periodo.data_fim]);
+    }, [periodo.data_inicio, periodo.data_fim]);
 
     const handleDataClick = (dataValue) => {
         setDataInicio(dataValue);
         setDataFim(dataValue);
-      };
-    
+    };
 
-    
+    //nome da empresa
+    const [nomeEmpresa, setNomeEmpresa] = useState();
+
+    useEffect(() => {
+        async function PegaEmpresa() {
+            try {
+                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
+                setNomeEmpresa(empResponse.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        PegaEmpresa();
+    }, [uid])
+
 
     return (
         <main>
@@ -167,17 +182,17 @@ const TelaAgendamentos = () => {
                     <div className={styles.rowBotton}>
                         <h4 data-value="2023-06-26" onClick={() => handleDataClick("2023-06-26")}>26/06</h4>
                         <h4 data-value="2023-06-27" onClick={() => handleDataClick("2023-06-27")}>27/06</h4>
-                        <h4 data-value="2023-06-28" onClick={(e) => {setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value'));}}>28/06</h4>
-                        <h4 data-value="2023-06-29" onClick={(e) => {setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value'));}}>29/06</h4>
-                        <h4 data-value="2023-06-30" onClick={(e) => {setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value'));}}>30/06</h4>
-                        <h4 data-value="2023-07-01" onClick={(e) => {setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value'));}}>01/07</h4>
-                        <h4 data-value="2023-07-02" onClick={(e) => {setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value'));}}>02/07</h4>
+                        <h4 data-value="2023-06-28" onClick={(e) => { setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value')); }}>28/06</h4>
+                        <h4 data-value="2023-06-29" onClick={(e) => { setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value')); }}>29/06</h4>
+                        <h4 data-value="2023-06-30" onClick={(e) => { setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value')); }}>30/06</h4>
+                        <h4 data-value="2023-07-01" onClick={(e) => { setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value')); }}>01/07</h4>
+                        <h4 data-value="2023-07-02" onClick={(e) => { setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value')); }}>02/07</h4>
                     </div>
                 </div>
                 <a onClick={() => setOpenModal(true)} className={styles.block}> <img src={block} alt="bloquear" /></a>
                 <div className={styles.Container}>
                     {agendamentos.map((age, index) => (
-                        <div key={index} onClick={() => {setDetalheOpen(true);setIndex(index)}} className={styles.Card}>
+                        <div key={index} onClick={() => { setDetalheOpen(true); setIndex(index) }} className={styles.Card}>
                             <div className={styles.Card_Header}>
                                 <h2>Cliente: {age.cliente.nome}</h2>
                                 <p>Serviço: {age.servico.nome}</p>
@@ -191,11 +206,11 @@ const TelaAgendamentos = () => {
                             </div>
                         </div>
                     ))}
-                    
+
                 </div>
 
                 <Bloquear isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)} />
-                <DetalhesAge isOpen={openAgeda}  setDetalheOpen={() => setDetalheOpen(!openAgeda)} agendamento={agendamentos} index = {index}/>
+                <DetalhesAge isOpen={openAgeda} setDetalheOpen={() => setDetalheOpen(!openAgeda)} agendamento={agendamentos} index={index} />
             </div>
         </main>
     )
