@@ -51,7 +51,7 @@ const TelaPesqCli = () => {
                 console.error(error);
             });
     }, []);
-
+ 
 
     return (
         <div className={styles.fPesqCli}>
@@ -66,7 +66,7 @@ const TelaPesqCli = () => {
                 </div>
                 <div className={styles.Centro}>
                     <h3 id='emp'></h3>
-                </div>
+                </div> 
                 <FotoAdm/>
             </header>
             {/* final do header */}
