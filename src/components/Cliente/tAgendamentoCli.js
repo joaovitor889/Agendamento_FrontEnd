@@ -5,6 +5,7 @@ import notificar from '../../img/Component 24.png'
 import block from '../../img/block-func.png'
 import filtro from '../../img/filter.png'
 //import logo from '../../img/logo.PNG';
+import FotoCliente from './FotoPerfilCliente/fotoCliente';
 
 //import { useState, useEffect, useRef } from "react";
 
@@ -30,7 +31,18 @@ const TelaAgendamento = () => {
 
    const [agendamentos, setAgendamentos] = useState([]);
    const [index, setIndex] = useState('');
-;
+
+   const [nomeEmp, setNomeEmp] = useState();
+
+   const CarregamentoInicial = (e) =>{
+       agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
+           setNomeEmp(response.data.nome); // Declaração do nome da empresa
+
+       }).catch(error => {
+           console.log(error);
+       })
+   }
+
    const [periodo, setPeriodo] = useState({
        data_inicio: "2023-06-26T00:00:00.000Z",
        data_fim: "2023-06-26T23:00:00.000Z"
@@ -80,7 +92,7 @@ const TelaAgendamento = () => {
     };
     
    return (
-        <div className={styles.fAgendamento}>
+        <div className={styles.fAgendamento} onLoad={CarregamentoInicial}>
             <input type="checkbox" id={styles["check"]} />
             {/* header  começo */}
             <header>
@@ -90,13 +102,9 @@ const TelaAgendamento = () => {
                     </a>
                 </div>
                 <div className={styles.Centro}>
-                    <h3>Shostners & Shostners</h3>
+                    <h3>{nomeEmp}</h3>
                 </div>
-                <div className={styles.direita}>
-                    <a href="/" className="btn_perfil">
-                        <img src={perfil} alt="notificar" />
-                    </a>
-                </div>
+                <FotoCliente/>
             </header>
             {/* final do header */}
             <div className={styles.filter}>

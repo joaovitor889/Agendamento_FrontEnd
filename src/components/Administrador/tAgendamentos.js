@@ -3,6 +3,7 @@ import menu from '../../img/Menu Rounded.png';
 import perfilF from '../../img/perfil.png';
 import block from '../../img/block-func.png';
 import filtro from '../../img/filter.png';
+import FotoAdm from './FotoPerfilAdm/fotoAdm';
 
 import Bloquear from '../modal/Bloquear';
 import DetalhesAge from '../modal/DetalhesAge';
@@ -34,7 +35,17 @@ const TelaAgendamentos = () => {
 
     const [agendamentos, setAgendamentos] = useState([]);
     const [index, setIndex] = useState('');
-;
+    const [nomeEmp, setNomeEmp] = useState();
+
+    const CarregamentoInicial = (e) =>{
+        agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
+            setNomeEmp(response.data.nome); // Declaração do nome da empresa
+
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
     const [periodo, setPeriodo] = useState({
         data_inicio: "2023-06-26T00:00:00.000Z",
         data_fim: "2023-06-26T23:00:00.000Z"
@@ -84,7 +95,7 @@ const TelaAgendamentos = () => {
 
     return (
         <main>
-            <div className={styles.fAgends}>
+            <div className={styles.fAgends} onLoad={CarregamentoInicial}>
                 <input type='checkbox' id={styles["check"]} />
                 <input type='checkbox' id={styles["check_rigth"]} />
                 {/* header  começo */}
@@ -95,16 +106,9 @@ const TelaAgendamentos = () => {
                         </label>
                     </div>
                     <div className={styles.Centro}>
-                        <h3>Shostners & Shostners</h3>
+                        <h3>{nomeEmp}</h3>
                     </div>
-                    <div className={styles.direita}>
-                        <a href="/" className="btn_perfil">
-                            <img src={perfilF} alt="notificar" />
-                        </a>
-                        {/* <a href="/" className="btn_noticia">
-                        <img src={notificar} alt="notificar" />
-                    </a> */}
-                    </div>
+                    <FotoAdm />
                 </header>
                 {/* final do header */}
                 {/* sidebar começo */}

@@ -6,6 +6,7 @@ import add from '../../img/add-func.png'
 import lixeira from '../../icones/trash-2.png'
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
+import FotoAdm from './FotoPerfilAdm/fotoAdm';
 
 import agFetch from '../../axios/config';
 
@@ -66,14 +67,7 @@ const TelaPesqCli = () => {
                 <div className={styles.Centro}>
                     <h3 id='emp'></h3>
                 </div>
-                <div className={styles.direita}>
-                    <a href="/" className="btn_perfil">
-                        <img src={perfilF} alt="notificar" />
-                    </a>
-                    <a href="/" className="btn_noticia">
-                        {/* <img src= {notificar} alt="notificar" /> */}
-                    </a>
-                </div>
+                <FotoAdm/>
             </header>
             {/* final do header */}
             {/* sidebar começo */}
