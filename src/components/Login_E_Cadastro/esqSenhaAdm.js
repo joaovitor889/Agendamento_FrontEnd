@@ -30,9 +30,8 @@ const EsqSenhaAdm = () => {
                 navigate(`/tAlterarSenhaAdm/${token}`);
             }
         } catch (error) {
-            console.log(error);
-            if (error.status === 404) {
-                alert("Email Inválido!")
+            if (error.response && error.response.status === 404) {
+                alert("Email não encontrado!");
             }
         }
     }
