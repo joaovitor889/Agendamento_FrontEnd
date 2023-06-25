@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 //import agFetch from '../../axios/config.js';
 
 const EsqSenhaAdm = () => {
-    document.title = "Esquceu a Senha";
+    document.title = "Esqueceu a Senha";
 
     const [email, setEmail] = useState("");
 
