@@ -33,7 +33,11 @@ const TelaPesqFunc = () => {
     const [elementos, setElementos] = useState([]);
     const [nomeEmp, setNomeEmp] = useState();
  
+    const [novoUID,  setNovoUID] = useState('');
+    
+
     const CarregamentoInicial = (e) =>{
+        setNovoUID(uid);
         agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
             setNomeEmp(response.data.nome); // Declaração do nome da empresa
 
@@ -109,6 +113,8 @@ const TelaPesqFunc = () => {
     
   const renderContent = (value) => {
 
+        setNovoUID(value);
+
         agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + value).then(response => {
             setNomeEmp(response.data.nome); // Declaração do nome da empresa
 
@@ -174,13 +180,13 @@ const TelaPesqFunc = () => {
             {/* final do header */}
             {/* sidebar começo */}
             <div className={styles.sidebar}>
-                <Link to ={`/tPesqFunc/${token}/${uid}`} style={{color: '#7c807d'}}>Profissionais</Link>
-                <Link to ={`/tPesqCli/${token}/${uid}`}>Clientes</Link>
-                <Link to ={`/tAgendamentosADM/${token}/${uid}`}>Agendamentos</Link>
-                <Link to ={`/tAgendarADM/${token}/${uid}`}>Agendar</Link>
+                <Link to ={`/tPesqFunc/${token}/${novoUID}`} style={{color: '#7c807d'}}>Profissionais</Link>
+                <Link to ={`/tPesqCli/${token}/${novoUID}`}>Clientes</Link>
+                <Link to ={`/tAgendamentosADM/${token}/${novoUID}`}>Agendamentos</Link>
+                <Link to ={`/tAgendarADM/${token}/${novoUID}`}>Agendar</Link>
                 {/*<p onClick={()=> setOpenModalCategoria(true)}>Categorias</p>*/}
-                <Link to ={`/tServADM/${token}/${uid}`}>Serviços</Link>
-                <Link to ={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
+                <Link to ={`/tServADM/${token}/${novoUID}`}>Serviços</Link>
+                <Link to ={`/tMenuDBADM/${token}/${novoUID}`}>Perfil</Link>
                 <Link to={`/tLoginAdm`}>Sair</Link>
                 <select name='qual empresa?' className={styles.interprise} onChange={handleSelectChange}>
                     <option value="">Escolha a empresa</option>
