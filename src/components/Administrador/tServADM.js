@@ -3,6 +3,7 @@ import menu from '../../img/Menu Rounded.png';
 import perfilF from '../../img/perfil.png';
 import newServ from '../../img/Component 88.png';
 import filtro from '../../img/filter.png';
+import FotoAdm from './FotoPerfilAdm/fotoAdm';
 
 import lixeira from '../../icones/trash-2.png';
 //import logo from '../../img/logo.PNG';
@@ -143,14 +144,7 @@ const TelaMenuADM = () => {
                 <div className={styles.Centro}>
                     <h3>{nomeEmp}</h3>
                 </div>
-                <div className={styles.direita}>
-                    <a href="/" className="btn_perfil">
-                        <img src={perfilF} alt="notificar" />
-                    </a>
-                    {/* <a href="/" className="btn_noticia">
-                        <img src= {notificar} alt="notificar" />
-                    </a> */}
-                </div>
+                <FotoAdm/>
             </header>
             {/* final do header */}
             {/* sidebar começo */}

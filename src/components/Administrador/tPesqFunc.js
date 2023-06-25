@@ -4,6 +4,7 @@ import perfilF from '../../img/perfil.png'
 import filter from '../../img/filter.png'
 import add from '../../img/add-func.png'
 import lixeira from '../../icones/trash-2.png'
+import FotoAdm from './FotoPerfilAdm/fotoAdm';
 
 
 //import logo from '../../img/logo.PNG';
@@ -168,14 +169,7 @@ const TelaPesqFunc = () => {
                 <div className={styles.Centro}>
                     <h3 id='emp'>{nomeEmp}</h3>
                 </div>
-                <div className={styles.direita}>
-                    <a href="/" className="btn_perfil">
-                        <img src={perfilF} alt="perfil" />
-                    </a>
-                    {/* <a href="/" className="btn_noticia">
-                        <img src= {notificar} alt="notificar" />
-                    </a> */}
-                </div>
+                <FotoAdm/>
             </header>
             {/* final do header */}
             {/* sidebar começo */}

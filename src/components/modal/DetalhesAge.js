@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from 'axios';
+
 
 const BACKGROUND_STYLE ={
     position: 'fixed',
@@ -72,7 +74,25 @@ const INFOS_STYLE ={
     margin: '1rem'
 }
 
+
 export default function Modal({isOpen, setDetalheOpen, children, agendamento, index }) {
+
+    const [status, setStatus] = useState('Confirmado');
+
+    const handleFechar = async () => {
+        var obj ={
+            agendamentoId: agendamento[index].id,
+            status: status
+        }
+
+        axios.post("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/agendamento/mudarStatus", obj).then(response => {
+        alert("alteração de status")
+
+        }).catch(error => {
+            console.log(error);
+        })
+        setDetalheOpen();
+      };
 
     if(isOpen){
         return(
@@ -95,14 +115,13 @@ export default function Modal({isOpen, setDetalheOpen, children, agendamento, in
                     
                     <div style={DOIS_STYLE}>
                         <h4 style={TEXT_STATUS_STYLE}>Status: </h4>
-                        <select style={STATUS_STYLE}>
-                            <option value="Confirmado" key="">{agendamento[index].status}</option>
+                        <select style={STATUS_STYLE} value={status} onChange={(e) => setStatus(e.target.value)}>
                             <option value="Confirmado" key="">Confirmado</option>
                             <option value="Finalizado" key="">Finalizado</option>
                             <option value="Pendente" key="">Pendente</option>
                         </select>
                     </div>                   
-                    <button onClick={setDetalheOpen} style={BTN_STYLE}>Fechar</button>
+                    <button onClick={handleFechar} style={BTN_STYLE}>Fechar</button>
                 </div>
             </div>
             
