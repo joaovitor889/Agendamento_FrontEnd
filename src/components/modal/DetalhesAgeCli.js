@@ -132,6 +132,14 @@ export default function Modal({ isOpen, setDetalheOpen, children, agendamento, i
         setDetalheOpen();
     };
 
+    function getFormattedTime(dateTimeString) {
+        const dateObj = new Date(dateTimeString);
+        const hour = dateObj.getHours();
+        const minutes = dateObj.getMinutes();
+        const formattedTime = `${hour.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        return formattedTime;
+    }
+
     if (isOpen) {
         return (
             <div style={BACKGROUND_STYLE}>
@@ -142,7 +150,7 @@ export default function Modal({ isOpen, setDetalheOpen, children, agendamento, i
                         {/* <p style={INFO_STYLE}>Cliente: {nomeFunc}</p> */}
                         <p style={INFO_STYLE}>funcionario: {agendamento[index].funcionario.nome}</p>
                         <br />
-                        <p style={INFO_STYLE}>09/05/2023 - 14:00 até as 16:00</p>
+                        <p style={INFO_STYLE}>09/05/2023 - {getFormattedTime(agendamento[index].data_inicio)} até as {getFormattedTime(agendamento[index].data_fim)}</p>
                     </div>
 
                     <br />
