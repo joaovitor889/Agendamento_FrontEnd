@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import { useNavigate } from 'react-router-dom';
 
-//import agFetch from '../../axios/config.js';
+import agFetch from '../../axios/config.js';
 
 const EsqSenhaAdm = () => {
     document.title = "Esqueceu a Senha";
@@ -17,9 +17,25 @@ const EsqSenhaAdm = () => {
     const navigate = useNavigate();
 
     const envEmail = async (email) => {
-        alert(email);
-
+        //alert(email);
+        const txtData = {
+            email: email
+        }
         //logica para verificar se o email existe no banco de dados
+        try {
+            const envEmailResponse = await agFetch.post('/auth/proprietario/recuperarSenha', txtData);
+            if (envEmailResponse.status >= 200 && envEmailResponse.status <= 201) {
+                const token = envEmailResponse.data.token;
+                console.log("Logou no Proprietário" + token);
+                navigate(`/tAlterarSenhaAdm/${token}`);
+            }
+
+        } catch (error) {
+            console.log(error);
+            if(error.status === 404) {
+                alert("Email Inválido!");
+            }
+        }
         navigate("/tAlterarSenhaAdm");
     }
 

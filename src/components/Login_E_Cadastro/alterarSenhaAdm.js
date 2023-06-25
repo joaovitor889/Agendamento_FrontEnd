@@ -5,12 +5,14 @@ import Senha from '../../img/Lock.png';
 
 import { useState } from "react";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-//import agFetch from '../../axios/config.js';
+import agFetch from '../../axios/config.js';
 
 const EsqSenhaAdm = () => {
-    document.title = "Esquceu a Senha";
+    document.title = "Esqueceu a Senha";
+
+    const token = useParams();
 
     const [senha, setSenha] = useState("");
     const [confSenha, setConfSenha] = useState("");
@@ -18,7 +20,27 @@ const EsqSenhaAdm = () => {
     const navigate = useNavigate();
 
     const envSenha = async (senha) => {
-        alert(senha);
+        //alert(senha);
+        const txtData = {
+            token: token,
+            senha: senha
+        }
+        try {
+            //Autorizar o envio dos dados
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+            const altSenhaResponse = await agFetch.post('/auth/proprietario/mudarSenha', txtData, { headers });
+            if (altSenhaResponse.status >= 200 && altSenhaResponse.status <= 299) {
+                alert("Senha Alterada!");
+                navigate("/tLoginAdm");
+            }
+        } catch (error) {
+            console.log(error);
+            if (error.status === 400 || error.status === 404) {
+                alert("Erro ao alterar a senha!");
+            }
+        }
 
         //logica para alterar a senha no banco de dados
         navigate("/tLoginAdm");

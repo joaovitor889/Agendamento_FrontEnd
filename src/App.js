@@ -67,7 +67,7 @@ function App() {
             {/* Login e Cadastro */}
             <Route  path = "/tLoginAdm" element = {<LoginAdm />} />
             <Route path = "/tEsqueceuSenhaAdm" element = {<EsqSenhaAdm />} />
-            <Route path = "/tAlterarSenhaAdm" element = {<AltSenhaAdm />} />
+            <Route path = "/tAlterarSenhaAdm/:token" element = {<AltSenhaAdm />} />
             <Route  path = "/tCadastroAdm" element = {<CadastroAdm />} />
             <Route  path = "/tLoginCli/:uid" element = {<LoginCli />} />
             <Route  path = "/tEsqueceuSenhaCli" element = {<EsqSenhaCli />} />
