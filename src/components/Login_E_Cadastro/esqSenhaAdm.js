@@ -29,14 +29,12 @@ const EsqSenhaAdm = () => {
                 console.log("Logou no Proprietário" + token);
                 navigate(`/tAlterarSenhaAdm/${token}`);
             }
-
         } catch (error) {
             console.log(error);
-            if(error.status === 404) {
-                alert("Email Inválido!");
+            if (error.status === 404) {
+                alert("Email Inválido!")
             }
         }
-        navigate("/tAlterarSenhaAdm");
     }
 
     const handleSubmit = (e) => {
