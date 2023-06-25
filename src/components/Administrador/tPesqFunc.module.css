@@ -129,7 +129,8 @@ a{
     margin-left: 1rem;
 }
 
-.filter select{
+
+.filter input{
     border: none;
     margin-left: 1rem;
     height: 30px;

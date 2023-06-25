@@ -34,6 +34,7 @@ const TelaDadosBasicosCliente = () => {
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
     const [menu_class, setMenuClass] = useState("menu hidden")
     const [isMenuClicked, setIsMenuClicked] = useState(false)
+    const [backgroundColor, setBackgroundColor] = useState('');
 
     // toggle burger menu change
     const updateMenu = () => {
@@ -66,6 +67,7 @@ const TelaDadosBasicosCliente = () => {
             try {
                 const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 setNomeEmpresa(empResponse.data.nome);
+                setBackgroundColor(empResponse.data.tema)
             } catch (error) {
                 console.log(error);
             }
@@ -148,7 +150,7 @@ const TelaDadosBasicosCliente = () => {
     };
 
     return (
-        <div className={styles.fDBCliente}>
+        <div className={styles.fDBCliente} style={{backgroundColor}}>
             <div id={styles["menuLatCli"]}>
                 <div id={styles["menuDesk"]}>
                     <ul id={styles["ulDesk"]}>
@@ -172,7 +174,7 @@ const TelaDadosBasicosCliente = () => {
                 </div>
             </div>
 
-            <div id={styles["conteudoCli"]}>
+            <div id={styles["conteudoCli"]} style={{backgroundColor}}>
                 <h2><center>Dados Básicos (Cliente)</center></h2>
                 <form id={styles["formDB"]} onSubmit={(e) => updateCli(e)}>
                     <input
@@ -267,7 +269,7 @@ const TelaDadosBasicosCliente = () => {
                 </form>
             </div>
 
-            <div id={styles["menuHorCli"]}>
+            <div id={styles["menuHorCli"]} style={{backgroundColor}}>
 
                 {/*Menu Mobile*/}
                 <div className="menHamburger">

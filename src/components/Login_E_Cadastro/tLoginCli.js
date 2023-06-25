@@ -19,6 +19,8 @@ const TelaLogin = () => {
 
     const navigate = useNavigate();
 
+    const [backgroundColor, setBackgroundColor] = useState('');
+
     //Requisicoes com a API
 
     //nome da empresa
@@ -29,6 +31,7 @@ const TelaLogin = () => {
             try {
                 const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 setNomeEmpresa(empResponse.data.nome);
+                setBackgroundColor(empResponse.data.tema);
             } catch (error) {
                 console.log(error);
             }
@@ -78,7 +81,7 @@ const TelaLogin = () => {
     const lnkCad = '/tCadastroCli/' + uid;
 
     return (
-        <div className="fLogin">
+        <div className="fLogin" style={{ backgroundColor }}>
             <div className={styles.container}>
                 <div className="row">
                     <div className="logoLoginCli"><h1 title="Bem-Vindo!"><center>{nomeEmpresa}</center></h1></div>

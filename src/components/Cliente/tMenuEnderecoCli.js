@@ -35,6 +35,7 @@ const TelaEnderecoCliente = () => {
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
     const [menu_class, setMenuClass] = useState("menu hidden")
     const [isMenuClicked, setIsMenuClicked] = useState(false)
+    const [backgroundColor, setBackgroundColor] = useState('');
 
     // toggle burger menu change
     const updateMenu = () => {
@@ -57,6 +58,7 @@ const TelaEnderecoCliente = () => {
             try {
                 const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 setNomeEmp(empResponse.data.nome);
+                setBackgroundColor(empResponse.data.tema);
             } catch (error) {
                 console.log(error);
             }
@@ -208,7 +210,7 @@ const TelaEnderecoCliente = () => {
 
 
     return (
-        <div className={styles.fDBCliente}>
+        <div className={styles.fDBCliente} style={{backgroundColor}}>
             <div id={styles["menuLatCli"]}>
                 <div id={styles["menuDesk"]}>
                     <ul id={styles["ulDesk"]}>
@@ -232,7 +234,7 @@ const TelaEnderecoCliente = () => {
                 </div>
             </div>
 
-            <div id={styles["conteudoCli"]}>
+            <div id={styles["conteudoCli"]} style={{backgroundColor}}>
                 <h2><center>Endereço (Cliente)</center></h2>
                 <form id={styles["formEN"]} onSubmit={(e) => updateEndereco(e)}>
                     <div className={styles.linha}>
@@ -329,7 +331,7 @@ const TelaEnderecoCliente = () => {
                 </form>
             </div>
 
-            <div id={styles["menuHorCli"]}>
+            <div id={styles["menuHorCli"]} style={{backgroundColor}}>
                 {/*Menu Mobile*/}
                 <div className="menHamburger">
                     <div className="burger-menu" onClick={updateMenu}>
@@ -337,7 +339,7 @@ const TelaEnderecoCliente = () => {
                         <div className={burger_class} ></div>
                         <div className={burger_class} ></div>
                     </div>
-                    <div className={menu_class}>
+                    <div className={menu_class} >
                         <br></br>
                         <br></br>
                         <br></br>

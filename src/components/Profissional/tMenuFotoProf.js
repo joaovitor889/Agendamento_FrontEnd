@@ -27,6 +27,7 @@ const TelaFotoProfissional = () => {
     const userID = converToken.id;
 
     const { uid } = useParams();
+    const [backgroundColor, setBackgroundColor] = useState('');
 
     //Requisicoes com a API
 
@@ -38,6 +39,7 @@ const TelaFotoProfissional = () => {
             try {
                 const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 setNomeEmpresa(empResponse.data.nome);
+                setBackgroundColor(empResponse.data.tema);
             } catch (error) {
                 console.log(error);
             }
@@ -132,7 +134,7 @@ const TelaFotoProfissional = () => {
     }
 
     return (
-        <div className={styles.fFotoFunc}>
+        <div className={styles.fFotoFunc} style={{ backgroundColor }}>
             <div id={styles["menuLatFunc"]}>
                 <div id={styles["menuDesk"]}>
                     <ul id={styles["ulDesk"]}>
@@ -148,7 +150,7 @@ const TelaFotoProfissional = () => {
                 </div>
             </div>
 
-            <div id={styles["conteudoFunc"]}>
+            <div id={styles["conteudoFunc"]} style={{ backgroundColor }}>
                 <h2><center>Foto (Funcionário)</center></h2>
                 <form id={styles["formFotoFunc"]} onSubmit={updateFotoFunc}>
                     <center><img id="fotoDefFunc" className={styles.fotDef} src={preview} alt="Foto Perfil" /></center>
@@ -164,7 +166,7 @@ const TelaFotoProfissional = () => {
                 </form>
             </div>
 
-            <div id={styles["menuHorFunc"]}>
+            <div id={styles["menuHorFunc"]} style={{ backgroundColor }}>
                 <FotoHor />
                 <div className={styles.logoMenuFunc}><p>{nomeEmpresa}</p></div>
                 <div id={styles["voltar"]}><Link to={`/tMenuProfis/${token}/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>

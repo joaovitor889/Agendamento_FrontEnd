@@ -36,6 +36,7 @@ const TelaFotoCliente = () => {
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
     const [menu_class, setMenuClass] = useState("menu hidden")
     const [isMenuClicked, setIsMenuClicked] = useState(false)
+    const [backgroundColor, setBackgroundColor] = useState('');
 
     // toggle burger menu change
     const updateMenu = () => {
@@ -58,6 +59,7 @@ const TelaFotoCliente = () => {
             try {
                 const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 setNomeEmp(empResponse.data.nome);
+                setBackgroundColor(empResponse.data.tema)
             } catch (error) {
                 console.log(error);
             }
@@ -152,7 +154,7 @@ const TelaFotoCliente = () => {
     }
 
     return (
-        <div className={styles.fFotoCliente}>
+        <div className={styles.fFotoCliente} style={{backgroundColor}}>
             <div id={styles["menuLatCli"]}>
                 <div id={styles["menuDesk"]}>
                     <ul id={styles["ulDesk"]}>
@@ -176,7 +178,7 @@ const TelaFotoCliente = () => {
                 </div>
             </div>
 
-            <div id={styles["conteudoCli"]}>
+            <div id={styles["conteudoCli"]} style={{backgroundColor}}>
                 <h2><center>Foto (Cliente)</center></h2>
                 <form id={styles["formFoto"]} onSubmit={updateFoto}>
                     <center><img id="fotoDefCli" className={styles.fotDef} src={preview} alt="Foto Perfil" /></center>
@@ -191,7 +193,7 @@ const TelaFotoCliente = () => {
                 </form>
             </div>
 
-            <div id={styles["menuHorCli"]}>
+            <div id={styles["menuHorCli"]} style={{backgroundColor}}>
                 {/*Menu Mobile*/}
                 <div className="menHamburger">
                     <div className="burger-menu" onClick={updateMenu}>

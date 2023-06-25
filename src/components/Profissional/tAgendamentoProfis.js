@@ -27,6 +27,7 @@ const TelaCalendarioProfissional = () => {
 
     document.title = "Agendamentos Profissional";
 
+    const [backgroundColor, setBackgroundColor] = useState('');
     const { uid } = useParams();
    const { token } = useParams();
 
@@ -38,6 +39,7 @@ const TelaCalendarioProfissional = () => {
     const CarregamentoInicial = (e) =>{
         agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
             setNomeEmp(response.data.nome); // Declaração do nome da empresa
+            setBackgroundColor(response.data.tema);
 
         }).catch(error => {
             console.log(error);
@@ -93,10 +95,10 @@ const TelaCalendarioProfissional = () => {
     };
 
     return (
-        <div className={styles.fAgendProfissional} onLoad={CarregamentoInicial}>
+        <div className={styles.fAgendProfissional} onLoad={CarregamentoInicial} style={{ backgroundColor }}>
             <input type='checkbox' id={styles["check_rigth"]} />
             {/* header  começo */}
-            <header>
+            <header style={{ backgroundColor }}>
                 <div className={styles.esquerda}>
                     <label htmlFor={styles["check"]}>
                     <Link to={`/tMenuProfis/${token}/${uid}`}>

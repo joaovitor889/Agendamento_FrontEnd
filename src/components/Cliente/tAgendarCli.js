@@ -31,6 +31,8 @@ const TelaAgendarCliente = () => {
     const uid = useParams().uid;
 
     const voltaMenu = "/tMenuCli/" + token + "/" + uid;
+    const [backgroundColor, setBackgroundColor] = useState('');
+  
 
     //nome da empresa
     const [nomeEmpresa, setNomeEmpresa] = useState();
@@ -40,6 +42,7 @@ const TelaAgendarCliente = () => {
             try {
                 const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 setNomeEmpresa(empResponse.data.nome);
+                setBackgroundColor(empResponse.data.tema)
             } catch (error) {
                 console.log(error);
             }
@@ -461,9 +464,11 @@ const TelaAgendarCliente = () => {
         }
     }
 
+    console.log(backgroundColor)
+
     return (
-        <div className={styles.fAgendarCliente}>
-            <nav id={styles["cabecalhoMenuCli"]}>
+        <div className={styles.fAgendarCliente} style={{ backgroundColor }}>
+            <nav id={styles["cabecalhoMenuCli"]} >
                 <div className={styles.voltar}><a href={voltaMenu}><img src={Voltar} alt="voltar" title="Voltar" /></a></div>
                 <div className={styles.logoMenuCli}><p>{nomeEmpresa}</p></div>
                 <FotoCliente />

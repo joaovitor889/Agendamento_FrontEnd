@@ -39,7 +39,12 @@ const TelaAgendamentos = () => {
     const [index, setIndex] = useState('');
     const [nomeEmp, setNomeEmp] = useState();
 
+    const [nameCli, setNameCli] = useState("");
+    const [cpfCli, setCpfCli] = useState("");
+    const [nomeFunc, setNomeFunc] = useState("");
+
     const CarregamentoInicial = (e) =>{
+
         agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
             setNomeEmp(response.data.nome); // Declaração do nome da empresa
 
@@ -71,7 +76,7 @@ const TelaAgendamentos = () => {
         const fetchAgendamentos = async () => {
             try {
                 const response = await agFetch.post(
-                    `/estabelecimento/todosAgendamentos/${uid}`,
+                    `/estabelecimento/todosAgendamentos/${novoUID}`,
                     periodo
                 );
                 setAgendamentos(response.data);
@@ -94,6 +99,9 @@ const TelaAgendamentos = () => {
 
     //nome da empresa
     const [nomeEmpresa, setNomeEmpresa] = useState();
+    const [novoUID,  setNovoUID] = useState('');
+    const [elementos, setElementos] = useState([]);
+
 
     useEffect(() => {
         async function PegaEmpresa() {
@@ -106,6 +114,86 @@ const TelaAgendamentos = () => {
         }
         PegaEmpresa();
     }, [uid])
+
+    //troca de estabelecimento
+    const [selectedValue, setSelectedValue] = useState('');
+    const navegate = useNavigate();
+
+    useEffect(() => {
+        renderContent(novoUID); // Executa o código relevante quando novoUID for atualizado
+        renderFuncionarios(novoUID);
+      }, [novoUID]);
+      
+      const handleSelectChange = (event) => {
+        const value = event.target.value;
+        setSelectedValue(value);
+        setNovoUID(value); // Atualiza o estado de novoUID
+      
+        // Não é necessário chamar renderContent aqui
+      };
+      
+      const renderContent = (value) => {
+        agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + value)
+          .then(response => {
+            setNomeEmp(response.data.nome);
+            // Outro código relevante aqui
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      };
+
+      const renderFuncionarios = (value) => {
+        const fetchAgendamentos = async () => {
+            try {
+                const response = await agFetch.post(
+                    `/estabelecimento/todosAgendamentos/${value}`,
+                    periodo
+                );
+                setAgendamentos(response.data);
+                console.log(response.data)
+                console.log(periodo)
+                console.log(uid)
+
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchAgendamentos();
+      }
+        
+      const [empresas, setEmpresas] = useState([]);
+    useEffect(()=> {
+        async function PegaEmpresas(){
+            try{
+                const headers = {
+                    Authorization: `Bearer ${token}`,
+                };
+
+                const funcResonse = await agFetch.get(`/estabelecimento/prop/`, {headers});
+                setEmpresas(funcResonse.data);
+            }
+            catch(error){
+                console.log(error)
+            }
+        }
+        PegaEmpresas();
+    })
+
+
+    function getFormattedTime(dateTimeString) {
+        const dateObj = new Date(dateTimeString);
+        const hour = dateObj.getHours();
+        const minutes = dateObj.getMinutes();
+        const formattedTime = `${hour.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        return formattedTime;
+    }
+
+    const dateTimeString = "2023-06-25T14:30:00";
+    const formattedTime = getFormattedTime(dateTimeString);
+    console.log(formattedTime); // Output: 14:30
+
 
 
     return (
@@ -136,10 +224,14 @@ const TelaAgendamentos = () => {
                     <Link to={`/tServADM/${token}/${uid}`}>Serviços</Link>
                     <Link to={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
                     <Link to={`/tLoginAdm`}>Sair</Link>
-                    <select name='qual empresa?' className={styles.interprise}>
-                        <option value="emp1">Shostners and Shostners</option>
-                        <option value="emp2">Show de bola</option>
-                    </select>
+                    <select name='qual empresa?' className={styles.interprise} onChange={handleSelectChange}>
+                    <option value="">Escolha a empresa</option>
+                    {empresas.map(empresa => (
+                        <option key={empresa.id} value={empresa.uid}>
+                            {empresa.nome}
+                        </option>
+                    ))}
+                </select>
                 </div>
                 {/* sidebar  final */}
                 {/* sidebar começo */}
@@ -147,22 +239,15 @@ const TelaAgendamentos = () => {
                     <h1>Filtros</h1>
                     <br />
                     <p>Nome do cliente</p>
-                    <input type="text" placeholder='Ex: Lara' />
+                    <input type="text" value={nameCli}  placeholder='Ex: Lara' />
                     <br />
                     <p>CPF do Cliente</p>
-                    <input type="text" placeholder='CPF:' />
+                    <input type="text" value={cpfCli}  placeholder='CPF:' />
                     <br />
                     <p>Nome do Profissional</p>
-                    <select name="func" className={styles.texto}>
-                        <option value="corte">Todos os funcionários</option>
-                        <option value="corte">João</option>
-                        <option value="corte">Bruno</option>
-                        <option value="sombrancelha">Antônio</option>
-                        <option value="manicure">Guilherme</option>
-                        <option value="hidratação">Jean</option>
-                    </select>
+                    <input type="text"value={nomeFunc}  placeholder='Nome Funcionario' />
 
-                    <button className='btn_fill'>Filtrar</button>
+                    <button className='btn_fill' >Filtrar</button>
                 </div>
                 {/* sidebar  final */}
                 <label htmlFor={styles["check_rigth"]} className={styles.filter}>

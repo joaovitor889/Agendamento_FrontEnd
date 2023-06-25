@@ -28,6 +28,10 @@ const TelaMenuCliente = () => {
 
     const uid = useParams().uid;
 
+    const [backgroundColor, setBackgroundColor] = useState('');
+
+    
+
     const navigate = useNavigate();
 
     //Requisicoes com a API
@@ -40,6 +44,7 @@ const TelaMenuCliente = () => {
             try {
                 const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 setNomeEmpresa(empResponse.data.nome);
+                setBackgroundColor(empResponse.data.tema)
             } catch (error) {
                 console.log(error);
             }
@@ -84,7 +89,7 @@ const TelaMenuCliente = () => {
     }
 
     return (
-        <div className={styles.fMenuCliente}>
+        <div className={styles.fMenuCliente} style={{ backgroundColor }}>
             <nav id={styles["cabecalhoMenuCli"]}>
                 <div className={styles.voltar}><Link to={`/tLoginCli/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
                 <div className={styles.logoMenuCli}><p>{nomeEmpresa}</p></div>

@@ -16,6 +16,7 @@ const TelaLogin = () => {
 
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
+    const [backgroundColor, setBackgroundColor] = useState('');
 
     const navigate = useNavigate();
 
@@ -29,6 +30,7 @@ const TelaLogin = () => {
             try {
                 const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 setNomeEmpresa(empResponse.data.nome);
+                setBackgroundColor(empResponse.data.tema);
             } catch (error) {
                 console.log(error);
             }
@@ -76,7 +78,7 @@ const TelaLogin = () => {
     }
 
     return (
-        <div className="fLoginFunc">
+        <div className="fLoginFunc" style={{ backgroundColor }}>
             <div className="containerFunc">
                 <div className="row">
                     <div className="logo"><h1 title="Bem-Vindo!"><center>{nomeEmpresa}</center></h1></div>

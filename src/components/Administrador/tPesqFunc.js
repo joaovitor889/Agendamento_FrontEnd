@@ -32,6 +32,8 @@ const TelaPesqFunc = () => {
 
     const [elementos, setElementos] = useState([]);
     const [nomeEmp, setNomeEmp] = useState();
+
+    const [searchTerm, setSearchTerm] = useState("");
  
     const [novoUID,  setNovoUID] = useState('');
     
@@ -47,7 +49,6 @@ const TelaPesqFunc = () => {
 
         // carregarServicos();
     }
-
     
 
     useEffect(() => {
@@ -59,6 +60,8 @@ const TelaPesqFunc = () => {
                 console.error(error);
             });
     }, []);
+
+
     const [empresas, setEmpresas] = useState([]);
     useEffect(()=> {
         async function PegaEmpresas(){
@@ -77,6 +80,7 @@ const TelaPesqFunc = () => {
         PegaEmpresas();
     })
 
+
     //Pegar funcionarios
     const [funcionarios, setFuncionarios] = useState([]);
     useEffect(() => {
@@ -94,7 +98,7 @@ const TelaPesqFunc = () => {
     }, []);
 
     const addFuncionario = () => {
-        window.open(`/tCadFunc/${token}/${uid}`, '_blank');
+        window.open(`/tCadFunc/${token}/${novoUID}`, '_blank');
     }   
 
     const [selectedValue, setSelectedValue] = useState('');
@@ -134,7 +138,6 @@ const TelaPesqFunc = () => {
             });
       }
         
-
   
 
 //   function carregarServicos (){
@@ -155,6 +158,13 @@ const TelaPesqFunc = () => {
 //     console.log(nomesServ[0]);
 //   }
 
+const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredList = elementos.filter((item) =>
+  item.nome.toLowerCase().includes(searchTerm.toLowerCase())
+);
 
     
 
@@ -201,14 +211,7 @@ const TelaPesqFunc = () => {
                     <div className={styles.filter}>
                         <img src={filter} alt="" id='icon-filter' />
                         <h4>Filtre</h4>
-                        <select name="func" className={styles.texto}>
-                            <option value="funcionarios">Todos os funcionários</option>
-                            {funcionarios.map(funcionario => (
-                                <option key={funcionario.id} value={funcionario.id}>
-                                    {funcionario.nome}
-                                </option>
-                            ))}
-                        </select>
+                        <input type="text"value={searchTerm} onChange={handleSearchChange} placeholder='nome Cliente' />
                     </div>
                     <div className={styles.funcionarios}>
                         <p onClick={addFuncionario}><img src={add} alt="" /></p>
@@ -217,7 +220,7 @@ const TelaPesqFunc = () => {
                 <div className={styles.cards}>
 
 
-                    {elementos.map((elemento, index) => (
+                    {filteredList.map((elemento, index) => (
                         <div className={styles.card}>
                             <h4 key={index} id='nomeFunc'>{elemento.nome}</h4>
                             <p id='servFunc'>Serviços: cabelereira, manicure</p>

@@ -67,19 +67,21 @@ const TelaAgendarADM = () => {
     const isDataSelected = Boolean(data);
     const isProfissionalSelected = profissional !== "profis";
     const isHorarioSelectDisabled = !isDataSelected || !isProfissionalSelected;
+    const [novoUID,  setNovoUID] = useState('');
 
     //nome da empresa
-    useEffect(() => {
-        async function PegaEmpresa() {
-            try {
-                const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
-                setNomeEmp(empResponse.data.nome);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        PegaEmpresa();
-    }, [uid])
+    
+    const CarregamentoInicial = (e) =>{
+        setNovoUID(uid);
+        agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
+            setNomeEmp(response.data.nome); // Declaração do nome da empresa
+
+        }).catch(error => {
+            console.log(error);
+        })
+
+        // carregarServicos();
+    }
 
     //pegar os dados do banco
     useEffect(() => {
@@ -472,8 +474,46 @@ const TelaAgendarADM = () => {
         }
     }
 
+    useEffect(() => {
+        renderContent(novoUID); // Executa o código relevante quando novoUID for atualizado
+      }, [novoUID]);
+
+    const handleSelectChange = (event) => {
+        const value = event.target.value;
+        setNovoUID(value); // Atualiza o estado de novoUID
+      
+        // Não é necessário chamar renderContent aqui
+      };
+      const renderContent = (value) => {
+        agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + value)
+          .then(response => {
+            setNomeEmp(response.data.nome);
+            // Outro código relevante aqui
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      };
+      const [empresas, setEmpresas] = useState([]);
+        useEffect(()=> {
+        async function PegaEmpresas(){
+            try{
+                const headers = {
+                    Authorization: `Bearer ${token}`,
+                };
+
+                const funcResonse = await agFetch.get(`/estabelecimento/prop/`, {headers});
+                setEmpresas(funcResonse.data);
+            }
+            catch(error){
+                console.log(error)
+            }
+        }
+        PegaEmpresas();
+    })
+
     return (
-        <div className={styles.fAgendar}>
+        <div className={styles.fAgendar} onLoad={CarregamentoInicial}>
             <input type='checkbox' id={styles["check"]} />
             {/* header  começo */}
             <div className={styles.body_header}>
@@ -498,9 +538,13 @@ const TelaAgendarADM = () => {
                 <Link to={`/tServADM/${token}/${uid}`}>Serviços</Link>
                 <Link to={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
                 <Link to={`/tLoginAdm`}>Sair</Link>
-                <select name='qual empresa?' className={styles.interprise}>
-                    <option value="emp1">Shostners and Shostners</option>
-                    <option value="emp2">Show de bola</option>
+                <select name='qual empresa?' className={styles.interprise} onChange={handleSelectChange}>
+                    <option value="">Escolha a empresa</option>
+                    {empresas.map(empresa => (
+                        <option key={empresa.id} value={empresa.uid}>
+                            {empresa.nome}
+                        </option>
+                    ))}
                 </select>
             </div>
             {/* sidebar  final */}

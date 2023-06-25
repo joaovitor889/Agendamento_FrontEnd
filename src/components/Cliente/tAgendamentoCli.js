@@ -37,10 +37,13 @@ const TelaAgendamento = () => {
   const [index, setIndex] = useState('');
 
   const [nomeEmp, setNomeEmp] = useState();
+  const [backgroundColor, setBackgroundColor] = useState('');
+  
 
   const CarregamentoInicial = (e) => {
     agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
       setNomeEmp(response.data.nome); // Declaração do nome da empresa
+      setBackgroundColor(response.data.tema)
 
     }).catch(error => {
       console.log(error);
@@ -98,10 +101,10 @@ const TelaAgendamento = () => {
   const voltar = '/tMenuCli/' + token + '/' + uid;
 
   return (
-    <div className={styles.fAgendamento} onLoad={CarregamentoInicial}>
+    <div className={styles.fAgendamento} onLoad={CarregamentoInicial} style={{ backgroundColor }}>
       <input type="checkbox" id={styles["check"]} />
       {/* header  começo */}
-      <header>
+      <header style={{ backgroundColor }}>
         <div className={styles.esquerda}>
         <Link to={`/tMenuCli/${token}/${uid}`}>
             <img src={menu} alt="retunr" className='sidebar_btn' />

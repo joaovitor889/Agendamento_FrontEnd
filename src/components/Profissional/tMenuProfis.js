@@ -29,6 +29,7 @@ const TelaMenuProfissional = () => {
     const { uid } = useParams();
 
     const navigate = useNavigate();
+    const [backgroundColor, setBackgroundColor] = useState('');
 
     const AgendamentosFunc = () => {
         navigate(`/tAgendamentoProfis/${token}/${uid}`);
@@ -48,6 +49,7 @@ const TelaMenuProfissional = () => {
             try {
                 const empResponse = await agFetch.get(`/estabelecimento/${uid}`);
                 setNomeEmpresa(empResponse.data.nome);
+                setBackgroundColor(empResponse.data.tema);
             } catch (error) {
                 console.log(error);
             }
@@ -80,7 +82,7 @@ const TelaMenuProfissional = () => {
 
 
     return (
-        <div className={styles.fMenuProfissional}>
+        <div className={styles.fMenuProfissional} style={{ backgroundColor }}>
             <nav id={styles["cabecalhoMenuCli"]}>
                 <div className={styles.voltar}><Link to={`/tLoginFunc/${uid}`}><img src={Voltar} alt="voltar" title="Voltar" /></Link></div>
                 <div className={styles.logoMenuCli}><p>{nomeEmpresa}</p></div>

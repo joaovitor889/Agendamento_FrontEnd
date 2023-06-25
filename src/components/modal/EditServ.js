@@ -83,6 +83,11 @@ export default function Modal({isOpen, setModalOpen, children, categori, index }
     console.log(index);
     console.log(categori[index])
 
+    const handleTimeChange = (event) => {
+        const newTime = event.target.value;
+        // Atualizar o estado ou fazer algo com o novo valor do tempo
+      };
+
     if(isOpen){
         return(
             <div style={BACKGROUND_STYLE}>
@@ -106,7 +111,12 @@ export default function Modal({isOpen, setModalOpen, children, categori, index }
                     <div style={FINALIZACAO_STYLE}>
                         <div style = {FINAL_STYLE}>
                             <label>Tempo</label>
-                            <input type="time" value={categori[index].tempoMedioMin}style={TEXT_SHORT_STYLE}/>
+                            <input
+                                type="text"
+                                placeholder={categori[index].tempoMedioMin} // Definir o valor do campo de input
+                                onChange={handleTimeChange} // Adicionar um manipulador de evento para capturar mudanças no valor
+                                style={TEXT_SHORT_STYLE}
+                            />
                         </div>
                         <div style={FINAL_STYLE}>
                             <label>Preço</label>
