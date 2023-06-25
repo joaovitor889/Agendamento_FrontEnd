@@ -296,7 +296,7 @@ const TelaMenuEmpreendimento = () => {
                     } catch (error) {
                         console.log(error);
                     }
-                    navigate("tLoginAdm");
+                    navigate("/tLoginAdm");
                 }
             }
         } catch (error) {
