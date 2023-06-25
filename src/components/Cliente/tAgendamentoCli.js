@@ -31,7 +31,6 @@ const TelaAgendamento = () => {
   const { uid } = useParams();
   const { token } = useParams();
 
-  const [openModal, setOpenModal] = useState(false)
   const [openAgeda, setDetalheOpen] = useState(false)
 
   const [agendamentos, setAgendamentos] = useState([]);
@@ -142,7 +141,7 @@ const TelaAgendamento = () => {
       <a href='/' className={styles.block}> <img src={block} alt="bloquear" /></a>
       <div className={styles.Container}>
         {agendamentos.map((age, index) => (
-          <div key={index} onClick={() => { setIndex(index) }} className={styles.Card}>
+          <div key={index} onClick={() => { setDetalheOpen(true); setIndex(index) }} className={styles.Card}>
             <div className={styles.Card_Header}>
               <h2>Profissional: {age.funcionario.nome}</h2>
               <p>Serviço: {age.servico.nome}</p>
