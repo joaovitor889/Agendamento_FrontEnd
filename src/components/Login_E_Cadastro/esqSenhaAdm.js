@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import agFetch from '../../axios/config.js';
+import { tr } from 'date-fns/locale';
 
 const EsqSenhaAdm = () => {
     document.title = "Esqueceu a Senha";
@@ -25,11 +26,22 @@ const EsqSenhaAdm = () => {
         try {
             const envEmailResponse = await agFetch.post('/auth/proprietario/recuperarSenha', txtData);
             if (envEmailResponse.status >= 200 && envEmailResponse.status <= 201) {
-                const token = envEmailResponse.data;
-                console.log("Logou no Proprietário " + token);
-                navigate(`/tAlterarSenhaAdm/${token}`);
+                try {
+                    const token = envEmailResponse.data;
+                    console.log("Logou no Proprietário " + token);
+                    const vrfToken = await agFetch.get(`/auth/proprietario/verificarToken/${token}`);
+                    if (vrfToken.status >= 200 && vrfToken.status <= 299) {
+                        navigate(`/tAlterarSenhaAdm/${token}`);
+                    }
+                } catch (error) {
+                    console.log(error);
+                    if (error.response && error.response.status === 403) {
+                        alert("Email não encontrado!");
+                    }
+                }
             }
         } catch (error) {
+            console.log(error);
             if (error.response && error.response.status === 404) {
                 alert("Email não encontrado!");
             }

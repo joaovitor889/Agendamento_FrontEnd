@@ -12,7 +12,9 @@ import agFetch from '../../axios/config.js';
 const EsqSenhaAdm = () => {
     document.title = "Esqueceu a Senha";
 
-    const token = useParams();
+    const token = useParams().token;
+
+    //alert(token);
 
     const [senha, setSenha] = useState("");
     const [confSenha, setConfSenha] = useState("");
