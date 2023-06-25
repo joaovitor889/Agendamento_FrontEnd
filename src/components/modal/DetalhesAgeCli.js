@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
-
+import agFetch from '../../axios/config';
+//import { useParams } from "react-router-dom";
 
 const BACKGROUND_STYLE = {
     position: 'fixed',
@@ -79,11 +80,26 @@ export default function Modal({ isOpen, setDetalheOpen, children, agendamento, i
 
     const [status, setStatus] = useState('Confirmado');
 
+    const [nota, setNota] = useState(0);
+
+    const [idAg, setIdAg] = useState();
+
+    const selecionarNota = (valor) => {
+        if (valor === nota) {
+            setNota(0);
+        } else {
+            setNota(valor);
+        }
+    };
+
     const handleFechar = async () => {
         var obj = {
             agendamentoId: agendamento[index].id,
             status: status
         }
+        const idagm = obj.agendamentoId;
+        setIdAg(idagm);
+        console.log(idAg);
 
         axios.post("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/agendamento/mudarStatus", obj).then(response => {
             console.log("alteração de status");
@@ -91,6 +107,28 @@ export default function Modal({ isOpen, setDetalheOpen, children, agendamento, i
         }).catch(error => {
             console.log(error);
         })
+
+        try {
+            //Autorizar o envio dos dados
+            const txtData = {
+                "data_inicio": "2023-06-23",
+                "data_fim": "2050-06-24"
+            }
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            const valNota = parseInt(nota);
+
+            const agNota = await agFetch.post('/agendamento/darNota', {
+                agendamentoId: idAg,
+                nota: valNota
+            });
+            console.log(agNota.status);
+        } catch (error) {
+            console.log(error);
+        }
+
         setDetalheOpen();
     };
 
@@ -123,7 +161,21 @@ export default function Modal({ isOpen, setDetalheOpen, children, agendamento, i
                     </div>
                     <div style={DOIS_STYLE}>
                         <h4 style={TEXT_STATUS_STYLE}>Nota: </h4>
-                        
+                        <div>
+                            {[1, 2, 3, 4, 5].map((valor) => (
+                                <span
+                                    key={valor}
+                                    style={{
+                                        cursor: 'pointer',
+                                        color: valor <= nota ? 'gold' : 'gray',
+                                        fontSize: '24px',
+                                    }}
+                                    onClick={() => selecionarNota(valor)}
+                                >
+                                    ★
+                                </span>
+                            ))}
+                        </div>
                     </div><br />
                     <button onClick={handleFechar} style={BTN_STYLE}>Fechar</button>
                 </div>
