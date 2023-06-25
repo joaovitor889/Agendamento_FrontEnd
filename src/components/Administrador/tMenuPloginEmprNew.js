@@ -296,8 +296,8 @@ const TelaMenuEmpreendimento = () => {
                     } catch (error) {
                         console.log(error);
                     }
-                    navigate("/tLoginAdm");
                 }
+                navigate("/tLoginAdm");
             }
         } catch (error) {
             console.error('Erro ao enviar requisições:', error);
