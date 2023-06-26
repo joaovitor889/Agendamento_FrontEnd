@@ -149,7 +149,7 @@ const TelaAgendamento = () => {
           <h4 data-value="2023-07-02" onClick={(e) => { setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value')); }}>02/07</h4>
         </div>
       </div>
-      <a href='/' className={styles.block}> <img src={block} alt="bloquear" /></a>
+      {/* <a href='/' className={styles.block}> <img src={block} alt="bloquear" /></a> */}
       <div className={styles.Container}>
         {agendamentos.map((age, index) => (
           <div key={index} onClick={() => { setDetalheOpen(true); setIndex(index) }} className={styles.Card}>

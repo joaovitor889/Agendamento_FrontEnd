@@ -44,6 +44,8 @@ const TelaAgendamentos = () => {
     const [nomeFunc, setNomeFunc] = useState("");
 
     const CarregamentoInicial = (e) =>{
+        
+        setNovoUID(uid);
 
         agFetch.get("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/estabelecimento/" + uid).then(response => {
             setNomeEmp(response.data.nome); // Declaração do nome da empresa

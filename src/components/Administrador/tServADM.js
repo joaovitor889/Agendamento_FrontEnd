@@ -26,6 +26,7 @@ import {
 //import { Link, useNavigate } from "react-router-dom";
 
 import agFetch from '../../axios/config';
+import { set } from 'date-fns';
 
 const TelaMenuADM = () => {
 
@@ -128,8 +129,23 @@ const TelaMenuADM = () => {
         blockServ();
 
         
-
+    
     }
+
+    const [display, setDisplay] = useState('');
+
+    function getDisplay (ativo) {
+        if(ativo){
+            setDisplay('flex');
+        }else{
+            setDisplay('none');
+        }
+        return display
+    }
+    
+    const filteredList = services.filter((item) =>
+        item.ativo === true   
+    );
 
     return (
         <div className={styles.fMenuADM}>
@@ -195,8 +211,8 @@ const TelaMenuADM = () => {
                         </div>
                     </div>*/}
 
-                    {services.map((service, index) => (
-                        <div key={index} className={styles.card} >
+                    {filteredList.map((service, index) => (
+                        <div key={index} className={styles.card}>
                             <h4 data-value = {index} className={styles.card_header} onClick={() => {setOpenModal(true); setIndex(index)}}>{service.nome}</h4>
                             <p className={styles.card_body}>{service.descricao}</p>
                             <span >{service.id}</span>

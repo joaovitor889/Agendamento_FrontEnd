@@ -5,6 +5,7 @@ import notificar from '../../img/notificar.png'
 import block from '../../img/block-func.png'
 import filtro from '../../img/filter.png'
 import Foto from './FotoPerfilFunc/fotoAgdsFunc';
+import DetalhesAge from '../modal/DetalhesAgeFunc'
 //import logo from '../../img/logo.PNG';
 
 //import { useState, useEffect, useRef } from "react";
@@ -30,6 +31,7 @@ const TelaCalendarioProfissional = () => {
     const [backgroundColor, setBackgroundColor] = useState('');
     const { uid } = useParams();
    const { token } = useParams();
+   const [openAgeda, setDetalheOpen] = useState(false)
 
    const [agendamentos, setAgendamentos] = useState([]);
    const [index, setIndex] = useState('');
@@ -157,10 +159,10 @@ const TelaCalendarioProfissional = () => {
                         <h4 data-value="2023-07-02" onClick={(e) => {setDataInicio(e.target.getAttribute('data-value')); setDataFim(e.target.getAttribute('data-value'));}}>02/07</h4>
                     </div>
                 </div>
-                <a href='/' className={styles.block}> <img src={block} alt="bloquear" /></a>
+                {/* <a href='/' className={styles.block}> <img src={block} alt="bloquear" /></a> */}
                 <div className={styles.Container}>
                 {agendamentos.map((age, index) => (
-                        <div key={index} onClick={() => {setIndex(index)}} className={styles.Card}>
+                        <div key={index} onClick={() => { setDetalheOpen(true); setIndex(index) }} className={styles.Card}>
                             <div className={styles.Card_Header}>
                                 <h2>Cliente: {age.cliente.nome}</h2>
                                 <p>Serviço: {age.servico.nome}</p>
@@ -174,9 +176,10 @@ const TelaCalendarioProfissional = () => {
                             </div>
                         </div>
                     ))}
-                
+                 <DetalhesAge isOpen={openAgeda} setDetalheOpen={() => setDetalheOpen(!openAgeda)} agendamento={agendamentos} index={index} />
             </div>
         </div>
+        
     )
 }
 

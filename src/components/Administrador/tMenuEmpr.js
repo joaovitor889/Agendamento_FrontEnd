@@ -459,6 +459,14 @@ const TelaMenuEmpreendimento = () => {
         cadEstabelecimento(selectedFile, jscep, nomeEst, ftelefone, segInic, terInic, quaInic, quiInic, sexInic, sabInic, domInic, segFim, terFim, quaFim, quiFim, sexFim, sabFim, domFim, ftema, jsrua, jsnum, jscomp, jsbairro, jscidade, jseuf);
     }
 
+    const redirectTelaFunc = () => {
+        window.open(`/tLoginFunc/${uid}`, '_blank');
+    }   
+
+    const redirectTelaCli = () => {
+        window.open(`/tLoginCli/${uid}`, '_blank');
+    }   
+
     return (
         <div className={styles.fEmpr}>
             <div id={styles["menuLatCli"]}>
@@ -744,8 +752,11 @@ const TelaMenuEmpreendimento = () => {
                         <button id={styles["btnExcluir"]}>Excluir</button>
                         <input type="submit" id={styles["btnSalvarFoto"]} name="btnSalvarFoto" value="Salvar" />
                     </div>
+                    <p onClick={redirectTelaFunc}>http://localhost:8080/tLoginFunc/{uid}</p>
+                    <p onClick={redirectTelaCli}>http://localhost:8080/tLoginCli/{uid}</p>
                 </form>
                 <br></br>
+                
             </div>
 
             <div id={styles["menuHorCli"]}>

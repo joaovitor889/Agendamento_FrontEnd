@@ -138,25 +138,7 @@ const TelaPesqFunc = () => {
             });
       }
         
-  
-
-//   function carregarServicos (){
-//     var nomesServ = []
-//     var IdsFunc = []
-//     for(var i = 0; i < elementos.length; i++){
-//         IdsFunc[i] = elementos[i].id;
-//         console.log(IdsFunc[i])
-//         agFetch.get(`http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/funcionario/servicos/19`).then(
-//             response => {
-//                 console.log(response.data)
-//                 for(var x = 0; x < response.data.length; x++){
-//                     nomesServ[0] =  response.data[x].nome;
-//                 }
-//             }
-//         )
-//     }
-//     console.log(nomesServ[0]);
-//   }
+      
 
 const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -165,8 +147,36 @@ const handleSearchChange = (event) => {
   const filteredList = elementos.filter((item) =>
   item.nome.toLowerCase().includes(searchTerm.toLowerCase())
 );
+// const [agenFunc, setAgenFunc] = useState([]);
+// const [rendimento, setRendimento] = useState(0);
+// const [valor, setValor] = useState('');
+ 
 
-    
+
+// function getRendimento(valor) {
+//     var soma = 0;
+//     var periodo = {
+//         "data_inicio" : "2023-06-23",
+//         "data_fim" : "2023-07-02"
+//     }
+
+//     agFetch.post("http://ec2-54-157-10-132.compute-1.amazonaws.com:4000/funcionario/todoAgendamentos?idFunc=" + valor , periodo )
+//       .then(response => {
+//         setAgenFunc(response.data);
+//         // Outro código relevante aqui
+//       })
+//       .catch(error => {
+//         console.log(error);
+//       });
+
+//       for(var i = 0; i < agenFunc.length; i++){
+//         soma += agenFunc[i].servico.preco
+//       }
+      
+//       return soma;
+// }
+
+  
 
 
     return (
@@ -223,10 +233,9 @@ const handleSearchChange = (event) => {
                     {filteredList.map((elemento, index) => (
                         <div className={styles.card}>
                             <h4 key={index} id='nomeFunc'>{elemento.nome}</h4>
-                            <p id='servFunc'>Serviços: cabelereira, manicure</p>
                             <span >{elemento.id}</span>
                             <div className={styles.card_footer}>
-                                <h4 id='ganhosFunc'>Faturamento Mensal: R$ 400,00</h4>
+                                <h4 id='ganhosFunc'>Faturamento Mensal: 0R$ </h4>
                                 <img src={lixeira} alt="" />
                             </div>
                         </div>
