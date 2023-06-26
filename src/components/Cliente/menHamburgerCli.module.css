@@ -23,7 +23,7 @@
 .menu {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(180deg, #3293CA 0%, #000000 100%);
+    /*background-color: red;*/
     position: absolute;
     top: 0;
     left: 0;
@@ -123,6 +123,10 @@
     color: #fff;    
     margin-top: 89%;
     font-size: 25vw;
+}
+
+.menuHidden {
+    display: none;
 }
 
 @media only screen and (min-width: 1024px) {

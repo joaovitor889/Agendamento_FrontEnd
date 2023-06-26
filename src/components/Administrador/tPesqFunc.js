@@ -221,7 +221,7 @@ const handleSearchChange = (event) => {
                     <div className={styles.filter}>
                         <img src={filter} alt="" id='icon-filter' />
                         <h4>Filtre</h4>
-                        <input type="text"value={searchTerm} onChange={handleSearchChange} placeholder='nome Cliente' />
+                        <input type="text"value={searchTerm} onChange={handleSearchChange} placeholder='Nome Funcionário' />
                     </div>
                     <div className={styles.funcionarios}>
                         <p onClick={addFuncionario}><img src={add} alt="" /></p>
