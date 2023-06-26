@@ -141,6 +141,37 @@ const TelaCadServico = () => {
         cadastrarServico(vNome, vPreco, vAtivo, tempo, vDescricao, nomeCategoria, descCat);
     }
 
+
+    const [empresas, setEmpresas] = useState([]);
+    useEffect(()=> {
+        async function PegaEmpresas(){
+            try{
+                const headers = {
+                    Authorization: `Bearer ${token}`,
+                };
+
+                const funcResonse = await agFetch.get(`/estabelecimento/prop/`, {headers});
+                setEmpresas(funcResonse.data);
+            }
+            catch(error){
+                console.log(error)
+            }
+        }
+        PegaEmpresas();
+    })
+
+    const [novoUID,  setNovoUID] = useState('');    
+    const [selectedValue, setSelectedValue] = useState('');
+
+    const handleSelectChange = (event) => {
+        const value = event.target.value;
+        setSelectedValue(value);
+        setNovoUID(value); // Atualiza o estado de novoUID
+      
+        // Não é necessário chamar renderContent aqui
+      };
+
+
     return (
         <div className={styles.fCadServico}>
             <input type='checkbox' id={styles["check"]} />
@@ -167,9 +198,13 @@ const TelaCadServico = () => {
                 <Link to={`/tServADM/${token}/${uid}`}>Serviços</Link>
                 <Link to={`/tMenuDBADM/${token}/${uid}`}>Perfil</Link>
                 <Link to={`/tLoginAdm`}>Sair</Link>
-                <select name='qual empresa?' className={styles.interprise}>
-                    <option value="emp1">Shostners and Shostners</option>
-                    <option value="emp2">Show de bola</option>
+                <select name='qual empresa?' className={styles.interprise} onChange={handleSelectChange}>
+                    <option value="">Escolha a empresa</option>
+                    {empresas.map(empresa => (
+                        <option key={empresa.id} value={empresa.uid}>
+                            {empresa.nome}
+                        </option>
+                    ))}
                 </select>
             </div>
             {/* sidebar  final */}
